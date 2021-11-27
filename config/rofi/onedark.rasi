@@ -1,0 +1,45 @@
+/*
+ * ROFI color theme
+ *
+ * Based on Something Found in the Internet
+ *
+ * User: Contributors
+ * Copyright: *!
+ */
+
+// configuration {
+// 	modi: "window,run,ssh,drun";
+// 	font: "Jetbrains Mono 13";
+// 	icon-theme: "Papirus";
+// 	show-icons: true;
+// }
+
+* {
+	background-color: #282c34;
+	text-color: #abb2bf;
+	border: 0.5% 0.25% 0.5% 0.25%;
+	border-color: #282c34;
+	location: center;
+	border-radius: 12px;
+}
+
+prompt {
+	enabled: true;
+	padding: 0% 0.5% 0% 0%;
+	font: "Jetbrains Mono";
+	text-color: #abb2bf;
+	background-color: #282c34;
+}
+
+element-icon {
+    background-color: 				inherit;
+    text-color:       				inherit;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    size:                           40px;
+    border:                         0px;
+}
+
+element selected {
+	text-color: #98c379;
+}
