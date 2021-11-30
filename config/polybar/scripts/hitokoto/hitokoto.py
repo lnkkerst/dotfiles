@@ -49,6 +49,7 @@ if __name__ == "__main__":
     for i in sys.argv:
         if(i == 'get'):
             hito = getFromWeb(queryType())
+            print("ok")
             writeToFile(hito)
             print(hito['hitokoto'])
         elif(i == 'hito'):
@@ -61,7 +62,7 @@ if __name__ == "__main__":
             if(nt == 'l'):
                 nt = 'a';
             else:
-                nt = chr(ord(nt) - 1)
+                nt = chr(ord(nt) + 1)
             changeType(nt)
             print(getTypeName(nt))
         elif(i == 'prev'):

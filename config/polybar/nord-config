@@ -50,9 +50,9 @@ top-center = mpd
 top-right = keyboard alsa network-short battery-combined-tlp date
 
 # Bottom modules
-bottom-left = powermenu info-hackspeed weather
+bottom-left = powermenu info-hackspeed cpu temperature
 bottom-center = hitokoto
-bottom-right = memory cpu temperature
+bottom-right = memory
 
 systray-top = none
 systray-bottom = right
