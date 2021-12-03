@@ -55,8 +55,8 @@ bindsym $mod+Ctrl+m exec --no-startup-id terminator -e 'alsamixer'
 ################################################################################################
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc 5"
-bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 5"
+bindsym XF86MonBrightnessUp exec --no-startup-id terminator -e xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id terminator -e xbacklight -dec 10
 
 # Start Applications
 # bindsym $mod+Ctrl+b exec urxvt -e 'bmenu'
@@ -293,8 +293,8 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+9 exec --no-startup-id i3lock-fancy
-bindsym $mod+Shift+9 exec --no-startup-id xtrlock -f
+bindsym $mod+Shift+9 exec --no-startup-id i3lock-fancy
+bindsym $mod+9 exec --no-startup-id xtrlock -f
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -311,6 +311,7 @@ exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker i3lock-fancy
+exec --no-startup-id xss-lock xtrlock -f
 # exec_always --no-startup-id ff-theme-util
 # exec_always --no-startup-id fix_xcursor
 
