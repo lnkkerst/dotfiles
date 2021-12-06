@@ -314,7 +314,7 @@ exec --no-startup-id xautolock -time 10 -locker i3lock-fancy
 exec --no-startup-id xss-lock xtrlock
 # exec_always --no-startup-id ff-theme-util
 # exec_always --no-startup-id fix_xcursor
-exec --no-startup-id volumeicon
+# exec --no-startup-id volumeicon
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
