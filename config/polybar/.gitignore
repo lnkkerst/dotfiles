@@ -1,1 +1,3 @@
 scripts/poem.txt
+scripts/hitokoto.*
+!scripts/hitokoto.py

@@ -1,6 +1,7 @@
 [global_config]
 [keybindings]
   next_profile = <Primary>n
+  help = <Primary>F1
 [profiles]
   [[default]]
     background_color = "#002b36"
