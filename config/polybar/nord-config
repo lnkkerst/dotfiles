@@ -44,13 +44,13 @@ tray-reparent = true
 # clipmenu-widget: showing clipmenu service
 
 # Top modules
-top-left = rofi-run i3 title
+top-left = i3 title
 top-center = mpd
 # top-right = keyboard clipmenu-widget onedrive-widget clash-widget alsa network-short battery date
 top-right = keyboard alsa network-short battery-combined-tlp date
 
 # Bottom modules
-bottom-left = powermenu info-hackspeed cpu temperature
+bottom-left = info-hackspeed cpu temperature
 bottom-center = hitokoto
 bottom-right = memory
 
