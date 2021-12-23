@@ -474,7 +474,7 @@ exec_always --no-startup-id bash ~/.config/polybar/launch.sh
 # exec --no-startup-id unset LANG
 # exec --no-startup-id source /etc/profile.d/locale.sh
 exec_always --no-startup-id autotiling
-exec_always --no-startup-id xsettingsd
+# exec_always --no-startup-id xsettingsd
 
 # for sound control
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master playback 5%+
