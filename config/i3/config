@@ -55,8 +55,8 @@ bindsym $mod+Ctrl+m exec --no-startup-id terminator -e 'alsamixer'
 ################################################################################################
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id terminator -e xbacklight -inc 10
-bindsym XF86MonBrightnessDown exec --no-startup-id terminator -e xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec --no-startup-id terminator -e 'xbacklight -inc 10'
+bindsym XF86MonBrightnessDown exec --no-startup-id terminator -e 'xbacklight -dec 10'
 
 # Start Applications
 # bindsym $mod+Ctrl+b exec urxvt -e 'bmenu'
@@ -312,8 +312,8 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xrandr --output eDP --primary
 # exec --no-startup-id xfce4-power-manager
 #exec --no-startup-id pamac-tray
-# exec --no-startup-id clipit
-exec --no-startup-id xfce4-clipman
+exec --no-startup-id clipit
+# exec --no-startup-id xfce4-clipman
 exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
