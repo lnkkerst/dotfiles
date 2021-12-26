@@ -3,7 +3,7 @@ configuration {
   font: "Microsoft Yahei 12";
   show-icons: true;
   // dw:0;
-  // drun-icon-theme: "Vimix";
+  drun-icon-theme: "Vimix Black dark";
   terminal: "terminator";
   scroll-method: 1;
   display-drun: "Search";

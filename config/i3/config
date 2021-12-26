@@ -55,8 +55,8 @@ bindsym $mod+Ctrl+m exec --no-startup-id terminator -e 'alsamixer'
 ################################################################################################
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id terminator -e 'xbacklight -inc 10'
-bindsym XF86MonBrightnessDown exec --no-startup-id terminator -e 'xbacklight -dec 10'
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 # Start Applications
 # bindsym $mod+Ctrl+b exec urxvt -e 'bmenu'
@@ -245,6 +245,7 @@ for_window [title="Catfish"] floating enable
 for_window [class="SimpleScreenRecorder"] floating enable
 for_window [class="ecloud.exe"] floatng enable
 for_window [class="SwitchHosts"] floating enable
+for_window [class="crx__anpjhmnbeenjanpnojeghbnigpagkmni"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -465,7 +466,7 @@ exec --no-startup-id fcitx
 # exec --no-startup-id ~/func/autobg.sh
 # exec --no-startup-id variety
 # exec --no-startup-id xbacklight + `cat ~/func/conf/lightness`
-# exec --no-startup-id /usr/lib/cinnamon-settings-daemon/csd-xsettings
+exec --no-startup-id /usr/lib/cinnamon-settings-daemon/csd-xsettings
 exec_always --no-startup-id bash ~/.config/polybar/launch.sh
 # exec --no-startup-id xhost +
 # exec --no-startup-id /usr/bin/xsettingsd
@@ -474,7 +475,7 @@ exec_always --no-startup-id bash ~/.config/polybar/launch.sh
 # exec --no-startup-id unset LANG
 # exec --no-startup-id source /etc/profile.d/locale.sh
 exec_always --no-startup-id autotiling
-# exec_always --no-startup-id xsettingsd
+# exec --no-startup-id xsettingsd
 
 # for sound control
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master playback 5%+
