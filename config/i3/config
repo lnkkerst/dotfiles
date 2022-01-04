@@ -49,7 +49,7 @@ bindsym $mod+d exec --no-startup-id xfce4-appfinder
 
 # exec --no-startup-id volumeicon
 # bindsym $mod+Ctrl+m exec --no-startup-id terminator -e 'alsamixer'
-exec --no-startup-id pulseaudio
+# exec --no-startup-id pulseaudio
 # exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
 
@@ -68,8 +68,8 @@ bindsym $mod+Shift+F3 exec --no-startup-id terminator -e ranger
 # bindsym $mod+F5 exec --no-startup-id terminator -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
-# bindsym $mod+Shift+d --release exec --no-startup-id "killall dunst; exec notify-send 'restart dunst'"
-bindsym $mod+Shift+d --release exec --no-startup-id "killall xfce4-notifyd; exec /usr/lib/xfce4/notifyd/xfce4-notifyd"
+bindsym $mod+Shift+d --release exec --no-startup-id "killall dunst; exec notify-send 'restart dunst'"
+# bindsym $mod+Shift+d --release exec --no-startup-id "killall xfce4-notifyd; exec /usr/lib/xfce4/notifyd/xfce4-notifyd"
 # bindsym Print exec --no-startup-id "xfce4-screenshooter -f -s ~/Pictures/shott/`date +%F-%H-%M-%S-%N.jpg`; sleep 2;  notify-send 'saved the screen'"
 # bindsym Shift+Print exec --no-startup-id "xfce4-screenshooter -r -s ~/Pictures/shott/`date +%F-%H-%M-%S-%N.jpg`; sleep 2; notify-send 'saved the screen'"
 bindsym Print --release exec --no-startup-id i3-scrot -d
@@ -336,37 +336,39 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
-# # Start i3bar to display a workspace bar (plus the system information i3status if available)
-# bar {
-# 	i3bar_command i3bar -t
-# 	status_command i3status
-# 	position top
+# Start i3bar to display a workspace bar (plus the system information i3status if available)
+bar {
+	i3bar_command i3bar -t
+	status_command i3status -c $HOME/.config/i3status.conf
+	position top
 
-# ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-# #	tray_output primary
-# #	tray_output eDP1
+## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+#	tray_output primary
+#	tray_output eDP1
 
-# 	bindsym button4 nop
-# 	bindsym button5 nop
-# #   font xft:URWGothic-Book 11
-# 	strip_workspace_numbers yes
+	bindsym button4 nop
+	bindsym button5 nop
+#   font xft:URWGothic-Book 11
+	strip_workspace_numbers yes
 
-#     colors {
-#         background #222D3100
-#         statusline #F9FAF9
-#         separator  #454947
+    colors {
+        background #00000000
+        statusline #FFFFFF
+        separator  #454947
 
-# #                      border  backgr. text
-#         focused_workspace  #F9FAF900 #16a08566 #292F34
-#         active_workspace   #595B5B00 #35383666 #FDF6E3
-#         inactive_workspace #595B5B00 #222D3166 #EEE8D5
-#         binding_mode       #16a085 #2C2C2C66 #F9FAF9
-#         urgent_workspace   #16a085 #FDF6E366 #E5201D
-#     }
-# }
+#                             border  backgr. text
+        focused_workspace  #00000000 #00000033 #AAABAC
+        active_workspace   #00000000 #00000033 #FDF6E3
+        inactive_workspace #00000000 #00000000 #EEE8D5
+        binding_mode       #16a085 #2C2C2C66 #F9FAF9
+        urgent_workspace   #16a085 #FDF6E366 #E5201D
+    }
 
-# # hide/unhide i3status bar
-# bindsym $mod+m bar mode toggle
+    tray_padding 0
+}
+
+# hide/unhide i3status bar
+bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
@@ -383,10 +385,10 @@ set_from_resource $term_color15    color15
 #############################
 
 # Set inner/outer gaps
-gaps inner 15
+gaps inner 8
 gaps outer 10
 
-# gaps top 60
+gaps top -5
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -437,10 +439,6 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-
-
-
-
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b
@@ -454,16 +452,17 @@ exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-# exec --no-startup-id xautolock -time 10 -locker xtrlock
-# exec --no-startup-id xss-lock xtrlock
+exec --no-startup-id xautolock -time 10 -locker xtrlock
+exec --no-startup-id xss-lock xtrlock
 # exec_always --no-startup-id ff-theme-util
 # exec_always --no-startup-id fix_xcursor
-# exec --no-startup-id volumeicon
+exec --no-startup-id volumeicon
 exec --no-startup-id libinput-gestures
 exec --no-startup-id fcitx
 # exec_always --no-startup-id bash ~/.config/polybar/launch.sh
-exec_always --no-startup-id xfce4-panel
+# exec_always --no-startup-id xfce4-panel -d
 exec_always --no-startup-id autotiling
+exec_always --no-startup-id xsettingsd
 
 # for sound control
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master playback 5%+
@@ -472,17 +471,18 @@ bindsym XF86AudioMute exec amixer set Master toggle
 
 
 # libinput
-# exec --no-startup-id xinput --set-prop GXT7863:00\ 27C6:01E0\ Touchpad libinput\ Tapping\ Enabled 1
-# exec --no-startup-id xinput --set-prop GXT7863:00\ 27C6:01E0\ Touchpad libinput\ Natural\ Scrolling\ Enabled 1
+exec --no-startup-id xinput --set-prop GXT7863:00\ 27C6:01E0\ Touchpad libinput\ Tapping\ Enabled 1
+exec --no-startup-id xinput --set-prop GXT7863:00\ 27C6:01E0\ Touchpad libinput\ Natural\ Scrolling\ Enabled 1
 
 # cinnamon
-exec --no-startup-id csd-xsettings
-exec --no-startup-id csd-xrandr
-exec --no-startup-id csd-keyboard
-exec --no-startup-id csd-mouse
-exec --no-startup-id csd-color
-exec --no-startup-id csd-cursor
+# exec --no-startup-id xfsettingsd
+# exec --no-startup-id csd-xsettings
+# exec --no-startup-id csd-xrandr
+# exec --no-startup-id csd-keyboard
+# exec --no-startup-id csd-mouse
+# exec --no-startup-id csd-color
+# exec --no-startup-id csd-cursor
 # exec --no-startup-id csd-power
 
 # xfce4
-exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
+# exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
