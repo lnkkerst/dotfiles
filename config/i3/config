@@ -73,7 +73,7 @@ bindsym $mod+Shift+d --release exec --no-startup-id "killall dunst; exec notify-
 # bindsym Print exec --no-startup-id "xfce4-screenshooter -f -s ~/Pictures/shott/`date +%F-%H-%M-%S-%N.jpg`; sleep 2;  notify-send 'saved the screen'"
 # bindsym Shift+Print exec --no-startup-id "xfce4-screenshooter -r -s ~/Pictures/shott/`date +%F-%H-%M-%S-%N.jpg`; sleep 2; notify-send 'saved the screen'"
 bindsym Print --release exec --no-startup-id i3-scrot -d
-bindsym Shift+Print --release exec --no-startup-id scrot -s
+bindsym Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod+Shift+p --release exec --no-startup-id "~/.config/polybar/launch.sh; exec notify-send 'restart polybar'"
 bindsym $mod+Shift+f exec --no-startup-id catfish
@@ -193,9 +193,9 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
 # assign [class="Skype"] $ws5
-assign [class="Wine"] $ws8
-assign [class="微信"] $ws8
-assign [class="ecloud.exe"] $ws8
+# assign [class="Wine"] $ws8
+# assign [class="微信"] $ws8
+# assign [class="ecloud.exe"] $ws8
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -247,6 +247,8 @@ for_window [class="SwitchHosts"] floating enable
 for_window [class="crx__anpjhmnbeenjanpnojeghbnigpagkmni"] floating enable
 for_window [class="Xfce4-appfinder"] floating enable
 for_window [class="feh"] floating enable
+for_window [class="Ario"] floating enable
+for_window [class="anbox"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -339,7 +341,8 @@ set_from_resource $term_color15    color15
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
 	i3bar_command i3bar -t
-	status_command i3status -c $HOME/.config/i3status.conf
+	# status_command i3status -c $HOME/.config/i3status.conf
+        status_command env SCRIPT_DIR=$HOME/.config/i3blocks/scripts i3blocks
 	position top
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
@@ -354,7 +357,7 @@ bar {
     colors {
         background #00000000
         statusline #FFFFFF
-        separator  #454947
+        separator  #888888
 
 #                             border  backgr. text
         focused_workspace  #00000000 #00000033 #AAABAC
@@ -446,7 +449,7 @@ exec --no-startup-id nm-applet
 # exec --no-startup-id xrandr --output eDP --primary
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
-# exec --no-startup-id clipit
+exec --no-startup-id clipit
 # exec --no-startup-id xfce4-clipman
 exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
@@ -463,6 +466,7 @@ exec --no-startup-id fcitx
 # exec_always --no-startup-id xfce4-panel -d
 exec_always --no-startup-id autotiling
 exec_always --no-startup-id xsettingsd
+exec --no-startup-id aria2c --enable-rpc --rpc-listen-all
 
 # for sound control
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master playback 5%+
@@ -486,3 +490,8 @@ exec --no-startup-id xinput --set-prop GXT7863:00\ 27C6:01E0\ Touchpad libinput\
 
 # xfce4
 # exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
+
+
+# i3blocks
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks

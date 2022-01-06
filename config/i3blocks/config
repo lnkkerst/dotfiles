@@ -1,0 +1,124 @@
+
+
+# full_text=|
+# align=center
+# color=#666666
+separator=true
+separator_block_width=20
+
+[title]
+full_text=
+command=xtitle -s -t 30 | cat
+interval=persist
+
+[keyindicator1]
+full_text=
+command=$SCRIPT_DIR/keyindicator
+#Allowed keys are CAPS and NUM
+KEY=CAPS
+markup=pango
+interval=once
+signal=11
+#TEXT_ON=CapsLockOn
+#TEXT_OFF=CapsLockOff
+COLOR_ON=#FFFFFF
+#COLOR_OFF=#222222
+#BG_COLOR_ON=
+#BG_COLOR_OFF=
+HIDE_WHEN_OFF=1
+
+# [keyindicator2]
+# command=$SCRIPT_DIR/keyindicator
+# KEY=NUM
+# markup=pango
+# interval=once
+# signal=11
+# #TEXT_ON=NumLockOn
+# #TEXT_OFF=NumLockOff
+# #COLOR_ON=#00FF00
+# HIDE_WHEN_OFF=1
+
+[backlight]
+command=$SCRIPT_DIR/backlight
+label=☀
+interval=20
+#STEP_SIZE=5
+#USE_SUDO=0
+
+[battery2]
+command=$SCRIPT_DIR/battery2
+markup=pango
+interval=30
+
+[cpu_usage]
+command=$SCRIPT_DIR/cpu_usage
+interval=10
+LABEL=C 
+#min_width=CPU: 100.00%
+#T_WARN=50
+#T_CRIT=80
+#DECIMALS=2
+COLOR_NORMAL=#FFFFFF
+#COLOR_WARN=#FFFC00
+#COLOR_CRIT=#FF0000
+
+[temperature]
+command=$SCRIPT_DIR/temperature
+label=
+interval=10
+#T_WARN=70
+#T_CRIT=90
+#SENSOR_CHIP=""
+
+[memory]
+command=$SCRIPT_DIR/memory
+label=
+interval=30
+
+#[memory]
+#command=$SCRIPT_DIR/memory
+#label=SWAP
+#instance=swap
+#interval=30
+
+[disk-io]
+# command=$SCRIPT_DIR/disk-io -R
+command=$SCRIPT_DIR/disk-io -w 3 -M -P 0 -R
+interval=persist
+markup=pango
+LABEL=  
+instance=/^nvme0n1/
+#DT=5
+#MB_ONLY=0 #0 or 1
+#KB_ONLY=0 #0 or 1
+#WIDTH=4
+#MB_PRECISION=1
+#KB_PRECISION=0
+#REGEX=/^(s|h)d[a-zA-Z]+/
+#THRESHOLD=0
+#WARN_COLOR="#FF0000"
+#SEPARATOR=/
+#PREFIX=
+#SUFFIX="B/s"
+
+[dunst]
+command=$SCRIPT_DIR/dunst
+interval=once
+format=json
+markup=pango
+min_width=45
+align=center
+
+[iface]
+command=$SCRIPT_DIR/iface
+#LABEL=wlan0:
+#IFACE=wlan0
+#ADDRESS_FAMILY=inet6?
+color=#FFFFFF
+interval=10
+# set this to 1 to display the name of the connected WIFI interface instead of the IP address.
+display_wifi_name=1
+
+[time]
+command=date '+%H:%M'
+interval=30

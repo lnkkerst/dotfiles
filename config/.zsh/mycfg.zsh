@@ -4,3 +4,5 @@ alias l='ls'
 alias la='ls -a'
 alias vi='vim'
 
+
+source /usr/share/nvm/init-nvm.sh
