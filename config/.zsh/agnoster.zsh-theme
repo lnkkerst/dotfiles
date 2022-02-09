@@ -26,7 +26,7 @@
 
 typeset -aHg AGNOSTER_PROMPT_SEGMENTS=(
     prompt_status
-#    prompt_context
+    prompt_context
     prompt_virtualenv
     prompt_dir
     prompt_git
