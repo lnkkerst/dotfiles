@@ -1,5 +1,5 @@
 [mpd]
-mpd_music_dir = "/home/pathsun/Music/"
+mpd_music_dir = "~/Music/"
 mpd_host = "localhost"
 mpd_port = "6600"
 mpd_crossfade_time = "2"

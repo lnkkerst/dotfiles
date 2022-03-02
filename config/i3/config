@@ -470,6 +470,7 @@ exec --no-startup-id fcitx
 exec_always --no-startup-id autotiling
 # exec_always --no-startup-id xsettingsd
 exec --no-startup-id aria2c --enable-rpc --rpc-listen-all
+exec --no-startup-id xhost +
 
 # for sound control
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master playback 5%+
