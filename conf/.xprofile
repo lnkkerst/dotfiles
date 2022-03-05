@@ -9,3 +9,5 @@ export QT_SELECT=5
 
 export PATH=$HOME/.yarn/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
+
+export TERMINAL=alacritty

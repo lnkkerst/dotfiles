@@ -1,7 +1,7 @@
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set $mod Mod4
 
 include ~/.config/i3/wm.conf
 include ~/.config/i3/gaps.conf
