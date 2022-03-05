@@ -1,2 +1,2 @@
 plugins
-!plugins/**/*.py
+!plugins/ranger_devicons/devicons.py
