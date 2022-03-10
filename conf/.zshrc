@@ -198,3 +198,7 @@ esac
 source ~/.zsh/agnoster.zsh-theme
 source /usr/share/autojump/autojump.zsh
 source ~/.zsh/mycfg.zsh
+
+if [ -f $HOME/.zsh/diff.zsh ]; then
+    source $HOME/.zsh/diff.zsh
+fi

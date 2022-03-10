@@ -1,35 +1,7 @@
+@theme "material.rasi"
+
 configuration {
-  modi: "drun";
-  font: "Microsoft Yahei 12";
-  show-icons: true;
-  // dw:0;
-  drun-icon-theme: "Vimix Black dark";
-  terminal: "terminator";
-  scroll-method: 1;
-  display-drun: "Search";
-  modi: "window,run,ssh,drun";
-}
-
-@theme "~/.config/rofi/onedark.rasi"
-
-element-text {
-    background-color: inherit;
-    text-color:       inherit;
-}
-
-element-icon {
-    background-color: 				inherit;
-    text-color:       				inherit;
-    horizontal-align:               0.5;
-    vertical-align:                 0.5;
-    size:                           40px;
-    border:                         0px;
-}
-
-listview {
-	columns: 2;
-}
-
-window {
-	width: 2000px;
+    modi: "drun,window,run,ssh";
+    terminal: "alacritty";
+    icon-theme: "Papirus-dark";
 }

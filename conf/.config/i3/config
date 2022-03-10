@@ -11,4 +11,4 @@ include ~/.config/i3/autostart.conf
 include ~/.config/i3/spec.conf
 include ~/.config/i3/bar.conf
 
-exec --no-startup-id sleep 3; i3 restart
+#exec --no-startup-id sleep 3; i3 restart
