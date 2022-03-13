@@ -3,12 +3,13 @@
 
 set $mod Mod4
 
-include ~/.config/i3/wm.conf
-include ~/.config/i3/gaps.conf
-include ~/.config/i3/key_shortcut.conf
-include ~/.config/i3/color.conf
-include ~/.config/i3/autostart.conf
-include ~/.config/i3/spec.conf
-include ~/.config/i3/bar.conf
+#include ~/.config/i3/config.d/*.conf
+include ~/.config/i3/config.d/wm.conf
+include ~/.config/i3/config.d/gaps.conf
+include ~/.config/i3/config.d/key_shortcut.conf
+include ~/.config/i3/config.d/color.conf
+include ~/.config/i3/config.d/autostart.conf
+include ~/.config/i3/config.d/spec.conf
+include ~/.config/i3/config.d/bar.conf
 
 #exec --no-startup-id sleep 3; i3 restart

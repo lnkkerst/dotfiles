@@ -120,7 +120,7 @@ font:
       - JetBrains Mono
       - JetBrainsMono Nerd Font
       - WenQuanYi Micro Hei Mono
-    size: 10
+    size: 11
     # The `style` can be specified to pick a specific face.
     #style: Regular
 
@@ -827,27 +827,48 @@ font:
 colors:
   # Default colors
   primary:
-    background: '0x1e282d'
-    foreground: '0xc4c7d1'
+    background: '0x2c2c2c'
+    foreground: '0xd6d6d6'
+
+    dim_foreground:    '0xdbdbdb'
+    bright_foreground: '0xd9d9d9'
+    dim_background:    '0x202020' # not sure
+    bright_background: '0x3a3a3a' # not sure
+
+  # Cursor colors
+  cursor:
+    text:   '0x2c2c2c'
+    cursor: '0xd9d9d9'
 
   # Normal colors
   normal:
-    black:   '0x666666'
-    red:     '0xeb606b'
-    green:   '0xc3e88d'
-    yellow:  '0xf7eb95'
-    blue:    '0x80cbc4'
-    magenta: '0xff2f90'
-    cyan:    '0xaeddff'
-    white:   '0xffffff'
+    black:   '0x1c1c1c'
+    red:     '0xbc5653'
+    green:   '0x909d63'
+    yellow:  '0xebc17a'
+    blue:    '0x7eaac7'
+    magenta: '0xaa6292'
+    cyan:    '0x86d3ce'
+    white:   '0xcacaca'
 
   # Bright colors
   bright:
-    black:   '0xa1a1a1'
-    red:     '0xeb606b'
-    green:   '0xc3e88d'
-    yellow:  '0xf7eb95'
-    blue:    '0x7dc6bf'
-    magenta: '0x6c71c4'
-    cyan:    '0x35434d'
-    white:   '0xffffff'
+    black:   '0x636363'
+    red:     '0xbc5653'
+    green:   '0x909d63'
+    yellow:  '0xebc17a'
+    blue:    '0x7eaac7'
+    magenta: '0xaa6292'
+    cyan:    '0x86d3ce'
+    white:   '0xf7f7f7'
+
+  # Dim colors
+  dim:
+    black:   '0x232323'
+    red:     '0x74423f'
+    green:   '0x5e6547'
+    yellow:  '0x8b7653'
+    blue:    '0x556b79'
+    magenta: '0x6e4962'
+    cyan:    '0x5c8482'
+    white:   '0x828282'
