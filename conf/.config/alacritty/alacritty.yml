@@ -351,7 +351,7 @@ font:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
+background_opacity: 0.8
 
 #selection:
   # This string contains all characters that are used as separators for
@@ -823,52 +823,29 @@ font:
   # Print all received window events.
   #print_events: false
 
-# Colors (Material Theme)
+# GNOME Terminal Tango Dark
 colors:
-  # Default colors
   primary:
-    background: '0x2c2c2c'
-    foreground: '0xd6d6d6'
-
-    dim_foreground:    '0xdbdbdb'
-    bright_foreground: '0xd9d9d9'
-    dim_background:    '0x202020' # not sure
-    bright_background: '0x3a3a3a' # not sure
-
-  # Cursor colors
-  cursor:
-    text:   '0x2c2c2c'
-    cursor: '0xd9d9d9'
-
-  # Normal colors
+    background: '0x2e3436'
+    foreground: '0xd3d7cf'
+    
   normal:
-    black:   '0x1c1c1c'
-    red:     '0xbc5653'
-    green:   '0x909d63'
-    yellow:  '0xebc17a'
-    blue:    '0x7eaac7'
-    magenta: '0xaa6292'
-    cyan:    '0x86d3ce'
-    white:   '0xcacaca'
+    black: '0x2e3436'
+    red: '0xcc0000'
+    green: '0x4e9a06'
+    yellow: '0xc4a000'
+    blue: '0x3465a4'
+    magenta: '0x75507b'
+    cyan: '0x06989a'
+    white: '0xd3d7cf'
 
-  # Bright colors
   bright:
-    black:   '0x636363'
-    red:     '0xbc5653'
-    green:   '0x909d63'
-    yellow:  '0xebc17a'
-    blue:    '0x7eaac7'
-    magenta: '0xaa6292'
-    cyan:    '0x86d3ce'
-    white:   '0xf7f7f7'
+    black: '0x555753'
+    red: '0xef2929'
+    green: '0x8ae234'
+    yellow: '0xfce94f'
+    blue: '0x729fcf'
+    magenta: '0xad7fa8'
+    cyan: '0x34e2e2'
+    white: '0xeeeeec'
 
-  # Dim colors
-  dim:
-    black:   '0x232323'
-    red:     '0x74423f'
-    green:   '0x5e6547'
-    yellow:  '0x8b7653'
-    blue:    '0x556b79'
-    magenta: '0x6e4962'
-    cyan:    '0x5c8482'
-    white:   '0x828282'

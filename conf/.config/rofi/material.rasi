@@ -45,8 +45,8 @@ configuration {
 
 window {
   transparency: "real";
-  height: 80%;
-  width: 80%;
+  height: 720px;
+  width: 1280px;
 }
 
 mainbox {
