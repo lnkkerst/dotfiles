@@ -71,7 +71,7 @@ export QT_SELECT=5
 numlockx on
 #xrandr --dpi 192
 
-xrandr --listmonitors | grep HDMI
+xrandr --listmonitors | grep DisplayPort
 
 if [ $? = "0" ]; then
     source ~/.xinitrc.d/extend.sh
