@@ -2,14 +2,15 @@
 import requests
 import sys
 import json
+import os
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2225.0 Safari/537.36",
 }
 
-default_data_file = r"/home/pathsun/.config/polybar/scripts/hitokoto/hitokoto.json"
-default_config_file = r"/home/pathsun/.config/polybar/scripts/hitokoto/hitokoto.conf"
-default_now_file = r"/home/pathsun/.config/polybar/scripts/hitokoto/hitokoto.now"
+default_data_file = os.environ["HOME"] + r"/.config/polybar/scripts/hitokoto/hitokoto.json"
+default_config_file = os.environ["HOME"] + r"/.config/polybar/scripts/hitokoto/hitokoto.conf"
+default_now_file = os.environ["HOME"] + r"/.config/polybar/scripts/hitokoto/hitokoto.now"
 
 ctype_list = ["动画", "漫画", "游戏", "游戏", "文学", "原创", "网络", "其他", "影视", "诗词", "网易云", "哲学", "抖机灵"]
 

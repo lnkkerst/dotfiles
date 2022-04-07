@@ -2,7 +2,7 @@
 
 [config]
 # DPI value for HiDPI screen
-dpi = 192
+dpi = $ROFI_DPI
 monitor = ${env:MONITOR:eDP}
 
 # bar position, apply globally

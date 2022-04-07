@@ -79,4 +79,4 @@ else
     source ~/.xinitrc.d/single.sh
 fi
 
-exec i3
+exec bspwm
