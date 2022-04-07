@@ -11,12 +11,11 @@ xidlehook --not-when-audio --not-when-fullscreen --timer 600 "$HOME/.config/i3/i
 xss-lock $HOME/.config/i3/i3lock-color.sh
 volumeicon
 libinput-gestures
-aria2c --enable-rpc --rpc-listen-all
 $HOME/.config/bspwm/polybar/launch.fish
 picom --config $HOME/.config/bspwm/picom/picom.conf -b"
 
 for app in (string split \n $apps)
-    if ps -ef | grep "$app" | grep -v grep | wc -l
+    if test (ps -ef | grep "$app" | grep -v grep | wc -l) = 0
        fish -c "$app" &
     end
 end
