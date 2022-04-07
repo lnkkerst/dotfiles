@@ -46,7 +46,7 @@ super + s
 super + p
 	pkill picom
 super + shift + p
-	picom -b
+	picom --config $HOME/.config/bspwm/picom/picom.conf -b
 
 # Polybar
 super + shift + ctrl + p

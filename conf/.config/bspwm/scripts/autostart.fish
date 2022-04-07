@@ -12,7 +12,8 @@ xss-lock $HOME/.config/i3/i3lock-color.sh
 volumeicon
 libinput-gestures
 $HOME/.config/bspwm/polybar/launch.fish
-picom --config $HOME/.config/bspwm/picom/picom.conf -b"
+picom --config $HOME/.config/bspwm/picom/picom.conf -b
+conky"
 
 for app in (string split \n $apps)
     if test (ps -ef | grep "$app" | grep -v grep | wc -l) = 0
