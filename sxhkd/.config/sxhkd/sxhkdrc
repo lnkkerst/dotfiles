@@ -26,6 +26,9 @@ shift + Print
 super + shift + Print 
 	scrot -d 3 -e 'mv $f $$(xdg-user-dir PICTURES)/scrot; notify-send "Screenshot has saved to $f."'
 
+super + 0
+    fish $HOME/.config/bspwm/scripts/rofi_powermenu.fish
+
 # Backlight control
 XF86MonBrightnessUp
 	light -A 5

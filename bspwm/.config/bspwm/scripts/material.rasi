@@ -1,0 +1,90 @@
+/*
+ * ROFI color theme
+ *
+ * Based on Something Found in the Internet
+ *
+ * User: Contributors
+ * Copyright: *!
+ */
+
+configuration {
+  font: "FantasqueSansMono Nerd Font 12";
+  show-icons: false;
+  drun-display-format: "{name}";
+  sidebar-mode: false;
+  disable-history: false;
+}
+
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+
+  bg: #151515;
+  bg-alt: #232323;
+  fg: #FFFFFF;
+  fg-alt: #424242;
+
+  background-color: @bg;
+  text-color: @fg;
+}
+
+window {
+  transparency: "real";
+  height: 200px;
+  width: 720px;
+  location: center;
+}
+
+mainbox {
+  children: [inputbar, listview];
+  spacing: 0%;
+}
+
+inputbar {
+  background-color: @bg-alt;
+  children: [textbox-prompt-colon, prompt];
+  border: 10px 0 10px 0;
+  border-radius: 0px;
+  margin: 0 180px 0 180px; 
+  padding: 8px;
+  position: center;
+}
+
+prompt {
+  enabled: true;
+  background-color: inherit;
+  padding: 8px 8px 8px 16px;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: "System |";
+    padding: 8px 8px 8px 8px;
+}
+
+listview {
+  margin: 0 0 0 0;
+  spacing: 32px;
+  cycle: true;
+  dynamic: true;
+  layout: horizontal;
+}
+
+element {
+  orientation: horizontal;
+}
+
+element-text {
+  font: "FantasqueSansMono Nerd Font 32";
+  expand: true;
+  horizontal-align: 0.5;
+  vertical-align: 0.5;
+  margin: 36px 46px 36px 46px; 
+  text-color: @fg-alt;
+}
+
+element-text selected {
+  text-color: @fg;
+}

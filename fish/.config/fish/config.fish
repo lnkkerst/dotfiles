@@ -10,6 +10,7 @@ set -gx DISABLE_FZF_AUTO_COMPLETION true
 set -gx TERMINAL alacritty
 set -gx EDITOR nvim
 set -gx PAGER less
+set -U nvm_default_version v16.14.2
 
 # Alias
 alias gitu='git add . && git commit && git push'
