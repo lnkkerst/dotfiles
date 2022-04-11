@@ -117,8 +117,9 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     family:
-      - JetBrains Mono
       - JetBrainsMono Nerd Font
+      - JetBrains Mono
+      - WenQuanYi Micro Hei
       - WenQuanYi Micro Hei Mono
     size: 11
     # The `style` can be specified to pick a specific face.

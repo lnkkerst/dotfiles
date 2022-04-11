@@ -17,7 +17,7 @@ switch $opt
     case $reboot
         systemctl reboot
     case $lock
-        bash $HOME/.config/i3/i3lock-color.sh
+        sleep 0.3; bash $HOME/.config/i3/i3lock-color.sh
     case $suspend
         systemctl suspend
     case $logout

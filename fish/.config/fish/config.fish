@@ -7,6 +7,7 @@ source /usr/share/autojump/autojump.fish
 set -U fish_greeting
 set -gx DISABLE_FZF_AUTO_COMPLETION true
 
+set -gx PATH $PATH $HOME/.local/bin $HOME/.yarn/bin
 set -gx TERMINAL alacritty
 set -gx EDITOR nvim
 set -gx PAGER less
@@ -32,6 +33,7 @@ alias dstat='dstat -cdlmnpsy'
 alias py='python'
 alias :q='exit'
 alias :wq='exit'
+alias vim='nvim'
 
 # Functions
 function mkcd
