@@ -25,6 +25,7 @@ return require("packer").startup(
             "neoclide/coc.nvim",
             branch = "release",
             config = function()
+                vim.api.nvim_exec([[source ~/.config/nvim/coc_config.vim]], false)
             end
         }
         use {
@@ -73,7 +74,8 @@ return require("packer").startup(
                         {
                             sections = {
                                 lualine_c = {{gps.get_location, cond = gps.is_available}}
-                            }
+                            },
+                            extensions = {"nvim-tree"}
                         }
                     )
                 end
@@ -102,8 +104,17 @@ return require("packer").startup(
             "nvim-telescope/telescope.nvim",
             requires = {{"nvim-lua/plenary.nvim"}},
             config = function()
+                require("telescope").load_extension("media_files")
                 require("telescope").setup({})
             end
+        }
+        use {
+            "nvim-telescope/telescope-media-files.nvim",
+            requires = {
+                "nvim-telescope/telescope.nvim",
+                "nvim-lua/popup.nvim",
+                "nvim-lua/plenary.nvim"
+            }
         }
         use {
             "lukas-reineke/indent-blankline.nvim",
@@ -196,7 +207,16 @@ return require("packer").startup(
                     rainbow = {
                         enable = true,
                         extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-                        max_file_lines = 1000 -- Do not enable for files with more than 1000 lines, int
+                        max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+                        colors = {
+                            "#90CAF9",
+                            "#9575CD",
+                            "#26A69A",
+                            "#EEFF41",
+                            "#BDBDBD",
+                            "#FF8A65",
+                            "#FF5252"
+                        }
                     },
                     context_commentstring = {enable = true, enable_autocmd = false},
                     matchup = {enable = true},
@@ -214,13 +234,172 @@ return require("packer").startup(
                 "kyazdani42/nvim-web-devicons" -- optional, for file icon
             },
             config = function()
-                require "nvim-tree".setup {}
+                local tree_cb = require "nvim-tree.config".nvim_tree_callback
+                require("nvim-tree").setup {
+                    gitignore = true,
+                    ignore = {".git", "node_modules", ".cache"},
+                    open_on_tab = false,
+                    disable_netrw = true,
+                    hijack_netrw = true,
+                    update_cwd = true,
+                    highlight_opened_files = true,
+                    auto_ignore_ft = {"startify", "dashboard"},
+                    update_focused_file = {
+                        enable = true,
+                        update_cwd = true,
+                        ignore_list = {}
+                    },
+                    view = {
+                        width = 30,
+                        side = "left",
+                        auto_resize = false,
+                        mappings = {
+                            custom_only = true,
+                            -- list of mappings to set on the tree manually
+                            list = {
+                                {
+                                    key = {"<CR>", "o", "<2-LeftMouse>"},
+                                    cb = tree_cb("tabnew")
+                                },
+                                {key = {"<2-RightMouse>", "<C-]>"}, cb = tree_cb("cd")},
+                                {key = "<C-v>", cb = tree_cb("vsplit")},
+                                {key = "<C-x>", cb = tree_cb("split")},
+                                {key = "<C-t>", cb = tree_cb("tabnew")},
+                                {key = "<", cb = tree_cb("prev_sibling")},
+                                {key = ">", cb = tree_cb("next_sibling")},
+                                {key = "P", cb = tree_cb("parent_node")},
+                                {key = "<BS>", cb = tree_cb("close_node")},
+                                {key = "<S-CR>", cb = tree_cb("close_node")},
+                                {key = "<Tab>", cb = tree_cb("preview")},
+                                {key = "K", cb = tree_cb("first_sibling")},
+                                {key = "J", cb = tree_cb("last_sibling")},
+                                {key = "I", cb = tree_cb("toggle_ignored")},
+                                {key = "H", cb = tree_cb("toggle_dotfiles")},
+                                {key = "R", cb = tree_cb("refresh")},
+                                {key = "a", cb = tree_cb("create")},
+                                {key = "d", cb = tree_cb("remove")},
+                                {key = "r", cb = tree_cb("rename")},
+                                {key = "<C-r>", cb = tree_cb("full_rename")},
+                                {key = "x", cb = tree_cb("cut")},
+                                {key = "c", cb = tree_cb("copy")},
+                                {key = "p", cb = tree_cb("paste")},
+                                {key = "y", cb = tree_cb("copy_name")},
+                                {key = "Y", cb = tree_cb("copy_path")},
+                                {key = "gy", cb = tree_cb("copy_absolute_path")},
+                                {key = "[c", cb = tree_cb("prev_git_item")},
+                                {key = "]c", cb = tree_cb("next_git_item")},
+                                {key = "-", cb = tree_cb("dir_up")},
+                                {key = "s", cb = tree_cb("system_open")},
+                                {key = "q", cb = tree_cb("close")},
+                                {key = "g?", cb = tree_cb("toggle_help")}
+                            }
+                        }
+                    }
+                }
+            end
+        }
+        use {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+            config = function()
+            end
+        }
+        use {
+            "romgrk/nvim-treesitter-context",
+            config = function()
+            end
+        }
+        use {
+            "p00f/nvim-ts-rainbow",
+            config = function()
             end
         }
         use {
             "sbdchd/neoformat",
             config = function()
             end
+        }
+        use {
+            "windwp/nvim-ts-autotag",
+            config = function()
+                require("nvim-ts-autotag").setup(
+                    {
+                        filetypes = {
+                            "html",
+                            "xml",
+                            "javascript",
+                            "typescriptreact",
+                            "javascriptreact",
+                            "vue"
+                        }
+                    }
+                )
+            end
+        }
+        use {
+            "andymass/vim-matchup",
+            config = function()
+                vim.cmd [[let g:matchup_matchparen_offscreen = {'method': 'popup'}]]
+            end
+        }
+        use {
+            "rhysd/accelerated-jk",
+            config = function()
+            end
+        }
+        use {
+            "lewis6991/gitsigns.nvim",
+            -- tag = 'release' -- To use the latest release
+            config = function()
+                require("gitsigns").setup({})
+            end
+        }
+        use {
+            "justinmk/vim-sneak",
+            config = function()
+            end
+        }
+        use {
+            "junegunn/vim-easy-align",
+            config = function()
+                vim.api.nvim_command("augroup user_plugin_cursorword")
+                vim.api.nvim_command("autocmd!")
+                vim.api.nvim_command("autocmd FileType NvimTree,lspsagafinder,dashboard let b:cursorword = 0")
+                vim.api.nvim_command("autocmd WinEnter * if &diff || &pvw | let b:cursorword = 0 | endif")
+                vim.api.nvim_command("autocmd InsertEnter * let b:cursorword = 0")
+                vim.api.nvim_command("autocmd InsertLeave * let b:cursorword = 1")
+                vim.api.nvim_command("augroup END")
+            end
+        }
+        use {
+            "itchyny/vim-cursorword",
+            config = function()
+            end
+        }
+        use {
+            "thinca/vim-quickrun",
+            config = function()
+            end
+        }
+        use {
+            "gelguy/wilder.nvim",
+            requires = {"romgrk/fzy-lua-native"},
+            config = function()
+                vim.cmd [[
+call wilder#setup({'modes': [':', '/', '?']})
+call wilder#set_option('use_python_remote_plugin', 0)
+
+call wilder#set_option('pipeline', [wilder#branch(wilder#cmdline_pipeline({'use_python': 0,'fuzzy': 1, 'fuzzy_filter': wilder#lua_fzy_filter()}),wilder#vim_search_pipeline(), [wilder#check({_, x -> empty(x)}), wilder#history(), wilder#result({'draw': [{_, x -> ' ' . x}]})])])
+
+call wilder#set_option('renderer', wilder#renderer_mux({':': wilder#popupmenu_renderer({'highlighter': wilder#lua_fzy_highlighter(), 'left': [wilder#popupmenu_devicons()], 'right': [' ', wilder#popupmenu_scrollbar()]}), '/': wilder#wildmenu_renderer({'highlighter': wilder#lua_fzy_highlighter()})}))
+]]
+            end
+        }
+        use {
+            "nathom/filetype.nvim"
+        }
+        use {
+            "iamcco/markdown-preview.nvim",
+            run = "cd app && yarn install"
         }
         if packer_bootstrap then
             require("packer").sync()
