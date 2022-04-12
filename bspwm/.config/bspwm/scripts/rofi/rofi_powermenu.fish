@@ -9,7 +9,7 @@ set opt (echo "$shutdown
 $reboot
 $lock
 $suspend
-$logout" | rofi -theme $HOME/.config/bspwm/scripts/material.rasi -p "Uptime: $(uptime -p | sed -e 's/up //g')" -dmenu -selected-row 2)
+$logout" | rofi -theme $HOME/.config/bspwm/scripts/rofi/material.rasi -p "Uptime: $(uptime -p | sed -e 's/up //g')" -dmenu -selected-row 2)
 
 switch $opt
     case $shutdown
