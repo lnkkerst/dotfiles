@@ -8,7 +8,8 @@ set -gx SXHKD_SHELL /bin/bash
 pgrep -x sxhkd >/dev/null || sxhkd &
 
 # Multi-monitor support
-if xrandr --listmonitors | grep DisplayPort >/dev/null
+set DOUBLE_MONITER (xrandr --listmonitors | grep DisplayPort) 
+if string length $DOUBLE_MONITER
     bspc monitor eDP -d 6 7 8
     bspc monitor DisplayPort-0 -d 1 2 3 4 5
 else
@@ -16,8 +17,12 @@ else
 end
 
 # Borders and gaps
-bspc config border_width 1
-bspc config window_gap 16
+bspc config border_width 2
+if string length $DOUBLE_MONITER
+    bspc config window_gap 16
+else 
+    bspc config window_gap 8
+end
 
 bspc config split_ratio 0.5
 bspc config borderless_monocle true
@@ -31,6 +36,8 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a Wine state=floating
 bspc rule -a "Gnome-screenshot" state=floating
-
+bspc rule -a "Blueman-manager" state=floating
+bspc rule -a 'wechat.exe' state=floating
+ 
 # Autostart
 fish $SCRIPTS_DIR/autostart.fish

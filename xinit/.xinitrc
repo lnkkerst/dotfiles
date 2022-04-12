@@ -79,4 +79,5 @@ else
     source ~/.xinitrc.d/single.sh
 fi
 
-exec bspwm
+#exec bspwm
+exec dbus-launch leftwm

@@ -13,6 +13,7 @@ volumeicon
 libinput-gestures
 $HOME/.config/bspwm/polybar/launch.fish
 picom --config $HOME/.config/bspwm/picom/picom.conf -b
+pgrep $HOME/.config/bspwm/scripts/bspswallow || sh $HOME/.config/bspwm/scripts/bspswallow
 conky"
 
 for app in (string split \n $apps)
