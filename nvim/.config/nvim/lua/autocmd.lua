@@ -1,101 +1,99 @@
 local vim = vim
 
-local global_local_value = {
-    termguicolors = true,
-    mouse = "a",
-    errorbells = true,
-    visualbell = true,
-    hidden = true,
-    fileformats = "unix,mac,dos",
-    magic = true,
-    virtualedit = "block",
-    encoding = "utf-8",
-    viewoptions = "folds,cursor,curdir,slash,unix",
-    sessionoptions = "curdir,help,tabpages,winsize",
-    clipboard = "unnamedplus",
-    wildignorecase = true,
-    wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
-    backup = false,
-    writebackup = false,
-    swapfile = false,
-    history = 2000,
-    shada = "!,'300,<50,@100,s10,h",
-    backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim",
-    smarttab = true,
-    shiftround = true,
-    timeout = true,
-    ttimeout = true,
-    timeoutlen = 500,
-    ttimeoutlen = 0,
-    updatetime = 100,
-    redrawtime = 1500,
-    ignorecase = true,
-    smartcase = true,
-    infercase = true,
-    incsearch = true,
-    wrapscan = true,
-    complete = ".,w,b,k",
-    inccommand = "nosplit",
-    grepformat = "%f:%l:%c:%m",
-    grepprg = "rg --hidden --vimgrep --smart-case --",
-    breakat = [[\ \	;:,!?]],
-    startofline = false,
-    whichwrap = "h,l,<,>,[,],~",
-    splitbelow = true,
-    splitright = true,
-    switchbuf = "useopen",
-    backspace = "indent,eol,start",
-    diffopt = "filler,iwhite,internal,algorithm:patience",
-    completeopt = "menuone,noselect",
-    jumpoptions = "stack",
-    showmode = false,
-    shortmess = "aoOTIcF",
-    scrolloff = 2,
-    sidescrolloff = 5,
-    foldlevelstart = 99,
-    ruler = true,
-    cursorline = true,
-    cursorcolumn = true,
-    list = true,
-    showtabline = 2,
-    winwidth = 30,
-    winminwidth = 10,
-    pumheight = 15,
-    helpheight = 12,
-    previewheight = 12,
-    showcmd = false,
-    cmdheight = 2,
-    cmdwinheight = 5,
-    equalalways = false,
-    laststatus = 2,
-    display = "lastline",
-    showbreak = "↳  ",
-    listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←",
-    pumblend = 10,
-    winblend = 10,
-    autoread = true,
-    autowrite = true,
+local function create_augroups(augroups)
+    for k, v in pairs(augroups) do
+        vim.api.nvim_command("augroup " .. k)
+        vim.api.nvim_command("autocmd!")
+        for _, def in ipairs(augroups) do
+            vim.api.nvim_command(table.concat(vim.tbl_flatten {"autocmd", def}, " "))
+        end
+        vim.api.nvim_command("augroup END")
+    end
+end
 
-    undofile = true,
-    synmaxcol = 2500,
-    formatoptions = "1jcroql",
-    textwidth = 80,
-    expandtab = true,
-    autoindent = true,
-    tabstop = 4,
-    shiftwidth = 4,
-    softtabstop = -1,
-    breakindentopt = "shift:2,min:20",
-    wrap = false,
-    linebreak = true,
-    number = true,
-    relativenumber = true,
-    foldenable = true,
-    signcolumn = "yes",
-    conceallevel = 0,
-    concealcursor = "niv"
+local augroups = {
+    bufs = {
+        -- Reload vim config automatically
+        {
+            "BufWritePost",
+            [[$VIM_PATH/{*.vim,*.yaml,vimrc} nested source $MYVIMRC | redraw]]
+        }, -- Reload Vim script automatically if setlocal autoread
+        {
+            "BufWritePost,FileWritePost",
+            "*.vim",
+            [[nested if &l:autoread > 0 | source <afile> | echo 'source ' . bufname('%') | endif]]
+        },
+        {"BufWritePre", "/tmp/*", "setlocal noundofile"},
+        {"BufWritePre", "COMMIT_EDITMSG", "setlocal noundofile"},
+        {"BufWritePre", "MERGE_MSG", "setlocal noundofile"},
+        {"BufWritePre", "*.tmp", "setlocal noundofile"},
+        {"BufWritePre", "*.bak", "setlocal noundofile"},
+        {"BufWritePre", "*", "FormatWrite"}, -- Auto change work directory
+        {"BufEnter", "*", "silent! lcd %:p:h"}, -- auto place to last edit
+        {
+            "BufReadPost",
+            "*",
+            [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif]]
+        } -- Auto toggle fcitx5
+        -- {"InsertLeave", "* :silent", "!fcitx5-remote -c"},
+        -- {"BufCreate", "*", ":silent !fcitx5-remote -c"},
+        -- {"BufEnter", "*", ":silent !fcitx5-remote -c "},
+        -- {"BufLeave", "*", ":silent !fcitx5-remote -c "}
+    },
+    wins = {
+        -- Highlight current line only on focused window
+        {
+            "WinEnter,BufEnter,InsertLeave",
+            "*",
+            [[if ! &cursorline && &filetype !~# '^\(dashboard\|clap_\)' && ! &pvw | setlocal cursorline | endif]]
+        },
+        {
+            "WinLeave,BufLeave,InsertEnter",
+            "*",
+            [[if &cursorline && &filetype !~# '^\(dashboard\|clap_\)' && ! &pvw | setlocal nocursorline | endif]]
+        }, -- Force write shada on leaving nvim
+        {
+            "VimLeave",
+            "*",
+            [[if has('nvim') | wshada! | else | wviminfo! | endif]]
+        },
+        -- Check if file changed when its window is focus, more eager than 'autoread'
+        {"FocusGained", "* checktime"},
+        -- Equalize window dimensions when resizing vim window
+        {"VimResized", "*", [[tabdo wincmd =]]}
+    },
+    ft = {
+        {"BufNewFile,BufRead", "*.toml", " setf toml"},
+        {"FileType", "make", "set noexpandtab shiftwidth=8 softtabstop=0"},
+        {"FileType", "go,rust", "setlocal tabstop=4 shiftwidth=4"},
+        {"FileType", "c,cpp", "setlocal tabstop=2 shiftwidth=2"},
+        {
+            "FileType",
+            "javascript,typescript,html",
+            "setlocal tabstop=2 shiftwidth=2"
+        },
+        {
+            "FileType",
+            "dashboard",
+            "set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2"
+        },
+        {
+            "FileType",
+            "*",
+            [[setlocal formatoptions-=c formatoptions-=r formatoptions-=o]]
+        },
+        {
+            "FileType",
+            "c,cpp",
+            "nnoremap <leader>h :ClangdSwitchSourceHeaderVSplit<CR>"
+        }
+    },
+    yank = {
+        {
+            "TextYankPost",
+            [[* silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=300})]]
+        }
+    }
 }
 
-for k, v in pairs(global_local_value) do
-    vim.o[k] = v
-end
+create_augroups(augroups)

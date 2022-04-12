@@ -1,5 +1,6 @@
 local vim = vim 
 require('plugins')
+require('options')
 require('autocmd')
 require("keymap")
 vim.g.dashboard_custom_header = {
