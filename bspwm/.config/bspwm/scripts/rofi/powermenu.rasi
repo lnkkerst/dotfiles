@@ -1,7 +1,7 @@
 @import "colors.rasi"
 
 configuration {
-	font:							"Iosevka Nerd Font 30";
+	font:							"JetBrainsMono Nerd Font 30";
     disable-history:            	false;
 	sidebar-mode: 					false;
 	show-icons:                     false;

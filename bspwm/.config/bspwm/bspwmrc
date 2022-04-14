@@ -17,11 +17,11 @@ else
 end
 
 # Borders and gaps
-bspc config border_width 2
+bspc config border_width 1
 if string length $DOUBLE_MONITER
-    bspc config window_gap 16
+    bspc config window_gap 12
 else 
-    bspc config window_gap 8
+    bspc config window_gap 6
 end
 
 bspc config split_ratio 0.5
@@ -38,6 +38,7 @@ bspc rule -a Wine state=floating
 bspc rule -a "Gnome-screenshot" state=floating
 bspc rule -a "Blueman-manager" state=floating
 bspc rule -a 'wechat.exe' state=floating
- 
+bspc rule -a icalingua state=floating
+
 # Autostart
 fish $SCRIPTS_DIR/autostart.fish

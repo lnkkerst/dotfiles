@@ -9,7 +9,6 @@ clipit
 blueman-applet
 xidlehook --not-when-audio --not-when-fullscreen --timer 600 "$HOME/.config/i3/i3lock-color.sh"
 xss-lock $HOME/.config/i3/i3lock-color.sh
-volumeicon
 libinput-gestures
 $HOME/.config/bspwm/polybar/launch.fish
 picom --config $HOME/.config/bspwm/picom/picom.conf -b

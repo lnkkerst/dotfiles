@@ -82,6 +82,7 @@ local global_local_value = {
     textwidth = 80,
     expandtab = true,
     autoindent = true,
+    smartindent = true,
     tabstop = 4,
     shiftwidth = 4,
     softtabstop = -1,
