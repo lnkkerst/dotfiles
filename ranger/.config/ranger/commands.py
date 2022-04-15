@@ -16,7 +16,7 @@ import os
 from ranger.api.commands import Command
 
 
-2# Any class that is a subclass of "Command" will be integrated into ranger as a
+# Any class that is a subclass of "Command" will be integrated into ranger as a
 # command.  Try typing ":my_edit<ENTER>" in ranger!
 class my_edit(Command):
     # The so-called doc-string of the class will be visible in the built-in
@@ -61,9 +61,11 @@ class my_edit(Command):
         # content of the current directory.
         return self._tab_directory_content()
 
+
 class tempty(Command):
     """:tempty
     Empty the trash.
     """
+
     def execute(self):
         self.fm.run("trash-empty")

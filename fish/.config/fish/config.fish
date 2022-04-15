@@ -37,10 +37,9 @@ alias vim='nvim'
 
 # Functions
 function mkcd
-    mkdir -p $argv[1]
-    cd $argv[1]
+    mkdir -p $argv[1] && cd $argv[1]
 end
 
 if not set -q DISPLAY; and test $XDG_VTNR = 1
-    exec startx &> $HOME/customLogs/xlog
+    exec startx &>$HOME/customLogs/xlog
 end
