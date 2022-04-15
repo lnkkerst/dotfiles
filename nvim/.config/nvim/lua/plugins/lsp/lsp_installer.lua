@@ -18,14 +18,15 @@ return function()
             fix_pos = true,
             hint_enable = true,
             hi_parameter = "Search",
-            handler_opts = { "double" },
+            handler_opts = {"double"}
         })
         -- require("aerial").on_attach(client)
-    
+
         if client.resolved_capabilities.document_formatting then
             vim.cmd([[augroup Format]])
             vim.cmd([[autocmd! * <buffer>]])
-            vim.cmd([[autocmd BufWritePost <buffer> lua require'modules.completion.formatting'.format()]])
+            vim.cmd(
+                [[autocmd BufWritePost <buffer> lua require'modules.completion.formatting'.format()]])
             vim.cmd([[augroup END]])
         end
     end
