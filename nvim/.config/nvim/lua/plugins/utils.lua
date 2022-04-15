@@ -70,4 +70,8 @@ end
 utils.toggleterm = function()
 end
 
+utils.telescrop = function ()
+    
+end
+
 return utils
