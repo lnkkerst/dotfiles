@@ -60,12 +60,3 @@ class my_edit(Command):
         # This is a generic tab-completion function that iterates through the
         # content of the current directory.
         return self._tab_directory_content()
-
-
-class tempty(Command):
-    """:tempty
-    Empty the trash.
-    """
-
-    def execute(self):
-        self.fm.run("trash-empty")
