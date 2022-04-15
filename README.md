@@ -2,6 +2,10 @@
 
 My dotfiles 😄
 
+## Screenshot
+
+![Screenshot](./.shot/2022-04-15-233011_4000x1440_scrot.png)
+
 ## Use stow
 
 Clone this repository.
