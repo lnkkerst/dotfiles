@@ -72,7 +72,7 @@ local plug_map = {
     ["n|<Leader>nf"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent(),
     ["n|<Leader>nr"] = map_cr("NvimTreeRefresh"):with_noremap():with_silent(),
     -- -- Plugin Aerial
-    -- ["n|<A-t>"] = map_cr("AerialToggle! right"):with_noremap():with_silent(),
+    ["n|<A-t>"] = map_cr("AerialToggle! right"):with_noremap():with_silent(),
     -- -- Plugin Minimap
     -- ["n|<A-n>"] = map_cr("MinimapToggle"):with_noremap():with_silent(),
     -- ["n|<A-r>"] = map_cr("MinimapRefresh"):with_noremap():with_silent(),

@@ -49,6 +49,11 @@ return require("packer").startup(function(use)
     use {"neovim/nvim-lspconfig", config = lsp.lspconfig}
     use {"tami5/lspsaga.nvim", branch = "nvim6.0"}
     use {"williamboman/nvim-lsp-installer", config = lsp.lsp_installer}
+    use {
+        "RishabhRD/nvim-lsputils",
+        requires = {"RishabhRD/popfix"},
+        config = lsp.lsputils
+    }
 
     local cmp = require("plugins.cmp")
     use {"hrsh7th/cmp-nvim-lsp", config = cmp.cmp}
@@ -59,6 +64,7 @@ return require("packer").startup(function(use)
     use "hrsh7th/cmp-vsnip"
     use "hrsh7th/vim-vsnip"
     use "f3fora/cmp-spell"
+    use "lukas-reineke/cmp-under-comparator"
 
     local ts = require("plugins.ts")
     use {
@@ -78,6 +84,7 @@ return require("packer").startup(function(use)
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/plenary.nvim'}}
     }
+    use {'stevearc/aerial.nvim', config = utils.aerial}
 
     if packer_bootstrap then require("packer").sync() end
 end)

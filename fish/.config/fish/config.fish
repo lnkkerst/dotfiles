@@ -34,6 +34,7 @@ alias py='python'
 alias :q='exit'
 alias :wq='exit'
 alias vim='nvim'
+alias rcd='ranger-cd'
 
 # Functions
 function mkcd
