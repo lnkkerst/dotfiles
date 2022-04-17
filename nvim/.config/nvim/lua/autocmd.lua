@@ -85,7 +85,7 @@ local augroups = {
             [[silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=300})]]
         }
     },
-    fmt = {{"BufWritePre", "*", "Neoformat"}}
+    -- fmt = {{"BufWritePre", "*", "Neoformat"}}
 }
 
 create_augroups(augroups)

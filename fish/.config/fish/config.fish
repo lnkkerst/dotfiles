@@ -12,6 +12,7 @@ set -gx TERMINAL alacritty
 set -gx EDITOR nvim
 set -gx PAGER less
 set -U nvm_default_version v16.14.2
+set -gx JAVA_HOME /usr/lib/jvm/java-18-jdk
 
 # Alias
 alias gitu='git add . && git commit && git push'

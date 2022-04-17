@@ -59,7 +59,10 @@ lsp.lsp_installer = function()
         }
     })
 
-    local function custom_attach(client) require("aerial").on_attach(client) end
+    local function custom_attach(client)
+        require("aerial").on_attach(client)
+        require("lsp-format").on_attach(client)
+    end
 
     -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
     -- or if the server is already installed).
@@ -163,5 +166,7 @@ lsp.lsputils = function()
             end
     end
 end
+
+lsp.format = function() require("lsp-format").setup {} end
 
 return lsp

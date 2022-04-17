@@ -54,6 +54,7 @@ return require("packer").startup(function(use)
         requires = {"RishabhRD/popfix"},
         config = lsp.lsputils
     }
+    use {"lukas-reineke/lsp-format.nvim", config = lsp.format}
 
     local cmp = require("plugins.cmp")
     use {"hrsh7th/cmp-nvim-lsp", config = cmp.cmp}
@@ -78,13 +79,14 @@ return require("packer").startup(function(use)
 
     local utils = require("plugins.utils")
     use {"michaelb/sniprun", run = "bash install.sh", config = utils.sniprun}
-    use {"sbdchd/neoformat"}
     use {"akinsho/toggleterm.nvim", config = utils.toggleterm}
     use {
-        'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/plenary.nvim'}}
+        "nvim-telescope/telescope.nvim",
+        requires = {{"nvim-lua/plenary.nvim"}}
     }
-    use {'stevearc/aerial.nvim', config = utils.aerial}
+    use {"stevearc/aerial.nvim", config = utils.aerial}
+    use {"ellisonleao/glow.nvim", branch = "main", config = utils.glow}
 
+    local lang = require("plugins.lang")
     if packer_bootstrap then require("packer").sync() end
 end)
