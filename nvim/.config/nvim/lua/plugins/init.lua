@@ -48,6 +48,7 @@ return require("packer").startup(function(use)
     use { "rhysd/accelerated-jk" }
     use { "yamatsum/nvim-cursorline", config = editor.cursorline }
     use { "windwp/nvim-autopairs", config = editor.autopairs }
+    use { 'numToStr/Comment.nvim', config = editor.comment }
 
     local lsp = require("plugins.lsp")
     use { "neovim/nvim-lspconfig", config = lsp.lspconfig }
@@ -80,6 +81,7 @@ return require("packer").startup(function(use)
     use { "nvim-treesitter/nvim-treesitter-textobjects" }
     use { "windwp/nvim-ts-autotag", config = ts.autotag }
     use { "p00f/nvim-ts-rainbow" }
+    use { "JoosepAlviste/nvim-ts-context-commentstring" }
 
     local utils = require("plugins.utils")
     use { "michaelb/sniprun", run = "bash install.sh", config = utils.sniprun }
@@ -97,7 +99,7 @@ return require("packer").startup(function(use)
 
     local dap = require("plugins.dap");
     use { "mfussenegger/nvim-dap", config = dap.dap }
-    use {"rcarriga/nvim-dap-ui", config = dap.dap_ui}
+    use { "rcarriga/nvim-dap-ui", config = dap.dap_ui }
 
     local lang = require("plugins.lang")
     if packer_bootstrap then require("packer").sync() end
