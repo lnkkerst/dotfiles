@@ -10,10 +10,10 @@ end
 return require("packer").startup(function(use)
     local ui = require("plugins.ui")
     use "wbthomason/packer.nvim"
-    use {"marko-cerovac/material.nvim", config = ui.material}
+    use { "marko-cerovac/material.nvim", config = ui.material }
     use {
         "nvim-lualine/lualine.nvim",
-        requires = {"kyazdani42/nvim-web-devicons", opt = true},
+        requires = { "kyazdani42/nvim-web-devicons", opt = true },
         config = ui.lualine
     }
     use {
@@ -26,10 +26,10 @@ return require("packer").startup(function(use)
         requires = "kyazdani42/nvim-web-devicons",
         config = ui.bufferline
     }
-    use {"lukas-reineke/indent-blankline.nvim", config = ui.indent_blankline}
+    use { "lukas-reineke/indent-blankline.nvim", config = ui.indent_blankline }
     use {
         "glepnir/dashboard-nvim",
-        requires = {"nvim-telescope/telescope.nvim"},
+        requires = { "nvim-telescope/telescope.nvim" },
         config = ui.dashboard
     }
     use {
@@ -39,25 +39,29 @@ return require("packer").startup(function(use)
         },
         config = ui.tree
     }
+    use {
+        "xiyaowong/nvim-transparent",
+        config = ui.transparent
+    }
 
     local editor = require("plugins.editor")
-    use {"rhysd/accelerated-jk"}
-    use {"yamatsum/nvim-cursorline", config = editor.cursorline}
-    use {"windwp/nvim-autopairs", config = editor.autopairs}
+    use { "rhysd/accelerated-jk" }
+    use { "yamatsum/nvim-cursorline", config = editor.cursorline }
+    use { "windwp/nvim-autopairs", config = editor.autopairs }
 
     local lsp = require("plugins.lsp")
-    use {"neovim/nvim-lspconfig", config = lsp.lspconfig}
-    use {"tami5/lspsaga.nvim", branch = "nvim6.0"}
-    use {"williamboman/nvim-lsp-installer", config = lsp.lsp_installer}
+    use { "neovim/nvim-lspconfig", config = lsp.lspconfig }
+    use { "tami5/lspsaga.nvim", branch = "nvim6.0" }
+    use { "williamboman/nvim-lsp-installer", config = lsp.lsp_installer }
     use {
         "RishabhRD/nvim-lsputils",
-        requires = {"RishabhRD/popfix"},
+        requires = { "RishabhRD/popfix" },
         config = lsp.lsputils
     }
-    use {"lukas-reineke/lsp-format.nvim", config = lsp.format}
+    use { "lukas-reineke/lsp-format.nvim", config = lsp.format }
 
     local cmp = require("plugins.cmp")
-    use {"hrsh7th/cmp-nvim-lsp", config = cmp.cmp}
+    use { "hrsh7th/cmp-nvim-lsp", config = cmp.cmp }
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-cmdline"
@@ -73,19 +77,27 @@ return require("packer").startup(function(use)
         run = ":TSUpdate",
         config = ts.treesitter
     }
-    use {"nvim-treesitter/nvim-treesitter-textobjects"}
-    use {"windwp/nvim-ts-autotag", config = ts.autotag}
-    use {"p00f/nvim-ts-rainbow"}
+    use { "nvim-treesitter/nvim-treesitter-textobjects" }
+    use { "windwp/nvim-ts-autotag", config = ts.autotag }
+    use { "p00f/nvim-ts-rainbow" }
 
     local utils = require("plugins.utils")
-    use {"michaelb/sniprun", run = "bash install.sh", config = utils.sniprun}
-    use {"akinsho/toggleterm.nvim", config = utils.toggleterm}
+    use { "michaelb/sniprun", run = "bash install.sh", config = utils.sniprun }
+    use { "akinsho/toggleterm.nvim", config = utils.toggleterm }
     use {
         "nvim-telescope/telescope.nvim",
-        requires = {{"nvim-lua/plenary.nvim"}}
+        requires = { { "nvim-lua/plenary.nvim" } }
     }
-    use {"stevearc/aerial.nvim", config = utils.aerial}
-    use {"ellisonleao/glow.nvim", branch = "main", config = utils.glow}
+    use { "stevearc/aerial.nvim", config = utils.aerial }
+    use { "ellisonleao/glow.nvim", branch = "main", config = utils.glow }
+    use { "folke/which-key.nvim", config = utils.which_key }
+    use { "iamcco/markdown-preview.nvim", run = "cd app && yarn install" }
+    use { 'jghauser/mkdir.nvim' }
+    use { "rcarriga/nvim-notify", config = utils.notify }
+
+    local dap = require("plugins.dap");
+    use { "mfussenegger/nvim-dap", config = dap.dap }
+    use {"rcarriga/nvim-dap-ui", config = dap.dap_ui}
 
     local lang = require("plugins.lang")
     if packer_bootstrap then require("packer").sync() end

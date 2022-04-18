@@ -42,12 +42,12 @@ ui.material = function()
         },
         contrast_filetypes = {
             -- Specify which filetypes get the contrasted (darker) background
-            "terminal", -- Darker terminal background
+            -- "terminal", -- Darker terminal background
             "packer", -- Darker packer background
             "qf" -- Darker qf list background
         },
         high_visibility = {
-            lighter = false, -- Enable higher contrast text for lighter style
+            lighter = true, -- Enable higher contrast text for lighter style
             darker = true -- Enable higher contrast text for darker style
         },
         disable = {
@@ -90,9 +90,9 @@ ui.gps = function()
                 }
             },
             ["latex"] = {
-                icons = {["title-name"] = "# ", ["label-name"] = " "}
+                icons = { ["title-name"] = "# ", ["label-name"] = " " }
             },
-            ["norg"] = {icons = {["title-name"] = " "}},
+            ["norg"] = { icons = { ["title-name"] = " " } },
             ["toml"] = {
                 icons = {
                     ["table-name"] = " ",
@@ -107,7 +107,7 @@ ui.gps = function()
                     ["time-name"] = " "
                 }
             },
-            ["verilog"] = {icons = {["module-name"] = " "}},
+            ["verilog"] = { icons = { ["module-name"] = " " } },
             ["yaml"] = {
                 icons = {
                     ["mapping-name"] = " ",
@@ -166,25 +166,25 @@ ui.lualine = function()
         options = {
             icons_enabled = true,
             theme = "material",
-            component_separators = {left = "", right = ""},
-            section_separators = {left = "", right = ""},
+            component_separators = { left = "", right = "" },
+            section_separators = { left = "", right = "" },
             disabled_filetypes = {},
             always_divide_middle = true,
             globalstatus = false
         },
         sections = {
-            lualine_a = {"mode"},
-            lualine_b = {"branch", "diff", "diagnostics"},
-            lualine_c = {{gps.get_location, cond = gps.is_available}},
-            lualine_x = {"encoding", "fileformat", "filetype"},
-            lualine_y = {"progress"},
-            lualine_z = {"location"}
+            lualine_a = { "mode" },
+            lualine_b = { "branch", "diff", "diagnostics" },
+            lualine_c = { { gps.get_location, cond = gps.is_available } },
+            lualine_x = { "encoding", "fileformat", "filetype" },
+            lualine_y = { "progress" },
+            lualine_z = { "location" }
         },
         inactive_sections = {
             lualine_a = {},
             lualine_b = {},
-            lualine_c = {"filename"},
-            lualine_x = {"location"},
+            lualine_c = { "filename" },
+            lualine_x = { "location" },
             lualine_y = {},
             lualine_z = {}
         },
@@ -195,7 +195,7 @@ end
 
 ui.bufferline = function()
     require("bufferline").setup {
-        options = {mod = "buffers", numbers = "both", diagnostics = "nvim_lsp"}
+        options = { mod = "buffers", numbers = "both", diagnostics = "nvim_lsp" }
     }
 end
 
@@ -205,6 +205,7 @@ ui.indent_blankline = function()
     vim.opt.listchars:append("eol:↴")
 
     require("indent_blankline").setup {
+        char = "│",
         space_char_blankline = " ",
         show_current_context = true,
         show_current_context_start = true,
@@ -214,16 +215,15 @@ ui.indent_blankline = function()
             "vista", "help", "todoist", "NvimTree", "peekaboo", "git",
             "TelescopePrompt", "undotree", "flutterToolsOutline", ""
         },
-        buftype_exclude = {"terminal", "nofile"}
+        buftype_exclude = { "terminal", "nofile" }
     }
 end
 
 ui.tree = function()
-    -- setup with all defaults
     -- each of these are documented in `:help nvim-tree.OPTION_NAME`
-    require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
+    require('nvim-tree').setup { -- BEGIN_DEFAULT_OPTS
         auto_reload_on_write = true,
-        disable_netrw = false,
+        disable_netrw = true,
         hide_root_folder = false,
         hijack_cursor = false,
         hijack_netrw = true,
@@ -239,7 +239,7 @@ ui.tree = function()
             height = 30,
             side = "left",
             preserve_window_proportions = false,
-            number = false,
+            number = true,
             relativenumber = false,
             signcolumn = "yes",
             mappings = {
@@ -252,27 +252,28 @@ ui.tree = function()
         renderer = {
             indent_markers = {
                 enable = false,
-                icons = {corner = "└ ", edge = "│ ", none = "  "}
+                icons = { corner = "└ ", edge = "│ ", none = "  " }
             }
         },
-        hijack_directories = {enable = true, auto_open = true},
+        hijack_directories = { enable = true, auto_open = true },
         update_focused_file = {
             enable = false,
             update_cwd = false,
             ignore_list = {}
         },
         ignore_ft_on_setup = {},
-        system_open = {cmd = nil, args = {}},
+        system_open = { cmd = nil, args = {} },
         diagnostics = {
-            enable = false,
-            show_on_dirs = false,
-            icons = {hint = "", info = "", warning = "", error = ""}
+            enable = true,
+            show_on_dirs = true,
+            icons = { hint = "", info = "", warning = "", error = "" }
         },
-        filters = {dotfiles = false, custom = {}, exclude = {}},
-        git = {enable = true, ignore = true, timeout = 400},
+        filters = { dotfiles = false, custom = {}, exclude = {} },
+        git = { enable = true, ignore = true, timeout = 400, icons = {
+        } },
         actions = {
             use_system_clipboard = true,
-            change_dir = {enable = true, global = false},
+            change_dir = { enable = true, global = false },
             open_file = {
                 quit_on_open = false,
                 resize_window = false,
@@ -284,12 +285,12 @@ ui.tree = function()
                             "notify", "packer", "qf", "diff", "fugitive",
                             "fugitiveblame"
                         },
-                        buftype = {"nofile", "terminal", "help"}
+                        buftype = { "nofile", "terminal", "help" }
                     }
                 }
             }
         },
-        trash = {cmd = "trash", require_confirm = true},
+        trash = { cmd = "trash", require_confirm = true },
         log = {
             enable = false,
             truncate = false,
@@ -301,7 +302,25 @@ ui.tree = function()
                 profile = false
             }
         }
-    } -- END_DEFAULT_OPTS
+    }
+end
+
+ui.transparent = function()
+    require("transparent").setup({
+        enable = false, -- boolean: enable transparent
+        extra_groups = { -- table/string: additional groups that should be cleared
+            -- In particular, when you set it to 'all', that means all available groups
+
+            -- example of akinsho/nvim-bufferline.lua
+            --"BufferLineTabClose",
+            --"BufferlineBufferSelected",
+            --"BufferLineFill",
+            --"BufferLineBackground",
+            --"BufferLineSeparator",
+            --"BufferLineIndicatorSelected",
+        },
+        exclude = {}, -- table: groups you don't want to clear
+    })
 end
 
 return ui

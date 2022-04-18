@@ -1,1 +1,0 @@
--- return function() require('code_runner').setup({}) end

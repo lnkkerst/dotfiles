@@ -9,7 +9,7 @@ utils.sniprun = function()
             interpreter_options = {
                 -- # intepreter-specific options, see docs / :SnipInfo <name>
                 GFM_original = {
-                    use_on_filetypes = {"markdown.pandoc"} -- # the 'use_on_filetypes' configuration key is
+                    use_on_filetypes = { "markdown.pandoc" } -- # the 'use_on_filetypes' configuration key is
                     -- # available for every interpreter
                 }
             },
@@ -44,14 +44,14 @@ utils.sniprun = function()
                     ctermbg = "Cyan",
                     cterfg = "Black"
                 },
-                SniprunFloatingWinOk = {fg = "#66eeff", ctermfg = "Cyan"},
+                SniprunFloatingWinOk = { fg = "#66eeff", ctermfg = "Cyan" },
                 SniprunVirtualTextErr = {
                     bg = "#881515",
                     fg = "#000000",
                     ctermbg = "DarkRed",
                     cterfg = "Black"
                 },
-                SniprunFloatingWinErr = {fg = "#881515", ctermfg = "DarkRed"}
+                SniprunFloatingWinErr = { fg = "#881515", ctermfg = "DarkRed" }
             },
             -- # miscellaneous compatibility/adjustement settings
             inline_messages = 0, -- # inline_message (0/1) is a one-line way to display messages
@@ -65,6 +65,13 @@ utils.sniprun = function()
 end
 
 utils.toggleterm = function()
+    require("toggleterm").setup {
+        open_mapping = [[<C-\>]],
+        shade_terminals = false,
+        start_in_insert = true,
+        insert_mappings = true, -- whether or not the open mapping applies in insert mode
+        terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
+    }
 end
 
 utils.telescrop = function()
@@ -72,6 +79,119 @@ end
 
 utils.aerial = function()
     require("aerial").setup({})
+end
+
+utils.which_key = function()
+    require("which-key").setup({
+        plugins = {
+            marks = true, -- shows a list of your marks on ' and `
+            registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+            spelling = {
+                enabled = false, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+                suggestions = 20, -- how many suggestions should be shown in the list?
+            },
+            -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+            -- No actual key bindings are created
+            presets = {
+                operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+                motions = true, -- adds help for motions
+                text_objects = true, -- help for text objects triggered after entering an operator
+                windows = true, -- default bindings on <c-w>
+                nav = true, -- misc bindings to work with windows
+                z = true, -- bindings for folds, spelling and others prefixed with z
+                g = true, -- bindings for prefixed with g
+            },
+        },
+        -- add operators that will trigger motion and text object completion
+        -- to enable all native operators, set the preset / operators plugin above
+        operators = { gc = "Comments" },
+        key_labels = {
+            -- override the label used to display some keys. It doesn't effect WK in any other way.
+            -- For example:
+            -- ["<space>"] = "SPC",
+            -- ["<cr>"] = "RET",
+            -- ["<tab>"] = "TAB",
+        },
+        icons = {
+            breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+            separator = "➜", -- symbol used between a key and it's label
+            group = "+", -- symbol prepended to a group
+        },
+        popup_mappings = {
+            scroll_down = '<c-d>', -- binding to scroll down inside the popup
+            scroll_up = '<c-u>', -- binding to scroll up inside the popup
+        },
+        window = {
+            border = "none", -- none, single, double, shadow
+            position = "bottom", -- bottom, top
+            margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+            padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+            winblend = 0
+        },
+        layout = {
+            height = { min = 4, max = 25 }, -- min and max height of the columns
+            width = { min = 20, max = 50 }, -- min and max width of the columns
+            spacing = 3, -- spacing between columns
+            align = "left", -- align columns left, center or right
+        },
+        ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
+        hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
+        show_help = true, -- show help message on the command line when the popup is visible
+        triggers = "auto", -- automatically setup triggers
+        -- triggers = {"<leader>"} -- or specify a list manually
+        triggers_blacklist = {
+            -- list of mode / prefixes that should never be hooked by WhichKey
+            -- this is mostly relevant for key maps that start with a native binding
+            -- most people should not need to change this
+            i = { "j", "k" },
+            v = { "j", "k" },
+        },
+    })
+end
+
+utils.notify = function()
+    local notify = require("notify")
+    vim.notify = notify
+    notify.setup({
+        -- Minimum level to show
+        level = "info",
+
+        -- Animation style (see below for details)
+        stages = "static",
+
+        -- Function called when a new window is opened, use for changing win settings/config
+        on_open = nil,
+
+        -- Function called when a window is closed
+        on_close = nil,
+
+        -- Render function for notifications. See notify-render()
+        render = "default",
+
+        -- Default timeout for notifications
+        timeout = 5000,
+
+        -- Max number of columns for messages
+        max_width = nil,
+        -- Max number of lines for a message
+        max_height = nil,
+
+        -- For stages that change opacity this is treated as the highlight behind the window
+        -- Set this to either a highlight group, an RGB hex value e.g. "#000000" or a function returning an RGB code for dynamic values
+        background_colour = "Normal",
+
+        -- Minimum width for notification windows
+        minimum_width = 50,
+
+        -- Icons for the different levels
+        icons = {
+            ERROR = "",
+            WARN = "",
+            INFO = "",
+            DEBUG = "",
+            TRACE = "✎",
+        }
+    })
 end
 
 return utils
