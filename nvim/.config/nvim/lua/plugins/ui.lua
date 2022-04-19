@@ -327,4 +327,9 @@ ui.scrollbar = function()
     require("scrollbar").setup()
     require("scrollbar.handlers.search").setup()
 end
+
+ui.focus = function()
+    require("focus").setup()
+end
+
 return ui

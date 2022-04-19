@@ -42,6 +42,7 @@ return require("packer").startup({ function(use)
     }
     use { "xiyaowong/nvim-transparent", config = ui.transparent }
     use { "petertriho/nvim-scrollbar", config = ui.scrollbar }
+    use { "beauwilliams/focus.nvim", config = ui.focus }
 
     local editor = require("plugins.editor")
     use { "rhysd/accelerated-jk" }

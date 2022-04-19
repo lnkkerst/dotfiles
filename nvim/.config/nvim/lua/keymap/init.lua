@@ -3,8 +3,8 @@ require("keymap.config")
 
 local wk = require("which-key")
 
+-- Plugin BufferLine
 wk.register({
-    name = "bufferline",
     ["<A-1>"] = { "<cmd>BufferLineGoToBuffer 1<cr>", "BufferLineGoToBuffer 1" },
     ["<A-2>"] = { "<cmd>BufferLineGoToBuffer 2<cr>", "BufferLineGoToBuffer 2" },
     ["<A-3>"] = { "<cmd>BufferLineGoToBuffer 3<cr>", "BufferLineGoToBuffer 3" },
@@ -26,8 +26,8 @@ wk.register({
     }
 })
 
+-- Plugin Lspsaga
 wk.register({
-    name = "lspsaga",
     ["K"] = { "<cmd>Lspsaga hover_doc<cr>", "Lspsaga hover doc" },
     g = {
         name = "lspsaga action",
@@ -40,26 +40,26 @@ wk.register({
 })
 
 wk.register({
-    name = "lspsaga",
     ["gx"] = { "<cmd>Lspsaga range_code_action<cr>", "Lspsaga range code action", mode = "x" }
 })
 
+-- Plugin accelerate_jk
 wk.register({
-    name = "accelerate_jk",
     ["j"] = { "<Plug>(accelerated_jk_gj)", "accelerate j" },
     ["k"] = { "<Plug>(accelerated_jk_gk)", "accelerate k" }
 })
 
+-- Plugin Nvim-tree
 wk.register({
-    name = "nvim-tree",
     ["<C-n>"] = { "<cmd>NvimTreeToggle<cr>", "NvimTreeToggle" }
 })
 
+-- Plugin Aerial
 wk.register({
-    name = "aerial",
     ["<A-a>"] = { "<cmd>AerialToggle<cr>", "AerialToggle" }
 })
 
+-- Plugin Telescope
 wk.register({
     ["t"] = {
         name = "Telescope",
@@ -70,16 +70,16 @@ wk.register({
     }
 }, { prefix = "<leader>" })
 
+-- Plugin Markdown Preview
 wk.register({
-    name = "markdown preview",
     ["<F12>"] = {
         "<cmd>MarkdownPreviewToggle<cr>",
         "Markdown Preview"
     }
 })
 
+-- Plugin Hop
 wk.register({
-    name = "hop",
     ["h"] = {
         name = "Hop action",
         ["l"] = { "<cmd>HopLine<cr>", "HopLine" },
@@ -93,7 +93,18 @@ wk.register({
     }
 }, { prefix = "<leader>" })
 
+-- Plugin Jaq
 wk.register({
-    name = "jaq",
     ["j"] = { "<cmd>Jaq<cr>", "Jaq" }
 }, { prefix = "<leader>" })
+
+-- Plugin focus.nvim
+wk.register({
+    ["f"] = {
+        name = "focus",
+        ["h"] = { "<cmd>FocusSplitLeft<cr>", "FocusSplitLeft" },
+        ["j"] = { "<cmd>FocusSplitDown<cr>", "FocusSplitDown" },
+        ["k"] = { "<cmd>FocusSplitUp<cr>", "FocusSplitUp" },
+        ["l"] = { "<cmd>FocusSplitRight<cr>", "FocusSplitRight" }
+    }
+})
