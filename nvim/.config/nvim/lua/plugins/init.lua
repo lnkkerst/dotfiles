@@ -55,6 +55,8 @@ return require("packer").startup(function(use)
     use { "karb94/neoscroll.nvim", config = editor.neoscroll }
     -- use {"haringsrob/nvim_context_vt", config = editor.context_vt}
     use { "edluffy/specs.nvim", config = editor.specs }
+    use { "Pocco81/AutoSave.nvim", config = editor.autosave }
+    use { "mizlan/iswap.nvim", config = editor.iswap }
 
     local lsp = require("plugins.lsp")
     use { "neovim/nvim-lspconfig", config = lsp.lspconfig }
