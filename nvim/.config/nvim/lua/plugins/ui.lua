@@ -323,4 +323,8 @@ ui.transparent = function()
     })
 end
 
+ui.scrollbar = function()
+    require("scrollbar").setup()
+    require("scrollbar.handlers.search").setup()
+end
 return ui

@@ -77,3 +77,23 @@ wk.register({
         "Markdown Preview"
     }
 })
+
+wk.register({
+    name = "hop",
+    ["h"] = {
+        name = "Hop action",
+        ["l"] = { "<cmd>HopLine<cr>", "HopLine" },
+        ["w"] = { "<cmd>HopWord<cr>", "HopWord" },
+        ["c"] = {
+            name = "HopChar",
+            ["1"] = { "<cmd>HopChar1<cr>", "HopChar1" },
+            ["2"] = { "<cmd>HopChar2<cr>", "HopChar2" }
+        },
+        ["p"] = { "<cmd>HopPattern<cr>", "HopPattern" }
+    }
+}, { prefix = "<leader>" })
+
+wk.register({
+    name = "jaq",
+    ["j"] = { "<cmd>Jaq<cr>", "Jaq" }
+}, { prefix = "<leader>" })

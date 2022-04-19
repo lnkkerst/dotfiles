@@ -43,12 +43,17 @@ return require("packer").startup(function(use)
         "xiyaowong/nvim-transparent",
         config = ui.transparent
     }
+    use { "petertriho/nvim-scrollbar", config = ui.scrollbar }
 
     local editor = require("plugins.editor")
     use { "rhysd/accelerated-jk" }
     use { "yamatsum/nvim-cursorline", config = editor.cursorline }
     use { "windwp/nvim-autopairs", config = editor.autopairs }
     use { 'numToStr/Comment.nvim', config = editor.comment }
+    use { "phaazon/hop.nvim", branch = "v1", config = editor.hop }
+    use { 'kevinhwang91/nvim-hlslens', config = editor.hlslens }
+    use { 'karb94/neoscroll.nvim', config = editor.neoscroll }
+    -- use {"haringsrob/nvim_context_vt", config = editor.context_vt}
 
     local lsp = require("plugins.lsp")
     use { "neovim/nvim-lspconfig", config = lsp.lspconfig }
@@ -96,6 +101,8 @@ return require("packer").startup(function(use)
     use { "iamcco/markdown-preview.nvim", run = "cd app && yarn install" }
     use { 'jghauser/mkdir.nvim' }
     use { "rcarriga/nvim-notify", config = utils.notify }
+    use { "is0n/jaq-nvim", config = utils.jaq }
+    use { "lewis6991/gitsigns.nvim", tag = "release", config = utils.gitsigns }
 
     local dap = require("plugins.dap");
     use { "mfussenegger/nvim-dap", config = dap.dap }
