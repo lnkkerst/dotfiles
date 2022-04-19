@@ -103,6 +103,7 @@ return require("packer").startup(function(use)
     use { "rcarriga/nvim-notify", config = utils.notify }
     use { "is0n/jaq-nvim", config = utils.jaq }
     use { "lewis6991/gitsigns.nvim", tag = "release", config = utils.gitsigns }
+    use {"TimUntersberger/neogit", requires = 'nvim-lua/plenary.nvim', config = utils.neogit}
 
     local dap = require("plugins.dap");
     use { "mfussenegger/nvim-dap", config = dap.dap }

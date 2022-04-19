@@ -292,4 +292,9 @@ utils.gitsigns = function ()
     require('gitsigns').setup()
 end
 
+utils.neogit = function ()
+    local neogit = require("neogit")
+    neogit.setup()
+end
+
 return utils
