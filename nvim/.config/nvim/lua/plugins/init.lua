@@ -57,6 +57,7 @@ return require("packer").startup(function(use)
     use { "edluffy/specs.nvim", config = editor.specs }
     use { "Pocco81/AutoSave.nvim", config = editor.autosave }
     use { "mizlan/iswap.nvim", config = editor.iswap }
+    use { "ethanholz/nvim-lastplace", config = editor.lastplace }
 
     local lsp = require("plugins.lsp")
     use { "neovim/nvim-lspconfig", config = lsp.lspconfig }
