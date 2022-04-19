@@ -7,9 +7,10 @@ if fn.empty(fn.glob(install_path)) > 0 then
     })
 end
 
-return require("packer").startup(function(use)
+return require("packer").startup({ function(use)
+    use { "wbthomason/packer.nvim" }
+
     local ui = require("plugins.ui")
-    use "wbthomason/packer.nvim"
     use { "marko-cerovac/material.nvim", config = ui.material }
     use {
         "nvim-lualine/lualine.nvim",
@@ -39,10 +40,7 @@ return require("packer").startup(function(use)
         },
         config = ui.tree
     }
-    use {
-        "xiyaowong/nvim-transparent",
-        config = ui.transparent
-    }
+    use { "xiyaowong/nvim-transparent", config = ui.transparent }
     use { "petertriho/nvim-scrollbar", config = ui.scrollbar }
 
     local editor = require("plugins.editor")
@@ -58,6 +56,8 @@ return require("packer").startup(function(use)
     use { "Pocco81/AutoSave.nvim", config = editor.autosave }
     use { "mizlan/iswap.nvim", config = editor.iswap }
     use { "ethanholz/nvim-lastplace", config = editor.lastplace }
+    use { "nacro90/numb.nvim", config = editor.numb }
+    use { "anuvyklack/pretty-fold.nvim", config = editor.pretty_fold }
 
     local lsp = require("plugins.lsp")
     use { "neovim/nvim-lspconfig", config = lsp.lspconfig }
@@ -108,12 +108,19 @@ return require("packer").startup(function(use)
     use { "is0n/jaq-nvim", config = utils.jaq }
     use { "lewis6991/gitsigns.nvim", tag = "release", config = utils.gitsigns }
     use { "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim", config = utils.neogit }
-    use { "nacro90/numb.nvim", config = editor.numb }
+    use { "rmagatti/auto-session", config = utils.auto_session }
 
     local dap = require("plugins.dap");
     use { "mfussenegger/nvim-dap", config = dap.dap }
     use { "rcarriga/nvim-dap-ui", config = dap.dap_ui }
 
     local lang = require("plugins.lang")
+
     if packer_bootstrap then require("packer").sync() end
-end)
+end, config = {
+    display = {
+        open_fn = function()
+            return require('packer.util').float({ border = 'single' })
+        end
+    }
+} })

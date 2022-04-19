@@ -204,7 +204,7 @@ utils.jaq = function()
             default = "float",
 
             -- Uses external commands such as 'g++' and 'cargo'
-            -- %: Current File 
+            -- %: Current File
             -- $file: Current File
             -- $filePath: Path to Current File
             -- $fileBase: Basename of File(no extension)
@@ -288,13 +288,20 @@ utils.jaq = function()
     }
 end
 
-utils.gitsigns = function ()
+utils.gitsigns = function()
     require('gitsigns').setup()
 end
 
-utils.neogit = function ()
+utils.neogit = function()
     local neogit = require("neogit")
     neogit.setup()
+end
+
+utils.auto_session = function()
+    require('auto-session').setup {
+        log_level = 'info',
+        auto_session_suppress_dirs = { '~/', '~/Projects' }
+    }
 end
 
 return utils
