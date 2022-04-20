@@ -294,7 +294,7 @@ ui.tree = function()
         open_on_setup_file = false,
         open_on_tab = false,
         sort_by = "name",
-        update_cwd = false,
+        update_cwd = true,
         view = {
             width = 30,
             height = 30,
@@ -316,8 +316,8 @@ ui.tree = function()
         },
         hijack_directories = { enable = true, auto_open = true },
         update_focused_file = {
-            enable = false,
-            update_cwd = false,
+            enable = true,
+            update_cwd = true,
             ignore_list = {}
         },
         ignore_ft_on_setup = {},
@@ -391,6 +391,10 @@ ui.focus = function()
     -- require("focus").setup({
     --     excluded_filetypes = { "toggleterm", [[dap-repl]] }
     -- })
+end
+
+ui.telescope_fzf_native = function()
+    require('telescope').load_extension('fzy_native')
 end
 
 return ui

@@ -33,6 +33,7 @@ return require("packer").startup({ function(use)
         requires = { "nvim-telescope/telescope.nvim" },
         config = ui.dashboard
     }
+    use { "nvim-telescope/telescope-fzy-native.nvim", config = ui.telescope_fzf_native }
     use {
         "kyazdani42/nvim-tree.lua",
         requires = {
@@ -71,6 +72,7 @@ return require("packer").startup({ function(use)
     }
     use { "lukas-reineke/lsp-format.nvim", config = lsp.format }
     use { "arkav/lualine-lsp-progress", config = lsp.lsp_progress }
+    use { "b0o/schemastore.nvim" }
 
     local cmp = require("plugins.cmp")
     use { "hrsh7th/cmp-nvim-lsp", config = cmp.cmp }
@@ -112,6 +114,7 @@ return require("packer").startup({ function(use)
     use { "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim", config = utils.neogit }
     use { "rmagatti/auto-session", config = utils.auto_session }
     use { "sbdchd/neoformat", config = utils.neoformat }
+    use { "ahmedkhalf/project.nvim", config = utils.project }
 
     local dap = require("plugins.dap");
     use { "mfussenegger/nvim-dap", config = dap.dap }

@@ -93,6 +93,13 @@ lsp.lsp_installer = function()
         -- This setup() function will take the provided server configuration and decorate it with the necessary properties
         -- before passing it onwards to lspconfig.
         -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+        if server.name == "jsonls" then
+            opts.settings = {
+                json = {
+                    schemas = require('schemastore').json.schemas(),
+                }
+            }
+        end
         server:setup(opts)
     end)
 end
