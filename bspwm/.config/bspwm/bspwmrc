@@ -39,6 +39,12 @@ bspc rule -a Gnome-screenshot state=floating
 bspc rule -a Blueman-manager state=floating
 bspc rule -a 'wechat.exe' state=floating
 bspc rule -a icalingua state=floating
+bspc rule -a fontweak state=floating
+bspc rule -a Catfish state=floating
+bspc rule -a Ario state=floating
+bspc rule -a SimpleScreenRecorder state=floating
+bspc rule -a "blueman-manager" state=floating
+bspc rule -a feh state=floating
 
 # Autostart
 fish $SCRIPTS_DIR/autostart.fish

@@ -23,145 +23,159 @@ end
 
 ui.material = function()
     vim.g.material_style = "darker"
-    require("material").setup({
-        contrast = {
-            sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
-            floating_windows = false, -- Enable contrast for floating windows
-            line_numbers = false, -- Enable contrast background for line numbers
-            sign_column = false, -- Enable contrast background for the sign column
-            cursor_line = true, -- Enable darker background for the cursor line
-            non_current_windows = false, -- Enable darker background for non-current windows
-            popup_menu = false -- Enable lighter background for the popup menu
-        },
-        italics = {
-            comments = false, -- Enable italic comments
-            keywords = false, -- Enable italic keywords
-            functions = false, -- Enable italic functions
-            strings = false, -- Enable italic strings
-            variables = false -- Enable italic variables
-        },
-        contrast_filetypes = {
-            -- Specify which filetypes get the contrasted (darker) background
-            -- "terminal", -- Darker terminal background
-            -- "packer", -- Darker packer background
-            -- "qf" -- Darker qf list background
-        },
-        high_visibility = {
-            lighter = true, -- Enable higher contrast text for lighter style
-            darker = true -- Enable higher contrast text for darker style
-        },
-        disable = {
-            borders = false, -- Disable borders between verticaly split windows
-            background = true, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
-            term_colors = false, -- Prevent the theme from setting terminal colors
-            eob_lines = false -- Hide the end-of-buffer lines
-        },
-        lualine_style = "stealth", -- Lualine style ( can be 'stealth' or 'default' )
-        async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
-        custom_highlights = {} -- Overwrite highlights with your own
-    })
+    require("material").setup(
+        {
+            contrast = {
+                sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+                floating_windows = false, -- Enable contrast for floating windows
+                line_numbers = false, -- Enable contrast background for line numbers
+                sign_column = false, -- Enable contrast background for the sign column
+                cursor_line = true, -- Enable darker background for the cursor line
+                non_current_windows = false, -- Enable darker background for non-current windows
+                popup_menu = false -- Enable lighter background for the popup menu
+            },
+            italics = {
+                comments = false, -- Enable italic comments
+                keywords = false, -- Enable italic keywords
+                functions = false, -- Enable italic functions
+                strings = false, -- Enable italic strings
+                variables = false -- Enable italic variables
+            },
+            contrast_filetypes = {},
+            high_visibility = {
+                lighter = true, -- Enable higher contrast text for lighter style
+                darker = true -- Enable higher contrast text for darker style
+            },
+            disable = {
+                borders = false, -- Disable borders between verticaly split windows
+                background = true, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
+                term_colors = false, -- Prevent the theme from setting terminal colors
+                eob_lines = false -- Hide the end-of-buffer lines
+            },
+            lualine_style = "stealth", -- Lualine style ( can be 'stealth' or 'default' )
+            async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
+            custom_highlights = {} -- Overwrite highlights with your own
+        }
+    )
 
     vim.cmd "colorscheme material"
 end
 
 ui.gps = function()
-    require("nvim-gps").setup({
-        disable_icons = false, -- Setting it to true will disable all icons
-        icons = {
-            ["class-name"] = " ", -- Classes and class-like objects
-            ["function-name"] = " ", -- Functions
-            ["method-name"] = " ", -- Methods (functions inside class-like objects)
-            ["container-name"] = "⛶ ", -- Containers (example: lua tables)
-            ["tag-name"] = "炙" -- Tags (example: html tags)
-        },
-        -- Add custom configuration per language or
-        -- Disable the plugin for a language
-        -- Any language not disabled here is enabled by default
-        languages = {
-            -- Some languages have custom icons
-            ["json"] = {
-                icons = {
-                    ["array-name"] = " ",
-                    ["object-name"] = " ",
-                    ["null-name"] = "[] ",
-                    ["boolean-name"] = "ﰰﰴ ",
-                    ["number-name"] = "# ",
-                    ["string-name"] = " "
-                }
+    require("nvim-gps").setup(
+        {
+            disable_icons = false, -- Setting it to true will disable all icons
+            icons = {
+                ["class-name"] = " ", -- Classes and class-like objects
+                ["function-name"] = " ", -- Functions
+                ["method-name"] = " ", -- Methods (functions inside class-like objects)
+                ["container-name"] = "⛶ ", -- Containers (example: lua tables)
+                ["tag-name"] = "炙" -- Tags (example: html tags)
             },
-            ["latex"] = {
-                icons = { ["title-name"] = "# ", ["label-name"] = " " }
-            },
-            ["norg"] = { icons = { ["title-name"] = " " } },
-            ["toml"] = {
-                icons = {
-                    ["table-name"] = " ",
-                    ["array-name"] = " ",
-                    ["boolean-name"] = "ﰰﰴ ",
-                    ["date-name"] = " ",
-                    ["date-time-name"] = " ",
-                    ["float-name"] = " ",
-                    ["inline-table-name"] = " ",
-                    ["integer-name"] = "# ",
-                    ["string-name"] = " ",
-                    ["time-name"] = " "
+            -- Add custom configuration per language or
+            -- Disable the plugin for a language
+            -- Any language not disabled here is enabled by default
+            languages = {
+                -- Some languages have custom icons
+                ["json"] = {
+                    icons = {
+                        ["array-name"] = " ",
+                        ["object-name"] = " ",
+                        ["null-name"] = "[] ",
+                        ["boolean-name"] = "ﰰﰴ ",
+                        ["number-name"] = "# ",
+                        ["string-name"] = " "
+                    }
+                },
+                ["latex"] = {
+                    icons = { ["title-name"] = "# ", ["label-name"] = " " }
+                },
+                ["norg"] = { icons = { ["title-name"] = " " } },
+                ["toml"] = {
+                    icons = {
+                        ["table-name"] = " ",
+                        ["array-name"] = " ",
+                        ["boolean-name"] = "ﰰﰴ ",
+                        ["date-name"] = " ",
+                        ["date-time-name"] = " ",
+                        ["float-name"] = " ",
+                        ["inline-table-name"] = " ",
+                        ["integer-name"] = "# ",
+                        ["string-name"] = " ",
+                        ["time-name"] = " "
+                    }
+                },
+                ["verilog"] = { icons = { ["module-name"] = " " } },
+                ["yaml"] = {
+                    icons = {
+                        ["mapping-name"] = " ",
+                        ["sequence-name"] = " ",
+                        ["null-name"] = "[] ",
+                        ["boolean-name"] = "ﰰﰴ ",
+                        ["integer-name"] = "# ",
+                        ["float-name"] = " ",
+                        ["string-name"] = " "
+                    }
+                },
+                ["yang"] = {
+                    icons = {
+                        ["module-name"] = " ",
+                        ["augment-path"] = " ",
+                        ["container-name"] = " ",
+                        ["grouping-name"] = " ",
+                        ["typedef-name"] = " ",
+                        ["identity-name"] = " ",
+                        ["list-name"] = "﬘ ",
+                        ["leaf-list-name"] = " ",
+                        ["leaf-name"] = " ",
+                        ["action-name"] = " "
+                    }
                 }
-            },
-            ["verilog"] = { icons = { ["module-name"] = " " } },
-            ["yaml"] = {
-                icons = {
-                    ["mapping-name"] = " ",
-                    ["sequence-name"] = " ",
-                    ["null-name"] = "[] ",
-                    ["boolean-name"] = "ﰰﰴ ",
-                    ["integer-name"] = "# ",
-                    ["float-name"] = " ",
-                    ["string-name"] = " "
-                }
-            },
-            ["yang"] = {
-                icons = {
-                    ["module-name"] = " ",
-                    ["augment-path"] = " ",
-                    ["container-name"] = " ",
-                    ["grouping-name"] = " ",
-                    ["typedef-name"] = " ",
-                    ["identity-name"] = " ",
-                    ["list-name"] = "﬘ ",
-                    ["leaf-list-name"] = " ",
-                    ["leaf-name"] = " ",
-                    ["action-name"] = " "
-                }
-            }
 
-            -- Disable for particular languages
-            -- ["bash"] = false, -- disables nvim-gps for bash
-            -- ["go"] = false,   -- disables nvim-gps for golang
+                -- Disable for particular languages
+                -- ["bash"] = false, -- disables nvim-gps for bash
+                -- ["go"] = false,   -- disables nvim-gps for golang
 
-            -- Override default setting for particular languages
-            -- ["ruby"] = {
-            --	separator = '|', -- Overrides default separator with '|'
-            --	icons = {
-            --		-- Default icons not specified in the lang config
-            --		-- will fallback to the default value
-            --		-- "container-name" will fallback to default because it's not set
-            --		["function-name"] = '',    -- to ensure empty values, set an empty string
-            --		["tag-name"] = ''
-            --		["class-name"] = '::',
-            --		["method-name"] = '#',
-            --	}
-            -- }
-        },
-        separator = "  ",
-        -- limit for amount of context shown
-        -- 0 means no limit
-        depth = 0,
-        -- indicator used when context hits depth limit
-        depth_limit_indicator = ".."
-    })
+                -- Override default setting for particular languages
+                -- ["ruby"] = {
+                --	separator = '|', -- Overrides default separator with '|'
+                --	icons = {
+                --		-- Default icons not specified in the lang config
+                --		-- will fallback to the default value
+                --		-- "container-name" will fallback to default because it's not set
+                --		["function-name"] = '',    -- to ensure empty values, set an empty string
+                --		["tag-name"] = ''
+                --		["class-name"] = '::',
+                --		["method-name"] = '#',
+                --	}
+                -- }
+            },
+            separator = "  ",
+            -- limit for amount of context shown
+            -- 0 means no limit
+            depth = 0,
+            -- indicator used when context hits depth limit
+            depth_limit_indicator = ".."
+        }
+    )
 end
 ui.lualine = function()
     local gps = require("nvim-gps")
+    local mini_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = { "location" }
+    }
+    local simple_sections = {
+        lualine_a = { "mode" },
+        lualine_b = { "filetype" },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_z = { "location" }
+    }
     require("lualine").setup {
         options = {
             icons_enabled = true,
@@ -174,11 +188,11 @@ ui.lualine = function()
         },
         sections = {
             lualine_a = { "mode" },
-            lualine_b = { "branch", "diff", "diagnostics" },
-            lualine_c = { { gps.get_location, cond = gps.is_available } },
-            lualine_x = { "encoding", "fileformat", "filetype" },
-            lualine_y = { "progress" },
-            lualine_z = { "location" }
+            lualine_b = { "branch", "diff" },
+            lualine_c = { { "lsp_progress" }, { gps.get_location, cond = gps.is_available } },
+            lualine_x = { { "diagnostics" } },
+            lualine_y = { { "filetype" }, { "encoding" }, { "fileformat" } },
+            lualine_z = { "progress", "location" }
         },
         inactive_sections = {
             lualine_a = {},
@@ -186,16 +200,45 @@ ui.lualine = function()
             lualine_c = { "filename" },
             lualine_x = { "location" },
             lualine_y = {},
+            lualine_b = { "branch", "diff", "" },
             lualine_z = {}
         },
         tabline = {},
-        extensions = {}
+        extensions = {
+            "nvim-tree",
+            "toggleterm",
+            {
+                sections = mini_sections,
+                filetypes = { "aerial" }
+            },
+            {
+                sections = simple_sections,
+                filetypes = {
+                    "dapui_scopes",
+                    "dapui_breakponts",
+                    "dapui_stacks",
+                    "dapui_watches"
+                }
+            }
+        }
     }
 end
 
 ui.bufferline = function()
     require("bufferline").setup {
-        options = { mod = "buffers", numbers = "both", diagnostics = "nvim_lsp" }
+        options = {
+            mod = "buffers",
+            numbers = "both",
+            diagnostics = "nvim_lsp",
+            offsets = {
+                {
+                    filetype = "NvimTree",
+                    text = "File Explorer",
+                    text_align = "center",
+                    padding = 1
+                }
+            }
+        }
     }
 end
 
@@ -210,10 +253,27 @@ ui.indent_blankline = function()
         show_current_context = true,
         show_current_context_start = true,
         filetype_exclude = {
-            "startify", "dashboard", "dotooagenda", "log", "fugitive",
-            "gitcommit", "packer", "vimwiki", "markdown", "json", "txt",
-            "vista", "help", "todoist", "NvimTree", "peekaboo", "git",
-            "TelescopePrompt", "undotree", "flutterToolsOutline", ""
+            "startify",
+            "dashboard",
+            "dotooagenda",
+            "log",
+            "fugitive",
+            "gitcommit",
+            "packer",
+            "vimwiki",
+            "markdown",
+            "json",
+            "txt",
+            "vista",
+            "help",
+            "todoist",
+            "NvimTree",
+            "peekaboo",
+            "git",
+            "TelescopePrompt",
+            "undotree",
+            "flutterToolsOutline",
+            ""
         },
         buftype_exclude = { "terminal", "nofile" }
     }
@@ -221,7 +281,8 @@ end
 
 ui.tree = function()
     -- each of these are documented in `:help nvim-tree.OPTION_NAME`
-    require('nvim-tree').setup { -- BEGIN_DEFAULT_OPTS
+    require("nvim-tree").setup {
+        -- BEGIN_DEFAULT_OPTS
         auto_reload_on_write = true,
         disable_netrw = true,
         hide_root_folder = false,
@@ -244,9 +305,7 @@ ui.tree = function()
             signcolumn = "yes",
             mappings = {
                 custom_only = false,
-                list = {
-                    -- user mappings go here
-                }
+                list = {}
             }
         },
         renderer = {
@@ -269,8 +328,12 @@ ui.tree = function()
             icons = { hint = "", info = "", warning = "", error = "" }
         },
         filters = { dotfiles = false, custom = {}, exclude = {} },
-        git = { enable = true, ignore = true, timeout = 400, icons = {
-        } },
+        git = {
+            enable = true,
+            ignore = true,
+            timeout = 400,
+            icons = {}
+        },
         actions = {
             use_system_clipboard = true,
             change_dir = { enable = true, global = false },
@@ -282,7 +345,11 @@ ui.tree = function()
                     chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
                     exclude = {
                         filetype = {
-                            "notify", "packer", "qf", "diff", "fugitive",
+                            "notify",
+                            "packer",
+                            "qf",
+                            "diff",
+                            "fugitive",
                             "fugitiveblame"
                         },
                         buftype = { "nofile", "terminal", "help" }
@@ -306,21 +373,13 @@ ui.tree = function()
 end
 
 ui.transparent = function()
-    require("transparent").setup({
-        enable = vim.g.neovide and true or false, -- boolean: enable transparent
-        extra_groups = { -- table/string: additional groups that should be cleared
-            -- In particular, when you set it to 'all', that means all available groups
-
-            -- example of akinsho/nvim-bufferline.lua
-            --"BufferLineTabClose",
-            --"BufferlineBufferSelected",
-            --"BufferLineFill",
-            --"BufferLineBackground",
-            --"BufferLineSeparator",
-            --"BufferLineIndicatorSelected",
-        },
-        exclude = {}, -- table: groups you don't want to clear
-    })
+    require("transparent").setup(
+        {
+            enable = vim.g.neovide and true or false, -- boolean: enable transparent
+            extra_groups = {},
+            exclude = {} -- table: groups you don't want to clear
+        }
+    )
 end
 
 ui.scrollbar = function()
@@ -329,9 +388,9 @@ ui.scrollbar = function()
 end
 
 ui.focus = function()
-    require("focus").setup({
-        excluded_filetypes = { "toggleterm" }
-    })
+    -- require("focus").setup({
+    --     excluded_filetypes = { "toggleterm", [[dap-repl]] }
+    -- })
 end
 
 return ui

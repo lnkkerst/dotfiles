@@ -86,6 +86,9 @@ local augroups = {
         }
     },
     -- fmt = {{"BufWritePre", "*", "Neoformat"}}
+    -- lsp = {
+    --     { "CursorHold,CursorHoldI", "*", "lua vim.diagnostic.open_float(nil, {focus=false})" }
+    -- }
 }
 
 create_augroups(augroups)

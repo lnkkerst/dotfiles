@@ -123,3 +123,13 @@ wk.register({
     ["<C-y>"] = { "NeoScroll up" },
     ["<C-e>"] = { "NeoScroll down" }
 })
+
+-- Plugin Dap
+wk.register({
+    ["d"] = {
+        name = "Dap for debug",
+        ["u"] = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle Dap UI" },
+        ["b"] = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle breakpoint" },
+        ["r"] = { "<cmd>lua require('dap').continue()<cr>", "Dap Continue" }
+    }
+}, { prefix = "<leader>" })

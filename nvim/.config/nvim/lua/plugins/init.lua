@@ -70,6 +70,7 @@ return require("packer").startup({ function(use)
         config = lsp.lsputils
     }
     use { "lukas-reineke/lsp-format.nvim", config = lsp.format }
+    use { "arkav/lualine-lsp-progress", config = lsp.lsp_progress }
 
     local cmp = require("plugins.cmp")
     use { "hrsh7th/cmp-nvim-lsp", config = cmp.cmp }
@@ -110,6 +111,7 @@ return require("packer").startup({ function(use)
     use { "lewis6991/gitsigns.nvim", tag = "release", config = utils.gitsigns }
     use { "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim", config = utils.neogit }
     use { "rmagatti/auto-session", config = utils.auto_session }
+    use { "sbdchd/neoformat", config = utils.neoformat }
 
     local dap = require("plugins.dap");
     use { "mfussenegger/nvim-dap", config = dap.dap }
