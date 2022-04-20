@@ -29,7 +29,7 @@ ui.material = function()
             floating_windows = false, -- Enable contrast for floating windows
             line_numbers = false, -- Enable contrast background for line numbers
             sign_column = false, -- Enable contrast background for the sign column
-            cursor_line = false, -- Enable darker background for the cursor line
+            cursor_line = true, -- Enable darker background for the cursor line
             non_current_windows = false, -- Enable darker background for non-current windows
             popup_menu = false -- Enable lighter background for the popup menu
         },
@@ -43,8 +43,8 @@ ui.material = function()
         contrast_filetypes = {
             -- Specify which filetypes get the contrasted (darker) background
             -- "terminal", -- Darker terminal background
-            "packer", -- Darker packer background
-            "qf" -- Darker qf list background
+            -- "packer", -- Darker packer background
+            -- "qf" -- Darker qf list background
         },
         high_visibility = {
             lighter = true, -- Enable higher contrast text for lighter style
@@ -307,7 +307,7 @@ end
 
 ui.transparent = function()
     require("transparent").setup({
-        enable = false, -- boolean: enable transparent
+        enable = vim.g.neovide and true or false, -- boolean: enable transparent
         extra_groups = { -- table/string: additional groups that should be cleared
             -- In particular, when you set it to 'all', that means all available groups
 
@@ -329,7 +329,9 @@ ui.scrollbar = function()
 end
 
 ui.focus = function()
-    require("focus").setup()
+    require("focus").setup({
+        excluded_filetypes = { "toggleterm" }
+    })
 end
 
 return ui

@@ -108,3 +108,18 @@ wk.register({
         ["l"] = { "<cmd>FocusSplitRight<cr>", "FocusSplitRight" }
     }
 })
+
+-- Plugin ToggleTerm
+wk.register({
+    ["<C-\\>"] = { "ToggleTerm" }
+})
+
+-- Plugin NeoScroll
+wk.register({
+    ["<C-b>"] = { "NeoScroll backward" },
+    ["<C-f>"] = { "NeoScroll forward" },
+    ["<C-u>"] = { "NeoScroll up" },
+    ["<C-d>"] = { "NeoScroll down" },
+    ["<C-y>"] = { "NeoScroll up" },
+    ["<C-e>"] = { "NeoScroll down" }
+})

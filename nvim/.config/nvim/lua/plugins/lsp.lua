@@ -33,12 +33,12 @@ lsp.lspsaga = function()
             scroll_down = "<C-f>",
             scroll_up = "<C-b>"
         },
-        code_action_keys = {quit = "q", exec = "<CR>"},
-        rename_action_keys = {quit = "<C-c>", exec = "<CR>"},
+        code_action_keys = { quit = "q", exec = "<CR>" },
+        rename_action_keys = { quit = "<C-c>", exec = "<CR>" },
         definition_preview_icon = "  ",
         border_style = "single",
         rename_prompt_prefix = "➤",
-        rename_output_qflist = {enable = false, auto_open_qflist = false},
+        rename_output_qflist = { enable = false, auto_open_qflist = false },
         server_filetype_map = {},
         diagnostic_prefix_format = "%d. ",
         diagnostic_message_format = "%m %c",
@@ -64,14 +64,15 @@ lsp.lsp_installer = function()
         require("lsp-format").on_attach(client)
     end
 
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
     -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
     -- or if the server is already installed).
     lsp_installer.on_server_ready(function(server)
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
         local opts = {
             capabilities = capabilities,
-            flags = {debounce_text_changes = 500},
+            flags = { debounce_text_changes = 500 },
             on_attach = custom_attach
         }
 
@@ -89,45 +90,34 @@ end
 
 lsp.lsputils = function()
     if vim.fn.has('nvim-0.5.1') == 1 then
-        vim.lsp.handlers['textDocument/codeAction'] =
-            require'lsputil.codeAction'.code_action_handler
-        vim.lsp.handlers['textDocument/references'] =
-            require'lsputil.locations'.references_handler
-        vim.lsp.handlers['textDocument/definition'] =
-            require'lsputil.locations'.definition_handler
-        vim.lsp.handlers['textDocument/declaration'] =
-            require'lsputil.locations'.declaration_handler
-        vim.lsp.handlers['textDocument/typeDefinition'] =
-            require'lsputil.locations'.typeDefinition_handler
-        vim.lsp.handlers['textDocument/implementation'] =
-            require'lsputil.locations'.implementation_handler
-        vim.lsp.handlers['textDocument/documentSymbol'] =
-            require'lsputil.symbols'.document_handler
-        vim.lsp.handlers['workspace/symbol'] =
-            require'lsputil.symbols'.workspace_handler
+        vim.lsp.handlers['textDocument/codeAction'] = require 'lsputil.codeAction'.code_action_handler
+        vim.lsp.handlers['textDocument/references'] = require 'lsputil.locations'.references_handler
+        vim.lsp.handlers['textDocument/definition'] = require 'lsputil.locations'.definition_handler
+        vim.lsp.handlers['textDocument/declaration'] = require 'lsputil.locations'.declaration_handler
+        vim.lsp.handlers['textDocument/typeDefinition'] = require 'lsputil.locations'.typeDefinition_handler
+        vim.lsp.handlers['textDocument/implementation'] = require 'lsputil.locations'.implementation_handler
+        vim.lsp.handlers['textDocument/documentSymbol'] = require 'lsputil.symbols'.document_handler
+        vim.lsp.handlers['workspace/symbol'] = require 'lsputil.symbols'.workspace_handler
     else
         local bufnr = vim.api.nvim_buf_get_number(0)
 
-        vim.lsp.handlers['textDocument/codeAction'] =
-            function(_, _, actions)
-                require('lsputil.codeAction').code_action_handler(nil, actions,
-                                                                  nil, nil, nil)
-            end
+        vim.lsp.handlers['textDocument/codeAction'] = function(_, _, actions)
+            require('lsputil.codeAction').code_action_handler(nil, actions,
+                nil, nil, nil)
+        end
 
-        vim.lsp.handlers['textDocument/references'] =
-            function(_, _, result)
-                require('lsputil.locations').references_handler(nil, result, {
-                    bufnr = bufnr
-                }, nil)
-            end
+        vim.lsp.handlers['textDocument/references'] = function(_, _, result)
+            require('lsputil.locations').references_handler(nil, result, {
+                bufnr = bufnr
+            }, nil)
+        end
 
-        vim.lsp.handlers['textDocument/definition'] =
-            function(_, method, result)
-                require('lsputil.locations').definition_handler(nil, result, {
-                    bufnr = bufnr,
-                    method = method
-                }, nil)
-            end
+        vim.lsp.handlers['textDocument/definition'] = function(_, method, result)
+            require('lsputil.locations').definition_handler(nil, result, {
+                bufnr = bufnr,
+                method = method
+            }, nil)
+        end
 
         vim.lsp.handlers['textDocument/declaration'] = function(_, method,
                                                                 result)
@@ -153,17 +143,15 @@ lsp.lsputils = function()
             }, nil)
         end
 
-        vim.lsp.handlers['textDocument/documentSymbol'] =
-            function(_, _, result, _, bufn)
-                require('lsputil.symbols').document_handler(nil, result,
-                                                            {bufnr = bufn}, nil)
-            end
+        vim.lsp.handlers['textDocument/documentSymbol'] = function(_, _, result, _, bufn)
+            require('lsputil.symbols').document_handler(nil, result,
+                { bufnr = bufn }, nil)
+        end
 
-        vim.lsp.handlers['textDocument/symbol'] =
-            function(_, _, result, _, bufn)
-                require('lsputil.symbols').workspace_handler(nil, result,
-                                                             {bufnr = bufn}, nil)
-            end
+        vim.lsp.handlers['textDocument/symbol'] = function(_, _, result, _, bufn)
+            require('lsputil.symbols').workspace_handler(nil, result,
+                { bufnr = bufn }, nil)
+        end
     end
 end
 

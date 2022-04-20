@@ -71,6 +71,9 @@ utils.toggleterm = function()
         start_in_insert = true,
         insert_mappings = true, -- whether or not the open mapping applies in insert mode
         terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
+        float_opts = {
+            border = "single"
+        }
     }
 end
 
@@ -124,7 +127,7 @@ utils.which_key = function()
             scroll_up = '<c-u>', -- binding to scroll up inside the popup
         },
         window = {
-            border = "none", -- none, single, double, shadow
+            border = "single", -- none, single, double, shadow
             position = "bottom", -- bottom, top
             margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
             padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
@@ -221,6 +224,7 @@ utils.jaq = function()
                 c = "gcc % -o $fileBase && ./$fileBase",
                 go = "go run %",
                 sh = "sh %",
+                java = "java %"
             },
 
             -- Uses internal commands such as 'source' and 'luafile'
@@ -242,7 +246,7 @@ utils.jaq = function()
             -- Floating Window / FTerm settings
             float = {
                 -- Floating window border (see ':h nvim_open_win')
-                border = "none",
+                border = "single",
 
                 -- Num from `0 - 1` for measurements
                 height = 0.8,

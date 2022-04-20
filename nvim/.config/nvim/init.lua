@@ -1,5 +1,6 @@
 require("plugins")
 require("options")
 require("autocmd")
-require("neovide")
 require("keymap")
+require("neovide")
+

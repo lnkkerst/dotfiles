@@ -116,9 +116,11 @@ return require("packer").startup({ function(use)
     use { "rcarriga/nvim-dap-ui", config = dap.dap_ui }
 
     local lang = require("plugins.lang")
+    use { "mfussenegger/nvim-jdtls", config = lang.jdtls }
 
     if packer_bootstrap then require("packer").sync() end
-end, config = {
+end,
+config = {
     display = {
         open_fn = function()
             return require('packer.util').float({ border = 'single' })
