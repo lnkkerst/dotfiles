@@ -49,11 +49,11 @@ super + s
 super + p
 	pkill picom
 super + shift + p
-	picom --config $HOME/.config/bspwm/picom/picom.conf -b
+	picom -b
 
 # Polybar
 super + shift + ctrl + p
-	fish $HOME/.config/bspwm/polybar/launch.fish
+	fish $HOME/.config/polybar/launch.fish
 
 # Catfish
 super + shift + f

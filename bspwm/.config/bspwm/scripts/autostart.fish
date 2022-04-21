@@ -10,8 +10,8 @@ blueman-applet
 xidlehook --not-when-audio --not-when-fullscreen --timer 600 "$HOME/.config/i3/i3lock-color.sh"
 xss-lock $HOME/.config/i3/i3lock-color.sh
 libinput-gestures
-$HOME/.config/bspwm/polybar/launch.fish
-picom --config $HOME/.config/bspwm/picom/picom.conf -b
+$HOME/.config/polybar/launch.fish
+picom -b
 pgrep $HOME/.config/bspwm/scripts/bspswallow || sh $HOME/.config/bspwm/scripts/bspswallow
 conky"
 
