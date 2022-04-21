@@ -45,6 +45,8 @@ bspc rule -a Ario state=floating
 bspc rule -a SimpleScreenRecorder state=floating
 bspc rule -a "blueman-manager" state=floating
 bspc rule -a feh state=floating
+bspc rule -a Pavucontrol  state=floating
+bspc rule -a zhumu state=floating
 
 # Autostart
 fish $SCRIPTS_DIR/autostart.fish
