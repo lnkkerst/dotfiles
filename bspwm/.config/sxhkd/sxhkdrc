@@ -61,7 +61,7 @@ super + shift + f
 
 # Screen lock
 super + shift + 9
-	$HOME/.config/i3/i3lock-color.sh
+	$HOME/.config/bspwm/scripts/i3lock-color.sh
 super + 9
 	pyxtrlock
 
