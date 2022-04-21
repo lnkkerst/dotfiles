@@ -21,6 +21,75 @@ ui.dashboard = function()
     }
 end
 
+ui.gruvbox_material = function()
+end
+
+ui.catppuccin = function()
+    require("catppuccin").setup({
+        transparent_background = false,
+        term_colors = false,
+        styles = {
+            comments = "italic",
+            functions = "italic",
+            keywords = "italic",
+            strings = "NONE",
+            variables = "NONE",
+        },
+        integrations = {
+            treesitter = true,
+            native_lsp = {
+                enabled = true,
+                virtual_text = {
+                    errors = "italic",
+                    hints = "italic",
+                    warnings = "italic",
+                    information = "italic",
+                },
+                underlines = {
+                    errors = "underline",
+                    hints = "underline",
+                    warnings = "underline",
+                    information = "underline",
+                },
+            },
+            lsp_trouble = true,
+            cmp = true,
+            lsp_saga = true,
+            gitgutter = false,
+            gitsigns = true,
+            telescope = true,
+            nvimtree = {
+                enabled = true,
+                show_root = false,
+                transparent_panel = false,
+            },
+            neotree = {
+                enabled = false,
+                show_root = false,
+                transparent_panel = false,
+            },
+            which_key = false,
+            indent_blankline = {
+                enabled = true,
+                colored_indent_levels = true,
+            },
+            dashboard = true,
+            neogit = true,
+            vim_sneak = false,
+            fern = false,
+            barbar = false,
+            bufferline = true,
+            markdown = true,
+            lightspeed = false,
+            ts_rainbow = true,
+            hop = true,
+            notify = true,
+            telekasten = true,
+            symbols_outline = true,
+        } })
+    vim.cmd [[colorscheme catppuccin]]
+end
+
 ui.material = function()
     vim.g.material_style = "darker"
     require("material").setup(
@@ -30,7 +99,7 @@ ui.material = function()
                 floating_windows = false, -- Enable contrast for floating windows
                 line_numbers = false, -- Enable contrast background for line numbers
                 sign_column = false, -- Enable contrast background for the sign column
-                cursor_line = true, -- Enable darker background for the cursor line
+                cursor_line = false, -- Enable darker background for the cursor line
                 non_current_windows = false, -- Enable darker background for non-current windows
                 popup_menu = false -- Enable lighter background for the popup menu
             },
@@ -48,17 +117,21 @@ ui.material = function()
             },
             disable = {
                 borders = false, -- Disable borders between verticaly split windows
-                background = true, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
+                background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
                 term_colors = false, -- Prevent the theme from setting terminal colors
                 eob_lines = false -- Hide the end-of-buffer lines
             },
             lualine_style = "stealth", -- Lualine style ( can be 'stealth' or 'default' )
-            async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
+            async_loading = false, -- Load parts of the theme asyncronously for faster startup (turned on by default)
             custom_highlights = {} -- Overwrite highlights with your own
         }
     )
 
     vim.cmd "colorscheme material"
+end
+
+ui.material = function()
+
 end
 
 ui.gps = function()
@@ -179,7 +252,7 @@ ui.lualine = function()
     require("lualine").setup {
         options = {
             icons_enabled = true,
-            theme = "material",
+            theme = "auto",
             component_separators = { left = "", right = "" },
             section_separators = { left = "", right = "" },
             disabled_filetypes = {},
@@ -375,7 +448,7 @@ end
 ui.transparent = function()
     require("transparent").setup(
         {
-            enable = vim.g.neovide and true or false, -- boolean: enable transparent
+            enable = false, -- boolean: enable transparent
             extra_groups = {},
             exclude = {} -- table: groups you don't want to clear
         }
@@ -395,6 +468,14 @@ end
 
 ui.telescope_fzf_native = function()
     require('telescope').load_extension('fzy_native')
+end
+
+ui.trouble = function()
+    require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+    }
 end
 
 return ui

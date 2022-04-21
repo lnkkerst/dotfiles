@@ -11,6 +11,8 @@ return require("packer").startup({ function(use)
     use { "wbthomason/packer.nvim" }
 
     local ui = require("plugins.ui")
+    use { "catppuccin/nvim", as = "catppuccin", config = ui.catppuccin }
+    use { "sainnhe/gruvbox-material", config = ui.gruvbox_material }
     use { "marko-cerovac/material.nvim", config = ui.material }
     use {
         "nvim-lualine/lualine.nvim",
@@ -44,6 +46,8 @@ return require("packer").startup({ function(use)
     use { "xiyaowong/nvim-transparent", config = ui.transparent }
     use { "petertriho/nvim-scrollbar", config = ui.scrollbar }
     use { "beauwilliams/focus.nvim", config = ui.focus }
+    use { "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons", config = ui.trouble }
 
     local editor = require("plugins.editor")
     use { "rhysd/accelerated-jk" }
@@ -119,9 +123,12 @@ return require("packer").startup({ function(use)
     local dap = require("plugins.dap");
     use { "mfussenegger/nvim-dap", config = dap.dap }
     use { "rcarriga/nvim-dap-ui", config = dap.dap_ui }
+    use { "theHamsta/nvim-dap-virtual-text", config = dap.virtual_text }
 
     local lang = require("plugins.lang")
     use { "mfussenegger/nvim-jdtls", config = lang.jdtls }
+
+    use { "nvim-lua/popup.nvim" }
 
     if packer_bootstrap then require("packer").sync() end
 end,
