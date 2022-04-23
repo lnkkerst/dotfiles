@@ -21,72 +21,81 @@ ui.dashboard = function()
     }
 end
 
+ui.tokyonight = function()
+    vim.g.tokyonight_style = "night"
+    -- vim.cmd [[colorscheme tokyonight]]
+end
+
 ui.gruvbox_material = function()
+    -- vim.cmd [[colorscheme gruvbox-material]]
 end
 
 ui.catppuccin = function()
-    require("catppuccin").setup({
-        transparent_background = false,
-        term_colors = false,
-        styles = {
-            comments = "italic",
-            functions = "italic",
-            keywords = "italic",
-            strings = "NONE",
-            variables = "NONE",
-        },
-        integrations = {
-            treesitter = true,
-            native_lsp = {
-                enabled = true,
-                virtual_text = {
-                    errors = "italic",
-                    hints = "italic",
-                    warnings = "italic",
-                    information = "italic",
+    require("catppuccin").setup(
+        {
+            transparent_background = false,
+            term_colors = true,
+            styles = {
+                comments = "italic",
+                functions = "italic",
+                keywords = "italic",
+                strings = "NONE",
+                variables = "NONE"
+            },
+            integrations = {
+                treesitter = true,
+                native_lsp = {
+                    enabled = true,
+                    virtual_text = {
+                        errors = "italic",
+                        hints = "italic",
+                        warnings = "italic",
+                        information = "italic"
+                    },
+                    underlines = {
+                        errors = "underline",
+                        hints = "underline",
+                        warnings = "underline",
+                        information = "underline"
+                    }
                 },
-                underlines = {
-                    errors = "underline",
-                    hints = "underline",
-                    warnings = "underline",
-                    information = "underline",
+                lsp_trouble = true,
+                cmp = true,
+                lsp_saga = true,
+                gitgutter = false,
+                gitsigns = true,
+                telescope = true,
+                nvimtree = {
+                    enabled = true,
+                    show_root = false,
+                    transparent_panel = false
                 },
-            },
-            lsp_trouble = true,
-            cmp = true,
-            lsp_saga = true,
-            gitgutter = false,
-            gitsigns = true,
-            telescope = true,
-            nvimtree = {
-                enabled = true,
-                show_root = false,
-                transparent_panel = false,
-            },
-            neotree = {
-                enabled = false,
-                show_root = false,
-                transparent_panel = false,
-            },
-            which_key = false,
-            indent_blankline = {
-                enabled = true,
-                colored_indent_levels = true,
-            },
-            dashboard = true,
-            neogit = true,
-            vim_sneak = false,
-            fern = false,
-            barbar = false,
-            bufferline = true,
-            markdown = true,
-            lightspeed = false,
-            ts_rainbow = true,
-            hop = true,
-            notify = true,
-            telekasten = true,
-            symbols_outline = true,
-        } })
+                neotree = {
+                    enabled = false,
+                    show_root = false,
+                    transparent_panel = false
+                },
+                which_key = false,
+                indent_blankline = {
+                    enabled = true,
+                    colored_indent_levels = true
+                },
+                dashboard = true,
+                neogit = true,
+                vim_sneak = false,
+                fern = false,
+                barbar = false,
+                bufferline = true,
+                markdown = true,
+                lightspeed = false,
+                ts_rainbow = true,
+                hop = true,
+                notify = true,
+                telekasten = true,
+                symbols_outline = true
+            }
+        }
+    )
     vim.cmd [[colorscheme catppuccin]]
 end
 
@@ -122,16 +131,12 @@ ui.material = function()
                 eob_lines = false -- Hide the end-of-buffer lines
             },
             lualine_style = "stealth", -- Lualine style ( can be 'stealth' or 'default' )
-            async_loading = false, -- Load parts of the theme asyncronously for faster startup (turned on by default)
+            async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
             custom_highlights = {} -- Overwrite highlights with your own
         }
     )
 
-    vim.cmd "colorscheme material"
-end
-
-ui.material = function()
-
+    -- vim.cmd "colorscheme material"
 end
 
 ui.gps = function()
@@ -232,6 +237,7 @@ ui.gps = function()
         }
     )
 end
+
 ui.lualine = function()
     local gps = require("nvim-gps")
     local mini_sections = {
@@ -467,15 +473,11 @@ ui.focus = function()
 end
 
 ui.telescope_fzf_native = function()
-    require('telescope').load_extension('fzy_native')
+    require("telescope").load_extension("fzy_native")
 end
 
 ui.trouble = function()
-    require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-    }
+    require("trouble").setup {}
 end
 
 return ui

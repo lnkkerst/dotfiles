@@ -12,6 +12,7 @@ return require("packer").startup({ function(use)
 
     local ui = require("plugins.ui")
     use { "catppuccin/nvim", as = "catppuccin", config = ui.catppuccin }
+    use { "folke/tokyonight.nvim", config = ui.tokyonight }
     use { "sainnhe/gruvbox-material", config = ui.gruvbox_material }
     use { "marko-cerovac/material.nvim", config = ui.material }
     use {
@@ -51,7 +52,7 @@ return require("packer").startup({ function(use)
 
     local editor = require("plugins.editor")
     use { "rhysd/accelerated-jk" }
-    use { "yamatsum/nvim-cursorline", config = editor.cursorline }
+    use { "xiyaowong/nvim-cursorword", config = editor.cursorword }
     use { "windwp/nvim-autopairs", config = editor.autopairs }
     use { "numToStr/Comment.nvim", config = editor.comment }
     use { "phaazon/hop.nvim", branch = "v1", config = editor.hop }

@@ -189,4 +189,13 @@ super + alt + shift + {Left,Down,Up,Right}
 super + shift + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-
+# Focus a floating window / Cycle floating windows.
+#super + {_,shift + }g
+#	bspc node 'focused.floating#{next,prev}.local.!hidden.floating' -f \
+#	    || bspc node 'last.local.!focused.!hidden.floating' -f \
+#	    || bspc node  'any.local.!focused.!hidden.floating' -f
+# Focus a (pseudo_)tiled window / Cycle (pseudo_)tiled windows.
+super + {_,shift + }c
+	bspc node 'focused.!floating.!fullscreen.window#{next,prev}.local.!hidden.!floating.!fullscreen.window' -f \
+	    || bspc node 'last.local.!focused.!hidden.!floating.!fullscreen.window' -f \
+	    || bspc node  'any.local.!focused.!hidden.!floating.!fullscreen.window' -f

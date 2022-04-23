@@ -34,6 +34,8 @@ alias py='python'
 alias :q='exit'
 alias :wq='exit'
 alias rcd='ranger-cd'
+alias nv='neovide --nofork --multigrid'
+thefuck --alias | source
 
 # Functions
 function mkcd

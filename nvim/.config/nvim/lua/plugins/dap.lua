@@ -14,7 +14,7 @@ dap.dap = function()
         dapui.close()
     end
 
-    vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "", linehl = "", numhl = "" })
 
     dap.adapters.lldb = {
         type = "executable",
@@ -102,7 +102,7 @@ dap.dap = function()
 
     dap.adapters.python = {
         type = "executable",
-        command = os.getenv("HOME") .. "/.local/share/nvim/dapinstall/python/bin/python",
+        command = "python",
         args = { "-m", "debugpy.adapter" },
     }
     dap.configurations.python = {
