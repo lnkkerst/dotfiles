@@ -2,3 +2,5 @@ zsh/.zsh/cache/
 ncmpcpp/.config/ncmpcpp/error.log
 zsh/.zsh/diff.zsh
 fish/.config/fish/fish_variables
+
+fishd.tmp.*

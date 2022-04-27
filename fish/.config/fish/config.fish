@@ -35,6 +35,7 @@ alias :q='exit'
 alias :wq='exit'
 alias rcd='ranger-cd'
 alias nv='neovide --nofork --multigrid'
+alias cpr='cp --reflink'
 thefuck --alias | source
 
 # Functions
