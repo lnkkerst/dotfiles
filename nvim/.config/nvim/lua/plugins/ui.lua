@@ -96,7 +96,7 @@ ui.catppuccin = function()
             }
         }
     )
-    vim.cmd [[colorscheme catppuccin]]
+    -- vim.cmd [[colorscheme catppuccin]]
 end
 
 ui.material = function()
@@ -136,7 +136,7 @@ ui.material = function()
         }
     )
 
-    -- vim.cmd "colorscheme material"
+    vim.cmd "colorscheme material"
 end
 
 ui.gps = function()

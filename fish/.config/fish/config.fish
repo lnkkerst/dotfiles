@@ -36,6 +36,8 @@ alias :wq='exit'
 alias rcd='ranger-cd'
 alias nv='neovide --nofork --multigrid'
 alias cpr='cp --reflink'
+alias fspb='curl -F "c=@-" "http://fars.ee/"'
+alias fspbu='curl -F "c=@-" "http://fars.ee/?u=1"'
 thefuck --alias | source
 
 # Functions
@@ -44,6 +46,6 @@ function mkcd
 end
 
 if not set -q DISPLAY; and test $XDG_VTNR = 1
-    exec startx &>$HOME/customLogs/xlog
+   exec startx &>$HOME/customLogs/xlog
 end
 

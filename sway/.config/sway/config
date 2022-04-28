@@ -22,5 +22,6 @@ set $term alacritty
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
 #set $menu wofi --show drun
 set $menu rofi -show
+set $locker swaylock
 
 include $HOME/.config/sway/config.d/*
