@@ -260,7 +260,9 @@ ui.lualine = function()
             icons_enabled = true,
             theme = "auto",
             component_separators = { left = "", right = "" },
+            -- component_separators = { left = "|", right = "|" },
             section_separators = { left = "", right = "" },
+            -- section_separators = { left = "", right = "" },
             disabled_filetypes = {},
             always_divide_middle = true,
             globalstatus = false
@@ -268,7 +270,7 @@ ui.lualine = function()
         sections = {
             lualine_a = { "mode" },
             lualine_b = { "branch", "diff" },
-            lualine_c = { { "lsp_progress" }, { gps.get_location, cond = gps.is_available } },
+            lualine_c = { { gps.get_location, cond = gps.is_available } },
             lualine_x = { { "diagnostics" } },
             lualine_y = { { "filetype" }, { "encoding" }, { "fileformat" } },
             lualine_z = { "progress", "location" }
@@ -279,7 +281,6 @@ ui.lualine = function()
             lualine_c = { "filename" },
             lualine_x = { "location" },
             lualine_y = {},
-            lualine_b = { "branch", "diff", "" },
             lualine_z = {}
         },
         tabline = {},
@@ -364,7 +365,6 @@ ui.tree = function()
         -- BEGIN_DEFAULT_OPTS
         auto_reload_on_write = true,
         disable_netrw = true,
-        hide_root_folder = false,
         hijack_cursor = false,
         hijack_netrw = true,
         hijack_unnamed_buffer_when_opening = false,
@@ -410,8 +410,7 @@ ui.tree = function()
         git = {
             enable = true,
             ignore = true,
-            timeout = 400,
-            icons = {}
+            timeout = 400
         },
         actions = {
             use_system_clipboard = true,

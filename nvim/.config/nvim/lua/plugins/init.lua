@@ -68,27 +68,41 @@ return require("packer").startup({ function(use)
 
     local lsp = require("plugins.lsp")
     use { "neovim/nvim-lspconfig", config = lsp.lspconfig }
-    use { "tami5/lspsaga.nvim", branch = "nvim6.0" }
+    use { "tami6/lspsaga.nvim", config = lsp.lspsaga }
     use { "williamboman/nvim-lsp-installer", config = lsp.lsp_installer }
-    use {
-        "RishabhRD/nvim-lsputils",
-        requires = { "RishabhRD/popfix" },
-        config = lsp.lsputils
-    }
+    use { "j-hui/fidget.nvim", config = lsp.fidget }
+    use { "folke/lsp-colors.nvim", config = lsp.lsp_colors }
     use { "lukas-reineke/lsp-format.nvim", config = lsp.format }
-    use { "arkav/lualine-lsp-progress", config = lsp.lsp_progress }
     use { "b0o/schemastore.nvim" }
+    use { "simrat39/symbols-outline.nvim", config = lsp.symbols_outline }
+    use { "jubnzv/virtual-types.nvim", config = lsp.virtual_types }
 
     local cmp = require("plugins.cmp")
-    use { "hrsh7th/cmp-nvim-lsp", config = cmp.cmp }
+    use { "hrsh7th/nvim-cmp", config = cmp.cmp }
+    use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-cmdline"
-    use "hrsh7th/nvim-cmp"
-    use "hrsh7th/cmp-vsnip"
-    use "hrsh7th/vim-vsnip"
     use "f3fora/cmp-spell"
     use "lukas-reineke/cmp-under-comparator"
+    use "hrsh7th/cmp-nvim-lsp-document-symbol"
+    use "hrsh7th/cmp-nvim-lsp-signature-help"
+    use "mtoohey31/cmp-fish"
+    use "andersevenrud/cmp-tmux"
+    use {
+        'David-Kunz/cmp-npm',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        }
+    }
+    use { "onsails/lspkind.nvim" }
+    use {
+        "saadparwaiz1/cmp_luasnip",
+        requires = {
+            { "L3MON4D3/LuaSnip", config = cmp.luasnip },
+            { "rafamadriz/friendly-snippets" }
+        }
+    }
 
     local ts = require("plugins.ts")
     use {
@@ -96,17 +110,27 @@ return require("packer").startup({ function(use)
         run = ":TSUpdate",
         config = ts.treesitter
     }
-    use { "nvim-treesitter/nvim-treesitter-textobjects" }
-    use { "windwp/nvim-ts-autotag", config = ts.autotag }
-    use { "p00f/nvim-ts-rainbow" }
-    use { "JoosepAlviste/nvim-ts-context-commentstring" }
+    use { "nvim-treesitter/nvim-treesitter-textobjects",
+        requires = { "nvim-treesitter/nvim-treesitter" }
+    }
+    use { "windwp/nvim-ts-autotag",
+        requires = { "nvim-treesitter/nvim-treesitter" },
+        config = ts.autotag
+    }
+    use { "p00f/nvim-ts-rainbow",
+        requires = { "nvim-treesitter/nvim-treesitter" }
+    }
+    use { "JoosepAlviste/nvim-ts-context-commentstring",
+        requires = { "nvim-treesitter/nvim-treesitter" }
+    }
 
     local utils = require("plugins.utils")
     use { "michaelb/sniprun", run = "bash install.sh", config = utils.sniprun }
     use { "akinsho/toggleterm.nvim", config = utils.toggleterm }
     use {
         "nvim-telescope/telescope.nvim",
-        requires = { { "nvim-lua/plenary.nvim" } }
+        requires = { { "nvim-lua/plenary.nvim" } },
+        config = utils.telescope
     }
     use { "stevearc/aerial.nvim", config = utils.aerial }
     use { "ellisonleao/glow.nvim", branch = "main", config = utils.glow }
@@ -132,8 +156,7 @@ return require("packer").startup({ function(use)
     use { "nvim-lua/popup.nvim" }
 
     if packer_bootstrap then require("packer").sync() end
-end,
-config = {
+end, config = {
     display = {
         open_fn = function()
             return require('packer.util').float({ border = 'single' })

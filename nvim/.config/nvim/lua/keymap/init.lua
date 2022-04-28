@@ -18,7 +18,7 @@ wk.register({
     ["<A-k>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
     ["<A-S-j>"] = { "<cmd>BufferLineMoveNext<cr>", "BufferLineMoveNext" },
     ["<A-S-k>"] = { "<cmd>BufferLineMovePrev<cr>", "BufferLineMovePrev" },
-    b = {
+    ["b"] = {
         name = "bufferline action",
         ["e"] = { "<cmd>BufferLineSortByExtension<cr>", "BufferLineSortByExtension" },
         ["d"] = { "<cmd>BufferLineSortByDirectory<cr>", "BufferLineSortByDirectory" },
@@ -29,18 +29,28 @@ wk.register({
 -- Plugin Lspsaga
 wk.register({
     ["K"] = { "<cmd>Lspsaga hover_doc<cr>", "Lspsaga hover doc" },
-    g = {
+    ["g"] = {
         name = "lspsaga action",
-        x = { "<cmd>Lspsaga code_action<cr>", "Lspsaga code action" },
-        d = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Lspsaga show line diagnostics" },
-        j = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Lspsaga next diagnostics" },
-        k = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Lspsaga prev diagnostics" },
-        r = { "<cmd>Lspsaga rename<cr>", "Lspsaga rename" }
-    }
+        ["d"] = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Lspsaga show line diagnostics" },
+        ["j"] = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Lspsaga next diagnostics" },
+        ["k"] = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Lspsaga prev diagnostics" },
+        ["r"] = { "<cmd>Lspsaga rename<cr>", "Lspsaga rename" },
+        ["i"] = { "<cmd>Lspsaga implement<cr>", "Lspsaga implement" },
+        ["<c-k>"] = { "<cmd>Lspsaga signature_help<cr>", "Lspsafa signature_help" },
+    },
+    ["<leader>ca"] = { "<cmd>Lspsaga code_action<cr>", "Lspsaga code action" }
 })
-
 wk.register({
-    ["gx"] = { "<cmd>Lspsaga range_code_action<cr>", "Lspsaga range code action", mode = "x" }
+    ["<leader>ca"] = { "<cmd>Lspsaga range_code_action<cr>", "Lspsaga range code action" }
+}, { mode = "x" })
+
+-- Plugin Lspconfig
+wk.register({
+    ["g"] = {
+        name = "lsp action",
+        ["d"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Lsp goto definition" },
+        ["D"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Lsp goto declaration" }
+    }
 })
 
 -- Plugin accelerate_jk
@@ -135,6 +145,16 @@ wk.register({
         ["c"] = { "<cmd>lua require('dapui').close()<cr>", "Close dap UI" }
     }
 }, { prefix = "<leader>" })
+
+-- Plugin Trouble
+wk.register({
+    ["<A-t>"] = { "<cmd>TroubleToggle<cr>", "TroubleToggle" }
+})
+
+-- Plugin Symbols-outline
+wk.register({
+    ["<A-s>"] = { "<cmd>SymbolsOutline<cr>", "Symbols outline" }
+})
 
 wk.register({
     ["<C-s>"] = { "<cmd>w<cr>", "Save file" }
