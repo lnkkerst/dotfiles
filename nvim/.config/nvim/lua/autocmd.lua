@@ -86,11 +86,12 @@ local augroups = {
         }
     },
     -- fmt = {{"BufWritePre", "*", "Neoformat"}}
-    -- lsp = {
-    --     { "CursorHold,CursorHoldI", "*", "lua vim.diagnostic.open_float(nil, {focus=false})" }
+    lsp = {
+        { "CursorHold,CursorHoldI", "*", "lua vim.diagnostic.open_float(nil, {focus=false})" }
+    },
+    -- toggleterm = {
+    --     { "TermOpen", "ToggleTerm", "lua set_terminal_keymaps()" }
     -- }
 }
 
 create_augroups(augroups)
-
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')

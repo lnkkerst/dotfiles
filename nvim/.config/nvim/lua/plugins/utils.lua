@@ -66,11 +66,11 @@ end
 
 utils.toggleterm = function()
     require("toggleterm").setup {
-        open_mapping = [[<C-\>]],
+        -- open_mapping = [[<C-\>]],
         shade_terminals = false,
-        start_in_insert = true,
-        insert_mappings = true, -- whether or not the open mapping applies in insert mode
-        terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
+        -- start_in_insert = true,
+        -- insert_mappings = true, -- whether or not the open mapping applies in insert mode
+        -- terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
         float_opts = {
             border = "single"
         }
@@ -206,7 +206,7 @@ utils.jaq = function()
         -- Commands used with 'Jaq'
         cmds = {
             -- Default UI used (see `Usage` for options)
-            default = "float",
+            default = "toggleterm",
 
             -- Uses external commands such as 'g++' and 'cargo'
             -- %: Current File
@@ -239,7 +239,7 @@ utils.jaq = function()
         -- UI settings
         ui = {
             -- Start in insert mode
-            startinsert = false,
+            startinsert = true,
 
             -- Switch back to current file
             -- after using Jaq
@@ -277,7 +277,7 @@ utils.jaq = function()
 
             toggleterm = {
                 -- Position of terminal, one of "vertical" | "horizontal" | "window" | "float"
-                position = "horizontal",
+                position = "float",
 
                 -- Size of terminal
                 size = 10
@@ -295,7 +295,9 @@ utils.jaq = function()
 end
 
 utils.gitsigns = function()
-    require('gitsigns').setup()
+    require("gitsigns").setup({
+        keymaps = {}
+    })
 end
 
 utils.neogit = function()

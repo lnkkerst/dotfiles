@@ -68,7 +68,7 @@ return require("packer").startup({ function(use)
 
     local lsp = require("plugins.lsp")
     use { "neovim/nvim-lspconfig", config = lsp.lspconfig }
-    use { "tami6/lspsaga.nvim", config = lsp.lspsaga }
+    use { "tami5/lspsaga.nvim", config = lsp.lspsaga }
     use { "williamboman/nvim-lsp-installer", config = lsp.lsp_installer }
     use { "j-hui/fidget.nvim", config = lsp.fidget }
     use { "folke/lsp-colors.nvim", config = lsp.lsp_colors }
@@ -161,5 +161,9 @@ end, config = {
         open_fn = function()
             return require('packer.util').float({ border = 'single' })
         end
+    },
+    git = {
+        cmd = "git",
+        default_url_format = 'https://github.com/%s'
     }
 } })

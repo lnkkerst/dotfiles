@@ -19,8 +19,7 @@ wk.register({
     ["<A-S-j>"] = { "<cmd>BufferLineMoveNext<cr>", "BufferLineMoveNext" },
     ["<A-S-k>"] = { "<cmd>BufferLineMovePrev<cr>", "BufferLineMovePrev" },
     ["b"] = {
-        name = "bufferline action",
-        ["e"] = { "<cmd>BufferLineSortByExtension<cr>", "BufferLineSortByExtension" },
+        name = "bufferline action", ["e"] = { "<cmd>BufferLineSortByExtension<cr>", "BufferLineSortByExtension" },
         ["d"] = { "<cmd>BufferLineSortByDirectory<cr>", "BufferLineSortByDirectory" },
         ["p"] = { "<cmd>BufferLinePick<cr>", "BufferLinePick" }
     }
@@ -121,9 +120,11 @@ wk.register({
 
 -- Plugin ToggleTerm
 wk.register({
-    ["<C-\\>"] = { "ToggleTerm" }
+    ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", "ToggleTerm" }
 })
-
+wk.register({
+    ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", "ToggleTerm" }
+}, { mode = "t" })
 -- Plugin NeoScroll
 wk.register({
     ["<C-b>"] = { "NeoScroll backward" },
