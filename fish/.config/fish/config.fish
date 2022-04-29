@@ -8,7 +8,6 @@ set -U fish_greeting
 set -gx DISABLE_FZF_AUTO_COMPLETION true
 
 fish_add_path $HOME/.local/share/gem/ruby/3.0.0/bin
-fish_add_path 
 fish_add_path $HOME/.local/bin $HOME/.yarn/bin
 
 set -gx TERMINAL alacritty
