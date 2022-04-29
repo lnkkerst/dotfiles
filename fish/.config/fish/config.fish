@@ -7,12 +7,16 @@ source /usr/share/autojump/autojump.fish
 set -U fish_greeting
 set -gx DISABLE_FZF_AUTO_COMPLETION true
 
-set -gx PATH $PATH $HOME/.local/bin $HOME/.yarn/bin
+fish_add_path $HOME/.local/share/gem/ruby/3.0.0/bin
+fish_add_path 
+fish_add_path $HOME/.local/bin $HOME/.yarn/bin
+
 set -gx TERMINAL alacritty
 set -gx EDITOR nvim
 set -gx PAGER less
 set -U nvm_default_version v16.14.2
 set -gx JAVA_HOME /usr/lib/jvm/java-18-jdk
+set -gx HASTE_SERVER https://pb.lnkkerst.me
 
 # Alias
 alias gitu='git add . && git commit && git push'
