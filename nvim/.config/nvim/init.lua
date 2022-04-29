@@ -1,7 +1,6 @@
-local vim = vim
-
 require("neovide")
 require("plugins")
+require("impatient")
 require("options")
 require("autocmd")
 require("keymap")

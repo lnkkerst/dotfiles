@@ -110,6 +110,8 @@ nvim_cmp.cmp = function()
         }, {
             { name = "nvim_lsp_signature_help" }
         }, {
+            { name = "nvim_lsp_document_symbol" }
+        }, {
             { name = "fish" }
         }, {
             {
@@ -129,6 +131,16 @@ nvim_cmp.cmp = function()
                     only_semantic_versions = false,
                 }
             }
+        }, {
+            { name = "treesitter" }
+        }, {
+            { name = "nvim_lua" }
+        }, {
+            { name = "calc" }
+        }, {
+            { name = "omni" }
+        }, {
+            { name = "emoji" }
         })
     })
 

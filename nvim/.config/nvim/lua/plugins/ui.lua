@@ -482,12 +482,15 @@ ui.focus = function()
     -- })
 end
 
-ui.telescope_fzf_native = function()
-    require("telescope").load_extension("fzy_native")
-end
 
 ui.trouble = function()
     require("trouble").setup {}
+end
+
+ui.sidebar = function ()
+    require("sidebar-nvim").setup({
+        open = false
+    })
 end
 
 return ui

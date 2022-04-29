@@ -8,6 +8,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require("packer").startup({ function(use)
+    use { "lewis6991/impatient.nvim" }
     use { "wbthomason/packer.nvim" }
 
     local ui = require("plugins.ui")
@@ -38,7 +39,6 @@ return require("packer").startup({ function(use)
         requires = { "nvim-telescope/telescope.nvim" },
         config = ui.dashboard
     }
-    use { "nvim-telescope/telescope-fzy-native.nvim", config = ui.telescope_fzf_native }
     use {
         "kyazdani42/nvim-tree.lua",
         requires = {
@@ -49,8 +49,12 @@ return require("packer").startup({ function(use)
     use { "xiyaowong/nvim-transparent", config = ui.transparent }
     use { "petertriho/nvim-scrollbar", config = ui.scrollbar }
     use { "beauwilliams/focus.nvim", config = ui.focus }
-    use { "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons", config = ui.trouble }
+    use {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = ui.trouble
+    }
+    use { "sidebar-nvim/sidebar.nvim", config = ui.sidebar }
 
     local editor = require("plugins.editor")
     use { "rhysd/accelerated-jk" }
@@ -67,6 +71,12 @@ return require("packer").startup({ function(use)
     use { "ethanholz/nvim-lastplace", config = editor.lastplace }
     use { "nacro90/numb.nvim", config = editor.numb }
     use { "anuvyklack/pretty-fold.nvim", config = editor.pretty_fold }
+    use {
+        "danymat/neogen",
+        requires = { "nvim-treesitter/nvim-treesitter" },
+        config = editor.neogen
+    }
+    use { "abecodes/tabout.nvim", config = editor.tabout }
 
     local lsp = require("plugins.lsp")
     use { "neovim/nvim-lspconfig", config = lsp.lspconfig }
@@ -81,16 +91,16 @@ return require("packer").startup({ function(use)
 
     local cmp = require("plugins.cmp")
     use { "hrsh7th/nvim-cmp", config = cmp.cmp }
-    use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/cmp-buffer"
-    use "hrsh7th/cmp-path"
-    use "hrsh7th/cmp-cmdline"
-    use "f3fora/cmp-spell"
-    use "lukas-reineke/cmp-under-comparator"
-    use "hrsh7th/cmp-nvim-lsp-document-symbol"
-    use "hrsh7th/cmp-nvim-lsp-signature-help"
-    use "mtoohey31/cmp-fish"
-    use "andersevenrud/cmp-tmux"
+    use { "hrsh7th/cmp-nvim-lsp" }
+    use { "hrsh7th/cmp-buffer" }
+    use { "hrsh7th/cmp-path" }
+    use { "hrsh7th/cmp-cmdline" }
+    use { "f3fora/cmp-spell" }
+    use { "lukas-reineke/cmp-under-comparator" }
+    use { "hrsh7th/cmp-nvim-lsp-document-symbol" }
+    use { "hrsh7th/cmp-nvim-lsp-signature-help" }
+    use { "mtoohey31/cmp-fish" }
+    use { "andersevenrud/cmp-tmux" }
     use {
         'David-Kunz/cmp-npm',
         requires = {
@@ -105,6 +115,38 @@ return require("packer").startup({ function(use)
             { "rafamadriz/friendly-snippets" }
         }
     }
+    use { "ray-x/cmp-treesitter" }
+    use { "hrsh7th/cmp-nvim-lua" }
+    use { "hrsh7th/cmp-calc" }
+    use { "hrsh7th/cmp-omni" }
+    use { "hrsh7th/cmp-emoji" }
+
+    local fzf = require("plugins.fzf")
+    use {
+        "nvim-telescope/telescope.nvim",
+        requires = { { "nvim-lua/plenary.nvim" } },
+        config = fzf.telescope
+    }
+    use {
+        "nvim-telescope/telescope-fzy-native.nvim",
+        run = "make",
+        config = ui.telescope_fzf_native
+    }
+    use {
+        "AckslD/nvim-neoclip.lua",
+        requires = { 'tami5/sqlite.lua', module = 'sqlite' },
+        config = fzf.neoclip
+    }
+    use { "nvim-telescope/telescope-file-browser.nvim", config = fzf.file_browser }
+    use { "nvim-telescope/telescope-packer.nvim", config = fzf.packer }
+    use { "nvim-telescope/telescope-symbols.nvim", config = fzf.symbols }
+    use { "nvim-telescope/telescope-github.nvim", config = fzf.github }
+    use {
+        "nvim-telescope/telescope-frecency.nvim",
+        requires = { "tami5/sqlite.lua" },
+        config = fzf.frecency
+    }
+
 
     local ts = require("plugins.ts")
     use {
@@ -129,11 +171,6 @@ return require("packer").startup({ function(use)
     local utils = require("plugins.utils")
     use { "michaelb/sniprun", run = "bash install.sh", config = utils.sniprun }
     use { "akinsho/toggleterm.nvim", config = utils.toggleterm }
-    use {
-        "nvim-telescope/telescope.nvim",
-        requires = { { "nvim-lua/plenary.nvim" } },
-        config = utils.telescope
-    }
     use { "stevearc/aerial.nvim", config = utils.aerial }
     use { "ellisonleao/glow.nvim", branch = "main", config = utils.glow }
     use { "folke/which-key.nvim", config = utils.which_key }
@@ -147,10 +184,16 @@ return require("packer").startup({ function(use)
     use { "sbdchd/neoformat", config = utils.neoformat }
     use { "ahmedkhalf/project.nvim", config = utils.project }
     use { 'kevinhwang91/nvim-bqf', ft = 'qf', config = utils.bqf }
+    use { "kevinhwang91/rnvimr", config = utils.rnvimr }
     use {
-        "AckslD/nvim-neoclip.lua",
-        requires = { 'tami5/sqlite.lua', module = 'sqlite' },
-        config = utils.neoclip
+        "ldelossa/litee.nvim",
+        requires = {
+            "ldelossa/litee-calltree.nvim",
+            "ldelossa/litee-symboltree.nvim",
+            "ldelossa/litee-filetree.nvim",
+            "ldelossa/litee-bookmarks.nvim"
+        },
+        config = utils.litee
     }
 
     local dap = require("plugins.dap");
