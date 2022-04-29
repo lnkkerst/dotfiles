@@ -15,6 +15,8 @@ return require("packer").startup({ function(use)
     use { "folke/tokyonight.nvim", config = ui.tokyonight }
     use { "sainnhe/gruvbox-material", config = ui.gruvbox_material }
     use { "marko-cerovac/material.nvim", config = ui.material }
+    use { "tomasiser/vim-code-dark" }
+    use { "shaunsingh/nord.nvim", config = ui.nord }
     use {
         "nvim-lualine/lualine.nvim",
         requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -144,6 +146,12 @@ return require("packer").startup({ function(use)
     use { "rmagatti/auto-session", config = utils.auto_session }
     use { "sbdchd/neoformat", config = utils.neoformat }
     use { "ahmedkhalf/project.nvim", config = utils.project }
+    use { 'kevinhwang91/nvim-bqf', ft = 'qf', config = utils.bqf }
+    use {
+        "AckslD/nvim-neoclip.lua",
+        requires = { 'tami5/sqlite.lua', module = 'sqlite' },
+        config = utils.neoclip
+    }
 
     local dap = require("plugins.dap");
     use { "mfussenegger/nvim-dap", config = dap.dap }

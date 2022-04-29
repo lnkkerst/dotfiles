@@ -30,6 +30,17 @@ ui.gruvbox_material = function()
     -- vim.cmd [[colorscheme gruvbox-material]]
 end
 
+ui.nord = function()
+    -- Example config in lua
+    vim.g.nord_contrast = false
+    vim.g.nord_borders = false
+    vim.g.nord_disable_background = false
+    vim.g.nord_italic = true
+
+    -- Load the colorscheme
+    -- require('nord').set()
+end
+
 ui.catppuccin = function()
     require("catppuccin").setup(
         {
@@ -100,7 +111,7 @@ ui.catppuccin = function()
 end
 
 ui.material = function()
-    vim.g.material_style = "darker"
+    vim.g.material_style = "deep ocean"
     require("material").setup(
         {
             contrast = {
@@ -113,9 +124,9 @@ ui.material = function()
                 popup_menu = false -- Enable lighter background for the popup menu
             },
             italics = {
-                comments = false, -- Enable italic comments
-                keywords = false, -- Enable italic keywords
-                functions = false, -- Enable italic functions
+                comments = true, -- Enable italic comments
+                keywords = true, -- Enable italic keywords
+                functions = true, -- Enable italic functions
                 strings = false, -- Enable italic strings
                 variables = false -- Enable italic variables
             },

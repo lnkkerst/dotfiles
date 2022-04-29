@@ -29,7 +29,7 @@ wk.register({
 wk.register({
     ["K"] = { "<cmd>Lspsaga hover_doc<cr>", "Lspsaga hover doc" },
     ["g"] = {
-        name = "lspsaga action",
+        -- name = "lspsaga action",
         ["d"] = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Lspsaga show line diagnostics" },
         ["j"] = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Lspsaga next diagnostics" },
         ["k"] = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Lspsaga prev diagnostics" },
@@ -46,7 +46,7 @@ wk.register({
 -- Plugin Lspconfig
 wk.register({
     ["g"] = {
-        name = "lsp action",
+        -- name = "lsp action",
         ["d"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Lsp goto definition" },
         ["D"] = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Lsp goto declaration" }
     }
@@ -155,6 +155,22 @@ wk.register({
 -- Plugin Symbols-outline
 wk.register({
     ["<A-s>"] = { "<cmd>SymbolsOutline<cr>", "Symbols outline" }
+})
+
+-- Plugin hlslens
+wk.register({
+    ["n"] = { "<cmd>execute('normal! ' . v:count1 . 'n')<cr><cmd>lua require('hlslens').start()<cr>", "hlslens search forward" },
+    ["N"] = { "<cmd>execute('normal! ' . v:count1 . 'N')<cr><cmd>lua require('hlslens').start()<cr>", "hlslens search backward" },
+    ["*"] = { "*<cmd>lua require('hlslens').start()<cr>", "hlslens start" },
+    ["#"] = { "#<cmd>lua require('hlslens').start()<cr>", "hlslens start" },
+    ["g*"] = { "g*<cmd>lua require('hlslens').start()<cr>", "hlslens start" },
+    ["g#"] = { "g#<cmd>lua require('hlslens').start()<cr>", "hlslens start" },
+    ["<leader>l"] = { "<cmd>noh<cr>", "Exit hlslens" },
+})
+
+-- Plugin neoclip {
+wk.register({
+    ["g\""] = { "<cmd>Telescope neoclip<cr>", "Neoclip" }
 })
 
 wk.register({

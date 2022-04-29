@@ -65,6 +65,9 @@ editor.hlslens = function()
     vim.api.nvim_set_keymap("n", '<Leader>l', ':noh<CR>', kopts)
 
 end
+editor.hlslens = function()
+
+end
 
 editor.neoscroll = function()
     require("neoscroll").setup()
