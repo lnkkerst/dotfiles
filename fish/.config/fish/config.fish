@@ -42,6 +42,7 @@ alias cpr='cp --reflink'
 alias fspb='curl -F "c=@-" "http://fars.ee/"'
 alias fspbu='curl -F "c=@-" "http://fars.ee/?u=1"'
 thefuck --alias | source
+zoxide init fish | source
 
 # Functions
 function mkcd

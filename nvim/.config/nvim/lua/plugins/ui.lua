@@ -107,7 +107,7 @@ ui.catppuccin = function()
             }
         }
     )
-    -- vim.cmd [[colorscheme catppuccin]]
+    vim.cmd [[colorscheme catppuccin]]
 end
 
 ui.material = function()
@@ -147,7 +147,7 @@ ui.material = function()
         }
     )
 
-    vim.cmd "colorscheme material"
+    -- vim.cmd "colorscheme material"
 end
 
 ui.gps = function()
@@ -371,6 +371,7 @@ ui.indent_blankline = function()
 end
 
 ui.tree = function()
+    vim.g.nvim_tree_respect_buf_cwd = 1
     -- each of these are documented in `:help nvim-tree.OPTION_NAME`
     require("nvim-tree").setup {
         -- BEGIN_DEFAULT_OPTS
@@ -402,7 +403,7 @@ ui.tree = function()
             indent_markers = {
                 enable = false,
                 icons = { corner = "└ ", edge = "│ ", none = "  " }
-            }
+            },
         },
         hijack_directories = { enable = true, auto_open = true },
         update_focused_file = {
@@ -487,7 +488,7 @@ ui.trouble = function()
     require("trouble").setup {}
 end
 
-ui.sidebar = function ()
+ui.sidebar = function()
     require("sidebar-nvim").setup({
         open = false
     })

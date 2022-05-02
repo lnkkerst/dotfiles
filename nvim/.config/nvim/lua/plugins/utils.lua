@@ -309,7 +309,6 @@ utils.auto_session = function()
 end
 
 utils.project = function()
-    vim.g.nvim_tree_respect_buf_cwd = 1
     require("project_nvim").setup({})
 end
 

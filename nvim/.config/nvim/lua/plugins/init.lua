@@ -70,7 +70,11 @@ return require("packer").startup({ function(use)
     use { "mizlan/iswap.nvim", config = editor.iswap }
     use { "ethanholz/nvim-lastplace", config = editor.lastplace }
     use { "nacro90/numb.nvim", config = editor.numb }
-    use { "anuvyklack/pretty-fold.nvim", config = editor.pretty_fold }
+    use {
+        "anuvyklack/pretty-fold.nvim",
+        requires = { "anuvyklack/nvim-keymap-amend" },
+        config = editor.pretty_fold
+    }
     use {
         "danymat/neogen",
         requires = { "nvim-treesitter/nvim-treesitter" },
