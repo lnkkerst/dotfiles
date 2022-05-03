@@ -319,7 +319,7 @@ ui.bufferline = function()
     require("bufferline").setup {
         options = {
             mod = "buffers",
-            numbers = "both",
+            numbers = "ordinal",
             diagnostics = "nvim_lsp",
             offsets = {
                 {

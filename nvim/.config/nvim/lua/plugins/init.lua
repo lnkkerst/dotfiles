@@ -20,7 +20,8 @@ return require("packer").startup({ function(use)
     use { "shaunsingh/nord.nvim", config = ui.nord }
     use {
         "nvim-lualine/lualine.nvim",
-        requires = { "kyazdani42/nvim-web-devicons", opt = true },
+        tag = "v2.*",
+        requires = { "kyazdani42/nvim-web-devicons" },
         config = ui.lualine
     }
     use {
@@ -80,7 +81,7 @@ return require("packer").startup({ function(use)
         requires = { "nvim-treesitter/nvim-treesitter" },
         config = editor.neogen
     }
-    use { "abecodes/tabout.nvim", config = editor.tabout }
+    -- use { "abecodes/tabout.nvim", config = editor.tabout }
 
     local lsp = require("plugins.lsp")
     use { "neovim/nvim-lspconfig", config = lsp.lspconfig }
