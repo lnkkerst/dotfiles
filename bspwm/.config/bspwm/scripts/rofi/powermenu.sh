@@ -14,7 +14,7 @@ options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
 chosen="$(echo -e "$options" | $rofi_command -dmenu -selected-row 2)"
 case $chosen in
     $lock)
-        ~/.config/bspwm/.config/bspwm/scripts/i3lock-color.sh
+        sh ~/.config/bspwm/scripts/i3lock-color.sh
 	      ;;    
     $shutdown)
         systemctl poweroff

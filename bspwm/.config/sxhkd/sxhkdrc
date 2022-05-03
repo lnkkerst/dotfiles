@@ -101,7 +101,7 @@ super + g
 
 # set the window state
 super + {t,shift + t,shift + space,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+	bspc node -t {tiled,pseudo_tiled,~floating,fullscreen}
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -195,7 +195,7 @@ super + shift + {Left,Down,Up,Right}
 #	    || bspc node 'last.local.!focused.!hidden.floating' -f \
 #	    || bspc node  'any.local.!focused.!hidden.floating' -f
 # Focus a (pseudo_)tiled window / Cycle (pseudo_)tiled windows.
-super + {_,shift + }c
+super + {_,shift + }space
 	bspc node 'focused.!floating.!fullscreen.window#{next,prev}.local.!hidden.!floating.!fullscreen.window' -f \
 	    || bspc node 'last.local.!focused.!hidden.!floating.!fullscreen.window' -f \
 	    || bspc node  'any.local.!focused.!hidden.!floating.!fullscreen.window' -f
