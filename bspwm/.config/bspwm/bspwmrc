@@ -29,6 +29,7 @@ bspc config borderless_monocle true
 bspc config gapless_monocle true
 
 # Special window rules
+bspc config external_rules_command $HOME/.config/bspwm/scripts/external_rules.fish
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
@@ -37,7 +38,6 @@ bspc rule -a Screenkey manage=off
 bspc rule -a Wine state=floating
 bspc rule -a Gnome-screenshot state=floating
 bspc rule -a Blueman-manager state=floating
-bspc rule -a 'wechat.exe' state=floating
 bspc rule -a icalingua state=floating
 bspc rule -a fontweak state=floating
 bspc rule -a Catfish state=floating

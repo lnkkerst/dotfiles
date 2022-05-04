@@ -46,7 +46,7 @@ super + s
 	pavucontrol
 
 # Picom
-super + p
+super + ctrl + p
 	pkill picom
 super + shift + p
 	picom -b
@@ -80,8 +80,8 @@ super + shift + Escape
 # close and kill
 super + shift + {q,x}
 	bspc node -{c,k}
-super + ctrl + x
-	xkill
+#super + ctrl + x
+#	xkill
 
 # alternate between the tiled and monocle layout
 super + w
@@ -101,7 +101,7 @@ super + g
 
 # set the window state
 super + {t,shift + t,shift + space,f}
-	bspc node -t {tiled,pseudo_tiled,~floating,fullscreen}
+	bspc node -t {tiled,pseudo_tiled,~floating,~fullscreen}
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -122,8 +122,8 @@ super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous window in the current desktop
-super + {_,shift + }c
-	bspc node -f {next,prev}.local.!hidden.window
+#super + {_,shift + }c
+#	bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
@@ -145,7 +145,7 @@ super + {o,i}
 super + {1-8}
 	bspc desktop -f {1-8}
 super + shift + {1-8}
-	desktop_target={1-8}; notify_send $desktop_target; bspc node -d $desktop_target; bspc desktop -f $desktop_target
+	bspc node -d {1-8} -f
 
 #
 # preselect
@@ -189,13 +189,6 @@ super + alt + shift + {Left,Down,Up,Right}
 super + shift + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-# Focus a floating window / Cycle floating windows.
-#super + {_,shift + }g
-#	bspc node 'focused.floating#{next,prev}.local.!hidden.floating' -f \
-#	    || bspc node 'last.local.!focused.!hidden.floating' -f \
-#	    || bspc node  'any.local.!focused.!hidden.floating' -f
-# Focus a (pseudo_)tiled window / Cycle (pseudo_)tiled windows.
-super + {_,shift + }space
-	bspc node 'focused.!floating.!fullscreen.window#{next,prev}.local.!hidden.!floating.!fullscreen.window' -f \
-	    || bspc node 'last.local.!focused.!hidden.!floating.!fullscreen.window' -f \
-	    || bspc node  'any.local.!focused.!hidden.!floating.!fullscreen.window' -f
+# focus floating or tiling window
+super + {_,shift} + c
+    bspc node -f next.local.!hidden.window.{floating,tiled}

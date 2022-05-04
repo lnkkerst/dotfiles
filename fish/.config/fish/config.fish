@@ -38,9 +38,11 @@ alias :q='exit'
 alias :wq='exit'
 alias rcd='ranger-cd'
 alias nv='neovide --nofork --multigrid'
+alias cp='cp -i'
 alias cpr='cp --reflink'
 alias fspb='curl -F "c=@-" "http://fars.ee/"'
 alias fspbu='curl -F "c=@-" "http://fars.ee/?u=1"'
+alias mv='mv -i'
 thefuck --alias | source
 zoxide init fish | source
 
