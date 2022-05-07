@@ -1,5 +1,3 @@
-local vim = vim
-
 local function create_augroups(augroups)
     for k, v in pairs(augroups) do
         vim.api.nvim_command("augroup " .. k)
@@ -23,7 +21,8 @@ local augroups = {
         {
             "BufWritePost,FileWritePost", "*.vim",
             [[nested if &l:autoread > 0 | source <afile> | echo 'source ' . bufname('%') | endif]]
-        }, { "BufWritePre", "/tmp/*", "setlocal noundofile" },
+        },
+        { "BufWritePre", "/tmp/*", "setlocal noundofile" },
         { "BufWritePre", "COMMIT_EDITMSG", "setlocal noundofile" },
         { "BufWritePre", "MERGE_MSG", "setlocal noundofile" },
         { "BufWritePre", "*.tmp", "setlocal noundofile" },

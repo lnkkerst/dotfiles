@@ -19,7 +19,8 @@ wk.register({
     ["<A-S-j>"] = { "<cmd>BufferLineMoveNext<cr>", "BufferLineMoveNext" },
     ["<A-S-k>"] = { "<cmd>BufferLineMovePrev<cr>", "BufferLineMovePrev" },
     ["b"] = {
-        name = "bufferline action", ["e"] = { "<cmd>BufferLineSortByExtension<cr>", "BufferLineSortByExtension" },
+        name = "bufferline action",
+        ["e"] = { "<cmd>BufferLineSortByExtension<cr>", "BufferLineSortByExtension" },
         ["d"] = { "<cmd>BufferLineSortByDirectory<cr>", "BufferLineSortByDirectory" },
         ["p"] = { "<cmd>BufferLinePick<cr>", "BufferLinePick" }
     }
@@ -174,5 +175,24 @@ wk.register({
 })
 
 wk.register({
-    ["<C-s>"] = { "<cmd>w<cr>", "Save file" }
+    ["<C-s>"] = { "<cmd>w<cr>", "Save file" },
+    ["<C-v>"] = { "<cmd>put<cr>", "Paste", mode = "i" }
+})
+
+wk.register({
+    ["<A-z>"] = { "<cmd>undo<cr>", "Undo" },
+    ["<A-S-z>"] = { "<cmd>redo<cr>", "Redo" }
+}, { mode = "i" })
+
+
+wk.register({
+    ["<A-z>"] = { "<cmd>undo<cr>", "Undo" },
+    ["<A-S-z>"] = { "<cmd>redo<cr>", "Redo" }
+})
+
+wk.register({
+    ["<C-j>"] = { "<C-w>j", "Go to the down window" },
+    ["<C-k>"] = { "<C-w>k", "Go to the up window" },
+    ["<C-h>"] = { "<C-w>h", "Go to the left window" },
+    ["<C-l>"] = { "<C-w>l", "Go to the right window" }
 })
