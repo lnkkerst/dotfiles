@@ -38,7 +38,7 @@ bspc rule -a Screenkey manage=off
 bspc rule -a Wine state=floating
 bspc rule -a Gnome-screenshot state=floating
 bspc rule -a Blueman-manager state=floating
-bspc rule -a icalingua state=floating
+# bspc rule -a icalingua state=floating
 bspc rule -a fontweak state=floating
 bspc rule -a Catfish state=floating
 bspc rule -a Ario state=floating
@@ -49,6 +49,7 @@ bspc rule -a Pavucontrol  state=floating
 bspc rule -a zhumu state=floating
 bspc rule -a "org.jackhuang.hmcl.Launcher" state=floating
 bspc rule -a "Minecraft*" state=floating
+bspc rule -a "Steam" state=floating
 
 # Autostart
 fish $SCRIPTS_DIR/autostart.fish
