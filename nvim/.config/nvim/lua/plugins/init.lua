@@ -200,6 +200,7 @@ return require("packer").startup({ function(use)
         },
         config = utils.litee
     }
+    use { "nathom/filetype.nvim", config = utils.filetype }
 
     local dap = require("plugins.dap");
     use { "mfussenegger/nvim-dap", config = dap.dap }

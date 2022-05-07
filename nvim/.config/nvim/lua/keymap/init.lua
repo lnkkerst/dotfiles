@@ -190,9 +190,13 @@ wk.register({
     ["<A-S-z>"] = { "<cmd>redo<cr>", "Redo" }
 })
 
-wk.register({
+local window_focus = {
     ["<C-j>"] = { "<C-w>j", "Go to the down window" },
     ["<C-k>"] = { "<C-w>k", "Go to the up window" },
     ["<C-h>"] = { "<C-w>h", "Go to the left window" },
     ["<C-l>"] = { "<C-w>l", "Go to the right window" }
-})
+}
+
+wk.register(window_focus, { mode = "n" })
+wk.register(window_focus, { mode = "i" })
+wk.register(window_focus, { mode = "t" })
