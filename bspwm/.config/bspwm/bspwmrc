@@ -50,6 +50,7 @@ bspc rule -a zhumu state=floating
 bspc rule -a "org.jackhuang.hmcl.Launcher" state=floating
 bspc rule -a "Minecraft*" state=floating
 bspc rule -a "Steam" state=floating
+bspc rule -a "Clash for Windows" state=floating
 
 # Autostart
 fish $SCRIPTS_DIR/autostart.fish
