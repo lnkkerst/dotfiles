@@ -90,9 +90,9 @@ local augroups = {
     -- lsp = {
     --     { "CursorHold,CursorHoldI", "*", "lua vim.diagnostic.open_float(nil, {focus=false})" }
     -- },
-    -- toggleterm = {
-    --     { "TermOpen", "ToggleTerm", "lua set_terminal_keymaps()" }
-    -- }
+    toggleterm = {
+        { "TermOpen", "term://*", "lua set_terminal_keymaps()" }
+    }
 }
 
 create_augroups(augroups)
