@@ -181,4 +181,5 @@ end
 dap.virtual_text = function()
     require("nvim-dap-virtual-text").setup()
 end
+
 return dap

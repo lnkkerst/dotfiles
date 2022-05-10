@@ -478,9 +478,9 @@ ui.scrollbar = function()
 end
 
 ui.focus = function()
-    -- require("focus").setup({
-    --     excluded_filetypes = { "toggleterm", [[dap-repl]] }
-    -- })
+    require("focus").setup({
+        excluded_filetypes = { "toggleterm", [[dap-repl]] }
+    })
 end
 
 

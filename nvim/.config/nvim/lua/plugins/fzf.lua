@@ -138,7 +138,7 @@ fzf.github = function()
 end
 
 fzf.frecency = function()
-    require"telescope".load_extension("frecency")
+    require "telescope".load_extension("frecency")
 end
 
 return fzf

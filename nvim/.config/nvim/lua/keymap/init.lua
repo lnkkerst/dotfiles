@@ -73,10 +73,13 @@ wk.register({
 wk.register({
     ["t"] = {
         name = "Telescope",
-        ["f"] = {
-            "<cmd>Telescope find_files<cr>",
-            "Telescope find files"
-        }
+        ["f"] = { "<cmd>Telescope find_files<cr>", "Telescope find files" },
+        ["n"] = { "<cmd>Telescope notify<cr>", "Telescope notify" },
+        ["b"] = { "<cmd>Telescope buffers<cr>", "Telescope buffers" },
+        ["m"] = { "<cmd>Telescope marks<cr>", "Telescope marks" },
+        ["t"] = { "<cmd>Telescope<cr>", "Telescope buildin" },
+        ["g"] = { "<cmd>Telescope diagnostics<cr>", "Telescope diagnostics" },
+        ["b"] = { "<cmd>Telescope current_buffer_fuzzy_finder<cr>", "Telescope current_buffer_fuzzy_finder" }
     }
 }, { prefix = "<leader>" })
 
@@ -174,21 +177,22 @@ wk.register({
     ["g\""] = { "<cmd>Telescope neoclip<cr>", "Neoclip" }
 })
 
-wk.register({
+
+local control = {
     ["<C-s>"] = { "<cmd>w<cr>", "Save file" },
     ["<C-v>"] = { "<cmd>put<cr>", "Paste", mode = "i" }
-})
+}
 
-wk.register({
+wk.register(control)
+wk.register(control, { mode = "i" })
+
+local undo_redo = {
     ["<A-z>"] = { "<cmd>undo<cr>", "Undo" },
     ["<A-S-z>"] = { "<cmd>redo<cr>", "Redo" }
-}, { mode = "i" })
+}
 
-
-wk.register({
-    ["<A-z>"] = { "<cmd>undo<cr>", "Undo" },
-    ["<A-S-z>"] = { "<cmd>redo<cr>", "Redo" }
-})
+wk.register(undo_redo)
+wk.register(undo_redo, { mode = "i" })
 
 local window_focus = {
     ["<C-j>"] = { "<C-w>j", "Go to the down window" },

@@ -57,6 +57,7 @@ end
 
 lsp.lsp_installer = function()
     local lsp_installer = require("nvim-lsp-installer")
+    local lspconfig = require("lspconfig")
 
     lsp_installer.settings({
         ui = {
@@ -67,6 +68,7 @@ lsp.lsp_installer = function()
             }
         }
     })
+    lsp_installer.setup({})
 
     local function global_attach(client)
         require("aerial").on_attach(client)
@@ -76,37 +78,53 @@ lsp.lsp_installer = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-    -- Register a handler that will be called for each installed server when it's ready (i.e. when installation is finished
-    -- or if the server is already installed).
-    lsp_installer.on_server_ready(function(server)
-        local opts = {
+    lspconfig.util.default_config = vim.tbl_extend(
+        "force",
+        lspconfig.util.default_config,
+        {
             capabilities = capabilities,
-            flags = { debounce_text_changes = 500 },
-            on_attach = function(client)
-                if server.name == "ocamllsp" then
-                    require("virtualtypes").on_attach(client)
-                end
-                global_attach(client)
-            end
+            flags = { debounce_text_changes = 500 }
         }
+    )
 
-        -- (optional) Customize the options passed to the server
-        -- if server.name == "tsserver" then
-        --     opts.root_dir = function() ... end
-        -- end
-
-        -- This setup() function will take the provided server configuration and decorate it with the necessary properties
-        -- before passing it onwards to lspconfig.
-        -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-        if server.name == "jsonls" then
-            opts.settings = {
-                json = {
-                    schemas = require('schemastore').json.schemas(),
-                }
-            }
+    lspconfig.sumneko_lua.setup({
+        on_attach = function(client)
+            global_attach(client)
         end
-        server:setup(opts)
-    end)
+    })
+
+    lspconfig.jsonls.setup({
+        on_attach = function(client)
+            global_attach(client)
+        end,
+        settings = {
+            json = {
+                schemas = require("schemastore").json.schemas()
+            }
+        }
+    })
+
+    -- lsp_installer.on_server_ready(function(server)
+    --     local opts = {
+    --         capabilities = capabilities,
+    --         flags = { debounce_text_changes = 500 },
+    --         on_attach = function(client)
+    --             if server.name == "ocamllsp" then
+    --                 require("virtualtypes").on_attach(client)
+    --             end
+    --             global_attach(client)
+    --         end
+    --     }
+    --
+    --     if server.name == "jsonls" then
+    --         opts.settings = {
+    --             json = {
+    --                 schemas = require('schemastore').json.schemas(),
+    --             }
+    --         }
+    --     end
+    --     server:setup(opts)
+    -- end)
 end
 
 lsp.lsputils = function()
