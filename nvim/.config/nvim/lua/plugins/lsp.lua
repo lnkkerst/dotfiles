@@ -104,6 +104,8 @@ lsp.lsp_installer = function()
         }
     })
 
+    lspconfig.clangd.setup({})
+
     -- lsp_installer.on_server_ready(function(server)
     --     local opts = {
     --         capabilities = capabilities,
