@@ -31,7 +31,6 @@ alias svim='sudo vim'
 alias ...='cd ..; cd .. '
 alias www='python -m http.server 8000'
 alias ls='exa'
-alias find='fd'
 alias dstat='dstat -cdlmnpsy'
 alias py='python'
 alias :q='exit'
@@ -43,7 +42,7 @@ alias cpr='cp --reflink'
 alias fspb='curl -F "c=@-" "http://fars.ee/"'
 alias fspbu='curl -F "c=@-" "http://fars.ee/?u=1"'
 alias mv='mv -i'
-thefuck --alias | source
+# thefuck --alias | source
 zoxide init fish | source
 
 # Functions
