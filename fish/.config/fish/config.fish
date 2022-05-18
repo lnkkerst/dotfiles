@@ -27,7 +27,7 @@ alias pc='proxychains'
 alias sw='swallow'
 alias svim='sudo vim'
 alias ...='cd ..; cd .. '
-alias www='python -m http.server 8000'
+alias www='python -m http.server 8000' 
 alias ls='exa'
 alias dstat='dstat -cdlmnpsy'
 alias py='python'
@@ -49,6 +49,6 @@ function mkcd
 end
 
 if not set -q DISPLAY; and test $XDG_VTNR = 1
-   exec startx &>$HOME/customLogs/xlog
+   exec startx &>$HOME/.cache/custom_logs/startx
 end
 
