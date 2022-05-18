@@ -2,8 +2,6 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-source /usr/share/autojump/autojump.fish
-
 set -U fish_greeting
 set -gx DISABLE_FZF_AUTO_COMPLETION true
 
