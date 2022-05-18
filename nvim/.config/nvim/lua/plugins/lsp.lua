@@ -55,6 +55,11 @@ lsp.lspsaga = function()
     }
 end
 
+require("lsp-format").setup({
+    cpp = { tab_width = 4 },
+    c = { tab_width = 4 }
+})
+
 lsp.lsp_installer = function()
     local lsp_installer = require("nvim-lsp-installer")
     local lspconfig = require("lspconfig")
@@ -83,7 +88,8 @@ lsp.lsp_installer = function()
         lspconfig.util.default_config,
         {
             capabilities = capabilities,
-            flags = { debounce_text_changes = 500 }
+            flags = { debounce_text_changes = 500 },
+            on_attach = global_attach
         }
     )
 
@@ -107,6 +113,14 @@ lsp.lsp_installer = function()
     lspconfig.clangd.setup({})
 
     lspconfig.texlab.setup({})
+
+    lspconfig.volar.setup({})
+
+    -- lspconfig.jdtls.setup({})
+
+    -- lspconfig.eslint.setup({})
+
+    lspconfig.tsserver.setup({})
 
     -- lsp_installer.on_server_ready(function(server)
     --     local opts = {

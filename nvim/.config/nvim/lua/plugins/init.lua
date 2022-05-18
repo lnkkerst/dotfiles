@@ -187,6 +187,7 @@ return require("packer").startup({ function(use)
     use { "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim", config = utils.neogit }
     use { "rmagatti/auto-session", config = utils.auto_session }
     use { "sbdchd/neoformat", config = utils.neoformat }
+    use { "gpanders/editorconfig.nvim", config = utils.editorconfig }
     use { "ahmedkhalf/project.nvim", config = utils.project }
     use { 'kevinhwang91/nvim-bqf', ft = 'qf', config = utils.bqf }
     use { "kevinhwang91/rnvimr", config = utils.rnvimr }
