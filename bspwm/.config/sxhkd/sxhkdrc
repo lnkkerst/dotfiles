@@ -9,6 +9,8 @@ super + Return
 # program launcher
 super + d
 	rofi -dpi $ROFI_DPI -show
+super + shift + d
+    rofi -dpi $ROFI_DPI -show window
 
 # make sxhkd reload its configuration files:
 super + Escape
