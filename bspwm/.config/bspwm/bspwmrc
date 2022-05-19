@@ -53,6 +53,9 @@ bspc rule -a "Steam" state=floating
 bspc rule -a "Clash for Windows" state=floating
 bspc rule -a "Motrix" state=floating
 bspc rule -a "*:*:Motrix WebExtension" state=floating
+bspc rule -a "qq.exe" state=floating border=off
+bspc rule -a "wechat.exe" state=floating border=off
+bspc rule -a "tim.exe" state=floating border=off
 
 # Autostart
 fish $SCRIPTS_DIR/autostart.fish
