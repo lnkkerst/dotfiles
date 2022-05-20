@@ -479,7 +479,7 @@ end
 
 ui.focus = function()
     require("focus").setup({
-        excluded_filetypes = { "toggleterm", [[dap-repl]] }
+        excluded_filetypes = { "toggleterm", "dap-repl" }
     })
 end
 

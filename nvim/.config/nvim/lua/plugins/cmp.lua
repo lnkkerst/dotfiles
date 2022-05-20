@@ -23,6 +23,7 @@ nvim_cmp.cmp = function()
     cmp.setup({
         sorting = {
             comparators = {
+                require("cmp_tabnine.compare"),
                 cmp.config.compare.offset, cmp.config.compare.exact,
                 cmp.config.compare.score, require("cmp-under-comparator").under,
                 cmp.config.compare.kind, cmp.config.compare.sort_text,
@@ -38,7 +39,7 @@ nvim_cmp.cmp = function()
                 -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
                 before = function(entry, vim_item)
                     vim_item.menu = ({
-                        -- cmp_tabnine = "[TN]",
+                        cmp_tabnine = "[TN]",
                         buffer = "[BUF]",
                         orgmode = "[ORG]",
                         nvim_lsp = "[LSP]",
@@ -141,6 +142,8 @@ nvim_cmp.cmp = function()
             { name = "omni" }
         }, {
             { name = "emoji" }
+        }, {
+            { name = "cmp_tabnine" }
         })
     })
 
@@ -171,6 +174,22 @@ end
 nvim_cmp.luasnip = function()
     require("luasnip.loaders.from_vscode").lazy_load()
     require("luasnip.loaders.from_snipmate").lazy_load()
+end
+
+nvim_cmp.tabnine = function()
+    local tabnine = require('cmp_tabnine.config')
+    tabnine:setup({
+        max_lines = 1000;
+        max_num_results = 20;
+        sort = true;
+        run_on_every_keystroke = true;
+        snippet_placeholder = '..';
+        ignored_file_types = { -- default is not to ignore
+            -- uncomment to ignore in lua:
+            -- lua = true
+        };
+        show_prediction_strength = false;
+    })
 end
 
 return nvim_cmp
