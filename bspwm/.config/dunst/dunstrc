@@ -1,6 +1,6 @@
 [global]
     frame_width = 1
-    frame_color = "#788388"
+    frame_color = "#96CDFB"
     corner_radius = 0
     font = Noto Sans 12
     
@@ -134,7 +134,7 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = #263238
+    separator_color= frame
     
     # Print a notification on startup.
     # This is mainly for error detection, since dbus (re-)starts dunst
@@ -181,19 +181,20 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#263238"
-    foreground = "#556064"
+    background = "#1e1e2e"
+    foreground = "#D9E0EE"
     timeout = 10
 
 [urgency_normal]
-    background = "#1E1F29"
-    foreground = "#F9FAF9"
+    background = "#1E1E2E"
+    foreground = "#D9E0EE"
     timeout = 10
     #icon = /usr/share/icons/Adwaita/16x16/status/dialog-information-symbolic.symbolic.png
 
 [urgency_critical]
-    background = "#b71c1c"
-    foreground = "#F9FAF9"
+    background = "#1E1E2E"
+    foreground = "#D9E0EE"
+    frame_color = "#F8BD96"
     timeout = 0
 
 
