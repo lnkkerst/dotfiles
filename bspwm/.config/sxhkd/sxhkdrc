@@ -11,6 +11,8 @@ super + d
 	rofi -dpi $ROFI_DPI -show
 super + shift + d
     rofi -dpi $ROFI_DPI -show window
+super + ctrl + d
+    fish $HOME/.config/rofi/env_launcher.fish
 
 # make sxhkd reload its configuration files:
 super + Escape
