@@ -26,7 +26,6 @@ alias la='ls -a'
 alias trm='/bin/rm'
 alias rm='trash-put'
 alias pc='proxychains'
-alias sw='swallow'
 alias svim='sudo vim'
 alias ...='cd ..; cd .. '
 alias www='python -m http.server 8000' 
@@ -50,6 +49,14 @@ zoxide init fish | source
 function mkcd
     mkdir -p $argv[1] && cd $argv[1]
 end
+
+function sw
+    set swid (bspc query -N -n)
+    bspc node $swid --flag hidden=on
+    $argv
+    bspc node $swid --flag hidden=off
+end
+
 
 if not set -q DISPLAY; and test $XDG_VTNR = 1
    exec startx &>$HOME/.cache/custom_logs/startx
