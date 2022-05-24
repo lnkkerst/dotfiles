@@ -2,7 +2,7 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-set -U fish_greeting
+set -gx fish_greeting
 set -gx DISABLE_FZF_AUTO_COMPLETION true
 
 fish_add_path $HOME/.local/share/gem/ruby/3.0.0/bin
@@ -42,6 +42,7 @@ alias cpr='cp --reflink'
 alias fspb='curl -F "c=@-" "http://fars.ee/"'
 alias fspbu='curl -F "c=@-" "http://fars.ee/?u=1"'
 alias mv='mv -i'
+alias j='z'
 # thefuck --alias | source
 zoxide init fish | source
 
