@@ -124,6 +124,8 @@ lsp.lsp_installer = function()
 
     lspconfig.pyright.setup({})
 
+    lspconfig.lemminx.setup({})
+
     -- lsp_installer.on_server_ready(function(server)
     --     local opts = {
     --         capabilities = capabilities,
