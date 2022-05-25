@@ -43,6 +43,7 @@ alias fspb='curl -F "c=@-" "http://fars.ee/"'
 alias fspbu='curl -F "c=@-" "http://fars.ee/?u=1"'
 alias mv='mv -i'
 alias j='z'
+alias sudo='sudo -E'
 # thefuck --alias | source
 zoxide init fish | source
 
