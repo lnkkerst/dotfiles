@@ -10,8 +10,8 @@ pgrep -x sxhkd >/dev/null || sxhkd &
 # Multi-monitor support
 set DOUBLE_MONITER (xrandr --listmonitors | grep DisplayPort)
 if string length $DOUBLE_MONITER
-    bspc monitor eDP -d 6 7 8
-    bspc monitor DisplayPort-0 -d 1 2 3 4 5
+    bspc monitor eDP -d 7 8 9 10
+    bspc monitor DisplayPort-0 -d 1 2 3 4 5 6
 else
     bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 end

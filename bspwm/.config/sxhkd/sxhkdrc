@@ -24,11 +24,13 @@ super + Escape
 
 # Screenshot
 Print
-	scrot -e 'mv $f $$(xdg-user-dir PICTURES)/scrot; notify-send "Screenshot has saved to $f."'
+	scrot -e 'mv $f $$(xdg-user-dir PICTURES)/scrot && notify-send "Screenshot has saved to $f."'
 shift + Print
-	scrot -s -e 'mv $f $$(xdg-user-dir PICTURES)/scrot; notify-send "Screenshot has saved to $f."'
+	scrot -s -e 'mv $f $$(xdg-user-dir PICTURES)/scrot && notify-send "Screenshot has saved to $$(xdg-user-dir PICTURES)/scrot/$f."'
 super + shift + Print 
-	scrot -d 3 -e 'mv $f $$(xdg-user-dir PICTURES)/scrot; notify-send "Screenshot has saved to $f."'
+	scrot -d 3 -e 'mv $f $$(xdg-user-dir PICTURES)/scrot && notify-send "Screenshot has saved to $f."'
+ctrl + Print
+    scrot -s -e 'mv $f $$(xdg-user-dir PICTURES)/scrot &&  xclip -sel clip -t image/png $$(xdg-user-dir PICTURES)/scrot/$f && notify-send "Screenshot has send to clipboard."'
 
 super + 0
     bash $HOME/.config/bspwm/scripts/rofi/powermenu.sh
@@ -69,7 +71,9 @@ super + shift + 9
 super + 9
 	pyxtrlock
 
-
+# dunst
+super + shift + n
+    dunstctl close
 
 #
 # bspwm hotkeys
