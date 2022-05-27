@@ -4,7 +4,7 @@ My dotfiles 😄
 
 ## Screenshot
 
-![Screenshot](./.shot/2022-04-15-233011_4000x1440_scrot.png)
+![Screenshot](./.shot/2022-05-27-194930_2560x1600_scrot.png)
 
 ## Use stow
 
