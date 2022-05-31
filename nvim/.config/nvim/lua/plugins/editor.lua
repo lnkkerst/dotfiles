@@ -172,4 +172,10 @@ editor.tabout = function()
     }
 end
 
+editor.better_escape = function()
+    require("better_escape").setup({
+
+    })
+end
+
 return editor

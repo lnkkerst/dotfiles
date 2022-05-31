@@ -45,13 +45,20 @@ ui.catppuccin = function()
     require("catppuccin").setup(
         {
             transparent_background = false,
-            term_colors = true,
+            term_colors = false,
             styles = {
                 comments = "italic",
-                functions = "italic",
-                keywords = "italic",
+                conditionals = "italic",
+                loops = "NONE",
+                functions = "NONE",
+                keywords = "NONE",
                 strings = "NONE",
-                variables = "NONE"
+                variables = "NONE",
+                numbers = "NONE",
+                booleans = "NONE",
+                properties = "NONE",
+                types = "NONE",
+                operators = "NONE",
             },
             integrations = {
                 treesitter = true,
@@ -61,14 +68,14 @@ ui.catppuccin = function()
                         errors = "italic",
                         hints = "italic",
                         warnings = "italic",
-                        information = "italic"
+                        information = "italic",
                     },
                     underlines = {
                         errors = "underline",
                         hints = "underline",
                         warnings = "underline",
-                        information = "underline"
-                    }
+                        information = "underline",
+                    },
                 },
                 lsp_trouble = true,
                 cmp = true,
@@ -78,21 +85,21 @@ ui.catppuccin = function()
                 telescope = true,
                 nvimtree = {
                     enabled = true,
-                    show_root = false,
-                    transparent_panel = false
+                    show_root = true,
+                    transparent_panel = false,
                 },
                 neotree = {
                     enabled = false,
                     show_root = false,
-                    transparent_panel = false
+                    transparent_panel = false,
                 },
-                which_key = false,
+                which_key = true,
                 indent_blankline = {
                     enabled = true,
-                    colored_indent_levels = true
+                    colored_indent_levels = true,
                 },
                 dashboard = true,
-                neogit = true,
+                neogit = false,
                 vim_sneak = false,
                 fern = false,
                 barbar = false,
@@ -103,10 +110,11 @@ ui.catppuccin = function()
                 hop = true,
                 notify = true,
                 telekasten = true,
-                symbols_outline = true
+                symbols_outline = true,
             }
         }
     )
+    vim.g.catppuccin_flavour = "mocha"
     vim.cmd [[colorscheme catppuccin]]
 end
 
@@ -269,7 +277,7 @@ ui.lualine = function()
     require("lualine").setup {
         options = {
             icons_enabled = true,
-            theme = "auto",
+            theme = "catppuccin",
             component_separators = { left = "", right = "" },
             -- component_separators = { left = "|", right = "|" },
             section_separators = { left = "", right = "" },
@@ -283,7 +291,7 @@ ui.lualine = function()
             lualine_b = { "branch", "diff" },
             lualine_c = { { gps.get_location, cond = gps.is_available } },
             lualine_x = { { "diagnostics" } },
-            lualine_y = { { "filetype" }, { "encoding" }, { "fileformat" } },
+            lualine_y = { { "filetype" }, { "encoding" }, { "fileformat" }, { require("fcitx5-ui").getCurrentIM } },
             lualine_z = { "progress", "location" }
         },
         inactive_sections = {
@@ -371,7 +379,6 @@ ui.indent_blankline = function()
 end
 
 ui.tree = function()
-    vim.g.nvim_tree_respect_buf_cwd = 1
     -- each of these are documented in `:help nvim-tree.OPTION_NAME`
     require("nvim-tree").setup {
         -- BEGIN_DEFAULT_OPTS
@@ -386,6 +393,7 @@ ui.tree = function()
         open_on_tab = false,
         sort_by = "name",
         update_cwd = true,
+        respect_buf_cwd = true,
         view = {
             width = 30,
             height = 30,

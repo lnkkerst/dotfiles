@@ -19,19 +19,35 @@ nvim_cmp.cmp = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
 
+    local source_mapping = {
+        cmp_tabnine = "[TN]",
+        buffer = "[BUF]",
+        orgmode = "[ORG]",
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[LUA]",
+        path = "[PATH]",
+        tmux = "[TMUX]",
+        luasnip = "[SNIP]",
+        spell = "[SPELL]"
+    }
+
+    local compare = require("cmp.config.compare")
+
     cmp.setup(
         {
             sorting = {
+                priority_weight = 2,
                 comparators = {
                     require("cmp_tabnine.compare"),
-                    cmp.config.compare.offset,
-                    cmp.config.compare.exact,
-                    cmp.config.compare.score,
+                    compare.offset,
+                    compare.exact,
+                    compare.score,
+                    compare.recently_used,
                     require("cmp-under-comparator").under,
-                    cmp.config.compare.kind,
-                    cmp.config.compare.sort_text,
-                    cmp.config.compare.length,
-                    cmp.config.compare.order
+                    compare.kind,
+                    compare.sort_text,
+                    compare.length,
+                    compare.order
                 }
             },
             formatting = {
@@ -41,18 +57,32 @@ nvim_cmp.cmp = function()
                         maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                         -- The function below will be called before any actual modifications from lspkind
                         -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+                        -- before = function(entry, vim_item)
+                        --     vim_item.menu = ({
+                        --         cmp_tabnine = "[TN]",
+                        --         buffer = "[BUF]",
+                        --         orgmode = "[ORG]",
+                        --         nvim_lsp = "[LSP]",
+                        --         nvim_lua = "[LUA]",
+                        --         path = "[PATH]",
+                        --         tmux = "[TMUX]",
+                        --         luasnip = "[SNIP]",
+                        --         spell = "[SPELL]"
+                        --     })[entry.source.name]
+                        --     return vim_item
+                        -- end
                         before = function(entry, vim_item)
-                            vim_item.menu = ({
-                                cmp_tabnine = "[TN]",
-                                buffer = "[BUF]",
-                                orgmode = "[ORG]",
-                                nvim_lsp = "[LSP]",
-                                nvim_lua = "[LUA]",
-                                path = "[PATH]",
-                                tmux = "[TMUX]",
-                                luasnip = "[SNIP]",
-                                spell = "[SPELL]"
-                            })[entry.source.name]
+                            vim_item.kind = require("lspkind").presets.default[vim_item.kind]
+
+                            local menu = source_mapping[entry.source.name]
+                            if entry.source.name == "cmp_tabnine" then
+                                if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
+                                    menu = entry.completion_item.data.detail .. " " .. menu
+                                end
+                                vim_item.kind = ""
+                            end
+
+                            vim_item.menu = menu
                             return vim_item
                         end
                     }

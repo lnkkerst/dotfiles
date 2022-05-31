@@ -90,6 +90,7 @@ return require("packer").startup(
                 config = editor.neogen
             }
             -- use { "abecodes/tabout.nvim", config = editor.tabout }
+            -- use { "max397574/better-escape.nvim", config = editor.better_escape }
 
             local lsp = require("plugins.lsp")
             use { "neovim/nvim-lspconfig", config = lsp.lspconfig }
@@ -223,6 +224,11 @@ return require("packer").startup(
                 "CRAG666/code_runner.nvim",
                 requires = "nvim-lua/plenary.nvim",
                 config = utils.code_runner
+            }
+            use {
+                "black-desk/fcitx5-ui.nvim",
+                rocks = { 'lgi', 'dbus_proxy' },
+                config = utils.fcitx_ui
             }
 
             local dap = require("plugins.dap")

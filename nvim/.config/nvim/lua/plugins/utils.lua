@@ -376,4 +376,8 @@ utils.code_runner = function()
     }
 end
 
+utils.fcitx_ui = function()
+    require("fcitx5-ui").setup({})
+end
+
 return utils
