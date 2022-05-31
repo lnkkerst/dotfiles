@@ -10,7 +10,7 @@ export ROFI_DPI=192
 export POLYBAR_DPI=192
 export POLYBAR_HEIGHT=36
 export POLYBAR_TITLE_LEN=20
-# export XCURSOR_SIZE=48
+export XCURSOR_SIZE=48
 export TELEGRAM_SCALE=2
 
 xrandr --dpi 192

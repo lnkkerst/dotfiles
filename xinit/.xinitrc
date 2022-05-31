@@ -72,6 +72,7 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 #export GDK_DPI_SCALE=0.5
 
 numlockx on
+#setxkbmap -option 'caps:swapescape'
 #xrandr --dpi 192
 
 xrandr --listmonitors | grep DisplayPort
