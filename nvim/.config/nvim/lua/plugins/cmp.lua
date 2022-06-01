@@ -143,7 +143,9 @@ nvim_cmp.cmp = function()
                 { name = "buffer" },
                 { name = "path" },
                 { name = "emoji" },
-                { name = "fish" }
+                { name = "fish" },
+                { name = "cmdline" },
+                { name = "nvim_lsp_signature_help" },
             },
             sources_bak = cmp.config.sources(
                 {

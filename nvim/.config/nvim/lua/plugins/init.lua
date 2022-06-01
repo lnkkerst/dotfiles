@@ -74,7 +74,7 @@ return require("packer").startup(
             use { "kevinhwang91/nvim-hlslens", config = editor.hlslens }
             use { "karb94/neoscroll.nvim", config = editor.neoscroll }
             -- use {"haringsrob/nvim_context_vt", config = editor.context_vt}
-            use { "edluffy/specs.nvim", config = editor.specs }
+            -- use { "edluffy/specs.nvim", config = editor.specs }
             use { "Pocco81/AutoSave.nvim", config = editor.autosave }
             use { "mizlan/iswap.nvim", config = editor.iswap }
             use { "ethanholz/nvim-lastplace", config = editor.lastplace }
@@ -230,6 +230,8 @@ return require("packer").startup(
                 rocks = { 'lgi', 'dbus_proxy' },
                 config = utils.fcitx_ui
             }
+            -- use { "hkupty/nvimux", config = utils.nvimux }
+            use { "aserowy/tmux.nvim", config = utils.tmux }
 
             local dap = require("plugins.dap")
             use { "mfussenegger/nvim-dap", config = dap.dap }
