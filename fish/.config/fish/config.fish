@@ -1,12 +1,20 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
+    # if not set -q TMUX
+    #     if test $DOUBLE_MONITOR = 1
+    #         tmux attach || tmuxinator lnk
+    #     else
+    #         tmux attach || tmux
+    #     end
+    # end
 end
 
 set -gx fish_greeting
 set -gx DISABLE_FZF_AUTO_COMPLETION true
 
 fish_add_path $HOME/.local/share/gem/ruby/3.0.0/bin
-fish_add_path $HOME/.local/bin $HOME/.yarn/bin
+fish_add_path $HOME/.local/bin 
+#fish_add_path $HOME/.yarn/bin
 
 set -gx TERMINAL alacritty
 set -gx EDITOR nvim
@@ -44,6 +52,8 @@ alias fspbu='curl -F "c=@-" "http://fars.ee/?u=1"'
 alias mv='mv -i'
 alias j='z'
 alias sudo='sudo -E'
+alias xc='xclip -sel clipboard'
+alias x='startx'
 # thefuck --alias | source
 zoxide init fish | source
 
@@ -61,6 +71,6 @@ end
 
 
 if not set -q DISPLAY; and test $XDG_VTNR = 1
-   exec startx &>$HOME/.cache/custom_logs/startx
+    #exec startx &>$HOME/.cache/custom_logs/startx
 end
 
