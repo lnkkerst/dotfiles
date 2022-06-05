@@ -126,6 +126,10 @@ lsp.lsp_installer = function()
 
     lspconfig.lemminx.setup({})
 
+    lspconfig.tailwindcss.setup({})
+
+    lspconfig.cssls.setup({})
+
     -- lsp_installer.on_server_ready(function(server)
     --     local opts = {
     --         capabilities = capabilities,

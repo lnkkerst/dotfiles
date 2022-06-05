@@ -28,8 +28,7 @@ return require("packer").startup(
             use { "shaunsingh/nord.nvim", config = ui.nord }
             use {
                 "nvim-lualine/lualine.nvim",
-                tag = "v2.*",
-                requires = { "kyazdani42/nvim-web-devicons" },
+                requires = { "kyazdani42/nvim-web-devicons", opt = true },
                 config = ui.lualine
             }
             use {
@@ -72,18 +71,18 @@ return require("packer").startup(
             use { "numToStr/Comment.nvim", config = editor.comment }
             use { "phaazon/hop.nvim", branch = "v1", config = editor.hop }
             use { "kevinhwang91/nvim-hlslens", config = editor.hlslens }
-            use { "karb94/neoscroll.nvim", config = editor.neoscroll }
+            -- use { "karb94/neoscroll.nvim", config = editor.neoscroll }
             -- use {"haringsrob/nvim_context_vt", config = editor.context_vt}
             -- use { "edluffy/specs.nvim", config = editor.specs }
             use { "Pocco81/AutoSave.nvim", config = editor.autosave }
             use { "mizlan/iswap.nvim", config = editor.iswap }
             use { "ethanholz/nvim-lastplace", config = editor.lastplace }
             use { "nacro90/numb.nvim", config = editor.numb }
-            use {
-                "anuvyklack/pretty-fold.nvim",
-                requires = { "anuvyklack/nvim-keymap-amend" },
-                config = editor.pretty_fold
-            }
+            -- use {
+            --     "anuvyklack/pretty-fold.nvim",
+            --     requires = { "anuvyklack/nvim-keymap-amend" },
+            --     config = editor.pretty_fold
+            -- }
             use {
                 "danymat/neogen",
                 requires = { "nvim-treesitter/nvim-treesitter" },

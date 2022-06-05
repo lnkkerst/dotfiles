@@ -38,7 +38,7 @@ nvim_cmp.cmp = function()
             sorting = {
                 priority_weight = 2,
                 comparators = {
-                    require("cmp_tabnine.compare"),
+                    -- require("cmp_tabnine.compare"),
                     compare.offset,
                     compare.exact,
                     compare.score,
@@ -138,7 +138,7 @@ nvim_cmp.cmp = function()
             ),
             sources = {
                 { name = "nvim_lsp" },
-                { name = "cmp_tabnine" },
+                -- { name = "cmp_tabnine" },
                 { name = "luasnip" },
                 { name = "buffer" },
                 { name = "path" },
@@ -146,6 +146,9 @@ nvim_cmp.cmp = function()
                 { name = "fish" },
                 { name = "cmdline" },
                 { name = "nvim_lsp_signature_help" },
+                { name = "nvim_lsp_document_symbol" },
+                { name = "spell" },
+                { name = "treesitter" }
             },
             sources_bak = cmp.config.sources(
                 {
