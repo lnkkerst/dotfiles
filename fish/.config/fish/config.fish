@@ -74,3 +74,8 @@ if not set -q DISPLAY; and test $XDG_VTNR = 1
     #exec startx &>$HOME/.cache/custom_logs/startx
 end
 
+
+# pnpm
+set -gx PNPM_HOME "/home/lnk/.local/share/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end
