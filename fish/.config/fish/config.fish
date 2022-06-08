@@ -12,18 +12,19 @@ end
 set -gx fish_greeting
 set -gx DISABLE_FZF_AUTO_COMPLETION true
 
-fish_add_path $HOME/.local/share/gem/ruby/3.0.0/bin
-fish_add_path $HOME/.local/bin 
-#fish_add_path $HOME/.yarn/bin
+fish_add_path -g $HOME/.gem/ruby/2.7.0/bin
+fish_add_path -g $HOME/.local/bin
+fish_add_path -g $HOME/.cargo/bin
 
 set -gx TERMINAL alacritty
 set -gx EDITOR nvim
 set -gx PAGER less
-set -U nvm_default_version v16.14.2
+set -gx nvm_default_version v16.14.2
 set -gx JAVA_HOME /usr/lib/jvm/java-18-jdk
 set -gx HASTE_SERVER https://pb.lnkkerst.me
+set -gx LOCALE_ARCHIVE $HOME/.nix-profile/lib/locale/locale-archive
 
-set -Ux FZF_DEFAULT_OPTS "--color=bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD --color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96 --color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD"
+set -gx FZF_DEFAULT_OPTS "--color=bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD --color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96 --color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD"
 
 # Alias
 alias gitu='git add . && git commit && git push'
@@ -34,7 +35,6 @@ alias la='ls -a'
 alias trm='/bin/rm'
 alias rm='trash-put'
 alias pc='proxychains'
-alias svim='sudo vim'
 alias ...='cd ..; cd .. '
 alias www='python -m http.server 8000' 
 alias ls='exa'
@@ -50,12 +50,16 @@ alias cpr='cp --reflink'
 alias fspb='curl -F "c=@-" "http://fars.ee/"'
 alias fspbu='curl -F "c=@-" "http://fars.ee/?u=1"'
 alias mv='mv -i'
-alias j='z'
-alias sudo='sudo -E'
+alias sudoe='sudo -E'
 alias xc='xclip -sel clipboard'
 alias x='startx'
 # thefuck --alias | source
-zoxide init fish | source
+
+#zoxide
+if type -f zoxide > /dev/null
+    zoxide init fish | source
+    alias j='z'
+end
 
 # Functions
 function mkcd
@@ -76,6 +80,8 @@ end
 
 
 # pnpm
-set -gx PNPM_HOME "/home/lnk/.local/share/pnpm"
-set -gx PATH "$PNPM_HOME" $PATH
+if type -f pnpm > /dev/null
+    set -gx PNPM_HOME "/home/lnk/.local/share/pnpm"
+    set -gx PATH "$PNPM_HOME" $PATH
+end
 # pnpm end

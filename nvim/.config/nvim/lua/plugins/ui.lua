@@ -291,7 +291,7 @@ ui.lualine = function()
             lualine_b = { "branch", "diff" },
             lualine_c = { { gps.get_location, cond = gps.is_available } },
             lualine_x = { { "diagnostics" } },
-            lualine_y = { { "filetype" }, { "encoding" }, { "fileformat" }, { require("fcitx5-ui").getCurrentIM } },
+            lualine_y = { { "filetype" }, { "encoding" }, { "fileformat" }},
             lualine_z = { "progress", "location" }
         },
         inactive_sections = {

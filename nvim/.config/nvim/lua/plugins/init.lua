@@ -224,11 +224,11 @@ return require("packer").startup(
                 requires = "nvim-lua/plenary.nvim",
                 config = utils.code_runner
             }
-            use {
-                "black-desk/fcitx5-ui.nvim",
-                rocks = { 'lgi', 'dbus_proxy' },
-                config = utils.fcitx_ui
-            }
+            -- use {
+            --     "black-desk/fcitx5-ui.nvim",
+            --     rocks = { 'lgi', 'dbus_proxy' },
+            --     config = utils.fcitx_ui
+            -- }
             -- use { "hkupty/nvimux", config = utils.nvimux }
             use { "aserowy/tmux.nvim", config = utils.tmux }
 

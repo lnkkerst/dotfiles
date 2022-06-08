@@ -1,92 +1,78 @@
-#!/bin/sh
+#!/bin/fish
 
-userresources=$HOME/.Xresources
-usermodmap=$HOME/.Xmodmap
-sysresources=/etc/X11/xinit/.Xresources
-sysmodmap=/etc/X11/xinit/.Xmodmap
-userxprofile=$HOME/.xprofile
+## general
 
-# merge in defaults and keymaps
+# merge catppuccin colors
+echo "*background: #1E1E2E
+*foreground: #D9E0EE
 
-if [ -f $sysresources ]; then
+! Gray
+*color0: #6E6C7E
+*color8: #988BA2
 
+! Red
+*color1: #F28FAD
+*color9: #F28FAD
 
+! Green
+*color2: #ABE9B3
+*color10: #ABE9B3
 
+! Yellow
+*color3: #FAE3B0
+*color11:  #FAE3B0
 
+! Blue
+*color4: #96CDFB
+*color12: #96CDFB
 
+! Maguve
+*color5: #DDB6F2
+*color13: #DDB6F2
 
+! Pink
+*color6: #F5C2E7
+*color14: #F5C2E7
 
-    xrdb -merge $sysresources
+! Whites
+*color7: #C3BAC6
+*color15: #D9E0EE
+" | xrdb -merge
 
-fi
+# env
+set -gx QT_QPA_PLATFORMTHEME qt5ct
+set -gx QT_SELECT 5
+set -gx GTK_THEME materia-catppuccin
+set -gx QT_AUTO_SCREEN_SCALE_FACTOR 1
 
-if [ -f $sysmodmap ]; then
-    xmodmap $sysmodmap
-fi
+set -gx GTK_IM_MODULE fcitx
+set -gx QT_IM_MODULE fcitx
+set -gx XMODIFIERS "@im=fcitx"
+set -gx INPUT_METHOD fcitx
+set -gx SDL_IM_MODULE fcitx
+set -gx GLFW_IM_MODULE ibus
 
-if [ -f "$userresources" ]; then
-
-
-
-
-
-
-
-    xrdb -merge "$userresources"
-
-fi
-
-if [ -f "$usermodmap" ]; then
-    xmodmap "$usermodmap"
-fi
-
-xrdb merge $HOME/.xinitrc.d/catppuccin.xres
-
-# start some nice programs
-
-if [ -d /etc/X11/xinit/xinitrc.d ] ; then
- for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-  [ -x "$f" ] && . "$f"
- done
- unset f
-fi
-
-#twm &
-#xclock -geometry 50x50-1+1 &
-#xterm -geometry 80x50+494+51 &
-#xterm -geometry 80x20+494-0 &
-#exec xterm -geometry 80x66+0+0 -name login
-
-#if [ -f $userxprofile ]; then
-#    source $userxprofile
-#fi
-
-export QT_QPA_PLATFORMTHEME=qt5ct
-export QT_SELECT=5
-export GTK_THEME=materia-catppuccin
-
-export QT_AUTO_SCREEN_SCALE_FACTOR=1
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-export INPUT_METHOD=fcitx
-export SDL_IM_MODULE=fcitx
-export GLFW_IM_MODULE=ibus
-#export QT_DEVICE_PIXEL_RATIO=1
-
-#export GDK_SCALE=2
-#export GDK_DPI_SCALE=0.5
-
+# auto start
 numlockx on
-#setxkbmap -option 'caps:swapescape'
-#xrandr --dpi 192
 
-xrandr --listmonitors | grep DisplayPort
 
-if [ $? = "0" ]; then
-    source ~/.xinitrc.d/extend.sh
+## multi display support
+
+set -gx MONITOR_AMOUNT (xrandr --listmonitors | string match -rg "^Monitors: (.*)")
+
+if test $MONITOR_AMOUNT = 1
+    echo "Xft.dpi: 192" | xrdb -merge
+    set -gx GDK_SCALE 2
+    set -gx GDK_DPI_SCALE 0.5
+    set -gx ROFI_DPI 192
+    set -gx XCURSOR_SIZE 48
+    set -gx TELEGRAM_SCALE 2
+    xrandr --output HDMI-A-0 --off --output eDP --primary --mode 2560x1600 --pos 0x0 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --off
 else
-    source ~/.xinitrc.d/single.sh
-fi
+    set -gx ROFI_DPI 96
+    set -gx TELEGRAM_SCALE 1
+    xrandr --output HDMI-A-0 --off --output eDP --mode 1440x900 --pos 0x540 --rotate normal --output DisplayPort-0 --primary --mode 2560x1440 --rate 120 --pos 1440x0 --rotate normal --output DisplayPort-1 --off
+end
 
-exec bspwm
+# start wm
+exec dbus-run-session bspwm

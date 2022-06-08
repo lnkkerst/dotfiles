@@ -55,11 +55,6 @@ lsp.lspsaga = function()
     }
 end
 
-require("lsp-format").setup({
-    cpp = { tab_width = 4 },
-    c = { tab_width = 4 }
-})
-
 lsp.lsp_installer = function()
     local lsp_installer = require("nvim-lsp-installer")
     local lspconfig = require("lspconfig")

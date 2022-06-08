@@ -2,16 +2,18 @@
 
 set apps "xsettingsd
 fcitx5
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+/usr/libexec/polkit-gnome-authentication-agent-1
 nitrogen --restore; sleep 1; picom -b
 nm-applet
-clipit
+parcellite
 blueman-applet
 xidlehook --not-when-audio --not-when-fullscreen --timer 600 "$HOME/.config/bspwm/scripts/i3lock-color.sh"
 xss-lock $HOME/.config/bspwm/scripts/i3lock-color.sh
 libinput-gestures
 $HOME/.config/polybar/launch.fish
 picom -b
+mpd
+aria2c --enable-rpc
 sh $HOME/.config/bspwm/scripts/bspswallow"
 #/opt/clash-for-windows-chinese/cfw"
 
