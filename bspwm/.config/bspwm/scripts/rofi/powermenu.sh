@@ -17,18 +17,18 @@ case $chosen in
         sh ~/.config/bspwm/scripts/i3lock-color.sh
 	      ;;    
     $shutdown)
-        systemctl poweroff
+        sudo poweroff
         ;;
     $reboot)
-        systemctl reboot
+        sudo reboot
         ;;
     $suspend)
 	      mpc -q pause
 	      amixer set Master mute
-	      systemctl suspend
+	      loginctl suspend
         ;;
     $logout)
-        loginctl terminate-session ${XDG_SESSION_ID-}	
+        bspc quit
 	;;
 esac
 

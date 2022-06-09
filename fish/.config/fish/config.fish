@@ -53,6 +53,10 @@ alias mv='mv -i'
 alias sudoe='sudo -E'
 alias xc='xclip -sel clipboard'
 alias x='startx'
+alias reboot='sudo reboot'
+alias poweroff='sudo poweroff'
+alias halt='sudo halt'
+alias shutdown='sudo shutdown'
 # thefuck --alias | source
 
 #zoxide

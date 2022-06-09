@@ -43,7 +43,7 @@ echo "*background: #1E1E2E
 set -gx QT_QPA_PLATFORMTHEME qt5ct
 set -gx QT_SELECT 5
 set -gx GTK_THEME materia-catppuccin
-set -gx QT_AUTO_SCREEN_SCALE_FACTOR 1
+#set -gx QT_AUTO_SCREEN_SCALE_FACTOR 1
 
 set -gx GTK_IM_MODULE fcitx
 set -gx QT_IM_MODULE fcitx
@@ -51,6 +51,10 @@ set -gx XMODIFIERS "@im=fcitx"
 set -gx INPUT_METHOD fcitx
 set -gx SDL_IM_MODULE fcitx
 set -gx GLFW_IM_MODULE ibus
+
+set -gx XDG_DATA_DIRS $XDG_DATA_DIRS:/var/lib/flatpak/exports/share
+
+set -gx LANG en_US.UTF-8
 
 # auto start
 numlockx on
