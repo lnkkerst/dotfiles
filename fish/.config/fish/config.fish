@@ -1,12 +1,5 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    # if not set -q TMUX
-    #     if test $DOUBLE_MONITOR = 1
-    #         tmux attach || tmuxinator lnk
-    #     else
-    #         tmux attach || tmux
-    #     end
-    # end
 end
 
 set -gx fish_greeting
@@ -16,7 +9,7 @@ fish_add_path -g $HOME/.gem/ruby/2.7.0/bin
 fish_add_path -g $HOME/.local/bin
 fish_add_path -g $HOME/.cargo/bin
 
-set -gx TERMINAL alacritty
+set -gx TERMINAL kitty
 set -gx EDITOR nvim
 set -gx PAGER less
 set -gx nvm_default_version v16.14.2
@@ -89,3 +82,6 @@ if type -f pnpm > /dev/null
     set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+fnm env --use-on-cd --shell fish | source
+fnm completions --shell fish | source 
+

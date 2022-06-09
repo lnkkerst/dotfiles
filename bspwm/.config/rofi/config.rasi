@@ -4,7 +4,7 @@ configuration{
     font: "JetBrainsMono Nerd Font 14";
     show-icons: true;
     icon-theme: "Papirus-Dark";
-    terminal: "st";
+    terminal: "kitty";
     drun-display-format: "{icon} {name}";
     location: 0;
     disable-history: false;
@@ -24,7 +24,8 @@ element-text, element-icon , mode-switcher {
 }
 
 window {
-    height: 360px;
+    height: 720px;
+    width: 1080px;
     border: 3px;
     border-color: @border-col;
     background-color: @bg-col;
@@ -76,7 +77,7 @@ element {
 }
 
 element-icon {
-    size: 25px;
+    size: 32px;
 }
 
 element selected {

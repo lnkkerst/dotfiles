@@ -1,5 +1,7 @@
 #!/bin/fish
 
+# vim:ft=fish
+
 ## general
 
 # merge catppuccin colors

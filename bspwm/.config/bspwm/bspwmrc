@@ -1,6 +1,6 @@
 #! /bin/env fish
 
-# vim ft=fish
+# vim:ft=fish
 
 set SCRIPTS_DIR $HOME/.config/bspwm/scripts
 xsetroot -cursor_name left_ptr
@@ -63,6 +63,7 @@ bspc rule -a "qq.exe" state=floating border=off
 bspc rule -a "wechat.exe" state=floating border=off
 bspc rule -a "tim.exe" state=floating border=off
 bspc rule -a "Xfce4-appfinder" state=floating
+bspc rule -a "wechat-devtools" state=floating
 
 # Autostart
 fish $SCRIPTS_DIR/autostart.fish
