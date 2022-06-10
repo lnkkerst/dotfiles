@@ -5,10 +5,6 @@ end
 set -gx fish_greeting
 set -gx DISABLE_FZF_AUTO_COMPLETION true
 
-fish_add_path -g $HOME/.gem/ruby/2.7.0/bin
-fish_add_path -g $HOME/.local/bin
-fish_add_path -g $HOME/.cargo/bin
-
 set -gx TERMINAL kitty
 set -gx EDITOR nvim
 set -gx PAGER less
@@ -37,7 +33,7 @@ alias py='python'
 alias :q='exit'
 alias :wq='exit'
 alias rcd='ranger-cd'
-alias nv='neovide --nofork --multigrid'
+alias nv='neovide --nofork'
 alias cp='cp -i'
 alias cpr='cp --reflink'
 alias fspb='curl -F "c=@-" "http://fars.ee/"'
@@ -50,38 +46,8 @@ alias reboot='sudo reboot'
 alias poweroff='sudo poweroff'
 alias halt='sudo halt'
 alias shutdown='sudo shutdown'
-# thefuck --alias | source
-
-#zoxide
-if type -f zoxide > /dev/null
-    zoxide init fish | source
-    alias j='z'
-end
-
 # Functions
 function mkcd
     mkdir -p $argv[1] && cd $argv[1]
 end
-
-function sw
-    set swid (bspc query -N -n)
-    bspc node $swid --flag hidden=on
-    $argv
-    bspc node $swid --flag hidden=off
-end
-
-
-if not set -q DISPLAY; and test $XDG_VTNR = 1
-    #exec startx &>$HOME/.cache/custom_logs/startx
-end
-
-
-# pnpm
-if type -f pnpm > /dev/null
-    set -gx PNPM_HOME "/home/lnk/.local/share/pnpm"
-    set -gx PATH "$PNPM_HOME" $PATH
-end
-# pnpm end
-fnm env --use-on-cd --shell fish | source
-fnm completions --shell fish | source 
 
