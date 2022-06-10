@@ -81,4 +81,5 @@ else
 end
 
 # start wm
+set -gx DESKTOP_SESSION bspwm
 exec dbus-run-session bspwm
