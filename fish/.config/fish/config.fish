@@ -42,10 +42,7 @@ alias mv='mv -i'
 alias sudoe='sudo -E'
 alias xc='xclip -sel clipboard'
 alias x='startx'
-alias reboot='sudo reboot'
-alias poweroff='sudo poweroff'
-alias halt='sudo halt'
-alias shutdown='sudo shutdown'
+alias t="tmux || tmux attach"
 # Functions
 function mkcd
     mkdir -p $argv[1] && cd $argv[1]
