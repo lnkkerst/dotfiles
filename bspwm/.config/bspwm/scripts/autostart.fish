@@ -15,11 +15,10 @@ picom -b
 mpd
 aria2c --enable-rpc
 sh $HOME/.config/bspwm/scripts/bspswallow"
-#/opt/clash-for-windows-chinese/cfw"
 
 for app in (string split \n $apps)
     if test (ps -ef | grep "$app" | grep -v grep | wc -l) = 0
-       fish -c "$app" &
+       sh -c "$app" &
     end
 end
 

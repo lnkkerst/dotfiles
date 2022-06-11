@@ -13,22 +13,21 @@ options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
 
 chosen="$(echo -e "$options" | $rofi_command -dmenu -selected-row 2)"
 case $chosen in
-    $lock)
-        sh ~/.config/bspwm/scripts/i3lock-color.sh
-	      ;;    
-    $shutdown)
-        sudo poweroff
-        ;;
-    $reboot)
-        sudo reboot
-        ;;
-    $suspend)
-	      mpc -q pause
-	      amixer set Master mute
-	      loginctl suspend
-        ;;
-    $logout)
-        bspc quit
-	;;
+$lock)
+    sh ~/.config/bspwm/scripts/i3lock-color.sh
+    ;;
+$shutdown)
+    poweroff
+    ;;
+$reboot)
+    reboot
+    ;;
+$suspend)
+    mpc -q pause
+    amixer set Master mute
+    loginctl suspend
+    ;;
+$logout)
+    bspc quit
+    ;;
 esac
-
