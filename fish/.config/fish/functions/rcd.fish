@@ -1,7 +1,7 @@
-function ranger-cd
+function rcd
     set dir (mktemp -t ranger_cd.XXX)
     ranger --choosedir=$dir
     cd (cat $dir) $argv
-    rm $dir
+    /bin/rm $dir
     commandline -f repaint
 end

@@ -32,7 +32,6 @@ alias dstat='dstat -cdlmnpsy'
 alias py='python'
 alias :q='exit'
 alias :wq='exit'
-alias rcd='ranger-cd'
 alias nv='neovide --nofork'
 alias cp='cp -i'
 alias cpr='cp --reflink'
@@ -42,7 +41,8 @@ alias mv='mv -i'
 alias sudoe='sudo -E'
 alias xc='xclip -sel clipboard'
 alias x='startx'
-alias t="tmux || tmux attach"
+alias t="tmux attach || tmux"
+
 # Functions
 function mkcd
     mkdir -p $argv[1] && cd $argv[1]

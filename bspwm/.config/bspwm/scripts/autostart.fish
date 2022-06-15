@@ -7,7 +7,7 @@ nitrogen --restore; sleep 1; picom -b
 nm-applet
 parcellite
 blueman-applet
-xidlehook --not-when-audio --not-when-fullscreen --timer 600 "$HOME/.config/bspwm/scripts/i3lock-color.sh"
+xidlehook --not-when-audio --not-when-fullscreen --timer 1200 "$HOME/.config/bspwm/scripts/i3lock-color.sh"
 xss-lock $HOME/.config/bspwm/scripts/i3lock-color.sh
 libinput-gestures
 $HOME/.config/polybar/launch.fish

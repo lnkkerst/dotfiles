@@ -90,7 +90,8 @@ return require("packer").startup(
             }
             -- use { "abecodes/tabout.nvim", config = editor.tabout }
             -- use { "max397574/better-escape.nvim", config = editor.better_escape }
-
+            use { 'norcalli/nvim-colorizer.lua', config = editor.colorizer }
+            --
             local lsp = require("plugins.lsp")
             use { "neovim/nvim-lspconfig", config = lsp.lspconfig }
             use { "tami5/lspsaga.nvim", config = lsp.lspsaga }
@@ -196,7 +197,7 @@ return require("packer").startup(
             use { "stevearc/aerial.nvim", config = utils.aerial }
             use { "ellisonleao/glow.nvim", branch = "main", config = utils.glow }
             use { "folke/which-key.nvim", config = utils.which_key }
-            use { "iamcco/markdown-preview.nvim", run = "cd app && yarn install" }
+            use { "iamcco/markdown-preview.nvim", run = "cd app && pnpm install" }
             use { "jghauser/mkdir.nvim" }
             use { "rcarriga/nvim-notify", config = utils.notify }
             use { "is0n/jaq-nvim", config = utils.jaq }
@@ -231,6 +232,10 @@ return require("packer").startup(
             -- }
             -- use { "hkupty/nvimux", config = utils.nvimux }
             use { "aserowy/tmux.nvim", config = utils.tmux }
+            use {
+                'glacambre/firenvim',
+                run = function() vim.fn['firenvim#install'](0) end
+            }
 
             local dap = require("plugins.dap")
             use { "mfussenegger/nvim-dap", config = dap.dap }

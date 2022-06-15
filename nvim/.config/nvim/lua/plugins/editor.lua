@@ -178,4 +178,8 @@ editor.better_escape = function()
     })
 end
 
+editor.colorizer = function()
+    require("colorizer").setup({})
+end
+
 return editor
