@@ -42,10 +42,15 @@ return require("packer").startup(
                 config = ui.bufferline
             }
             use { "lukas-reineke/indent-blankline.nvim", config = ui.indent_blankline }
+            -- use {
+            --     "glepnir/dashboard-nvim",
+            --     requires = { "nvim-telescope/telescope.nvim" },
+            --     config = ui.dashboard
+            -- }
             use {
-                "glepnir/dashboard-nvim",
-                requires = { "nvim-telescope/telescope.nvim" },
-                config = ui.dashboard
+                'goolord/alpha-nvim',
+                requires = { 'kyazdani42/nvim-web-devicons' },
+                config = ui.alpha
             }
             use {
                 "kyazdani42/nvim-tree.lua",
@@ -98,10 +103,20 @@ return require("packer").startup(
             use { "williamboman/nvim-lsp-installer", config = lsp.lsp_installer }
             use { "j-hui/fidget.nvim", config = lsp.fidget }
             use { "folke/lsp-colors.nvim", config = lsp.lsp_colors }
-            use { "lukas-reineke/lsp-format.nvim", config = lsp.format }
+            -- use { "lukas-reineke/lsp-format.nvim", config = lsp.format }
             use { "b0o/schemastore.nvim" }
             use { "simrat39/symbols-outline.nvim", config = lsp.symbols_outline }
             use { "jubnzv/virtual-types.nvim", config = lsp.virtual_types }
+            use { "p00f/clangd_extensions.nvim" }
+            use { "folke/lua-dev.nvim" }
+            use {
+                'junnplus/nvim-lsp-setup',
+                requires = {
+                    'neovim/nvim-lspconfig',
+                    'williamboman/nvim-lsp-installer',
+                },
+                config = lsp.lsp_setup
+            }
 
             local cmp = require("plugins.cmp")
             use { "hrsh7th/nvim-cmp", config = cmp.cmp }
@@ -178,17 +193,21 @@ return require("packer").startup(
                 requires = { "nvim-treesitter/nvim-treesitter" }
             }
             use {
-                "windwp/nvim-ts-autotag",
-                requires = { "nvim-treesitter/nvim-treesitter" },
-                config = ts.autotag
-            }
-            use {
                 "p00f/nvim-ts-rainbow",
                 requires = { "nvim-treesitter/nvim-treesitter" }
             }
             use {
                 "JoosepAlviste/nvim-ts-context-commentstring",
                 requires = { "nvim-treesitter/nvim-treesitter" }
+            }
+            use {
+                'nvim-treesitter/nvim-treesitter-context',
+                requires = { "nvim-treesitter/nvim-treesitter" },
+                config = ts.context
+            }
+            use {
+                "windwp/nvim-ts-autotag",
+                requires = { "nvim-treesitter/nvim-treesitter" },
             }
 
             local utils = require("plugins.utils")

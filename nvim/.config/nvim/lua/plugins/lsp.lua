@@ -55,174 +55,91 @@ lsp.lspsaga = function()
     }
 end
 
-lsp.lsp_installer = function()
-    local lsp_installer = require("nvim-lsp-installer")
-    local lspconfig = require("lspconfig")
-
-    lsp_installer.settings({
-        ui = {
-            icons = {
-                server_installed = "✓",
-                server_pending = "➜",
-                server_uninstalled = "✗"
-            }
-        }
-    })
-    lsp_installer.setup({})
-
-    local function global_attach(client)
-        require("aerial").on_attach(client)
-        require("lsp-format").on_attach(client)
-    end
-
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-
-    lspconfig.util.default_config = vim.tbl_extend(
-        "force",
-        lspconfig.util.default_config,
-        {
-            capabilities = capabilities,
-            flags = { debounce_text_changes = 500 },
-            on_attach = global_attach
-        }
-    )
-
-    lspconfig.sumneko_lua.setup({
-        on_attach = function(client)
-            global_attach(client)
-        end
-    })
-
-    lspconfig.jsonls.setup({
-        on_attach = function(client)
-            global_attach(client)
-        end,
-        settings = {
-            json = {
-                schemas = require("schemastore").json.schemas()
-            }
-        }
-    })
-
-    lspconfig.clangd.setup({})
-
-    lspconfig.texlab.setup({})
-
-    lspconfig.volar.setup({})
-
-    -- lspconfig.jdtls.setup({})
-
-    -- lspconfig.eslint.setup({})
-
-    lspconfig.tsserver.setup({})
-
-    lspconfig.pyright.setup({})
-
-    lspconfig.lemminx.setup({})
-
-    lspconfig.tailwindcss.setup({})
-
-    lspconfig.cssls.setup({})
-
-    -- lsp_installer.on_server_ready(function(server)
-    --     local opts = {
-    --         capabilities = capabilities,
-    --         flags = { debounce_text_changes = 500 },
-    --         on_attach = function(client)
-    --             if server.name == "ocamllsp" then
-    --                 require("virtualtypes").on_attach(client)
-    --             end
-    --             global_attach(client)
-    --         end
-    --     }
-    --
-    --     if server.name == "jsonls" then
-    --         opts.settings = {
-    --             json = {
-    --                 schemas = require('schemastore').json.schemas(),
-    --             }
-    --         }
-    --     end
-    --     server:setup(opts)
-    -- end)
-end
-
-lsp.lsputils = function()
-    if vim.fn.has('nvim-0.5.1') == 1 then
-        vim.lsp.handlers['textDocument/codeAction'] = require 'lsputil.codeAction'.code_action_handler
-        vim.lsp.handlers['textDocument/references'] = require 'lsputil.locations'.references_handler
-        vim.lsp.handlers['textDocument/definition'] = require 'lsputil.locations'.definition_handler
-        vim.lsp.handlers['textDocument/declaration'] = require 'lsputil.locations'.declaration_handler
-        vim.lsp.handlers['textDocument/typeDefinition'] = require 'lsputil.locations'.typeDefinition_handler
-        vim.lsp.handlers['textDocument/implementation'] = require 'lsputil.locations'.implementation_handler
-        vim.lsp.handlers['textDocument/documentSymbol'] = require 'lsputil.symbols'.document_handler
-        vim.lsp.handlers['workspace/symbol'] = require 'lsputil.symbols'.workspace_handler
-    else
-        local bufnr = vim.api.nvim_buf_get_number(0)
-
-        vim.lsp.handlers['textDocument/codeAction'] = function(_, _, actions)
-            require('lsputil.codeAction').code_action_handler(nil, actions,
-                nil, nil, nil)
-        end
-
-        vim.lsp.handlers['textDocument/references'] = function(_, _, result)
-            require('lsputil.locations').references_handler(nil, result, {
-                bufnr = bufnr
-            }, nil)
-        end
-
-        vim.lsp.handlers['textDocument/definition'] = function(_, method, result)
-            require('lsputil.locations').definition_handler(nil, result, {
-                bufnr = bufnr,
-                method = method
-            }, nil)
-        end
-
-        vim.lsp.handlers['textDocument/declaration'] = function(_, method,
-                                                                result)
-            require('lsputil.locations').declaration_handler(nil, result, {
-                bufnr = bufnr,
-                method = method
-            }, nil)
-        end
-
-        vim.lsp.handlers['textDocument/typeDefinition'] = function(_, method,
-                                                                   result)
-            require('lsputil.locations').typeDefinition_handler(nil, result, {
-                bufnr = bufnr,
-                method = method
-            }, nil)
-        end
-
-        vim.lsp.handlers['textDocument/implementation'] = function(_, method,
-                                                                   result)
-            require('lsputil.locations').implementation_handler(nil, result, {
-                bufnr = bufnr,
-                method = method
-            }, nil)
-        end
-
-        vim.lsp.handlers['textDocument/documentSymbol'] = function(_, _, result, _, bufn)
-            require('lsputil.symbols').document_handler(nil, result,
-                { bufnr = bufn }, nil)
-        end
-
-        vim.lsp.handlers['textDocument/symbol'] = function(_, _, result, _, bufn)
-            require('lsputil.symbols').workspace_handler(nil, result,
-                { bufnr = bufn }, nil)
-        end
-    end
-end
-
-lsp.format = function() require("lsp-format").setup {} end
-
-lsp.lsp_progress = function()
-
+lsp.lsp_installer = function ()
 end
 
 lsp.lsp_setup = function()
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+    require('nvim-lsp-setup').setup({
+        -- nvim-lsp-installer
+        -- https://github.com/williamboman/nvim-lsp-installer#configuration
+        installer = {},
+        -- Default mappings
+        -- gD = 'lua vim.lsp.buf.declaration()',
+        -- gd = 'lua vim.lsp.buf.definition()',
+        -- gt = 'lua vim.lsp.buf.type_definition()',
+        -- gi = 'lua vim.lsp.buf.implementation()',
+        -- gr = 'lua vim.lsp.buf.references()',
+        -- K = 'lua vim.lsp.buf.hover()',
+        -- ['<C-k>'] = 'lua vim.lsp.buf.signature_help()',
+        -- ['<space>rn'] = 'lua vim.lsp.buf.rename()',
+        -- ['<space>ca'] = 'lua vim.lsp.buf.code_action()',
+        -- ['<space>f'] = 'lua vim.lsp.buf.formatting()',
+        -- ['<space>e'] = 'lua vim.diagnostic.open_float()',
+        -- ['[d'] = 'lua vim.diagnostic.goto_prev()',
+        -- [']d'] = 'lua vim.diagnostic.goto_next()',
+        default_mappings = false,
+        -- Custom mappings, will overwrite the default mappings for the same key
+        -- Example mappings for telescope pickers:
+        -- gd = 'lua require"telescope.builtin".lsp_definitions()',
+        -- gi = 'lua require"telescope.builtin".lsp_implementations()',
+        -- gr = 'lua require"telescope.builtin".lsp_references()',
+        mappings = {},
+        -- Global on_attach
+        on_attach = function(client, bufnr)
+            require("aerial").on_attach(client)
+            require('nvim-lsp-setup.utils').format_on_save(client)
+        end,
+        -- Global capabilities
+        capabilities = capabilities,
+        -- Configuration of LSP servers
+        servers = {
+            -- Install LSP servers automatically
+            -- LSP server configuration please see: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+            -- pylsp = {},
+            -- rust_analyzer = {
+            --     settings = {
+            --         ['rust-analyzer'] = {
+            --             cargo = {
+            --                 loadOutDirsFromCheck = true,
+            --             },
+            --             procMacro = {
+            --                 enable = true,
+            --             },
+            --         },
+            --     },
+            -- },
+            sumneko_lua = require('lua-dev').setup({
+                lspconfig = {
+                    on_attach = function(client, _)
+                        -- Avoiding LSP formatting conflicts.
+                        -- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
+                        require('nvim-lsp-setup.utils').disable_formatting(client)
+                    end,
+                },
+            }),
+            jsonls = {
+                settings = {
+                    json = {
+                        schemas = require("schemastore").json.schemas()
+                    }
+                }
+            },
+            texlab = {},
+            volar = {},
+            html = {},
+            lemminx = {},
+            tailwindcss = {},
+            cssls = {},
+            clangd = require('nvim-lsp-setup.clangd_extensions').setup({}),
+            tsserver = {},
+            pyright = {}
+        },
+    })
+end
 
+lsp.lsp_progress = function()
 end
 
 lsp.lsp_colors = function()

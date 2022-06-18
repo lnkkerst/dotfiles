@@ -1,5 +1,9 @@
 local ui = {}
 
+ui.alpha = function()
+    require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
+end
+
 ui.dashboard = function()
     local home = os.getenv('HOME')
     local db = require('dashboard')
