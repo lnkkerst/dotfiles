@@ -58,12 +58,7 @@ set -gx XDG_DATA_DIRS $XDG_DATA_DIRS:/var/lib/flatpak/exports/share
 
 set -gx LANG en_US.UTF-8
 
-# auto start
-numlockx on
-
-
 ## multi display support
-
 set -gx MONITOR_AMOUNT (xrandr --listmonitors | string match -rg "^Monitors: (.*)")
 
 if test $MONITOR_AMOUNT = 1
@@ -80,6 +75,9 @@ else
     xrandr --output HDMI-A-0 --off --output eDP --mode 1440x900 --pos 0x540 --rotate normal --output DisplayPort-0 --primary --mode 2560x1440 --rate 120 --pos 1440x0 --rotate normal --output DisplayPort-1 --off
 end
 
+# autostart
+setxkbmap -option "caps:swapescape"
+
 # start wm
 set -gx DESKTOP_SESSION bspwm
-exec dbus-run-session bspwm
+exec dbus-launch --sh-syntax --exit-with-session --autolaunch=$(cat /var/lib/dbus/machine-id) bspwm
