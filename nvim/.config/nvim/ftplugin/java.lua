@@ -1,3 +1,4 @@
+do return end
 local vim = vim
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local jdtls_dir = "/home/lnk/.local/opt/jdt-language-server-1.9.0-202203031534"
