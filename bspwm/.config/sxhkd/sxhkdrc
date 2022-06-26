@@ -24,13 +24,9 @@ super + Escape
 
 # Screenshot
 Print
-	scrot -e 'mv $f $$(xdg-user-dir PICTURES)/scrot && notify-send "Screenshot has saved to $f."'
+    PIC_FILE=$(date +"$HOME/Pictures/maim/%Y-%m-%d-%H%M%S-%s.png") && maim $PIC_FILE && notify-send "Screenshot has saved to $PIC_FILE"
 shift + Print
-	scrot -s -e 'mv $f $$(xdg-user-dir PICTURES)/scrot && notify-send "Screenshot has saved to $$(xdg-user-dir PICTURES)/scrot/$f."'
-super + shift + Print 
-	scrot -d 3 -e 'mv $f $$(xdg-user-dir PICTURES)/scrot && notify-send "Screenshot has saved to $f."'
-ctrl + Print
-    scrot -s -e 'mv $f $$(xdg-user-dir PICTURES)/scrot &&  xclip -sel clip -t image/png $$(xdg-user-dir PICTURES)/scrot/$f && notify-send "Screenshot has send to clipboard."'
+    PIC_FILE=$(date +"$HOME/Pictures/maim/%Y-%m-%d-%H%M%S-%s.png") && maim -s $PIC_FILE && xclip -selection clipboard -t image/png $PIC_FILE && notify-send "Screenshot has sent to clipboard"
 
 super + 0
     bash $HOME/.config/bspwm/scripts/rofi/powermenu.sh
