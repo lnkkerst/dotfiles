@@ -25,7 +25,7 @@ alias trm='/bin/rm'
 alias rm='trash-put'
 alias pc='proxychains'
 alias ...='cd ..; cd .. '
-alias www='python -m http.server 8000' 
+alias www='darkhttpd .'
 alias ls='exa'
 alias lsi='exa --icons --color=auto'
 alias dstat='dstat -cdlmnpsy'
@@ -42,6 +42,7 @@ alias sudoe='sudo -E'
 alias xc='xclip -sel clipboard'
 alias x='startx'
 alias t="tmux attach || tmux"
+alias rs='rsync -P'
 
 # Functions
 function mkcd
