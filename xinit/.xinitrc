@@ -76,7 +76,7 @@ else
 end
 
 # autostart
-setxkbmap -option "caps:swapescape"
+#setxkbmap -option "caps:swapescape"
 
 # start wm
 set -gx DESKTOP_SESSION bspwm
