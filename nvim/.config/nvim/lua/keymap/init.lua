@@ -209,19 +209,3 @@ local window_focus = {
 wk.register(window_focus, { mode = "n" })
 wk.register(window_focus, { mode = "i" })
 
-local fcitx_config = function()
-	local key_opts = {
-		buffer = nil, -- Global mappings.
-		silent = true,
-		noremap = true,
-	}
-
-	wk.register({
-		["<M-i>"] = { "<cmd>lua require'fcitx5-ui'.toggle()<cr>", "fcitx5", mode = "n" },
-	}, key_opts)
-
-	wk.register({
-		["<M-i>"] = { "<cmd>lua require'fcitx5-ui'.toggle()<cr>", "fcitx5", mode = "i" },
-	}, key_opts)
-end
-fcitx_config()
