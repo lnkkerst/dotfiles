@@ -313,7 +313,7 @@ end
 utils.bqf = function()
 	require("bqf").setup({
 		preview = {
-			border_chars = { '│"', "│", "─", "─", "┌", "┐", "└", "┘", "█" },
+			border_chars = { "│", "│", "─", "─", "┌", "┐", "└", "┘", "█" },
 		},
 	})
 end

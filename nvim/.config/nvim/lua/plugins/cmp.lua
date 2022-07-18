@@ -1,23 +1,26 @@
 local nvim_cmp = {}
 
 nvim_cmp.cmp = function()
-	vim.cmd([[highlight CmpItemAbbrDeprecated guifg=#D8DEE9 guibg=NONE gui=strikethrough]])
-	vim.cmd([[highlight CmpItemKindSnippet guifg=#BF616A guibg=NONE]])
-	vim.cmd([[highlight CmpItemKindUnit guifg=#D08770 guibg=NONE]])
-	vim.cmd([[highlight CmpItemKindProperty guifg=#A3BE8C guibg=NONE]])
-	vim.cmd([[highlight CmpItemKindKeyword guifg=#EBCB8B guibg=NONE]])
-	vim.cmd([[highlight CmpItemAbbrMatch guifg=#5E81AC guibg=NONE]])
-	vim.cmd([[highlight CmpItemAbbrMatchFuzzy guifg=#5E81AC guibg=NONE]])
-	vim.cmd([[highlight CmpItemKindVariable guifg=#8FBCBB guibg=NONE]])
-	vim.cmd([[highlight CmpItemKindInterface guifg=#88C0D0 guibg=NONE]])
-	vim.cmd([[highlight CmpItemKindText guifg=#81A1C1 guibg=NONE]])
-	vim.cmd([[highlight CmpItemKindFunction guifg=#B48EAD guibg=NONE]])
-	vim.cmd([[highlight CmpItemKindMethod guifg=#B48EAD guibg=NONE]])
-
-	-- vim.opt.completeopt = "menu,menuone,noselect"
+	-- vim.cmd([[highlight CmpItemAbbrDeprecated guifg=#D8DEE9 guibg=NONE gui=strikethrough]])
+	-- vim.cmd([[highlight CmpItemKindSnippet guifg=#BF616A guibg=NONE]])
+	-- vim.cmd([[highlight CmpItemKindUnit guifg=#D08770 guibg=NONE]])
+	-- vim.cmd([[highlight CmpItemKindProperty guifg=#A3BE8C guibg=NONE]])
+	-- vim.cmd([[highlight CmpItemKindKeyword guifg=#EBCB8B guibg=NONE]])
+	-- vim.cmd([[highlight CmpItemAbbrMatch guifg=#5E81AC guibg=NONE]])
+	-- vim.cmd([[highlight CmpItemAbbrMatchFuzzy guifg=#5E81AC guibg=NONE]])
+	-- vim.cmd([[highlight CmpItemKindVariable guifg=#8FBCBB guibg=NONE]])
+	-- vim.cmd([[highlight CmpItemKindInterface guifg=#88C0D0 guibg=NONE]])
+	-- vim.cmd([[highlight CmpItemKindText guifg=#81A1C1 guibg=NONE]])
+	-- vim.cmd([[highlight CmpItemKindFunction guifg=#B48EAD guibg=NONE]])
+	-- vim.cmd([[highlight CmpItemKindMethod guifg=#B48EAD guibg=NONE]])
 
 	local cmp = require("cmp")
 	local luasnip = require("luasnip")
+
+	local has_words_before = function()
+		local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+		return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+	end
 
 	local source_mapping = {
 		cmp_tabnine = "[TN]",
@@ -34,6 +37,9 @@ nvim_cmp.cmp = function()
 	local compare = require("cmp.config.compare")
 
 	cmp.setup({
+		view = {
+			entries = { name = "custom", selection_order = "near_cursor" },
+		},
 		sorting = {
 			priority_weight = 2,
 			comparators = {
@@ -94,17 +100,22 @@ nvim_cmp.cmp = function()
 				-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
 			end,
 		},
-		window = {},
+		window = {
+			completion = cmp.config.window.bordered({
+				border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+			}),
+			documentation = cmp.config.window.bordered(),
+		},
 		mapping = cmp.mapping.preset.insert({
 			["<C-b>"] = cmp.mapping.scroll_docs(-4),
 			["<C-f>"] = cmp.mapping.scroll_docs(4),
 			-- ['<C-A-Space>'] = cmp.mapping.complete(),
 			["<C-e>"] = cmp.mapping.abort(),
 			["<CR>"] = cmp.mapping.confirm({
-				behavior = cmp.ConfirmBehavior.Replace,
+				-- behavior = cmp.ConfirmBehavior.Replace,
 				select = true,
 			}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-			["<Tab>"] = cmp.mapping(function(fallback)
+			--[[ ["<Tab>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_next_item()
 				elseif luasnip.expand_or_jumpable() then
@@ -121,11 +132,31 @@ nvim_cmp.cmp = function()
 				else
 					fallback()
 				end
+			end, { "i", "s" }), ]]
+			["<Tab>"] = cmp.mapping(function(fallback)
+				if cmp.visible() then
+					cmp.select_next_item()
+				elseif luasnip.expand_or_jumpable() then
+					luasnip.expand_or_jump()
+				elseif has_words_before() then
+					cmp.complete()
+				else
+					fallback()
+				end
+			end, { "i", "s" }),
+
+			["<S-Tab>"] = cmp.mapping(function(fallback)
+				if cmp.visible() then
+					cmp.select_prev_item()
+				elseif luasnip.jumpable(-1) then
+					luasnip.jump(-1)
+				else
+					fallback()
+				end
 			end, { "i", "s" }),
 		}),
 		sources = {
 			{ name = "nvim_lsp" },
-			-- { name = "cmp_tabnine" },
 			{ name = "luasnip" },
 			{ name = "buffer" },
 			{ name = "path" },

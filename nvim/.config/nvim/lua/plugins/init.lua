@@ -91,7 +91,7 @@ return require("packer").startup({
 			config = editor.neogen,
 		})
 		-- use { "abecodes/tabout.nvim", config = editor.tabout }
-		-- use { "max397574/better-escape.nvim", config = editor.better_escape }
+		use({ "max397574/better-escape.nvim", config = editor.better_escape })
 		use({ "norcalli/nvim-colorizer.lua", config = editor.colorizer })
 		--
 		local lsp = require("plugins.lsp")
@@ -100,7 +100,6 @@ return require("packer").startup({
 		use({ "williamboman/nvim-lsp-installer", config = lsp.lsp_installer })
 		use({ "j-hui/fidget.nvim", config = lsp.fidget })
 		use({ "folke/lsp-colors.nvim", config = lsp.lsp_colors })
-		-- use { "lukas-reineke/lsp-format.nvim", config = lsp.format }
 		use({ "b0o/schemastore.nvim" })
 		use({ "simrat39/symbols-outline.nvim", config = lsp.symbols_outline })
 		use({ "jubnzv/virtual-types.nvim", config = lsp.virtual_types })
@@ -114,10 +113,6 @@ return require("packer").startup({
 			},
 			config = lsp.lsp_setup,
 		})
-        use({
-            "simrat39/rust-tools.nvim",
-            config = lsp.rust_tools
-        })
 
 		local cmp = require("plugins.cmp")
 		use({ "hrsh7th/nvim-cmp", config = cmp.cmp })
@@ -150,12 +145,6 @@ return require("packer").startup({
 		use({ "hrsh7th/cmp-calc" })
 		use({ "hrsh7th/cmp-omni" })
 		use({ "hrsh7th/cmp-emoji" })
-		-- use({
-		-- 	"tzachar/cmp-tabnine",
-		-- 	run = "./install.sh",
-		-- 	requires = "hrsh7th/nvim-cmp",
-		-- 	config = cmp.tabnine,
-		-- })
 
 		local fzf = require("plugins.fzf")
 		use({
@@ -182,10 +171,10 @@ return require("packer").startup({
 			requires = { "tami5/sqlite.lua" },
 			config = fzf.frecency,
 		})
-        use({
-            "nvim-telescope/telescope-ui-select.nvim",
-            config = fzf.ui_select
-        })
+		use({
+			"nvim-telescope/telescope-ui-select.nvim",
+			config = fzf.ui_select,
+		})
 
 		local ts = require("plugins.ts")
 		use({
@@ -270,6 +259,16 @@ return require("packer").startup({
 
 		local lang = require("plugins.lang")
 		use({ "mfussenegger/nvim-jdtls", config = lang.jdtls })
+		use({
+			"simrat39/rust-tools.nvim",
+			config = lang.rust_tools,
+		})
+		use({
+			"saecki/crates.nvim",
+			event = { "BufRead Cargo.toml" },
+			requires = { { "nvim-lua/plenary.nvim" } },
+			config = lang.crates,
+		})
 
 		use({ "nvim-lua/popup.nvim" })
 

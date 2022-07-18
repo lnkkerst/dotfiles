@@ -108,6 +108,7 @@ lsp.lsp_setup = function()
 			--         },
 			--     },
 			-- },
+			rust_analyzer = {},
 			sumneko_lua = require("lua-dev").setup({
 				lspconfig = {
 					on_attach = function(client, _)
@@ -124,17 +125,17 @@ lsp.lsp_setup = function()
 					},
 				},
 			},
-			texlab = {},
 			volar = {},
 			html = {},
 			lemminx = {},
 			tailwindcss = {},
+			eslint = {},
 			cssls = {},
 			clangd = require("nvim-lsp-setup.clangd_extensions").setup({}),
 			tsserver = {},
 			pyright = {},
-            jdtls = {},
-            bashls = {},
+			jdtls = {},
+			bashls = {},
 		},
 	})
 end
@@ -210,9 +211,5 @@ lsp.symbols_outline = function()
 end
 
 lsp.virtual_types = function() end
-
-lsp.rust_tools = function ()
-    require('rust-tools').setup({})
-end
 
 return lsp

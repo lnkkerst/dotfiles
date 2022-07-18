@@ -208,4 +208,3 @@ local window_focus = {
 
 wk.register(window_focus, { mode = "n" })
 wk.register(window_focus, { mode = "i" })
-
