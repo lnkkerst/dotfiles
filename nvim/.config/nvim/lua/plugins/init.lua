@@ -145,6 +145,8 @@ return require("packer").startup({
 		use({ "hrsh7th/cmp-calc" })
 		use({ "hrsh7th/cmp-omni" })
 		use({ "hrsh7th/cmp-emoji" })
+		use({ "dmitmel/cmp-cmdline-history", config = cmp.cmdline_history })
+		use({ "lukas-reineke/cmp-rg", config = cmp.rg })
 
 		local fzf = require("plugins.fzf")
 		use({

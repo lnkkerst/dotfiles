@@ -40,21 +40,20 @@ nvim_cmp.cmp = function()
 		view = {
 			entries = { name = "custom", selection_order = "near_cursor" },
 		},
-		sorting = {
-			priority_weight = 2,
-			comparators = {
-				-- require("cmp_tabnine.compare"),
-				compare.offset,
-				compare.exact,
-				compare.score,
-				compare.recently_used,
-				require("cmp-under-comparator").under,
-				compare.kind,
-				compare.sort_text,
-				compare.length,
-				compare.order,
-			},
-		},
+		-- sorting = {
+		-- 	priority_weight = 2,
+		-- 	comparators = {
+		-- 		compare.offset,
+		-- 		compare.exact,
+		-- 		compare.score,
+		-- 		compare.recently_used,
+		-- 		require("cmp-under-comparator").under,
+		-- 		compare.kind,
+		-- 		compare.sort_text,
+		-- 		compare.length,
+		-- 		compare.order,
+		-- 	},
+		-- },
 		formatting = {
 			format = require("lspkind").cmp_format({
 				mode = "symbol_text", -- show only symbol annotations
@@ -115,36 +114,15 @@ nvim_cmp.cmp = function()
 				-- behavior = cmp.ConfirmBehavior.Replace,
 				select = true,
 			}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-			--[[ ["<Tab>"] = cmp.mapping(function(fallback)
-				if cmp.visible() then
-					cmp.select_next_item()
-				elseif luasnip.expand_or_jumpable() then
-					luasnip.expand_or_jump()
-				else
-					fallback()
-				end
-			end, { "i", "s" }),
-			["<S-Tab>"] = cmp.mapping(function(fallback)
-				if cmp.visible() then
-					cmp.select_prev_item()
-				elseif luasnip.jumpable(-1) then
-					luasnip.jump(-1)
-				else
-					fallback()
-				end
-			end, { "i", "s" }), ]]
 			["<Tab>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_next_item()
 				elseif luasnip.expand_or_jumpable() then
 					luasnip.expand_or_jump()
-				elseif has_words_before() then
-					cmp.complete()
 				else
 					fallback()
 				end
 			end, { "i", "s" }),
-
 			["<S-Tab>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_prev_item()
@@ -167,6 +145,7 @@ nvim_cmp.cmp = function()
 			{ name = "nvim_lsp_document_symbol" },
 			{ name = "spell" },
 			{ name = "treesitter" },
+			{ name = "calc" },
 		},
 		sources_bak = cmp.config.sources({
 			{ name = "nvim_lsp" },
@@ -261,6 +240,25 @@ nvim_cmp.tabnine = function()
 		snippet_placeholder = "..",
 		ignored_file_types = {},
 		show_prediction_strength = false,
+	})
+end
+
+nvim_cmp.cmdline_history = function()
+	local cmp = require("cmp")
+	for _, cmd_type in ipairs({ ":", "/", "?", "@" }) do
+		cmp.setup.cmdline(cmd_type, {
+			sources = {
+				{ name = "cmdline_history" },
+			},
+		})
+	end
+end
+
+nvim_cmp.rg = function()
+	require("cmp").setup({
+		sources = {
+			{ name = "rg" },
+		},
 	})
 end
 
