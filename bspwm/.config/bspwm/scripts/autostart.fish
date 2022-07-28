@@ -15,7 +15,6 @@ picom -b
 mpd
 aria2c --enable-rpc
 appimagelauncher appimagelauncherd
-mpd-mpris
 sh $HOME/.config/bspwm/scripts/bspswallow"
 
 for app in (string split \n $apps)
