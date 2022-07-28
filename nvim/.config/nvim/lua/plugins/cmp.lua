@@ -38,7 +38,7 @@ nvim_cmp.cmp = function()
 
 	cmp.setup({
 		view = {
-			entries = { name = "custom", selection_order = "near_cursor" },
+			-- entries = { name = "custom", selection_order = "near_cursor" },
 		},
 		-- sorting = {
 		-- 	priority_weight = 2,
