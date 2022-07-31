@@ -13,7 +13,6 @@ libinput-gestures
 $HOME/.config/polybar/launch.fish
 picom -b
 mpd
-aria2c --enable-rpc
 appimagelauncher appimagelauncherd
 sh $HOME/.config/bspwm/scripts/bspswallow"
 
