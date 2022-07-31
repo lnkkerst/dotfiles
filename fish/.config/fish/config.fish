@@ -43,6 +43,8 @@ alias xc='xclip -sel clipboard'
 alias x='startx'
 alias t="tmux attach || tmux"
 alias rs='rsync -P'
+alias poweroff='loginctl poweroff'
+alias reboot='loginctl reboot'
 
 # Functions
 function mkcd
