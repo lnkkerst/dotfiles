@@ -77,6 +77,8 @@ end
 
 # autostart
 #setxkbmap -option "caps:swapescape"
+gentoo-pipewire-launcher &
+wireplumber &
 
 # start wm
 set -gx DESKTOP_SESSION bspwm
