@@ -76,7 +76,7 @@ return require("packer").startup({
 		-- use { "karb94/neoscroll.nvim", config = editor.neoscroll }
 		-- use {"haringsrob/nvim_context_vt", config = editor.context_vt}
 		-- use { "edluffy/specs.nvim", config = editor.specs }
-		use({ "Pocco81/AutoSave.nvim", config = editor.autosave })
+		-- use({ "Pocco81/AutoSave.nvim", config = editor.autosave })
 		use({ "mizlan/iswap.nvim", config = editor.iswap })
 		use({ "ethanholz/nvim-lastplace", config = editor.lastplace })
 		use({ "nacro90/numb.nvim", config = editor.numb })
@@ -110,6 +110,8 @@ return require("packer").startup({
 			requires = {
 				"neovim/nvim-lspconfig",
 				"williamboman/nvim-lsp-installer",
+				"williamboman/mason.nvim",
+				"williamboman/mason-lspconfig.nvim",
 			},
 			config = lsp.lsp_setup,
 		})
