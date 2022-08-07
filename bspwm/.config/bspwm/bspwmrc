@@ -66,6 +66,7 @@ bspc rule -a "Xfce4-appfinder" state=floating
 bspc rule -a "wechat-devtools" state=floating
 bspc rule -a "guvcview" state=floating
 bspc rule -a "wemeetapp" state=floating
+bspc rule -a "Todesk" border=off
 
 # Autostart
 fish $SCRIPTS_DIR/autostart.fish
