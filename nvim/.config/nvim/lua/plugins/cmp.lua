@@ -244,14 +244,14 @@ nvim_cmp.tabnine = function()
 end
 
 nvim_cmp.cmdline_history = function()
-	local cmp = require("cmp")
-	for _, cmd_type in ipairs({ ":", "/", "?", "@" }) do
-		cmp.setup.cmdline(cmd_type, {
-			sources = {
-				{ name = "cmdline_history" },
-			},
-		})
-	end
+	-- local cmp = require("cmp")
+	-- for _, cmd_type in ipairs({ ":", "/", "?", "@" }) do
+	-- 	cmp.setup.cmdline(cmd_type, {
+	-- 		sources = {
+	-- 			{ name = "cmdline_history" },
+	-- 		},
+	-- 	})
+	-- end
 end
 
 nvim_cmp.rg = function()
