@@ -9,7 +9,7 @@ set $right l
 
 set $term kitty
 
-set $menu rofi -dpi 192 -show
+set $menu wofi
 
 set $locker swaylock
 

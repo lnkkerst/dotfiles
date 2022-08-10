@@ -1,0 +1,13 @@
+* {
+    border-radius: 0;
+}
+
+#window {
+    background-color: rgba(30, 30, 46, 0.96);
+    color: #cdd6f4;
+    border: solid 2px rgba(180, 190, 254, 1);
+}
+
+#selected {
+    color: #eff1f5;
+}
