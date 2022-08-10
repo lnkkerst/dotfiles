@@ -1,7 +1,14 @@
-if status is-interactive
-    # Commands to run in interactive sessions can go here
+fish_add_path -g $HOME/.gem/ruby/2.7.0/bin
+fish_add_path -g $HOME/.cargo/bin
+fish_add_path -g $HOME/.local/bin
+fish_add_path -g $HOME/.pyenv/bin
+fish_add_path -g $HOME/.bun/bin
+
+if not status is-interactive
+    return
 end
 
+# Commands to run in interactive sessions can go here
 set -gx fish_greeting
 set -gx DISABLE_FZF_AUTO_COMPLETION true
 
@@ -51,3 +58,33 @@ function mkcd
     mkdir -p $argv[1] && cd $argv[1]
 end
 
+# bun
+if type -f bun >/dev/null
+    set --export BUN_INSTALL "$HOME/.bun"
+    # set --export PATH $BUN_INSTALL/bin $PATH
+end
+# fnm
+if type -f fnm >/dev/null
+    fish_add_path -g $HOME/.cargo/bin
+    fnm env --use-on-cd --shell fish | source
+    fnm completions --shell fish | source
+end
+# zoxide
+if type -f zoxide >/dev/null
+    zoxide init fish | source
+    alias j='z'
+end
+
+#pyenv
+if type -f pyenv >/dev/null
+    pyenv init - | source
+end
+
+# pnpm
+if type -f pnpm >/dev/null
+    set -gx PNPM_HOME "/home/lnk/.local/share/pnpm"
+    set -gx PATH "$PNPM_HOME" $PATH
+    # tabtab source for packages
+    # uninstall by removing these lines
+    [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
+end
