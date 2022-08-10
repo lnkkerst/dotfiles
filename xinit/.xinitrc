@@ -46,6 +46,7 @@ set -gx QT_QPA_PLATFORMTHEME qt5ct
 set -gx QT_SELECT 5
 set -gx GTK_THEME materia-catppuccin
 #set -gx QT_AUTO_SCREEN_SCALE_FACTOR 1
+#set -gx PULSE_LATENCY_MSEC 21
 
 set -gx GTK_IM_MODULE fcitx
 set -gx QT_IM_MODULE fcitx
