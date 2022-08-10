@@ -1,19 +1,44 @@
+// vim: ft=jsonc
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    // "height": 28, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "keyboard-state", "sway/language", "battery", "battery#bat2", "clock", "tray"],
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode",
+        "sway/window",
+    ],
+    "modules-center": [],
+    "modules-right": [
+        "idle_inhibitor",
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory",
+        "temperature",
+        "backlight",
+        "keyboard-state",
+        "battery",
+        "clock",
+        "tray"
+    ],
     // Modules configuration
     "sway/workspaces": {
-        "width": "16",
         "disable-scroll": false,
         "all-outputs": true,
-        // "format": "{name}: {icon}",
+        // "persistent_workspaces": {
+        //     "1": [],
+        //     "2": [],
+        //     "3": [],
+        //     "4": [],
+        //     "5": [],
+        //     "6": [],
+        //     "7": [],
+        //     "8": [],
+        // },
         "format": "{name}",
         "format-icons": {
             "1": "",
@@ -26,40 +51,47 @@
             "default": ""
         }
     },
+    "sway/window": {
+        "format": " | {}",
+        "max-length": "30",
+    },
     "keyboard-state": {
-        "numlock": true,
+        "numlock": false,
         "capslock": true,
-        "format": "{name} {icon}",
+        "format": {
+            "numlock": "N {icon} ",
+            "capslock": "{icon}"
+        },
         "format-icons": {
             "locked": "",
             "unlocked": ""
         }
     },
     "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
+        "tooltip": "Oops! You are not in the default mode!",
     },
     "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+        "format": "{stateIcon} {consumeIcon} {randomIcon} {repeatIcon} {singleIcon} {title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) [{songPosition}|{queueLength}] {volume}% ",
         "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "format-stopped": "Stopped ",
         "unknown-tag": "N/A",
         "interval": 2,
         "consume-icons": {
-            "on": " "
+            "on": ""
         },
         "random-icons": {
             "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
+            "on": ""
         },
         "repeat-icons": {
-            "on": " "
+            "on": "凌"
         },
         "single-icons": {
-            "on": "1 "
+            "on": "綾"
         },
         "state-icons": {
-            "paused": "",
-            "playing": ""
+            "paused": "",
+            "playing": ""
         },
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
@@ -67,8 +99,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": "",
+            "deactivated": ""
         }
     },
     "tray": {
@@ -76,9 +108,10 @@
         "spacing": 10
     },
     "clock": {
-        // "timezone": "America/New_York",
+        "timezone": "Asia/Shanghai",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%Y-%m-%d} ",
+        "format": "{:%H:%M} "
     },
     "cpu": {
         "format": "{usage}% ",
@@ -93,12 +126,28 @@
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+        "format-icons": [
+            "",
+            "",
+            ""
+        ]
     },
     "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "format-icons": ["", ""]
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "on-scroll-up": "light -A 5",
+        "on-scroll-down": "light -U 5"
     },
     "battery": {
         "states": {
@@ -112,10 +161,13 @@
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "battery#bat2": {
-        "bat": "BAT2"
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
@@ -141,20 +193,14 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": [
+                "",
+                "",
+                ""
+            ]
         },
-        "on-click": "pavucontrol"
-    },
-    "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-click-middle": "pavucontrol",
     }
 }
