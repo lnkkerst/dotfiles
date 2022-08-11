@@ -9,8 +9,12 @@ set $right l
 
 set $term kitty
 
-set $menu wofi
+set $menu rofi -dpi $ROFI_DPI -show
 
-set $locker swaylock
+set $locker $HOME/.config/sway/scripts/swaylock.fish
+set $locker_rapid swaylock
+
+set $my_cursor Quintom_Ink
+set $my_cursor_size 24
 
 include $HOME/.config/sway/config.d/*
