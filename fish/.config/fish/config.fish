@@ -12,7 +12,7 @@ end
 set -gx fish_greeting
 set -gx DISABLE_FZF_AUTO_COMPLETION true
 
-set -gx TERMINAL kitty
+set -gx TERMINAL foot
 set -gx EDITOR nvim
 set -gx PAGER less
 set -gx nvm_default_version v16.14.2
