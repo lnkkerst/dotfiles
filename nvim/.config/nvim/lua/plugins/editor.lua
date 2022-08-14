@@ -197,4 +197,6 @@ editor.colorizer = function()
 	require("colorizer").setup({})
 end
 
+editor.accelerated_jk = function() end
+
 return editor

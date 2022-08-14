@@ -79,7 +79,7 @@ wk.register({
 		["m"] = { "<cmd>Telescope marks<cr>", "Telescope marks" },
 		["t"] = { "<cmd>Telescope<cr>", "Telescope buildin" },
 		["g"] = { "<cmd>Telescope diagnostics<cr>", "Telescope diagnostics" },
-		["b"] = { "<cmd>Telescope current_buffer_fuzzy_finder<cr>", "Telescope current_buffer_fuzzy_finder" },
+		["c"] = { "<cmd>Telescope current_buffer_fuzzy_finder<cr>", "Telescope current_buffer_fuzzy_finder" },
 	},
 }, { prefix = "<leader>" })
 
