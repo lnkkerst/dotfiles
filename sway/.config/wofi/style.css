@@ -1,13 +1,25 @@
 * {
-    border-radius: 0;
+  border-radius: 0px;
 }
 
-#window {
-    background-color: rgba(30, 30, 46, 0.96);
-    color: #cdd6f4;
-    border: solid 2px rgba(180, 190, 254, 1);
+#input {
+  background-color: #1e1e2e;
 }
 
 #selected {
-    color: #eff1f5;
+  background-color: #1e1e2e;
+  color: #cba6f7;
+}
+
+#scroll {
+  margin-top: 3px;
+  border: 2px solid #b4befe;
+}
+
+#inner-box {
+  border-radius: px;
+}
+
+#entry {
+  background-color: #1e1e2e;
 }

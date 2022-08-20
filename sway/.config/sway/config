@@ -7,9 +7,10 @@ set $down j
 set $up k
 set $right l
 
-set $term foot
+set $term kitty
 
-set $menu rofi -dpi $ROFI_DPI -show
+# set $menu rofi -dpi $ROFI_DPI -show
+set $menu wofi
 
 set $locker $HOME/.config/sway/scripts/swaylock.fish
 set $locker_rapid swaylock
