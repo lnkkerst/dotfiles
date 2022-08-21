@@ -1,7 +1,14 @@
 local editor = {}
 
 editor.autopairs = function()
-	require("nvim-autopairs").setup({})
+	require("nvim-autopairs").setup({
+		check_ts = true,
+		ts_config = {
+			lua = { "string" },
+			javascript = { "template_string" },
+			java = false,
+		},
+	})
 	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 	local cmp = require("cmp")
 	cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
@@ -14,34 +21,60 @@ editor.cursorword = function()
 end
 
 editor.comment = function()
-	require("Comment").setup(
-		-- NOTE: The example below is a proper integration and it is RECOMMENDED.
-		{
-			---@param ctx Ctx
-			pre_hook = function(ctx)
-				-- Only calculate commentstring for tsx filetypes
-				if vim.bo.filetype == "typescriptreact" then
-					local U = require("Comment.utils")
+	require("Comment").setup({
+		---Add a space b/w comment and the line
+		---@type boolean
+		padding = true,
 
-					-- Detemine whether to use linewise or blockwise commentstring
-					local type = ctx.ctype == U.ctype.line and "__default" or "__multiline"
+		---Lines to be ignored while comment/uncomment.
+		---Could be a regex string or a function that returns a regex string.
+		---Example: Use '^$' to ignore empty lines
+		---@type string|function
+		ignore = nil,
 
-					-- Determine the location where to calculate commentstring from
-					local location = nil
-					if ctx.ctype == U.ctype.block then
-						location = require("ts_context_commentstring.utils").get_cursor_location()
-					elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-						location = require("ts_context_commentstring.utils").get_visual_start_location()
-					end
+		---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
+		---@type table
+		mappings = {
+			---operator-pending mapping
+			---Includes `gcc`, `gcb`, `gc[count]{motion}` and `gb[count]{motion}`
+			basic = true,
+			---extra mapping
+			---Includes `gco`, `gcO`, `gcA`
+			extra = true,
+			---extended mapping
+			---Includes `g>`, `g<`, `g>[count]{motion}` and `g<[count]{motion}`
+			extended = false,
+		},
 
-					return require("ts_context_commentstring.internal").calculate_commentstring({
-						key = type,
-						location = location,
-					})
-				end
-			end,
-		}
-	)
+		---LHS of toggle mapping in NORMAL + VISUAL mode
+		---@type table
+		toggler = {
+			---line-comment keymap
+			line = "gcc",
+			---block-comment keymap
+			block = "gbc",
+		},
+
+		---LHS of operator-pending mapping in NORMAL + VISUAL mode
+		---@type table
+		opleader = {
+			---line-comment keymap
+			line = "gc",
+			---block-comment keymap
+			block = "gb",
+		},
+
+		---Pre-hook, called before commenting the line
+		---@type function|nil
+		---@param ctx Ctx
+		pre_hook = function(ctx)
+			return require("ts_context_commentstring.internal").calculate_commentstring()
+		end,
+
+		---Post-hook, called after commenting is done
+		---@type function|nil
+		post_hook = nil,
+	})
 end
 
 editor.hop = function()
@@ -70,7 +103,6 @@ editor.hlslens = function()
 
 	vim.api.nvim_set_keymap("n", "<Leader>l", ":noh<CR>", kopts)
 end
-editor.hlslens = function() end
 
 editor.neoscroll = function()
 	require("neoscroll").setup()
@@ -194,9 +226,36 @@ editor.better_escape = function()
 end
 
 editor.colorizer = function()
-	require("colorizer").setup({})
+	require("colorizer").setup({
+		"css",
+		"sass",
+		"less",
+		"scss",
+		"vue",
+		"html",
+		"javascript",
+		"typescript",
+	})
 end
 
-editor.accelerated_jk = function() end
+editor.accelerated_jk = function()
+	require("which-key").register({
+		["j"] = { "<Plug>(accelerated_jk_gj)", "accelerate j" },
+		["k"] = { "<Plug>(accelerated_jk_gk)", "accelerate k" },
+	})
+end
+
+editor.ufo = function()
+	vim.o.foldcolumn = "1"
+	vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+	vim.o.foldlevelstart = 99
+	vim.o.foldenable = true
+
+	require("ufo").setup({
+		provider_selector = function(bufnr, filetype, buftype)
+			return { "treesitter", "indent" }
+		end,
+	})
+end
 
 return editor

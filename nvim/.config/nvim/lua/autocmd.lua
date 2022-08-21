@@ -27,6 +27,9 @@ local augroups = {
 		{ "BufWritePre", "MERGE_MSG", "setlocal noundofile" },
 		{ "BufWritePre", "*.tmp", "setlocal noundofile" },
 		{ "BufWritePre", "*.bak", "setlocal noundofile" },
+
+		-- auto EslintFixAll
+		{ "InsertLeave", "{*.js,*.ts,*.vue,*.jsx.*.tsx,*.cjs,*.mjs}", "EslintFixAll" },
 		-- auto change directory
 		-- { "BufEnter", "*", "silent! lcd %:p:h" }, -- auto place to last edit
 		-- {

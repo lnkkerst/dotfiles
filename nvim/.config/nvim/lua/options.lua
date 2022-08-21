@@ -1,6 +1,4 @@
-local vim = vim
-
-local global_local_value = {
+local options = {
 	termguicolors = true,
 	mouse = "a",
 	errorbells = true,
@@ -12,7 +10,7 @@ local global_local_value = {
 	encoding = "utf-8",
 	viewoptions = "folds,cursor,curdir,slash,unix",
 	sessionoptions = "curdir,help,tabpages,winsize",
-	clipboard = "unnamedplus",
+	clipboard = "unnamed,unnamedplus",
 	wildignorecase = true,
 	wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
 	backup = false,
@@ -25,7 +23,7 @@ local global_local_value = {
 	shiftround = true,
 	timeout = true,
 	ttimeout = true,
-	timeoutlen = 500,
+	timeoutlen = 200,
 	ttimeoutlen = 0,
 	updatetime = 100,
 	redrawtime = 1500,
@@ -46,7 +44,7 @@ local global_local_value = {
 	switchbuf = "useopen",
 	backspace = "indent,eol,start",
 	diffopt = "filler,iwhite,internal,algorithm:patience",
-	completeopt = "menuone,noselect",
+	completeopt = "menu,menuone,noselect",
 	jumpoptions = "stack",
 	showmode = false,
 	shortmess = "aoOTIcF",
@@ -67,7 +65,7 @@ local global_local_value = {
 	cmdheight = 2,
 	cmdwinheight = 5,
 	equalalways = false,
-	laststatus = 2,
+	laststatus = 3,
 	display = "lastline",
 	showbreak = "↳  ",
 	listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←",
@@ -97,6 +95,15 @@ local global_local_value = {
 	concealcursor = "niv",
 }
 
-for k, v in pairs(global_local_value) do
-	vim.o[k] = v
+local globals = {
+	mapleader = " ",
+	speeddating_no_mappings = 1,
+}
+
+for k, v in pairs(options) do
+	vim.opt[k] = v
+end
+
+for k, v in pairs(globals) do
+	vim.g[k] = v
 end

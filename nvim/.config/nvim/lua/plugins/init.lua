@@ -1,17 +1,22 @@
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-	packer_bootstrap = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-	})
+local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local packer_bootstrap = false
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+	packer_bootstrap = true
+	vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+	vim.cmd([[packadd packer.nvim]])
 end
 
-return require("packer").startup({
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+	return
+end
+
+packer.init({
+	autoremove = true,
+})
+
+require("packer").startup({
 	function(use)
 		use({ "lewis6991/impatient.nvim" })
 		use({ "wbthomason/packer.nvim" })
@@ -65,6 +70,7 @@ return require("packer").startup({
 			config = ui.trouble,
 		})
 		use({ "sidebar-nvim/sidebar.nvim", config = ui.sidebar })
+		use({ "stevearc/dressing.nvim", config = ui.dressing })
 
 		local editor = require("plugins.editor")
 		-- use({ "rhysd/accelerated-jk" })
@@ -81,11 +87,6 @@ return require("packer").startup({
 		use({ "mizlan/iswap.nvim", config = editor.iswap })
 		use({ "ethanholz/nvim-lastplace", config = editor.lastplace })
 		use({ "nacro90/numb.nvim", config = editor.numb })
-		-- use {
-		--     "anuvyklack/pretty-fold.nvim",
-		--     requires = { "anuvyklack/nvim-keymap-amend" },
-		--     config = editor.pretty_fold
-		-- }
 		use({
 			"danymat/neogen",
 			requires = { "nvim-treesitter/nvim-treesitter" },
@@ -94,6 +95,7 @@ return require("packer").startup({
 		-- use { "abecodes/tabout.nvim", config = editor.tabout }
 		use({ "max397574/better-escape.nvim", config = editor.better_escape })
 		use({ "norcalli/nvim-colorizer.lua", config = editor.colorizer })
+		use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async", config = editor.ufo })
 		--
 		local lsp = require("plugins.lsp")
 		use({ "neovim/nvim-lspconfig", config = lsp.lspconfig })
@@ -177,10 +179,6 @@ return require("packer").startup({
 			requires = { "tami5/sqlite.lua" },
 			config = fzf.frecency,
 		})
-		use({
-			"nvim-telescope/telescope-ui-select.nvim",
-			config = fzf.ui_select,
-		})
 
 		local ts = require("plugins.ts")
 		use({
@@ -222,7 +220,7 @@ return require("packer").startup({
 		use({ "is0n/jaq-nvim", config = utils.jaq })
 		use({ "lewis6991/gitsigns.nvim", tag = "release", config = utils.gitsigns })
 		use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim", config = utils.neogit })
-		use({ "rmagatti/auto-session", config = utils.auto_session })
+		use({ "Shatur/neovim-session-manager", config = utils.session_manager })
 		use({ "sbdchd/neoformat", config = utils.neoformat })
 		use({ "gpanders/editorconfig.nvim", config = utils.editorconfig })
 		use({ "ahmedkhalf/project.nvim", config = utils.project })
@@ -244,11 +242,11 @@ return require("packer").startup({
 			requires = "nvim-lua/plenary.nvim",
 			config = utils.code_runner,
 		})
-		-- use {
-		--     "black-desk/fcitx5-ui.nvim",
-		--     rocks = { 'lgi', 'dbus_proxy' },
-		--     config = utils.fcitx_ui
-		-- }
+		use({
+			"black-desk/fcitx5-ui.nvim",
+			rocks = { "lgi", "dbus_proxy" },
+			config = utils.fcitx_ui,
+		})
 		-- use { "hkupty/nvimux", config = utils.nvimux }
 		use({ "aserowy/tmux.nvim", config = utils.tmux })
 		use({
@@ -256,6 +254,20 @@ return require("packer").startup({
 			run = function()
 				vim.fn["firenvim#install"](0)
 			end,
+		})
+		use({
+			"nvim-neotest/neotest",
+			requires = {
+				"nvim-lua/plenary.nvim",
+				"nvim-treesitter/nvim-treesitter",
+				"antoinemadec/FixCursorHold.nvim",
+				"haydenmeade/neotest-jest",
+			},
+			config = utils.neotest,
+		})
+		use({
+			"folke/zen-mode.nvim",
+			config = utils.zen,
 		})
 
 		local dap = require("plugins.dap")
@@ -274,6 +286,11 @@ return require("packer").startup({
 			event = { "BufRead Cargo.toml" },
 			requires = { { "nvim-lua/plenary.nvim" } },
 			config = lang.crates,
+		})
+		use({
+			"vuki656/package-info.nvim",
+			requires = "MunifTanjim/nui.nvim",
+			config = lang.package_info,
 		})
 
 		use({ "nvim-lua/popup.nvim" })
@@ -294,3 +311,8 @@ return require("packer").startup({
 		},
 	},
 })
+
+if packer_bootstrap then
+	print("Please wait and then restart nvim.")
+	return
+end

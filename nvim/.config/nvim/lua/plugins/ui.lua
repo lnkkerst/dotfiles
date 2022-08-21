@@ -1,7 +1,18 @@
 local ui = {}
 
 ui.alpha = function()
-	require("alpha").setup(require("alpha.themes.dashboard").config)
+	local dashboard = require("alpha.themes.dashboard")
+	local header = {
+		[[███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗]],
+		[[████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║]],
+		[[██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║]],
+		[[██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║]],
+		[[██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║]],
+		[[╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+	}
+	dashboard.section.header.type = "text"
+	dashboard.section.header.val = header
+	require("alpha").setup(dashboard.config)
 end
 
 ui.dashboard = function()
@@ -383,14 +394,15 @@ end
 
 ui.indent_blankline = function()
 	vim.opt.list = true
-	vim.opt.listchars:append("space:⋅")
-	vim.opt.listchars:append("eol:↴")
+	-- vim.opt.listchars:append("space:⋅")
+	-- vim.opt.listchars:append("eol:↴")
 
 	require("indent_blankline").setup({
 		char = "│",
 		space_char_blankline = " ",
 		show_current_context = true,
-		show_current_context_start = true,
+		show_current_context_start = false,
+		use_treesitter = true,
 		filetype_exclude = {
 			"startify",
 			"dashboard",
@@ -412,9 +424,9 @@ ui.indent_blankline = function()
 			"TelescopePrompt",
 			"undotree",
 			"flutterToolsOutline",
-			"",
+			"alpha",
 		},
-		buftype_exclude = { "terminal", "nofile" },
+		buftype_exclude = { "terminal", "nofile", "telescope" },
 	})
 end
 
@@ -455,6 +467,19 @@ ui.tree = function()
 			indent_markers = {
 				enable = false,
 				icons = { corner = "└ ", edge = "│ ", none = "  " },
+			},
+			icons = {
+				glyphs = {
+					git = {
+						unstaged = "",
+						staged = "",
+						unmerged = "",
+						renamed = "➜",
+						untracked = "",
+						deleted = "",
+						ignored = "◌",
+					},
+				},
 			},
 		},
 		hijack_directories = { enable = true, auto_open = true },
@@ -541,6 +566,10 @@ ui.sidebar = function()
 	require("sidebar-nvim").setup({
 		open = false,
 	})
+end
+
+ui.dressing = function()
+	require("dressing").setup({})
 end
 
 return ui

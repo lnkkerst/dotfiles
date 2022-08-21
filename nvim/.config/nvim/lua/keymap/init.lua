@@ -1,4 +1,3 @@
-vim.g.mapleader = " "
 require("keymap.config")
 
 local wk = require("which-key")

@@ -22,6 +22,22 @@ nvim_cmp.cmp = function()
 		return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 	end
 
+	local check_backspace = function()
+		local col = vim.fn.col(".") - 1
+		return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+	end
+
+	local buffer_option = {
+		-- Complete from all visible buffers (splits)
+		get_bufnrs = function()
+			local bufs = {}
+			for _, win in ipairs(vim.api.nvim_list_wins()) do
+				bufs[vim.api.nvim_win_get_buf(win)] = true
+			end
+			return vim.tbl_keys(bufs)
+		end,
+	}
+
 	local source_mapping = {
 		cmp_tabnine = "[TN]",
 		buffer = "[BUF]",
@@ -37,83 +53,64 @@ nvim_cmp.cmp = function()
 	local compare = require("cmp.config.compare")
 
 	cmp.setup({
-		view = {
-			-- entries = { name = "custom", selection_order = "near_cursor" },
+		sorting = {
+			comparators = {
+				cmp.config.compare.exact,
+				cmp.config.compare.locality,
+				cmp.config.compare.recently_used,
+				cmp.config.compare.score,
+				cmp.config.compare.offset,
+				cmp.config.compare.sort_text,
+				cmp.config.compare.order,
+			},
 		},
-		-- sorting = {
-		-- 	priority_weight = 2,
-		-- 	comparators = {
-		-- 		compare.offset,
-		-- 		compare.exact,
-		-- 		compare.score,
-		-- 		compare.recently_used,
-		-- 		require("cmp-under-comparator").under,
-		-- 		compare.kind,
-		-- 		compare.sort_text,
-		-- 		compare.length,
-		-- 		compare.order,
-		-- 	},
-		-- },
 		formatting = {
-			format = require("lspkind").cmp_format({
-				mode = "symbol_text", -- show only symbol annotations
-				maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-				-- The function below will be called before any actual modifications from lspkind
-				-- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-				-- before = function(entry, vim_item)
-				--     vim_item.menu = ({
-				--         cmp_tabnine = "[TN]",
-				--         buffer = "[BUF]",
-				--         orgmode = "[ORG]",
-				--         nvim_lsp = "[LSP]",
-				--         nvim_lua = "[LUA]",
-				--         path = "[PATH]",
-				--         tmux = "[TMUX]",
-				--         luasnip = "[SNIP]",
-				--         spell = "[SPELL]"
-				--     })[entry.source.name]
-				--     return vim_item
-				-- end
-				before = function(entry, vim_item)
-					vim_item.kind = require("lspkind").presets.default[vim_item.kind]
+			format = function(entry, vim_item)
+				vim_item.kind = require("lspkind").symbolic(vim_item.kind, { with_text = true })
+				local menu = source_mapping[entry.source.name]
+				local maxwidth = 50
 
-					local menu = source_mapping[entry.source.name]
-					if entry.source.name == "cmp_tabnine" then
-						if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-							menu = entry.completion_item.data.detail .. " " .. menu
-						end
-						vim_item.kind = ""
+				if entry.source.name == "cmp_tabnine" then
+					if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
+						menu = menu .. entry.completion_item.data.detail
+					else
+						menu = menu .. "TBN"
 					end
+				end
 
-					vim_item.menu = menu
-					return vim_item
-				end,
-			}),
+				vim_item.menu = menu
+				vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
+
+				return vim_item
+			end,
 		},
 		snippet = {
-			-- REQUIRED - you must specify a snippet engine
 			expand = function(args)
-				-- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-				require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-				-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-				-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+				require("luasnip").lsp_expand(args.body)
 			end,
 		},
 		window = {
 			completion = cmp.config.window.bordered({
 				border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
 			}),
-			documentation = cmp.config.window.bordered(),
+			documentation = cmp.config.window.bordered({
+				border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+			}),
 		},
 		mapping = cmp.mapping.preset.insert({
-			["<C-b>"] = cmp.mapping.scroll_docs(-4),
-			["<C-f>"] = cmp.mapping.scroll_docs(4),
-			-- ['<C-A-Space>'] = cmp.mapping.complete(),
-			["<C-e>"] = cmp.mapping.abort(),
+			["<C-j"] = cmp.mapping.select_next_item(),
+			["<C-k>"] = cmp.mapping.select_prev_item(),
+			["<C-Space>"] = cmp.mapping.complete(),
+			["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-2), { "i", "c" }),
+			["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(2), { "i", "c" }),
+			["<C-e>"] = cmp.mapping({
+				i = cmp.mapping.abort(),
+				c = cmp.mapping.close(),
+			}),
 			["<CR>"] = cmp.mapping.confirm({
-				-- behavior = cmp.ConfirmBehavior.Replace,
-				select = true,
-			}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+				behavior = cmp.ConfirmBehavior.Replace,
+				select = false,
+			}),
 			["<Tab>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_next_item()
@@ -147,58 +144,6 @@ nvim_cmp.cmp = function()
 			{ name = "treesitter" },
 			{ name = "calc" },
 		},
-		sources_bak = cmp.config.sources({
-			{ name = "nvim_lsp" },
-			-- { name = 'vsnip' } -- For vsnip users.
-			{ name = "luasnip" }, -- For luasnip users.
-			-- { name = 'ultisnips' }, -- For ultisnips users.
-			-- { name = 'snippy' }, -- For snippy users.
-		}, {
-			{ name = "buffer" },
-		}, {
-			{ name = "spell" },
-		}, {
-			{ name = "path" },
-		}, {
-			{ name = "cmdline" },
-		}, {
-			{ name = "nvim_lsp_signature_help" },
-		}, {
-			{ name = "nvim_lsp_document_symbol" },
-		}, {
-			{ name = "fish" },
-		}, {
-			{
-				name = "tmux",
-				option = {
-					all_panes = false,
-					label = "[tmux]",
-					trigger_characters = { "." },
-					trigger_characters_ft = {}, -- { filetype = { '.' } }
-				},
-			},
-		}, {
-			{
-				name = "npm",
-				keyword_length = 4,
-				config = {
-					ignore = {},
-					only_semantic_versions = false,
-				},
-			},
-		}, {
-			{ name = "treesitter" },
-		}, {
-			{ name = "nvim_lua" },
-		}, {
-			{ name = "calc" },
-		}, {
-			{ name = "omni" },
-		}, {
-			{ name = "emoji" },
-		}, {
-			{ name = "cmp_tabnine" },
-		}),
 	})
 
 	-- Set configuration for specific filetype.
@@ -221,7 +166,11 @@ nvim_cmp.cmp = function()
 	-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 	cmp.setup.cmdline(":", {
 		mapping = cmp.mapping.preset.cmdline(),
-		sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+		sources = {
+			{ name = "cmdline" },
+			{ name = "path" },
+			{ name = "cmdline_history" },
+		},
 	})
 end
 
@@ -243,16 +192,7 @@ nvim_cmp.tabnine = function()
 	})
 end
 
-nvim_cmp.cmdline_history = function()
-	-- local cmp = require("cmp")
-	-- for _, cmd_type in ipairs({ ":", "/", "?", "@" }) do
-	-- 	cmp.setup.cmdline(cmd_type, {
-	-- 		sources = {
-	-- 			{ name = "cmdline_history" },
-	-- 		},
-	-- 	})
-	-- end
-end
+nvim_cmp.cmdline_history = function() end
 
 nvim_cmp.rg = function()
 	require("cmp").setup({

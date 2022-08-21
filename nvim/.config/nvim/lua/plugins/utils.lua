@@ -299,10 +299,20 @@ utils.neogit = function()
 	neogit.setup()
 end
 
-utils.auto_session = function()
-	require("auto-session").setup({
-		log_level = "info",
-		auto_session_suppress_dirs = { "~/", "~/Projects" },
+utils.session_manager = function()
+	local Path = require("plenary.path")
+	require("session_manager").setup({
+		sessions_dir = Path:new(vim.fn.stdpath("data"), "sessions"), -- The directory where the session files will be saved.
+		path_replacer = "__", -- The character to which the path separator will be replaced for session files.
+		colon_replacer = "++", -- The character to which the colon symbol will be replaced for session files.
+		autoload_mode = require("session_manager.config").AutoloadMode.LastSession, -- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
+		autosave_last_session = true, -- Automatically save last session on exit and on session switch.
+		autosave_ignore_not_normal = true, -- Plugin will not save a session when no buffers are opened, or all of them aren't writable or listed.
+		autosave_ignore_filetypes = { -- All buffers of these file types will be closed before the session is saved.
+			"gitcommit",
+		},
+		autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active.
+		max_path_length = 80, -- Shorten the display path if length exceeds this threshold. Use 0 if don't want to shorten the path at all.
 	})
 end
 
@@ -326,7 +336,16 @@ utils.litee = function()
 	require("litee.bookmarks").setup({})
 end
 
-utils.filetype = function() end
+utils.filetype = function()
+	require("filetype").setup({
+		overrides = {
+			literal = {
+				["tsconfig.json"] = "jsonc",
+				["jsconfig.json"] = "jsonc",
+			},
+		},
+	})
+end
 
 utils.editorconfig = function() end
 
@@ -407,6 +426,85 @@ utils.tmux = function()
 			enable_default_keybindings = false,
 		},
 	})
+end
+
+utils.neotest = function()
+	require("neotest").setup({
+		adapters = {
+			require("neotest-jest"),
+		},
+		diagnostic = {
+			enabled = true,
+		},
+		floating = {
+			max_height = 0.6,
+			max_width = 0.6,
+		},
+		highlights = {
+			adapter_name = "NeotestAdapterName",
+			border = "NeotestBorder",
+			dir = "NeotestDir",
+			expand_marker = "NeotestExpandMarker",
+			failed = "NeotestFailed",
+			file = "NeotestFile",
+			focused = "NeotestFocused",
+			indent = "NeotestIndent",
+			namespace = "NeotestNamespace",
+			passed = "NeotestPassed",
+			running = "NeotestRunning",
+			skipped = "NeotestSkipped",
+			test = "NeotestTest",
+		},
+		icons = {
+			child_indent = "│",
+			child_prefix = "├",
+			collapsed = "─",
+			expanded = "╮",
+			failed = "✖",
+			final_child_indent = " ",
+			final_child_prefix = "╰",
+			non_collapsible = "─",
+			passed = "✔",
+			running = "",
+			skipped = "ﰸ",
+			unknown = "?",
+		},
+		output = {
+			enabled = true,
+			open_on_run = true,
+		},
+		run = {
+			enabled = true,
+		},
+		status = {
+			enabled = true,
+		},
+		strategies = {
+			integrated = {
+				height = 40,
+				width = 120,
+			},
+		},
+		summary = {
+			enabled = true,
+			expand_errors = true,
+			follow = true,
+			mappings = {
+				attach = "a",
+				expand = { "<CR>", "<2-LeftMouse>" },
+				expand_all = "e",
+				jumpto = "i",
+				output = "o",
+				run = "r",
+				short = "O",
+				stop = "u",
+			},
+		},
+	})
+end
+
+utils.zen = function()
+	require("zen-mode").setup({})
 end
 
 return utils
