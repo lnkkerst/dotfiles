@@ -39,7 +39,7 @@ alias dstat='dstat -cdlmnpsy'
 alias py='python'
 alias :q='exit'
 alias :wq='exit'
-alias nv='neovide --nofork --multigrid'
+alias nv='WINIT_UNIX_BACKEND=x11 XCURSOR_SIZE=48 neovide --nofork --multigrid'
 alias cp='cp -i'
 alias cpr='cp --reflink'
 alias fspb='curl -F "c=@-" "http://fars.ee/"'
@@ -56,6 +56,11 @@ alias reboot='loginctl reboot'
 # Functions
 function mkcd
     mkdir -p $argv[1] && cd $argv[1]
+end
+
+function tmpcd
+    set tmp_dir $(random | base64)
+    mkdir $tmp_dir && cd $tmp_dir
 end
 
 # bun
