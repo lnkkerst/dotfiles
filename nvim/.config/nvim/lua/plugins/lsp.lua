@@ -1,6 +1,12 @@
 local lsp = {}
 
-lsp.lspconfig = function() end
+lsp.lspconfig = function()
+	local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+	for type, icon in pairs(signs) do
+		local hl = "DiagnosticSign" .. type
+		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+	end
+end
 
 lsp.mason = function()
 	require("mason").setup({
@@ -18,55 +24,19 @@ lsp.mason_lspconfig = function()
 	require("mason-lspconfig").setup({})
 end
 
-local lsp_ui_config = function()
-	local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-	for type, icon in pairs(signs) do
-		local hl = "DiagnosticSign" .. type
-		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-	end
-end
-
 lsp.lspsaga = function()
-	vim.cmd("highlight link LspSagaFinderSelection Search")
-	local lspsaga = require("lspsaga")
-	lspsaga.setup({ -- defaults ...
-		debug = false,
-		use_saga_diagnostic_sign = true,
-		-- diagnostic sign
-		error_sign = "",
-		warn_sign = "",
-		hint_sign = "",
-		infor_sign = "",
-		diagnostic_header_icon = "   ",
-		-- code action title icon
-		code_action_icon = " ",
-		code_action_prompt = {
-			enable = true,
-			sign = true,
-			sign_priority = 40,
-			virtual_text = true,
+	require("lspsaga").init_lsp_saga({
+		saga_winblend = 0,
+		diagnostic_header = { "😡", "😥", "😤", "😐" },
+		code_action_icon = "",
+		symbol_in_winbar = {
+			in_custom = true,
 		},
-		finder_definition_icon = "  ",
-		finder_reference_icon = "  ",
-		max_preview_lines = 10,
-		finder_action_keys = {
-			open = "o",
-			vsplit = "s",
-			split = "i",
-			quit = "q",
-			scroll_down = "<C-f>",
-			scroll_up = "<C-b>",
+		finder_icons = {
+			def = "  ",
+			ref = "諭 ",
+			link = "  ",
 		},
-		code_action_keys = { quit = "q", exec = "<CR>" },
-		rename_action_keys = { quit = "<C-c>", exec = "<CR>" },
-		definition_preview_icon = "  ",
-		border_style = "single",
-		rename_prompt_prefix = "➤",
-		rename_output_qflist = { enable = false, auto_open_qflist = false },
-		server_filetype_map = {},
-		diagnostic_prefix_format = "%d. ",
-		diagnostic_message_format = "%m %c",
-		highlight_prefix = false,
 	})
 end
 
@@ -80,6 +50,7 @@ lsp.lsp_setup = function()
 		on_attach = function(client, bufnr)
 			require("aerial").on_attach(client)
 			-- require("lsp-setup.utils").format_on_save(client)
+			require("nvim-navic").attach(client, bufnr)
 		end,
 		-- Global capabilities
 		capabilities = vim.lsp.protocol.make_client_capabilities(),
@@ -219,5 +190,26 @@ lsp.symbols_outline = function()
 end
 
 lsp.virtual_types = function() end
+
+lsp.null = function()
+	local null = require("null-ls")
+	null.setup({
+		-- sources = {
+		--   null.builtins.formatting.stylua,
+		--   null.builtins.formatting.shfmt,
+		--   null.builtins.formatting.prettier,
+		--   null.builtins.formatting.clang_format,
+		--   null.builtins.diagnostics.eslint,
+		--   null.builtins.completion.spell,
+		-- },
+	})
+end
+
+lsp.docs_view = function()
+	require("docs-view").setup({
+		position = "right",
+		width = 60,
+	})
+end
 
 return lsp

@@ -13,10 +13,22 @@ wk.register({
 	["<A-7>"] = { "<cmd>BufferLineGoToBuffer 7<cr>", "BufferLineGoToBuffer 7" },
 	["<A-8>"] = { "<cmd>BufferLineGoToBuffer 8<cr>", "BufferLineGoToBuffer 8" },
 	["<A-9>"] = { "<cmd>BufferLineGoToBuffer 9<cr>", "BufferLineGoToBuffer 9" },
+	["<leader>1"] = { "<cmd>BufferLineGoToBuffer 1<cr>", "BufferLineGoToBuffer 1" },
+	["<leader>2"] = { "<cmd>BufferLineGoToBuffer 2<cr>", "BufferLineGoToBuffer 2" },
+	["<leader>3"] = { "<cmd>BufferLineGoToBuffer 3<cr>", "BufferLineGoToBuffer 3" },
+	["<leader>4"] = { "<cmd>BufferLineGoToBuffer 4<cr>", "BufferLineGoToBuffer 4" },
+	["<leader>5"] = { "<cmd>BufferLineGoToBuffer 5<cr>", "BufferLineGoToBuffer 5" },
+	["<leader>6"] = { "<cmd>BufferLineGoToBuffer 6<cr>", "BufferLineGoToBuffer 6" },
+	["<leader>7"] = { "<cmd>BufferLineGoToBuffer 7<cr>", "BufferLineGoToBuffer 7" },
+	["<leader>8"] = { "<cmd>BufferLineGoToBuffer 8<cr>", "BufferLineGoToBuffer 8" },
+	["<leader>9"] = { "<cmd>BufferLineGoToBuffer 9<cr>", "BufferLineGoToBuffer 9" },
 	["<A-j>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
 	["<A-k>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
 	["<A-S-j>"] = { "<cmd>BufferLineMoveNext<cr>", "BufferLineMoveNext" },
 	["<A-S-k>"] = { "<cmd>BufferLineMovePrev<cr>", "BufferLineMovePrev" },
+	["<Tab>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
+	["<S-Tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
+	["<S-q>"] = { "<cmd>bd<cr>", "BufferLinePickClise" },
 	["b"] = {
 		name = "bufferline action",
 		["e"] = { "<cmd>BufferLineSortByExtension<cr>", "BufferLineSortByExtension" },
@@ -30,18 +42,33 @@ wk.register({
 	["K"] = { "<cmd>Lspsaga hover_doc<cr>", "Lspsaga hover doc" },
 	["g"] = {
 		-- name = "lspsaga action",
-		["d"] = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Lspsaga show line diagnostics" },
+		["h"] = { "<cmd>Lspsaga lsp_finder<cr>", "Lspsaga finder" },
 		["j"] = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Lspsaga next diagnostics" },
 		["k"] = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Lspsaga prev diagnostics" },
+		["J"] = {
+			'<cmd>lua require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })<cr>',
+			"Lspsaga next error diagnostics",
+		},
+		["K"] = {
+			'<cmd>lua require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })<cr>',
+			"Lspsaga prev error diagnostics",
+		},
 		["r"] = { "<cmd>Lspsaga rename<cr>", "Lspsaga rename" },
-		["i"] = { "<cmd>Lspsaga implement<cr>", "Lspsaga implement" },
-		["<c-k>"] = { "<cmd>Lspsaga signature_help<cr>", "Lspsafa signature_help" },
+		["d"] = { "<cmd>Lspsaga preview_definition<cr>", "Lspsaga preview definition" },
+		["<C-S-K>"] = { "<cmd>Lspsaga signature_help<cr>", "Lspsafa signature_help" },
 	},
-	["<leader>ca"] = { "<cmd>Lspsaga code_action<cr>", "Lspsaga code action" },
+	["<C-f>"] = { "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>", "Lspsaga smart sroll forward" },
+	["<C-b>"] = {
+		"<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>",
+		"Lspsaga smart sroll backward",
+	},
 })
 wk.register({
-	["<leader>ca"] = { "<cmd>Lspsaga range_code_action<cr>", "Lspsaga range code action" },
-}, { mode = "x" })
+	["<leader>ca"] = { "<cmd>Lspsaga code_action<cr>", "Lspsaga range code action" },
+}, { mode = "n" })
+wk.register({
+	["<leader>ca"] = { "<cmd><C-u>Lspsaga range_code_action<cr>", "Lspsaga range code action" },
+}, { mode = "v" })
 
 -- Plugin Lspconfig
 wk.register({
@@ -71,7 +98,7 @@ wk.register({
 -- Plugin Telescope
 wk.register({
 	["t"] = {
-		name = "Telescope",
+		name = "+Telescope",
 		["f"] = { "<cmd>Telescope find_files<cr>", "Telescope find files" },
 		["n"] = { "<cmd>Telescope notify<cr>", "Telescope notify" },
 		["b"] = { "<cmd>Telescope buffers<cr>", "Telescope buffers" },
@@ -81,6 +108,9 @@ wk.register({
 		["c"] = { "<cmd>Telescope current_buffer_fuzzy_finder<cr>", "Telescope current_buffer_fuzzy_finder" },
 	},
 }, { prefix = "<leader>" })
+wk.register({
+	["<C-p>"] = { "<cmd>Telescope find_files<cr>", "Find files" },
+})
 
 -- Plugin Markdown Preview
 wk.register({
@@ -128,6 +158,7 @@ wk.register({
 wk.register({
 	["<C-\\>"] = { "<cmd>ToggleTerm<cr>", "ToggleTerm" },
 }, { mode = "t" })
+
 -- Plugin NeoScroll
 wk.register({
 	["<C-b>"] = { "NeoScroll backward" },
@@ -198,6 +229,7 @@ local undo_redo = {
 wk.register(undo_redo)
 wk.register(undo_redo, { mode = "i" })
 
+-- Window movement
 local window_focus = {
 	["<C-j>"] = { "<C-w>j", "Go to the down window" },
 	["<C-k>"] = { "<C-w>k", "Go to the up window" },
@@ -207,3 +239,22 @@ local window_focus = {
 
 wk.register(window_focus, { mode = "n" })
 wk.register(window_focus, { mode = "i" })
+
+-- Line move
+wk.register({
+	["H"] = { "^", "Move to the first non-blank character" },
+	["L"] = { "g_", "Move to the latest non-blank character" },
+})
+
+-- Delete char without yank
+local del_char_without_yank = {
+	["x"] = { '"_x', "Delete current char without yank" },
+	["X"] = { '"_X', "Delete prev char without yank" },
+}
+wk.register(del_char_without_yank, { mode = "n" })
+wk.register(del_char_without_yank, { mode = "v" })
+
+-- Visual paste without yank
+wk.register({
+	["p"] = { '"_dP', "Visual paste without yank" },
+}, { mode = "v" })

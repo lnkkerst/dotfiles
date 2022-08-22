@@ -34,9 +34,9 @@ require("packer").startup({
 			config = ui.lualine,
 		})
 		use({
-			"SmiteshP/nvim-gps",
-			requires = "nvim-treesitter/nvim-treesitter",
-			config = ui.gps,
+			"SmiteshP/nvim-navic",
+			requires = "neovim/nvim-lspconfig",
+			config = ui.navic,
 		})
 		use({
 			"akinsho/bufferline.nvim",
@@ -44,11 +44,6 @@ require("packer").startup({
 			config = ui.bufferline,
 		})
 		use({ "lukas-reineke/indent-blankline.nvim", config = ui.indent_blankline })
-		-- use {
-		--     "glepnir/dashboard-nvim",
-		--     requires = { "nvim-telescope/telescope.nvim" },
-		--     config = ui.dashboard
-		-- }
 		use({
 			"goolord/alpha-nvim",
 			requires = { "kyazdani42/nvim-web-devicons" },
@@ -101,8 +96,7 @@ require("packer").startup({
 		use({ "neovim/nvim-lspconfig", config = lsp.lspconfig })
 		use({ "williamboman/mason.nvim", config = lsp.mason })
 		use({ "williamboman/mason-lspconfig.nvim", config = lsp.mason_lspconfig })
-		use({ "tami5/lspsaga.nvim", config = lsp.lspsaga })
-		-- use({ "williamboman/nvim-lsp-installer", config = lsp.lsp_installer })
+		use({ "glepnir/lspsaga.nvim", config = lsp.lspsaga })
 		use({ "j-hui/fidget.nvim", config = lsp.fidget })
 		use({ "folke/lsp-colors.nvim", config = lsp.lsp_colors })
 		use({ "b0o/schemastore.nvim" })
@@ -118,6 +112,13 @@ require("packer").startup({
 				"williamboman/mason-lspconfig.nvim",
 			},
 			config = lsp.lsp_setup,
+		})
+		use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" }, config = lsp.null })
+		use({
+			"amrbashir/nvim-docs-view",
+			opt = true,
+			cmd = { "DocsViewToggle" },
+			config = lsp.docs_view,
 		})
 
 		local cmp = require("plugins.cmp")

@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-parameter
 local ui = {}
 
 ui.alpha = function()
@@ -92,9 +93,8 @@ ui.catppuccin = function()
 		transparent_background = false,
 		term_colors = false,
 		compile = {
-			enabled = false,
+			enabled = true,
 			path = vim.fn.stdpath("cache") .. "/catppuccin",
-			suffix = "_compiled",
 		},
 		styles = {
 			comments = { "italic" },
@@ -157,16 +157,18 @@ ui.catppuccin = function()
 			neogit = true,
 			vim_sneak = false,
 			fern = false,
-			barbar = false,
-			bufferline = true,
+			barbar = true,
+			bufferline = false,
 			markdown = true,
 			lightspeed = false,
 			ts_rainbow = true,
 			hop = true,
 			notify = true,
-			telekasten = true,
+			telekasten = false,
 			symbols_outline = true,
 			mini = false,
+			aerial = true,
+			navic = true,
 		},
 	})
 	vim.g.catppuccin_flavour = "mocha"
@@ -211,105 +213,80 @@ ui.material = function()
 	-- vim.cmd "colorscheme material"
 end
 
-ui.gps = function()
-	require("nvim-gps").setup({
-		disable_icons = false, -- Setting it to true will disable all icons
+ui.navic = function()
+	require("nvim-navic").setup({
 		icons = {
-			["class-name"] = " ", -- Classes and class-like objects
-			["function-name"] = " ", -- Functions
-			["method-name"] = " ", -- Methods (functions inside class-like objects)
-			["container-name"] = "⛶ ", -- Containers (example: lua tables)
-			["tag-name"] = "炙", -- Tags (example: html tags)
+			File = " ",
+			Module = " ",
+			Namespace = " ",
+			Package = " ",
+			Class = " ",
+			Method = " ",
+			Property = " ",
+			Field = " ",
+			Constructor = " ",
+			Enum = "練",
+			Interface = "練",
+			Function = " ",
+			Variable = " ",
+			Constant = " ",
+			String = " ",
+			Number = " ",
+			Boolean = "◩ ",
+			Array = " ",
+			Object = " ",
+			Key = " ",
+			Null = "ﳠ ",
+			EnumMember = " ",
+			Struct = " ",
+			Event = " ",
+			Operator = " ",
+			TypeParameter = " ",
 		},
-		-- Add custom configuration per language or
-		-- Disable the plugin for a language
-		-- Any language not disabled here is enabled by default
-		languages = {
-			-- Some languages have custom icons
-			["json"] = {
-				icons = {
-					["array-name"] = " ",
-					["object-name"] = " ",
-					["null-name"] = "[] ",
-					["boolean-name"] = "ﰰﰴ ",
-					["number-name"] = "# ",
-					["string-name"] = " ",
-				},
-			},
-			["latex"] = {
-				icons = { ["title-name"] = "# ", ["label-name"] = " " },
-			},
-			["norg"] = { icons = { ["title-name"] = " " } },
-			["toml"] = {
-				icons = {
-					["table-name"] = " ",
-					["array-name"] = " ",
-					["boolean-name"] = "ﰰﰴ ",
-					["date-name"] = " ",
-					["date-time-name"] = " ",
-					["float-name"] = " ",
-					["inline-table-name"] = " ",
-					["integer-name"] = "# ",
-					["string-name"] = " ",
-					["time-name"] = " ",
-				},
-			},
-			["verilog"] = { icons = { ["module-name"] = " " } },
-			["yaml"] = {
-				icons = {
-					["mapping-name"] = " ",
-					["sequence-name"] = " ",
-					["null-name"] = "[] ",
-					["boolean-name"] = "ﰰﰴ ",
-					["integer-name"] = "# ",
-					["float-name"] = " ",
-					["string-name"] = " ",
-				},
-			},
-			["yang"] = {
-				icons = {
-					["module-name"] = " ",
-					["augment-path"] = " ",
-					["container-name"] = " ",
-					["grouping-name"] = " ",
-					["typedef-name"] = " ",
-					["identity-name"] = " ",
-					["list-name"] = "﬘ ",
-					["leaf-list-name"] = " ",
-					["leaf-name"] = " ",
-					["action-name"] = " ",
-				},
-			},
-
-			-- Disable for particular languages
-			-- ["bash"] = false, -- disables nvim-gps for bash
-			-- ["go"] = false,   -- disables nvim-gps for golang
-
-			-- Override default setting for particular languages
-			-- ["ruby"] = {
-			--	separator = '|', -- Overrides default separator with '|'
-			--	icons = {
-			--		-- Default icons not specified in the lang config
-			--		-- will fallback to the default value
-			--		-- "container-name" will fallback to default because it's not set
-			--		["function-name"] = '',    -- to ensure empty values, set an empty string
-			--		["tag-name"] = ''
-			--		["class-name"] = '::',
-			--		["method-name"] = '#',
-			--	}
-			-- }
-		},
-		separator = "  ",
-		-- limit for amount of context shown
-		-- 0 means no limit
-		depth = 0,
-		-- indicator used when context hits depth limit
+		highlight = true,
+		separator = " ",
+		depth_limit = 0,
 		depth_limit_indicator = "..",
 	})
+	vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 end
 
 ui.lualine = function()
-	local gps = require("nvim-gps")
+	local function search_result()
+		if vim.v.hlsearch == 0 then
+			return ""
+		end
+		local last_search = vim.fn.getreg("/")
+		if not last_search or last_search == "" then
+			return ""
+		end
+		local searchcount = vim.fn.searchcount({ maxcount = 9999 })
+		return last_search .. "(" .. searchcount.current .. "/" .. searchcount.total .. ")"
+	end
+
+	local function modified()
+		if vim.bo.modified then
+			return "+"
+		elseif vim.bo.modifiable == false or vim.bo.readonly == true then
+			return "-"
+		end
+		return ""
+	end
+
+	local conditions = {
+		buffer_not_empty = function()
+			return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
+		end,
+		hide_in_width = function()
+			return vim.fn.winwidth(0) > 60
+		end,
+		check_git_workspace = function()
+			local filepath = vim.fn.expand("%:p:h")
+			local gitdir = vim.fn.finddir(".git", filepath .. ";")
+			return gitdir and #gitdir > 0 and #gitdir < #filepath
+		end,
+	}
+
 	local mini_sections = {
 		lualine_a = {},
 		lualine_b = {},
@@ -318,6 +295,7 @@ ui.lualine = function()
 		lualine_y = {},
 		lualine_z = { "location" },
 	}
+
 	local simple_sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "filetype" },
@@ -325,24 +303,70 @@ ui.lualine = function()
 		lualine_x = {},
 		lualine_z = { "location" },
 	}
+
 	require("lualine").setup({
 		options = {
 			icons_enabled = true,
 			theme = "catppuccin",
-			component_separators = { left = "", right = "" },
-			-- component_separators = { left = "|", right = "|" },
-			section_separators = { left = "", right = "" },
-			-- section_separators = { left = "", right = "" },
+			component_separators = { left = "", right = "" },
+			section_separators = { left = "", right = "" },
 			disabled_filetypes = {},
 			always_divide_middle = true,
 			globalstatus = false,
 		},
 		sections = {
 			lualine_a = { "mode" },
-			lualine_b = { "branch", "diff" },
-			lualine_c = { { gps.get_location, cond = gps.is_available } },
-			lualine_x = { { "diagnostics" } },
-			lualine_y = { { "filetype" }, { "encoding" }, { "fileformat" } },
+			lualine_b = {
+				{ "branch" },
+				{
+					"diff",
+					cond = conditions.hide_in_width,
+				},
+			},
+			lualine_c = {
+				{
+					function()
+						local msg = "No Active Lsp"
+						local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+						local clients = vim.lsp.get_active_clients()
+						if next(clients) == nil then
+							return msg
+						end
+						for _, client in ipairs(clients) do
+							local filetypes = client.config.filetypes
+							if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+								return client.name
+							end
+						end
+						return msg
+					end,
+					icon = " LSP:",
+					-- color = { fg = "#ffffff", gui = "bold" },
+				},
+			},
+			lualine_x = {
+				{
+					"%w",
+					cond = function()
+						return vim.wo.previewwindow
+					end,
+				},
+				{
+					"%r",
+					cond = function()
+						return vim.bo.readonly
+					end,
+				},
+				{
+					"%q",
+					cond = function()
+						return vim.bo.buftype == "quickfix"
+					end,
+				},
+				{ search_result, "filetype" },
+				{ "diagnostics" },
+			},
+			lualine_y = { { modified }, { "filetype" }, { "encoding" }, { "fileformat" } },
 			lualine_z = { "progress", "location" },
 		},
 		inactive_sections = {
@@ -357,18 +381,12 @@ ui.lualine = function()
 		extensions = {
 			"nvim-tree",
 			"toggleterm",
+			"nvim-dap-ui",
+			"quickfix",
+			"symbols-outline",
 			{
 				sections = mini_sections,
 				filetypes = { "aerial" },
-			},
-			{
-				sections = simple_sections,
-				filetypes = {
-					"dapui_scopes",
-					"dapui_breakponts",
-					"dapui_stacks",
-					"dapui_watches",
-				},
 			},
 		},
 	})
@@ -571,5 +589,7 @@ end
 ui.dressing = function()
 	require("dressing").setup({})
 end
+
+ui.lsp_status = function() end
 
 return ui

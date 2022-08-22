@@ -93,9 +93,9 @@ local augroups = {
 			[[silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=300})]],
 		},
 	},
-	-- lsp = {
-	--     { "CursorHold,CursorHoldI", "*", "lua vim.diagnostic.open_float(nil, {focus=false})" }
-	-- },
+	lsp = {
+		-- { "CursorHold,CursorHoldI", "*", "Lspsaga hover_doc" },
+	},
 	toggleterm = {
 		{ "TermOpen", "term://*", "lua set_terminal_keymaps()" },
 	},

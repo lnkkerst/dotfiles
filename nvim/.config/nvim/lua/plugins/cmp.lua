@@ -169,7 +169,6 @@ nvim_cmp.cmp = function()
 		sources = {
 			{ name = "cmdline" },
 			{ name = "path" },
-			{ name = "cmdline_history" },
 		},
 	})
 end
