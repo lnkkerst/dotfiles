@@ -64,29 +64,29 @@ function tmpcd
 end
 
 # bun
-if type -f bun 2>/dev/null
+if type -f bun >/dev/null 2>/dev/null
     set --export BUN_INSTALL "$HOME/.bun"
     # set --export PATH $BUN_INSTALL/bin $PATH
 end
 # fnm
-if type -f fnm 2>/dev/null
+if type -f fnm >/dev/null 2>/dev/null
     fish_add_path -g $HOME/.cargo/bin
     fnm env --use-on-cd --shell fish | source
     fnm completions --shell fish | source
 end
 # zoxide
-if type -f zoxide 2>/dev/null
+if type -f zoxide >/dev/null 2>/dev/null
     zoxide init fish | source
     alias j='z'
 end
 
 #pyenv
-if type -f pyenv 2>/dev/null
+if type -f pyenv >/dev/null 2>/dev/null
     pyenv init - | source
 end
 
 # pnpm
-if type -f pnpm 2>/dev/null
+if type -f pnpm >/dev/null 2>/dev/null
     set -gx PNPM_HOME "/home/lnk/.local/share/pnpm"
     set -gx PATH "$PNPM_HOME" $PATH
     # tabtab source for packages
@@ -95,6 +95,6 @@ if type -f pnpm 2>/dev/null
 end
 
 # direnv
-if type -f direnv 2>/dev/null
+if type -f direnv >/dev/null 2>/dev/null
   direnv hook fish | source
 end
