@@ -154,7 +154,7 @@ wk.register({
 
 -- Plugin Telescope
 wk.register({
-  ["t"] = {
+  ["f"] = {
     name = "+Telescope",
     ["f"] = { "<cmd>Telescope find_files<cr>", "Telescope find files" },
     ["n"] = { "<cmd>Telescope notify<cr>", "Telescope notify" },
@@ -202,14 +202,14 @@ wk.register({
 
 -- Plugin focus.nvim
 wk.register({
-  ["f"] = {
+  ["F"] = {
     name = "focus",
     ["h"] = { "<cmd>FocusSplitLeft<cr>", "FocusSplitLeft" },
     ["j"] = { "<cmd>FocusSplitDown<cr>", "FocusSplitDown" },
     ["k"] = { "<cmd>FocusSplitUp<cr>", "FocusSplitUp" },
     ["l"] = { "<cmd>FocusSplitRight<cr>", "FocusSplitRight" },
   },
-})
+}, { prefix = "<leader>" })
 
 -- Plugin ToggleTerm
 wk.register({
@@ -276,11 +276,28 @@ wk.register({
   ['g"'] = { "<cmd>Telescope neoclip<cr>", "Neoclip" },
 })
 
+wk.register({
+  ["<C-S-i>"] = { "<cmd>Neoformat<cr>", "Neoformat" },
+}, { mode = "n" })
+
+wk.register({
+  ["<C-S-i>"] = { "<cmd>Neoformat<cr>", "Neoformat" },
+}, { mode = "i" })
+
+-- Plugin fcitx5-ui
+local fcitx5_ui = {
+  ["<A-i>"] = {
+    "<cmd>lua require'fcitx5-ui'.toggle()<cr>",
+    "Fcitx5-ui toggle",
+  },
+}
+wk.register(fcitx5_ui, { mode = "i" })
+wk.register(fcitx5_ui, { mode = "n" })
+
 local control = {
   ["<C-s>"] = { "<cmd>w<cr>", "Save file" },
   ["<C-v>"] = { "<cmd>put<cr>", "Paste", mode = "i" },
 }
-
 wk.register(control)
 wk.register(control, { mode = "i" })
 
@@ -304,10 +321,12 @@ wk.register(window_focus, { mode = "n" })
 wk.register(window_focus, { mode = "i" })
 
 -- Line move
-wk.register({
+local line_move = {
   ["H"] = { "^", "Move to the first non-blank character" },
   ["L"] = { "g_", "Move to the latest non-blank character" },
-})
+}
+wk.register(line_move, { mode = "n" })
+wk.register(line_move, { mode = "v" })
 
 -- Delete char without yank
 local del_char_without_yank = {

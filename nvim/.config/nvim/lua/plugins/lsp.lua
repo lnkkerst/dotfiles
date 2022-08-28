@@ -39,9 +39,9 @@ lsp.lspsaga = function()
     saga_winblend = 0,
     diagnostic_header = { "😡", "😥", "😤", "😐" },
     code_action_icon = "",
-    symbol_in_winbar = {
-      in_custom = true,
-    },
+    -- symbol_in_winbar = {
+    --   in_custom = true,
+    -- },
     finder_icons = {
       def = "  ",
       ref = "諭 ",
@@ -51,19 +51,23 @@ lsp.lspsaga = function()
 end
 
 lsp.lsp_setup = function()
-  -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-  -- capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+  local global_capabilities = vim.lsp.protocol.make_client_capabilities()
+  global_capabilities =
+    require("cmp_nvim_lsp").update_capabilities(global_capabilities)
+
+  local global_attach = function(client, bufnr)
+    require("aerial").on_attach(client)
+    -- require("lsp-setup.utils").format_on_save(client)
+    require("nvim-navic").attach(client, bufnr)
+  end
+
   require("lsp-setup").setup({
     default_mappings = false,
     mappings = {},
     -- Global on_attach
-    on_attach = function(client, bufnr)
-      require("aerial").on_attach(client)
-      -- require("lsp-setup.utils").format_on_save(client)
-      require("nvim-navic").attach(client, bufnr)
-    end,
+    on_attach = global_attach,
     -- Global capabilities
-    capabilities = vim.lsp.protocol.make_client_capabilities(),
+    capabilities = global_capabilities,
     -- Configuration of LSP servers
     servers = {
       -- Install LSP servers automatically

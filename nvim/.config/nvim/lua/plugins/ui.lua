@@ -13,17 +13,21 @@ ui.alpha = function()
   }
   dashboard.section.header.type = "text"
   dashboard.section.header.val = header
+  -- require("alpha").setup(dashboard.config)
+  local startify = require("alpha.themes.startify")
+  startify.section.header.type = "text"
+  startify.section.header.val = header
   require("alpha").setup(dashboard.config)
 end
 
 ui.dashboard = function()
   local home = os.getenv("HOME")
   local db = require("dashboard")
-  -- db.preview_command = "cat | lolcat -F 0.3"
-  db.preview_command = "ueberzug"
-  db.preview_file_path = home .. "/Pictures/func/neovim.jpg"
+  db.preview_command = "cat | lolcat -F 0.3"
+  -- db.preview_command = "ueberzug"
+  db.preview_file_path = vim.fn.stdpath("config") .. "/static/dashboard.cat"
   db.preview_file_height = 10
-  db.preview_file_width = 30
+  db.preview_file_width = 10
   db.custom_center = {
     {
       icon = "  ",
@@ -169,7 +173,9 @@ ui.catppuccin = function()
       symbols_outline = true,
       mini = false,
       aerial = true,
-      navic = true,
+      navic = {
+        enable = true,
+      },
     },
   })
   vim.g.catppuccin_flavour = "mocha"
@@ -211,11 +217,12 @@ ui.material = function()
     custom_highlights = {}, -- Overwrite highlights with your own
   })
 
-  -- vim.cmd "colorscheme material"
+  -- vim.cmd("colorscheme material")
 end
 
 ui.navic = function()
-  require("nvim-navic").setup({
+  local navic = require("nvim-navic")
+  navic.setup({
     icons = {
       File = " ",
       Module = " ",
@@ -249,7 +256,16 @@ ui.navic = function()
     depth_limit = 0,
     depth_limit_indicator = "..",
   })
-  vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+
+  require("lualine").setup({
+    sections = {
+      lualine_c = {
+        { navic.get_location, cond = navic.is_available },
+      },
+    },
+  })
+  -- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+  vim.g.navic_silence = true
 end
 
 ui.lualine = function()
@@ -329,27 +345,27 @@ ui.lualine = function()
           cond = conditions.hide_in_width,
         },
       },
-      lualine_c = {
-        {
-          function()
-            local msg = "No Active Lsp"
-            local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-            local clients = vim.lsp.get_active_clients()
-            if next(clients) == nil then
-              return msg
-            end
-            for _, client in ipairs(clients) do
-              local filetypes = client.config.filetypes
-              if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                return client.name
-              end
-            end
-            return msg
-          end,
-          icon = " LSP:",
-          -- color = { fg = "#ffffff", gui = "bold" },
-        },
-      },
+      -- lualine_c = {
+      --   {
+      --     function()
+      --       local msg = "No Active Lsp"
+      --       local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+      --       local clients = vim.lsp.get_active_clients()
+      --       if next(clients) == nil then
+      --         return msg
+      --       end
+      --       for _, client in ipairs(clients) do
+      --         local filetypes = client.config.filetypes
+      --         if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+      --           return client.name
+      --         end
+      --       end
+      --       return msg
+      --     end,
+      --     icon = " LSP:",
+      --     -- color = { fg = "#ffffff", gui = "bold" },
+      --   },
+      -- },
       lualine_x = {
         {
           "%w",
@@ -468,9 +484,7 @@ ui.indent_blankline = function()
 end
 
 ui.tree = function()
-  -- each of these are documented in `:help nvim-tree.OPTION_NAME`
   require("nvim-tree").setup({
-    -- BEGIN_DEFAULT_OPTS
     auto_reload_on_write = true,
     disable_netrw = true,
     hijack_cursor = true,
@@ -484,14 +498,14 @@ ui.tree = function()
     update_cwd = true,
     respect_buf_cwd = true,
     view = {
-      adaptive_size = true,
+      adaptive_size = false,
       width = 30,
       height = 30,
       side = "left",
-      preserve_window_proportions = false,
+      preserve_window_proportions = true,
       number = true,
-      relativenumber = false,
-      signcolumn = "yes",
+      relativenumber = true,
+      signcolumn = "auto",
       mappings = {
         custom_only = false,
         list = {},

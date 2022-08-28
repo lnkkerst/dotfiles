@@ -47,7 +47,12 @@ require("packer").startup({
       requires = "kyazdani42/nvim-web-devicons",
       config = ui.bufferline,
     })
-    use({ "glepnir/dashboard-nvim", config = ui.dashboard })
+    -- use({ "glepnir/dashboard-nvim", config = ui.dashboard })
+    use({
+      "goolord/alpha-nvim",
+      requires = { "kyazdani42/nvim-web-devicons" },
+      config = ui.alpha,
+    })
     use({ "lukas-reineke/indent-blankline.nvim", config = ui.indent_blankline })
     use({
       "kyazdani42/nvim-tree.lua",
@@ -233,7 +238,7 @@ require("packer").startup({
     use({ "jghauser/mkdir.nvim" })
     use({ "rcarriga/nvim-notify", config = utils.notify })
     use({ "is0n/jaq-nvim", config = utils.jaq })
-    use({ "lewis6991/gitsigns.nvim", tag = "release", config = utils.gitsigns })
+    -- use({ "lewis6991/gitsigns.nvim", tag = "release", config = utils.gitsigns })
     use({
       "TimUntersberger/neogit",
       requires = "nvim-lua/plenary.nvim",
@@ -266,6 +271,11 @@ require("packer").startup({
       rocks = { "lgi", "dbus_proxy" },
       config = utils.fcitx_ui,
     })
+    -- use({
+    --   "tonyfettes/fcitx5.nvim",
+    --   tag = "v0.0.1-alpha",
+    --   rocks = { "dbus_proxy", "lgi" },
+    -- })
     -- use { "hkupty/nvimux", config = utils.nvimux }
     use({ "aserowy/tmux.nvim", config = utils.tmux })
     use({

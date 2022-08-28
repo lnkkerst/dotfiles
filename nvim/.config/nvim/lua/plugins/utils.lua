@@ -411,7 +411,38 @@ utils.code_runner = function()
 end
 
 utils.fcitx_ui = function()
-  require("fcitx5-ui").setup({})
+  local consts = require("fcitx5-ui.consts")
+
+  local default_cfg = {
+    keys = {
+      trigger = {
+        "<A-I>",
+        consts.FcitxKey.space,
+        5,
+      },
+      up = { "<Up>", consts.FcitxKey.up, consts.FcitxKeyState.no },
+      down = { "<Down>", consts.FcitxKey.down, consts.FcitxKeyState.no },
+      left = { "<Left>", consts.FcitxKey.left, consts.FcitxKeyState.no },
+      right = { "<Right>", consts.FcitxKey.right, consts.FcitxKeyState.no },
+      enter = { "<CR>", consts.FcitxKey.enter, consts.FcitxKeyState.no },
+      backspace = {
+        "<BS>",
+        0xff08,
+        consts.FcitxKeyState.no,
+      },
+      tab = { "<Tab>", consts.FcitxKey.tab, consts.FcitxKeyState.no },
+      stab = { "<S-Tab>", consts.FcitxKey.tab, consts.FcitxKeyState.shift },
+    },
+    ignore_module_missing_warning = false,
+    prev = "<|",
+    next = "|>",
+    update = 50,
+  }
+
+  require("fcitx5-ui").setup(default_cfg)
+  local cfg = require("lualine").get_config()
+  table.insert(cfg.sections.lualine_y, 'require("fcitx5-ui").getCurrentIM()')
+  require("lualine").setup(cfg)
 end
 
 utils.nvimux = function()
