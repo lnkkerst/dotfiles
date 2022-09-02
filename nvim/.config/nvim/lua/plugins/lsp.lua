@@ -124,7 +124,7 @@ lsp.lsp_setup = function()
       eslint = {},
       cssls = {},
       clangd = require("lsp-setup.clangd_extensions").setup({}),
-      tsserver = {},
+      -- tsserver = {},
       pyright = {},
       jdtls = {},
       bashls = {},
@@ -226,4 +226,15 @@ lsp.docs_view = function()
   })
 end
 
+lsp.inc_rename = function()
+  require("inc_rename").setup()
+end
+
+lsp.renamer = function()
+  require("renamer").setup({
+    border_chars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+  })
+end
+
+lsp.lint = function() end
 return lsp

@@ -160,13 +160,12 @@ end
 
 utils.notify = function()
   local notify = require("notify")
-  vim.notify = notify
   notify.setup({
     -- Minimum level to show
     level = "info",
 
     -- Animation style (see below for details)
-    stages = "static",
+    stages = "fade",
 
     -- Function called when a new window is opened, use for changing win settings/config
     on_open = nil,
@@ -201,6 +200,7 @@ utils.notify = function()
       TRACE = "✎",
     },
   })
+  vim.notify = notify
   require("telescope").load_extension("notify")
 end
 
@@ -555,6 +555,22 @@ end
 
 utils.zen = function()
   require("zen-mode").setup({})
+end
+
+utils.registers = function()
+  vim.cmd([[let g:registers_window_border = "single"]])
+end
+
+utils.harpoon = function()
+  require("harpoon").setup({})
+end
+
+utils.jqx = function() end
+
+utils.venn = function() end
+
+utils.todo_comments = function()
+  require("todo-comments").setup({})
 end
 
 return utils

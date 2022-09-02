@@ -29,7 +29,6 @@ local augroups = {
     { "BufWritePre", "MERGE_MSG", "setlocal noundofile" },
     { "BufWritePre", "*.tmp", "setlocal noundofile" },
     { "BufWritePre", "*.bak", "setlocal noundofile" },
-
     -- auto EslintFixAll
     {
       "InsertLeave",
@@ -63,7 +62,8 @@ local augroups = {
       "WinLeave,BufLeave,InsertEnter",
       "*",
       [[if &cursorline && &filetype !~# '^\(dashboard\|clap_\)' && ! &pvw | setlocal nocursorline | endif]],
-    }, -- Force write shada on leaving nvim
+    },
+    -- Force write shada on leaving nvim
     -- {
     --     "VimLeave", "*",
     --     [[if has('nvim') | wshada! | else | wviminfo! | endif]]

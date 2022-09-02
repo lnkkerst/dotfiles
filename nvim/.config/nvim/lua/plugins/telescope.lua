@@ -1,6 +1,6 @@
-local fzf = {}
+local telescope = {}
 
-fzf.telescope = function()
+telescope.telescope = function()
   require("telescope").setup({
     defaults = {
       prompt_prefix = " ",
@@ -49,7 +49,7 @@ fzf.telescope = function()
   })
 end
 
-fzf.neoclip = function()
+telescope.neoclip = function()
   require("neoclip").setup({
     history = 5000,
     enable_persistent_history = true,
@@ -98,11 +98,11 @@ fzf.neoclip = function()
   require("telescope").load_extension("neoclip")
 end
 
-fzf.telescope_fzf_native = function()
-  require("telescope").load_extension("fzy_native")
+telescope.telescope_fzf_native = function()
+  require("telescope").load_extension("fzf_native")
 end
 
-fzf.file_browser = function()
+telescope.file_browser = function()
   -- You don't need to set any of these options.
   -- IMPORTANT!: this is only a showcase of how you can set default options!
   require("telescope").setup({
@@ -125,18 +125,30 @@ fzf.file_browser = function()
   require("telescope").load_extension("file_browser")
 end
 
-fzf.packer = function()
+telescope.packer = function()
   require("telescope").load_extension("packer")
 end
 
-fzf.symbols = function() end
+telescope.symbols = function() end
 
-fzf.github = function()
+telescope.github = function()
   require("telescope").load_extension("gh")
 end
 
-fzf.frecency = function()
+telescope.frecency = function()
   require("telescope").load_extension("frecency")
 end
 
-return fzf
+telescope.project = function()
+  require("telescope").load_extension("project")
+end
+
+telescope.media = function()
+  require("telescope").load_extension("media_files")
+end
+
+telescope.env = function()
+  require("telescope").load_extension("env")
+end
+
+return telescope

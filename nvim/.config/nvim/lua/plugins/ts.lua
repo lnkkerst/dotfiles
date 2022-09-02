@@ -2,6 +2,7 @@ local ts = {}
 
 ts.treesitter = function()
   require("nvim-treesitter.configs").setup({
+
     -- A list of parser names, or "all"
     ensure_installed = {
       "c",
@@ -12,6 +13,9 @@ ts.treesitter = function()
       "python",
       "vue",
       "typescript",
+      "javascript",
+      "fish",
+      "bash",
     },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -19,6 +23,8 @@ ts.treesitter = function()
 
     -- List of parsers to ignore installing (for "all")
     ignore_install = {},
+
+    auto_install = true,
 
     highlight = {
       -- `false` will disable the whole extension
@@ -36,25 +42,26 @@ ts.treesitter = function()
       -- Instead of true it can also be a list of languages
       additional_vim_regex_highlighting = false,
     },
+
     textobjects = {
       move = {
         enable = true,
         set_jumps = true, -- whether to set jumps in the jumplist
         goto_next_start = {
-          ["]]"] = "@function.outer",
-          ["]m"] = "@class.outer",
+          ["]m"] = "@function.outer",
+          ["]]"] = "@class.outer",
         },
         goto_next_end = {
-          ["]["] = "@function.outer",
-          ["]M"] = "@class.outer",
+          ["]M"] = "@function.outer",
+          ["]["] = "@class.outer",
         },
         goto_previous_start = {
-          ["[["] = "@function.outer",
-          ["[m"] = "@class.outer",
+          ["[m"] = "@function.outer",
+          ["[["] = "@class.outer",
         },
         goto_previous_end = {
-          ["[]"] = "@function.outer",
-          ["[M"] = "@class.outer",
+          ["[M"] = "@function.outer",
+          ["[]"] = "@class.outer",
         },
       },
       select = {
@@ -68,27 +75,45 @@ ts.treesitter = function()
           ["af"] = "@function.outer",
           ["if"] = "@function.inner",
           ["ac"] = "@class.outer",
-          ["ic"] = "@class.inner",
+          -- you can optionally set descriptions to the mappings (used in the desc parameter of nvim_buf_set_keymap
+          ["ic"] = {
+            query = "@class.inner",
+            desc = "Select inner part of a class region",
+          },
         },
+        -- You can choose the select mode (default is charwise 'v')
+        selection_modes = {
+          ["@parameter.outer"] = "v", -- charwise
+          ["@function.outer"] = "V", -- linewise
+          ["@class.outer"] = "<c-v>", -- blockwise
+        },
+        -- If you set this to `true` (default is `false`) then any textobject is
+        -- extended to include preceding xor succeeding whitespace. Succeeding
+        -- whitespace has priority in order to act similarly to eg the built-in
+        -- `ap`.
+        include_surrounding_whitespace = true,
       },
       swap = {
         enable = true,
         swap_next = {
-          ["~"] = "@parameter.inner",
+          ["<leader>a"] = "@parameter.inner",
+        },
+        swap_previous = {
+          ["<leader>A"] = "@parameter.inner",
         },
       },
     },
 
-    textsubjects = {
-      enable = true,
-      keymaps = {
-        ["<cr>"] = "textsubjects-smart", -- works in visual mode
-      },
-    },
+    -- textsubjects = {
+    --   enable = true,
+    --   keymaps = {
+    --     ["<cr>"] = "textsubjects-smart", -- works in visual mode
+    --   },
+    -- },
     rainbow = {
       enable = true,
-      extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-      max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+      extended_mode = true, -- highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+      max_file_lines = 1000, -- do not enable for files with more than 1000 lines, int
     },
     autotag = {
       enable = true,
@@ -141,4 +166,11 @@ ts.context = function()
   })
 end
 
+ts.surround = function()
+  require("nvim-surround").setup()
+end
+
+ts.spellsitter = function()
+  require("spellsitter").setup()
+end
 return ts

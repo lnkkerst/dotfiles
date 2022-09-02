@@ -80,8 +80,8 @@ require("packer").startup({
     use({ "phaazon/hop.nvim", branch = "v1", config = editor.hop })
     use({ "kevinhwang91/nvim-hlslens", config = editor.hlslens })
     -- use { "karb94/neoscroll.nvim", config = editor.neoscroll }
-    -- use {"haringsrob/nvim_context_vt", config = editor.context_vt}
-    -- use { "edluffy/specs.nvim", config = editor.specs }
+    use({ "haringsrob/nvim_context_vt", config = editor.context_vt })
+    use({ "edluffy/specs.nvim", config = editor.specs })
     -- use({ "Pocco81/AutoSave.nvim", config = editor.autosave })
     use({ "mizlan/iswap.nvim", config = editor.iswap })
     use({ "ethanholz/nvim-lastplace", config = editor.lastplace })
@@ -99,12 +99,23 @@ require("packer").startup({
       requires = "kevinhwang91/promise-async",
       config = editor.ufo,
     })
-    --
+    use({ "Pocco81/HighStr.nvim", config = editor.highstr })
+    use({
+      "gbprod/yanky.nvim",
+      config = editor.yanky,
+    })
+
     local lsp = require("plugins.lsp")
     use({ "neovim/nvim-lspconfig", config = lsp.lspconfig })
     use({ "williamboman/mason.nvim", config = lsp.mason })
     use({ "williamboman/mason-lspconfig.nvim", config = lsp.mason_lspconfig })
     use({ "glepnir/lspsaga.nvim", config = lsp.lspsaga })
+    use({
+      "filipdutescu/renamer.nvim",
+      branch = "master",
+      requires = { { "nvim-lua/plenary.nvim" } },
+      config = lsp.renamer,
+    })
     use({ "j-hui/fidget.nvim", config = lsp.fidget })
     use({ "folke/lsp-colors.nvim", config = lsp.lsp_colors })
     use({ "b0o/schemastore.nvim" })
@@ -132,6 +143,7 @@ require("packer").startup({
       cmd = { "DocsViewToggle" },
       config = lsp.docs_view,
     })
+    use({ "mfussenegger/nvim-lint", config = lsp.lint })
 
     local cmp = require("plugins.cmp")
     use({ "hrsh7th/nvim-cmp", config = cmp.cmp })
@@ -155,6 +167,7 @@ require("packer").startup({
       requires = {
         "nvim-lua/plenary.nvim",
       },
+      config = cmp.npm,
     })
     use({ "onsails/lspkind.nvim" })
     use({
@@ -171,34 +184,40 @@ require("packer").startup({
     use({ "hrsh7th/cmp-emoji" })
     use({ "dmitmel/cmp-cmdline-history", config = cmp.cmdline_history })
 
-    local fzf = require("plugins.fzf")
+    local telescope = require("plugins.telescope")
     use({
       "nvim-telescope/telescope.nvim",
       requires = { { "nvim-lua/plenary.nvim" } },
-      config = fzf.telescope,
+      config = telescope.telescope,
     })
     use({
-      "nvim-telescope/telescope-fzy-native.nvim",
+      "nvim-telescope/telescope-fzf-native.nvim",
       run = "make",
       config = ui.telescope_fzf_native,
     })
     use({
       "AckslD/nvim-neoclip.lua",
       requires = { "tami5/sqlite.lua", module = "sqlite" },
-      config = fzf.neoclip,
+      config = telescope.neoclip,
     })
     use({
       "nvim-telescope/telescope-file-browser.nvim",
-      config = fzf.file_browser,
+      config = telescope.file_browser,
     })
-    use({ "nvim-telescope/telescope-packer.nvim", config = fzf.packer })
-    use({ "nvim-telescope/telescope-symbols.nvim", config = fzf.symbols })
-    use({ "nvim-telescope/telescope-github.nvim", config = fzf.github })
+    use({ "nvim-telescope/telescope-packer.nvim", config = telescope.packer })
+    use({ "nvim-telescope/telescope-symbols.nvim", config = telescope.symbols })
+    use({ "nvim-telescope/telescope-github.nvim", config = telescope.github })
     use({
       "nvim-telescope/telescope-frecency.nvim",
       requires = { "tami5/sqlite.lua" },
-      config = fzf.frecency,
+      config = telescope.frecency,
     })
+    use({ "nvim-telescope/telescope-project.nvim", config = telescope.project })
+    use({
+      "nvim-telescope/telescope-media-files.nvim",
+      config = telescope.media,
+    })
+    use({ "LinArcX/telescope-env.nvim", config = telescope.env })
 
     local ts = require("plugins.ts")
     use({
@@ -227,6 +246,12 @@ require("packer").startup({
       "windwp/nvim-ts-autotag",
       requires = { "nvim-treesitter/nvim-treesitter" },
     })
+    use({
+      "kylechui/nvim-surround",
+      tag = "*",
+      config = ts.surround,
+    })
+    use({ "lewis6991/spellsitter.nvim", config = ts.spellsitter })
 
     local utils = require("plugins.utils")
     use({ "michaelb/sniprun", run = "bash install.sh", config = utils.sniprun })
@@ -238,7 +263,12 @@ require("packer").startup({
     use({ "jghauser/mkdir.nvim" })
     use({ "rcarriga/nvim-notify", config = utils.notify })
     use({ "is0n/jaq-nvim", config = utils.jaq })
-    -- use({ "lewis6991/gitsigns.nvim", tag = "release", config = utils.gitsigns })
+    use({ "lewis6991/gitsigns.nvim", tag = "release", config = utils.gitsigns })
+    use({
+      "sindrets/diffview.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      config = utils.diffview,
+    })
     use({
       "TimUntersberger/neogit",
       requires = "nvim-lua/plenary.nvim",
@@ -271,13 +301,8 @@ require("packer").startup({
       rocks = { "lgi", "dbus_proxy" },
       config = utils.fcitx_ui,
     })
-    -- use({
-    --   "tonyfettes/fcitx5.nvim",
-    --   tag = "v0.0.1-alpha",
-    --   rocks = { "dbus_proxy", "lgi" },
-    -- })
-    -- use { "hkupty/nvimux", config = utils.nvimux }
     use({ "aserowy/tmux.nvim", config = utils.tmux })
+    use({ "gennaro-tedesco/nvim-jqx", config = utils.jqx })
     use({
       "nvim-neotest/neotest",
       requires = {
@@ -291,6 +316,14 @@ require("packer").startup({
     use({
       "folke/zen-mode.nvim",
       config = utils.zen,
+    })
+    use({ "tversteeg/registers.nvim", config = utils.registers })
+    use({ "ThePrimeagen/harpoon", config = utils.harpoon })
+    use({ "jbyuki/venn.nvim", config = utils.venn })
+    use({
+      "folke/todo-comments.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      config = utils.todo_comments,
     })
 
     local dap = require("plugins.dap")

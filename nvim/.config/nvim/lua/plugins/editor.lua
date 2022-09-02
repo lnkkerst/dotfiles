@@ -220,11 +220,6 @@ editor.lastplace = function()
   })
 end
 
-editor.pretty_fold = function()
-  require("pretty-fold").setup()
-  require("pretty-fold.preview").setup()
-end
-
 editor.neogen = function()
   require("neogen").setup({
     snippet_engine = "luasnip",
@@ -281,12 +276,75 @@ editor.ufo = function()
   vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
   vim.o.foldlevelstart = 99
   vim.o.foldenable = true
+  vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep:│,foldclose:]]
+
+  vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+  vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+
+  local handler = function(virtText, lnum, endLnum, width, truncate)
+    local newVirtText = {}
+    local suffix = ("  %d "):format(endLnum - lnum)
+    local sufWidth = vim.fn.strdisplaywidth(suffix)
+    local targetWidth = width - sufWidth
+    local curWidth = 0
+    for _, chunk in ipairs(virtText) do
+      local chunkText = chunk[1]
+      local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+      if targetWidth > curWidth + chunkWidth then
+        table.insert(newVirtText, chunk)
+      else
+        chunkText = truncate(chunkText, targetWidth - curWidth)
+        local hlGroup = chunk[2]
+        table.insert(newVirtText, { chunkText, hlGroup })
+        chunkWidth = vim.fn.strdisplaywidth(chunkText)
+        -- str width returned from truncate() may less than 2nd argument, need padding
+        if curWidth + chunkWidth < targetWidth then
+          suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+        end
+        break
+      end
+      curWidth = curWidth + chunkWidth
+    end
+    table.insert(newVirtText, { suffix, "MoreMsg" })
+    return newVirtText
+  end
 
   require("ufo").setup({
     provider_selector = function(bufnr, filetype, buftype)
       return { "treesitter", "indent" }
     end,
+    fold_virt_text_handler = handler,
   })
 end
 
+editor.highstr = function()
+  local high_str = require("high-str")
+
+  high_str.setup({
+    verbosity = 0,
+    saving_path = "/tmp/highstr/",
+    highlight_colors = {
+      -- color_id = {"bg_hex_code",<"fg_hex_code"/"smart">}
+      color_0 = { "#0c0d0e", "smart" }, -- Cosmic charcoal
+      color_1 = { "#e5c07b", "smart" }, -- Pastel yellow
+      color_2 = { "#7FFFD4", "smart" }, -- Aqua menthe
+      color_3 = { "#8A2BE2", "smart" }, -- Proton purple
+      color_4 = { "#FF4500", "smart" }, -- Orange red
+      color_5 = { "#008000", "smart" }, -- Office green
+      color_6 = { "#0000FF", "smart" }, -- Just blue
+      color_7 = { "#FFC0CB", "smart" }, -- Blush pink
+      color_8 = { "#FFF9E3", "smart" }, -- Cosmic latte
+      color_9 = { "#7d5c34", "smart" }, -- Fallow brown
+    },
+  })
+end
+
+editor.yanky = function()
+  require("yanky").setup({})
+  vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+  vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+  vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+  vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+  vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)")
+end
 return editor

@@ -92,7 +92,7 @@ wk.register({
       '<cmd>lua require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })<cr>',
       "Lspsaga prev error diagnostics",
     },
-    ["r"] = { "<cmd>Lspsaga rename<cr>", "Lspsaga rename" },
+    -- ["r"] = { "<cmd>Lspsaga rename<cr>", "Lspsaga rename" },
     ["d"] = {
       "<cmd>Lspsaga preview_definition<cr>",
       "Lspsaga preview definition",
@@ -101,14 +101,6 @@ wk.register({
       "<cmd>Lspsaga signature_help<cr>",
       "Lspsafa signature_help",
     },
-  },
-  ["<C-f>"] = {
-    "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>",
-    "Lspsaga smart sroll forward",
-  },
-  ["<C-b>"] = {
-    "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>",
-    "Lspsaga smart sroll backward",
   },
 })
 wk.register({
@@ -124,23 +116,20 @@ wk.register({
   },
 }, { mode = "v" })
 
--- Plugin Lspconfig
 wk.register({
-  ["g"] = {
-    -- name = "lsp action",
-    ["d"] = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Lsp goto definition" },
-    ["D"] = {
-      "<cmd>lua vim.lsp.buf.declaration()<cr>",
-      "Lsp goto declaration",
-    },
+  ["gr"] = {
+    "<cmd>lua require('renamer').rename()<cr>",
+    "renamer",
   },
 })
 
 -- Plugin accelerate_jk
-wk.register({
+
+local accelerate_jk = {
   ["j"] = { "<Plug>(accelerated_jk_gj)", "accelerate j" },
   ["k"] = { "<Plug>(accelerated_jk_gk)", "accelerate k" },
-})
+}
+wk.register(accelerate_jk)
 
 -- Plugin Nvim-tree
 wk.register({
@@ -151,6 +140,25 @@ wk.register({
 wk.register({
   ["<A-a>"] = { "<cmd>AerialToggle<cr>", "AerialToggle" },
 })
+
+-- Plugin HighStr
+for i = 1, 8 do
+  wk.register({
+    ["h" .. i] = {
+      ":<C-u>HSHighlight " .. i .. "<cr>",
+      "Hightlight current selection",
+    },
+  }, { mode = "v", prefix = "<leader>" })
+end
+wk.register({
+  ["h"] = {
+    ["r"] = {
+      ":<C-u>HSRmHighlight<cr>",
+      "Remove current selection Highlight",
+    },
+    ["c"] = { ":<C-u>HSRmHighlight rm_all<cr>", "Clear all Highlight" },
+  },
+}, { mode = "v", prefix = "<leader>" })
 
 -- Plugin Telescope
 wk.register({
@@ -178,6 +186,12 @@ wk.register({
     "<cmd>MarkdownPreviewToggle<cr>",
     "Markdown Preview",
   },
+})
+
+-- Plugin yanky
+wk.register({
+  ["<C-j>"] = { "<Plug>(YankyCycleForward)", "yank for" },
+  ["<C-k>"] = { "<Plug>(YankyCycleBackward)", "yank_back" },
 })
 
 -- Plugin Hop
@@ -305,7 +319,6 @@ local undo_redo = {
   ["<A-z>"] = { "<cmd>undo<cr>", "Undo" },
   ["<A-S-z>"] = { "<cmd>redo<cr>", "Redo" },
 }
-
 wk.register(undo_redo)
 wk.register(undo_redo, { mode = "i" })
 

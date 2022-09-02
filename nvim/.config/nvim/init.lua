@@ -7,7 +7,6 @@ vim.g.mapleader = " "
 require("neovide")
 require("internal.packer_commands")
 require("plugins")
-require("impatient")
 require("options")
 require("autocmd")
 require("keymap")
