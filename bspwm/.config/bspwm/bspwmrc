@@ -49,24 +49,26 @@ bspc rule -a Fontweak state=floating
 bspc rule -a Catfish state=floating
 bspc rule -a Ario state=floating
 bspc rule -a SimpleScreenRecorder state=floating
-bspc rule -a "blueman-manager" state=floating
+bspc rule -a blueman-manager state=floating
 # bspc rule -a feh state=floating
-bspc rule -a Pavucontrol  state=floating
+bspc rule -a Pavucontrol state=floating
 bspc rule -a zhumu state=floating
 bspc rule -a "org.jackhuang.hmcl.Launcher" state=floating
 bspc rule -a "Minecraft*" state=floating
-bspc rule -a "Steam" state=floating
+bspc rule -a Steam state=floating
 bspc rule -a "Clash for Windows" state=floating
-bspc rule -a "Motrix" state=floating
+bspc rule -a Motrix state=floating
 bspc rule -a "*:*:Motrix WebExtension" state=floating
 bspc rule -a "qq.exe" state=floating border=off
 bspc rule -a "wechat.exe" state=floating border=off
 bspc rule -a "tim.exe" state=floating border=off
-bspc rule -a "Xfce4-appfinder" state=floating
-bspc rule -a "wechat-devtools" state=floating
-bspc rule -a "guvcview" state=floating
-bspc rule -a "wemeetapp" state=floating
-bspc rule -a "Todesk" border=off
+bspc rule -a Xfce4-appfinder state=floating
+bspc rule -a wechat-devtools state=floating
+bspc rule -a guvcview state=floating
+bspc rule -a wemeetapp state=floating
+bspc rule -a Todesk border=off
+bspc rule -a Peek state=floating
+bspc rule -a copyq state=floating
 
 # Autostart
 fish $SCRIPTS_DIR/autostart.fish

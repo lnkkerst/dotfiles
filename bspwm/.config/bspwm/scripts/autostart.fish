@@ -1,11 +1,11 @@
 #! /bin/fish
 
 set apps "xsettingsd
-fcitx5
+fcitx5 -d
 /usr/libexec/polkit-gnome-authentication-agent-1
 nitrogen --restore; sleep 1; picom -b
 nm-applet
-parcellite
+copyq
 blueman-applet
 xidlehook --not-when-audio --not-when-fullscreen --timer 1200 "$HOME/.config/bspwm/scripts/i3lock-color.sh"
 xss-lock $HOME/.config/bspwm/scripts/i3lock-color.sh
@@ -13,12 +13,13 @@ libinput-gestures
 $HOME/.config/polybar/launch.fish
 picom -b
 mpd
+dunst
 appimagelauncher appimagelauncherd
 sh $HOME/.config/bspwm/scripts/bspswallow"
 
 for app in (string split \n $apps)
     if test (ps -ef | grep "$app" | grep -v grep | wc -l) = 0
-       sh -c "$app" &
+        sh -c "$app" &
     end
 end
 
