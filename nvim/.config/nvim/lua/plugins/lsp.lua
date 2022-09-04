@@ -72,33 +72,20 @@ lsp.lsp_setup = function()
     servers = {
       -- Install LSP servers automatically
       -- LSP server configuration please see: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-      -- pylsp = {},
-      -- rust_analyzer = {
+      -- rust_analyzer = require("lsp-setup.rust-tools").setup({
+      --   server = {
       --     settings = {
-      --         ['rust-analyzer'] = {
-      --             cargo = {
-      --                 loadOutDirsFromCheck = true,
-      --             },
-      --             procMacro = {
-      --                 enable = true,
-      --             },
+      --       ["rust-analyzer"] = {
+      --         cargo = {
+      --           loadOutDirsFromCheck = true,
       --         },
+      --         procMacro = {
+      --           enable = true,
+      --         },
+      --       },
       --     },
-      -- },
-      rust_analyzer = require("lsp-setup.rust-tools").setup({
-        server = {
-          settings = {
-            ["rust-analyzer"] = {
-              cargo = {
-                loadOutDirsFromCheck = true,
-              },
-              procMacro = {
-                enable = true,
-              },
-            },
-          },
-        },
-      }),
+      --   },
+      -- }),
       sumneko_lua = require("lua-dev").setup({
         lspconfig = {
           settings = {

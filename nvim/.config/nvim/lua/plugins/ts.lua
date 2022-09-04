@@ -1,22 +1,11 @@
 local ts = {}
 
 ts.treesitter = function()
-  require("nvim-treesitter.configs").setup({
+  vim.api.nvim_command("set foldmethod=expr")
+  vim.api.nvim_command("set foldexpr=nvim_treesitter#foldexpr()")
 
-    -- A list of parser names, or "all"
-    ensure_installed = {
-      "c",
-      "lua",
-      "rust",
-      "cpp",
-      "java",
-      "python",
-      "vue",
-      "typescript",
-      "javascript",
-      "fish",
-      "bash",
-    },
+  require("nvim-treesitter.configs").setup({
+    ensure_installed = "all",
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -27,19 +16,7 @@ ts.treesitter = function()
     auto_install = true,
 
     highlight = {
-      -- `false` will disable the whole extension
       enable = true,
-
-      -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-      -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-      -- the name of the parser)
-      -- list of language that will be disabled
-      -- disable = { "c", "rust" },
-
-      -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-      -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-      -- Using this option may slow down your editor, and you may see some duplicate highlights.
-      -- Instead of true it can also be a list of languages
       additional_vim_regex_highlighting = false,
     },
 
@@ -104,20 +81,16 @@ ts.treesitter = function()
       },
     },
 
-    -- textsubjects = {
-    --   enable = true,
-    --   keymaps = {
-    --     ["<cr>"] = "textsubjects-smart", -- works in visual mode
-    --   },
-    -- },
     rainbow = {
       enable = true,
       extended_mode = true, -- highlight also non-parentheses delimiters, boolean or table: lang -> boolean
       max_file_lines = 1000, -- do not enable for files with more than 1000 lines, int
     },
+
     autotag = {
       enable = true,
     },
+
     context_commentstring = {
       enable = true,
       enable_autocmd = false,
@@ -173,4 +146,5 @@ end
 ts.spellsitter = function()
   require("spellsitter").setup()
 end
+
 return ts

@@ -23,6 +23,21 @@ editor.cursorword = function()
   vim.g.cursorword_disable_filetypes = {}
 end
 
+editor.cursorline = function()
+  require("nvim-cursorline").setup({
+    cursorline = {
+      enable = false,
+      timeout = 1000,
+      number = false,
+    },
+    cursorword = {
+      enable = true,
+      min_length = 3,
+      hl = { underline = true },
+    },
+  })
+end
+
 editor.comment = function()
   require("Comment").setup({
     ---Add a space b/w comment and the line

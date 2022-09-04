@@ -263,14 +263,14 @@ ui.navic = function()
     depth_limit_indicator = "..",
   })
 
-  require("lualine").setup({
-    sections = {
-      lualine_c = {
-        { navic.get_location, cond = navic.is_available },
-      },
-    },
-  })
-  -- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+  -- require("lualine").setup({
+  --   sections = {
+  --     lualine_c = {
+  --       { navic.get_location, cond = navic.is_available },
+  --     },
+  --   },
+  -- })
+  vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
   vim.g.navic_silence = true
 end
 
@@ -351,27 +351,27 @@ ui.lualine = function()
           cond = conditions.hide_in_width,
         },
       },
-      -- lualine_c = {
-      --   {
-      --     function()
-      --       local msg = "No Active Lsp"
-      --       local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-      --       local clients = vim.lsp.get_active_clients()
-      --       if next(clients) == nil then
-      --         return msg
-      --       end
-      --       for _, client in ipairs(clients) do
-      --         local filetypes = client.config.filetypes
-      --         if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-      --           return client.name
-      --         end
-      --       end
-      --       return msg
-      --     end,
-      --     icon = " LSP:",
-      --     -- color = { fg = "#ffffff", gui = "bold" },
-      --   },
-      -- },
+      lualine_c = {
+        {
+          function()
+            local msg = "No Active Lsp"
+            local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+            local clients = vim.lsp.get_active_clients()
+            if next(clients) == nil then
+              return msg
+            end
+            for _, client in ipairs(clients) do
+              local filetypes = client.config.filetypes
+              if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                return client.name
+              end
+            end
+            return msg
+          end,
+          icon = " LSP:",
+          -- color = { fg = "#ffffff", gui = "bold" },
+        },
+      },
       lualine_x = {
         {
           "%w",

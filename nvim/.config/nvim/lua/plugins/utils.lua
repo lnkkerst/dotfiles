@@ -426,7 +426,7 @@ utils.fcitx_ui = function()
       right = { "<Right>", consts.FcitxKey.right, consts.FcitxKeyState.no },
       enter = { "<CR>", consts.FcitxKey.enter, consts.FcitxKeyState.no },
       backspace = {
-        "<BS>",
+        "<C-BS>",
         0xff08,
         consts.FcitxKeyState.no,
       },
