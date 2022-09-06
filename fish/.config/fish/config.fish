@@ -24,17 +24,11 @@ set -gx FZF_DEFAULT_OPTS "--color=bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28
 
 # Alias
 alias gitu='git add . && git commit && git push'
-alias ll='ls -lh'
-alias lla='ls -alh'
-alias l='ls'
-alias la='ls -a'
 alias trm='/bin/rm'
 alias rm='trash-put'
 alias pc='proxychains'
 alias ...='cd ..; cd .. '
 alias www='darkhttpd .'
-alias ls='exa'
-alias lsi='exa --icons --color=auto'
 alias dstat='dstat -cdlmnpsy'
 alias py='python'
 alias :q='exit'
@@ -96,5 +90,7 @@ end
 
 # direnv
 if type -f direnv >/dev/null 2>/dev/null
-  direnv hook fish | source
+    direnv hook fish | source
 end
+
+starship init fish | source
