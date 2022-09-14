@@ -46,8 +46,8 @@ require("packer").startup({
     })
     use({
       "SmiteshP/nvim-navic",
-      after = { "nvim-lsp-setup", "lualine.nvim" },
-      requires = "neovim/nvim-lspconfig",
+      -- after = { "nvim-lsp-setup", "lualine.nvim" },
+      -- requires = "neovim/nvim-lspconfig",
       config = ui.navic,
     })
     use({
@@ -84,7 +84,7 @@ require("packer").startup({
     })
     use({
       "petertriho/nvim-scrollbar",
-      cmd = "BufReadPost",
+      -- cmd = "BufReadPost",
       config = ui.scrollbar,
     })
     -- use({ "beauwilliams/focus.nvim", config = ui.focus })
@@ -101,7 +101,7 @@ require("packer").startup({
     })
     use({
       "stevearc/dressing.nvim",
-      after = "telescope.nvim",
+      -- after = "telescope.nvim",
       config = ui.dressing,
     })
 
@@ -110,10 +110,6 @@ require("packer").startup({
       "rainbowhxch/accelerated-jk.nvim",
       config = editor.accelerated_jk,
     })
-    -- use({
-    --   "xiyaowong/nvim-cursorword",
-    --   config = editor.cursorword,
-    -- })
     use({
       "yamatsum/nvim-cursorline",
       event = "BufReadPost",
@@ -138,7 +134,7 @@ require("packer").startup({
     })
     use({
       "kevinhwang91/nvim-hlslens",
-      event = "CmdlineEnter",
+      -- event = "CmdlineEnter",
       config = editor.hlslens,
     })
     -- use { "karb94/neoscroll.nvim", config = editor.neoscroll }
@@ -147,11 +143,6 @@ require("packer").startup({
       after = "nvim-treesitter",
       config = editor.context_vt,
     })
-    -- use({
-    --   "mizlan/iswap.nvim",
-    --   after = "nvim-treesitter",
-    --   config = editor.iswap,
-    -- })
     use({ "ethanholz/nvim-lastplace", config = editor.lastplace })
     use({
       "nacro90/numb.nvim",
@@ -170,12 +161,11 @@ require("packer").startup({
     })
     use({
       "norcalli/nvim-colorizer.lua",
-      event = "BufReadPost",
+      -- event = "BufReadPost",
       config = editor.colorizer,
     })
     use({
       "kevinhwang91/nvim-ufo",
-      cmd = "BufReadPost",
       requires = "kevinhwang91/promise-async",
       config = editor.ufo,
     })
@@ -189,11 +179,22 @@ require("packer").startup({
     local lsp = require("plugins.lsp")
     use({
       "neovim/nvim-lspconfig",
-      event = "BufReadPre",
+      ft = {
+        "cpp",
+        "c",
+        "typescript",
+        "javascript",
+        "vue",
+        "lua",
+        "html",
+        "css",
+        "rust",
+      },
       config = lsp.lspconfig,
     })
     use({
       "williamboman/mason.nvim",
+      cmd = "Mason",
       after = "nvim-lspconfig",
       config = lsp.mason,
     })
@@ -201,6 +202,11 @@ require("packer").startup({
       "williamboman/mason-lspconfig.nvim",
       after = "mason.nvim",
       config = lsp.mason_lspconfig,
+    })
+    use({
+      "lukas-reineke/lsp-format.nvim",
+      after = "nvim-lspconfig",
+      config = lsp.lsp_format,
     })
     use({
       "glepnir/lspsaga.nvim",
@@ -250,6 +256,8 @@ require("packer").startup({
       "junnplus/nvim-lsp-setup",
       after = {
         "nvim-lspconfig",
+        "mason.nvim",
+        "mason-lspconfig.nvim",
         "schemastore.nvim",
         "lua-dev.nvim",
         "clangd_extensions.nvim",
@@ -283,7 +291,7 @@ require("packer").startup({
     })
     use({
       "hrsh7th/cmp-nvim-lsp",
-      after = "nvim-lspconfig",
+      after = { "nvim-lspconfig", "nvim-cmp" },
     })
     use({
       "hrsh7th/cmp-buffer",
@@ -319,7 +327,7 @@ require("packer").startup({
         {
           "L3MON4D3/LuaSnip",
           after = "friendly-snippets",
-          event = "InsertCharPre",
+          -- event = "InsertCharPre",
           config = cmp.luasnip,
         },
         {
@@ -341,45 +349,52 @@ require("packer").startup({
     local telescope = require("plugins.telescope")
     use({
       "nvim-telescope/telescope.nvim",
-      cmd = "Telescope",
+      -- cmd = { "Telescope", "Legendary" },
       requires = { { "nvim-lua/plenary.nvim" } },
       config = telescope.telescope,
     })
     use({
       "nvim-telescope/telescope-fzf-native.nvim",
       after = "telescope.nvim",
+      cmd = "Telescope",
       run = "make",
       config = ui.telescope_fzf_native,
     })
     use({
       "AckslD/nvim-neoclip.lua",
       after = "telescope.nvim",
+      cmd = "Telescope",
       requires = { "tami5/sqlite.lua", module = "sqlite" },
       config = telescope.neoclip,
     })
     use({
       "nvim-telescope/telescope-file-browser.nvim",
       after = "telescope.nvim",
+      cmd = "Telescope",
       config = telescope.file_browser,
     })
     use({
       "nvim-telescope/telescope-packer.nvim",
       after = "telescope.nvim",
+      cmd = "Telescope",
       config = telescope.packer,
     })
     use({
       "nvim-telescope/telescope-symbols.nvim",
       after = "telescope.nvim",
+      cmd = "Telescope",
       config = telescope.symbols,
     })
     use({
       "nvim-telescope/telescope-github.nvim",
       after = "telescope.nvim",
+      cmd = "Telescope",
       config = telescope.github,
     })
     use({
       "nvim-telescope/telescope-frecency.nvim",
       after = "telescope.nvim",
+      cmd = "Telescope",
       requires = { "tami5/sqlite.lua" },
       config = telescope.frecency,
     })
@@ -391,11 +406,13 @@ require("packer").startup({
     use({
       "nvim-telescope/telescope-media-files.nvim",
       after = "telescope.nvim",
+      cmd = "Telescope",
       config = telescope.media,
     })
     use({
       "LinArcX/telescope-env.nvim",
       after = "telescope.nvim",
+      cmd = "Telescope",
       config = telescope.env,
     })
 
@@ -410,6 +427,7 @@ require("packer").startup({
       "nvim-treesitter/nvim-treesitter-textobjects",
       after = "nvim-treesitter",
       requires = { "nvim-treesitter/nvim-treesitter" },
+      config = ts.textobjects,
     })
     use({
       "p00f/nvim-ts-rainbow",
@@ -464,7 +482,12 @@ require("packer").startup({
       config = utils.aerial,
     })
     use({ "ellisonleao/glow.nvim", branch = "main", config = utils.glow })
-    use({ "folke/which-key.nvim", config = utils.which_key })
+    use({
+      "folke/which-key.nvim",
+      config = utils.which_key,
+      after = "legendary.nvim",
+    })
+    use({ "mrjones2014/legendary.nvim" })
     use({
       "iamcco/markdown-preview.nvim",
       ft = "markdown",
@@ -507,7 +530,7 @@ require("packer").startup({
     })
     use({
       "gpanders/editorconfig.nvim",
-      event = "InsertEnter",
+      -- event = "InsertEnter",
       config = utils.editorconfig,
     })
     use({
@@ -605,12 +628,10 @@ require("packer").startup({
 
     local lang = require("plugins.lang")
     use({ "mfussenegger/nvim-jdtls", ft = "java", config = lang.jdtls })
-    -- use({
-    --   "simrat39/rust-tools.nvim",
-    --   ft = "rust",
-    --   after = "nvim-lsp-setup",
-    --   config = lang.rust_tools,
-    -- })
+    use({
+      "simrat39/rust-tools.nvim",
+      config = lang.rust_tools,
+    })
     use({
       "saecki/crates.nvim",
       event = { "BufRead Cargo.toml" },

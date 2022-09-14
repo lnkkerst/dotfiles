@@ -1,21 +1,36 @@
 local lsp = {}
 
 lsp.lspconfig = function()
-  local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+  local signs = {
+    Error = " ",
+    Warn = " ",
+    Info = " ",
+    Hint = " ",
+  }
   for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
   end
 
-  vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      underline = true,
-      virtual_text = {
-        spacing = 5,
-        severity_limit = "Warning",
-      },
-      update_in_insert = true,
-    })
+  vim.diagnostic.config({
+    signs = true,
+    update_in_insert = false,
+    underline = true,
+    severity_sort = true,
+    virtual_text = {
+      source = true,
+    },
+  })
+
+  -- vim.lsp.handlers["textDocument/publishDiagnostics"] =
+  --   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  --     underline = true,
+  --     virtual_text = {
+  --       spacing = 5,
+  --       severity_limit = "Warning",
+  --     },
+  --     update_in_insert = true,
+  --   })
 end
 
 lsp.mason = function()
@@ -54,6 +69,10 @@ lsp.lsp_setup = function()
   local global_capabilities = vim.lsp.protocol.make_client_capabilities()
   global_capabilities =
     require("cmp_nvim_lsp").update_capabilities(global_capabilities)
+  global_capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+  }
 
   local global_attach = function(client, bufnr)
     require("aerial").on_attach(client)
@@ -72,20 +91,20 @@ lsp.lsp_setup = function()
     servers = {
       -- Install LSP servers automatically
       -- LSP server configuration please see: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-      -- rust_analyzer = require("lsp-setup.rust-tools").setup({
-      --   server = {
-      --     settings = {
-      --       ["rust-analyzer"] = {
-      --         cargo = {
-      --           loadOutDirsFromCheck = true,
-      --         },
-      --         procMacro = {
-      --           enable = true,
-      --         },
-      --       },
-      --     },
-      --   },
-      -- }),
+      rust_analyzer = require("lsp-setup.rust-tools").setup({
+        server = {
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                loadOutDirsFromCheck = true,
+              },
+              procMacro = {
+                enable = true,
+              },
+            },
+          },
+        },
+      }),
       sumneko_lua = require("lua-dev").setup({
         lspconfig = {
           settings = {
@@ -132,7 +151,13 @@ lsp.lsp_colors = function()
 end
 
 lsp.fidget = function()
-  require("fidget").setup({})
+  require("fidget").setup({
+    sources = {
+      ["null-ls"] = {
+        ignore = true,
+      },
+    },
+  })
 end
 
 lsp.symbols_outline = function()
@@ -195,14 +220,20 @@ lsp.virtual_types = function() end
 lsp.null = function()
   local null = require("null-ls")
   null.setup({
-    -- sources = {
-    --   null.builtins.formatting.stylua,
-    --   null.builtins.formatting.shfmt,
-    --   null.builtins.formatting.prettier,
-    --   null.builtins.formatting.clang_format,
-    --   null.builtins.diagnostics.eslint,
-    --   null.builtins.completion.spell,
-    -- },
+    sources = {
+      null.builtins.formatting.stylua,
+      null.builtins.formatting.shfmt,
+      null.builtins.formatting.prettier,
+      null.builtins.formatting.clang_format,
+      null.builtins.formatting.rustfmt,
+      null.builtins.formatting.autopep8,
+      null.builtins.formatting.fish_indent,
+      null.builtins.diagnostics.eslint,
+      null.builtins.completion.spell,
+      -- null.builtins.code_actions.gitsigns,
+      null.builtins.diagnostics.fish,
+    },
+    on_attach = require("lsp-format").on_attach,
   })
 end
 
@@ -224,4 +255,9 @@ lsp.renamer = function()
 end
 
 lsp.lint = function() end
+
+lsp.lsp_format = function()
+  require("lsp-format").setup({})
+end
+
 return lsp

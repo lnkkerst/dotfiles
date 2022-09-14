@@ -30,11 +30,11 @@ local augroups = {
     { "BufWritePre", "*.tmp", "setlocal noundofile" },
     { "BufWritePre", "*.bak", "setlocal noundofile" },
     -- auto EslintFixAll
-    {
-      "InsertLeave",
-      "{*.js,*.ts,*.vue,*.jsx.*.tsx,*.cjs,*.mjs}",
-      "EslintFixAll",
-    },
+    -- {
+    --   "InsertLeave",
+    --   "{*.js,*.ts,*.vue,*.jsx.*.tsx,*.cjs,*.mjs}",
+    --   "EslintFixAll",
+    -- },
     -- auto change directory
     -- { "BufEnter", "*", "silent! lcd %:p:h" }, -- auto place to last edit
     -- {
@@ -92,16 +92,13 @@ local augroups = {
     --     "nnoremap <leader>h :ClangdSwitchSourceHeaderVSplit<CR>"
     -- }
   },
-  yank = {
-    {
-      "TextYankPost",
-      "*",
-      [[silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=300})]],
-    },
-  },
-  lsp = {
-    -- { "CursorHold,CursorHoldI", "*", "Lspsaga hover_doc" },
-  },
+  -- yank = {
+  --   {
+  --     "TextYankPost",
+  --     "*",
+  --     [[silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=300})]],
+  --   },
+  -- },
   toggleterm = {
     { "TermOpen", "term://*", "lua set_terminal_keymaps()" },
   },

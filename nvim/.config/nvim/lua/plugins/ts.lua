@@ -1,8 +1,8 @@
 local ts = {}
 
 ts.treesitter = function()
-  vim.api.nvim_command("set foldmethod=expr")
-  vim.api.nvim_command("set foldexpr=nvim_treesitter#foldexpr()")
+  -- vim.api.nvim_command("set foldmethod=expr")
+  -- vim.api.nvim_command("set foldexpr=nvim_treesitter#foldexpr()")
 
   require("nvim-treesitter.configs").setup({
     ensure_installed = "all",
@@ -11,7 +11,7 @@ ts.treesitter = function()
     sync_install = false,
 
     -- List of parsers to ignore installing (for "all")
-    ignore_install = {},
+    ignore_install = { "phpdoc" },
 
     auto_install = true,
 
@@ -20,6 +20,25 @@ ts.treesitter = function()
       additional_vim_regex_highlighting = false,
     },
 
+    rainbow = {
+      enable = true,
+      extended_mode = true, -- highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+      max_file_lines = 1000, -- do not enable for files with more than 1000 lines, int
+    },
+
+    autotag = {
+      enable = true,
+    },
+
+    context_commentstring = {
+      enable = true,
+      enable_autocmd = false,
+    },
+  })
+end
+
+ts.textobjects = function()
+  require("nvim-treesitter.configs").setup({
     textobjects = {
       move = {
         enable = true,
@@ -79,21 +98,6 @@ ts.treesitter = function()
           ["<leader>A"] = "@parameter.inner",
         },
       },
-    },
-
-    rainbow = {
-      enable = true,
-      extended_mode = true, -- highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-      max_file_lines = 1000, -- do not enable for files with more than 1000 lines, int
-    },
-
-    autotag = {
-      enable = true,
-    },
-
-    context_commentstring = {
-      enable = true,
-      enable_autocmd = false,
     },
   })
 end

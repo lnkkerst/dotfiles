@@ -82,15 +82,7 @@ editor.comment = function()
       block = "gb",
     },
 
-    ---Pre-hook, called before commenting the line
-    ---@type function|nil
-    ---@param ctx Ctx
-    pre_hook = function(ctx)
-      return require("ts_context_commentstring.internal").calculate_commentstring()
-    end,
-
-    ---Post-hook, called after commenting is done
-    ---@type function|nil
+    pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(), ---Post-hook, called after commenting is done
     post_hook = nil,
   })
 end
@@ -293,8 +285,8 @@ editor.ufo = function()
   vim.o.foldenable = true
   vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep:│,foldclose:]]
 
-  vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-  vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+  vim.keymap.set("n", "zR", require("ufo").openAllFolds, {})
+  vim.keymap.set("n", "zM", require("ufo").closeAllFolds, {})
 
   local handler = function(virtText, lnum, endLnum, width, truncate)
     local newVirtText = {}
@@ -326,7 +318,7 @@ editor.ufo = function()
 
   require("ufo").setup({
     provider_selector = function(bufnr, filetype, buftype)
-      return { "treesitter", "indent" }
+      return { "lsp", "indent" }
     end,
     fold_virt_text_handler = handler,
   })

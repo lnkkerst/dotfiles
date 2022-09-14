@@ -23,7 +23,7 @@ local options = {
   shiftround = true,
   timeout = true,
   ttimeout = true,
-  timeoutlen = 200,
+  timeoutlen = 500,
   ttimeoutlen = 0,
   updatetime = 100,
   redrawtime = 1500,
@@ -94,7 +94,6 @@ local options = {
   conceallevel = 0,
   concealcursor = "niv",
 }
-
 local globals = {
   mapleader = " ",
   speeddating_no_mappings = 1,

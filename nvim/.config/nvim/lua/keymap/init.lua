@@ -1,5 +1,6 @@
 require("keymap.config")
 
+require("plugins.utils").legendary()
 local wk = require("which-key")
 
 -- Plugin BufferLine
@@ -56,6 +57,8 @@ wk.register({
   ["<Tab>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
   ["<S-Tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
   ["<S-q>"] = { "<cmd>bd<cr>", "BufferLinePickClise" },
+})
+wk.register({
   ["b"] = {
     name = "bufferline action",
     ["e"] = {
@@ -68,7 +71,7 @@ wk.register({
     },
     ["p"] = { "<cmd>BufferLinePick<cr>", "BufferLinePick" },
   },
-})
+}, { prefix = "<leader>" })
 
 -- Plugin Lspsaga
 wk.register({
@@ -94,10 +97,10 @@ wk.register({
     },
     -- ["r"] = { "<cmd>Lspsaga rename<cr>", "Lspsaga rename" },
     ["d"] = {
-      "<cmd>Lspsaga preview_definition<cr>",
+      "<cmd>Lspsaga peek_definition<cr>",
       "Lspsaga preview definition",
     },
-    ["<C-S-K>"] = {
+    ["<C-S-k>"] = {
       "<cmd>Lspsaga signature_help<cr>",
       "Lspsafa signature_help",
     },
@@ -122,6 +125,9 @@ wk.register({
     "renamer",
   },
 })
+
+-- Plugin lspconfig
+wk.register({})
 
 -- Plugin accelerate_jk
 
@@ -180,6 +186,15 @@ wk.register({
   ["<C-p>"] = { "<cmd>Telescope find_files<cr>", "Find files" },
 })
 
+-- Plugin Legendary
+local legendary = {
+  ["<C-A-p>"] = { "<cmd>Legendary<cr>", "Legendary" },
+}
+wk.register(legendary, { mode = "n" })
+wk.register(legendary, { mode = "x" })
+wk.register(legendary, { mode = "t" })
+wk.register(legendary, { mode = "i" })
+
 -- Plugin Markdown Preview
 wk.register({
   ["<F12>"] = {
@@ -208,6 +223,31 @@ wk.register({
     ["p"] = { "<cmd>HopPattern<cr>", "HopPattern" },
   },
 }, { prefix = "<leader>" })
+-- place this in one of your configuration file(s)
+vim.api.nvim_set_keymap(
+  "",
+  "f",
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
+  {}
+)
+vim.api.nvim_set_keymap(
+  "",
+  "F",
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
+  {}
+)
+vim.api.nvim_set_keymap(
+  "",
+  "t",
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>",
+  {}
+)
+vim.api.nvim_set_keymap(
+  "",
+  "T",
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>",
+  {}
+)
 
 -- Plugin Jaq
 wk.register({

@@ -180,7 +180,7 @@ ui.catppuccin = function()
       mini = false,
       aerial = true,
       navic = {
-        enable = true,
+        enabled = true,
       },
     },
   })
@@ -258,7 +258,7 @@ ui.navic = function()
       TypeParameter = " ",
     },
     highlight = true,
-    separator = "  ",
+    -- separator = "  ",
     depth_limit = 0,
     depth_limit_indicator = "..",
   })
