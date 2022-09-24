@@ -80,7 +80,7 @@ nvim_cmp.cmp = function()
         c = cmp.mapping.close(),
       }),
       ["<CR>"] = cmp.mapping.confirm({
-        -- behavior = cmp.ConfirmBehavior.Replace,
+        behavior = cmp.ConfirmBehavior.Replace,
         select = false,
       }),
       ["<Tab>"] = cmp.mapping(function(fallback)
@@ -109,7 +109,6 @@ nvim_cmp.cmp = function()
       { name = "path" },
       { name = "emoji" },
       { name = "fish" },
-      { name = "cmdline" },
       { name = "nvim_lsp_signature_help" },
       { name = "spell" },
       { name = "treesitter" },
@@ -122,7 +121,7 @@ nvim_cmp.cmp = function()
   -- Set configuration for specific filetype.
   cmp.setup.filetype("gitcommit", {
     sources = cmp.config.sources({
-      { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
+      { name = "git" }, -- You can specify the `cmp_git` source if you were installed it.
     }, { { name = "buffer" } }),
   })
 

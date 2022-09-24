@@ -577,4 +577,12 @@ utils.legendary = function()
   require("legendary").setup({})
 end
 
+utils.neorg = function()
+  require("neorg").setup({
+    load = {
+      ["core.defaults"] = {},
+    },
+  })
+end
+
 return utils

@@ -33,10 +33,10 @@ require("packer").startup({
       config = ui.catppuccin,
     })
     use({ "folke/tokyonight.nvim", config = ui.tokyonight })
-    -- use({ "sainnhe/gruvbox-material", config = ui.gruvbox_material })
-    -- use({ "marko-cerovac/material.nvim", config = ui.material })
-    -- use({ "tomasiser/vim-code-dark" })
-    -- use({ "shaunsingh/nord.nvim", config = ui.nord })
+    use({ "sainnhe/gruvbox-material", config = ui.gruvbox_material })
+    use({ "marko-cerovac/material.nvim", config = ui.material })
+    use({ "tomasiser/vim-code-dark" })
+    use({ "shaunsingh/nord.nvim", config = ui.nord })
     use({
       "nvim-lualine/lualine.nvim",
       opt = true,
@@ -46,8 +46,6 @@ require("packer").startup({
     })
     use({
       "SmiteshP/nvim-navic",
-      -- after = { "nvim-lsp-setup", "lualine.nvim" },
-      -- requires = "neovim/nvim-lspconfig",
       config = ui.navic,
     })
     use({
@@ -56,17 +54,11 @@ require("packer").startup({
       requires = "kyazdani42/nvim-web-devicons",
       config = ui.bufferline,
     })
-    -- use({ "glepnir/dashboard-nvim", config = ui.dashboard })
     use({
       "goolord/alpha-nvim",
       event = "BufWinEnter",
       requires = { "kyazdani42/nvim-web-devicons" },
       config = ui.alpha,
-    })
-    use({
-      "lukas-reineke/indent-blankline.nvim",
-      event = "BufReadPost",
-      config = ui.indent_blankline,
     })
     use({
       "kyazdani42/nvim-tree.lua",
@@ -84,7 +76,6 @@ require("packer").startup({
     })
     use({
       "petertriho/nvim-scrollbar",
-      -- cmd = "BufReadPost",
       config = ui.scrollbar,
     })
     -- use({ "beauwilliams/focus.nvim", config = ui.focus })
@@ -106,6 +97,11 @@ require("packer").startup({
     })
 
     local editor = require("plugins.editor")
+    use({
+      "lukas-reineke/indent-blankline.nvim",
+      event = "BufReadPost",
+      config = editor.indent_blankline,
+    })
     use({
       "rainbowhxch/accelerated-jk.nvim",
       config = editor.accelerated_jk,
@@ -134,10 +130,8 @@ require("packer").startup({
     })
     use({
       "kevinhwang91/nvim-hlslens",
-      -- event = "CmdlineEnter",
       config = editor.hlslens,
     })
-    -- use { "karb94/neoscroll.nvim", config = editor.neoscroll }
     use({
       "haringsrob/nvim_context_vt",
       after = "nvim-treesitter",
@@ -172,8 +166,11 @@ require("packer").startup({
     use({ "Pocco81/HighStr.nvim", config = editor.highstr })
     use({
       "gbprod/yanky.nvim",
-      event = "InsertEnter",
       config = editor.yanky,
+    })
+    use({
+      "junegunn/vim-easy-align",
+      config = editor.easy_align,
     })
 
     local lsp = require("plugins.lsp")
@@ -189,6 +186,12 @@ require("packer").startup({
         "html",
         "css",
         "rust",
+        "json",
+        "jsonc",
+        "markdown",
+        "javascriptreact",
+        "typescriptreact",
+        "fish",
       },
       config = lsp.lspconfig,
     })
@@ -212,13 +215,6 @@ require("packer").startup({
       "glepnir/lspsaga.nvim",
       after = "nvim-lsp-setup",
       config = lsp.lspsaga,
-    })
-    use({
-      "filipdutescu/renamer.nvim",
-      after = "nvim-lsp-setup",
-      branch = "master",
-      requires = { { "nvim-lua/plenary.nvim" } },
-      config = lsp.renamer,
     })
     use({
       "j-hui/fidget.nvim",
@@ -249,6 +245,10 @@ require("packer").startup({
       after = "nvim-lspconfig",
     })
     use({
+      "jose-elias-alvarez/typescript.nvim",
+      ft = { "ts", "tsx", "vue", "js", "jsx", "cjs", "mjs", "html" },
+    })
+    use({
       "folke/lua-dev.nvim",
       after = "nvim-lspconfig",
     })
@@ -277,11 +277,11 @@ require("packer").startup({
     })
     use({
       "amrbashir/nvim-docs-view",
-
       cmd = { "DocsViewToggle" },
       config = lsp.docs_view,
     })
     use({ "mfussenegger/nvim-lint", config = lsp.lint })
+    use({ "jubnzv/virtual-types.nvim" })
 
     local cmp = require("plugins.cmp")
     use({
@@ -598,6 +598,13 @@ require("packer").startup({
       requires = "nvim-lua/plenary.nvim",
       config = utils.todo_comments,
     })
+    use({
+      "nvim-neorg/neorg",
+      ft = "norg",
+      after = "nvim-treesitter",
+      config = utils.neorg,
+      requires = "nvim-lua/plenary.nvim",
+    })
 
     local dap = require("plugins.dap")
     use({
@@ -643,11 +650,6 @@ require("packer").startup({
       event = { "BufRead package.json" },
       requires = "MunifTanjim/nui.nvim",
       config = lang.package_info,
-    })
-    use({
-      "jose-elias-alvarez/typescript.nvim",
-      ft = { "ts", "tsx", "vue", "js", "jsx", "cjs", "mjs", "html" },
-      config = lang.typescript,
     })
 
     use({ "nvim-lua/popup.nvim" })

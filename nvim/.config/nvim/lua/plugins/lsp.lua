@@ -14,7 +14,7 @@ lsp.lspconfig = function()
 
   vim.diagnostic.config({
     signs = true,
-    update_in_insert = false,
+    update_in_insert = true,
     underline = true,
     severity_sort = true,
     virtual_text = {
@@ -73,10 +73,10 @@ lsp.lsp_setup = function()
     dynamicRegistration = false,
     lineFoldingOnly = true,
   }
+  global_capabilities.offsetEncoding = { "utf-16" }
 
   local global_attach = function(client, bufnr)
-    require("aerial").on_attach(client)
-    -- require("lsp-setup.utils").format_on_save(client)
+    require("aerial").on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
   end
 
@@ -103,6 +103,10 @@ lsp.lsp_setup = function()
               },
             },
           },
+          on_attach = function(client, bufnr)
+            global_attach(client, bufnr)
+            require("virtualtypes").on_attach(client, bufnr)
+          end,
         },
       }),
       sumneko_lua = require("lua-dev").setup({
@@ -129,12 +133,26 @@ lsp.lsp_setup = function()
       tailwindcss = {},
       eslint = {},
       cssls = {},
-      clangd = require("lsp-setup.clangd_extensions").setup({}),
+      clangd = require("lsp-setup.clangd_extensions").setup({
+        on_attach = function(client, bufnr)
+          global_attach(client, bufnr)
+          require("virtualtypes").on_attach(client, bufnr)
+        end,
+      }),
       -- tsserver = {},
       pyright = {},
       jdtls = {},
       bashls = {},
       -- denols = {},
+    },
+  })
+
+  require("typescript").setup({
+    disable_commands = false, -- prevent the plugin from creating Vim commands
+    debug = false, -- enable debug logging for commands
+    server = { -- pass options to lspconfig's setup method
+      on_attach = global_attach,
+      capabilities = global_capabilities,
     },
   })
 end
@@ -161,58 +179,7 @@ lsp.fidget = function()
 end
 
 lsp.symbols_outline = function()
-  vim.g.symbols_outline = {
-    highlight_hovered_item = true,
-    show_guides = true,
-    auto_preview = true,
-    position = "right",
-    relative_width = true,
-    width = 25,
-    auto_close = false,
-    show_numbers = false,
-    show_relative_numbers = false,
-    show_symbol_details = true,
-    preview_bg_highlight = "Pmenu",
-    keymaps = { -- These keymaps can be a string or a table for multiple keys
-      close = { "<Esc>", "q" },
-      goto_location = "<Cr>",
-      focus_location = "o",
-      hover_symbol = "<C-space>",
-      toggle_preview = "K",
-      rename_symbol = "r",
-      code_actions = "a",
-    },
-    lsp_blacklist = {},
-    symbol_blacklist = {},
-    symbols = {
-      File = { icon = "", hl = "TSURI" },
-      Module = { icon = "", hl = "TSNamespace" },
-      Namespace = { icon = "", hl = "TSNamespace" },
-      Package = { icon = "", hl = "TSNamespace" },
-      Class = { icon = "𝓒", hl = "TSType" },
-      Method = { icon = "ƒ", hl = "TSMethod" },
-      Property = { icon = "", hl = "TSMethod" },
-      Field = { icon = "", hl = "TSField" },
-      Constructor = { icon = "", hl = "TSConstructor" },
-      Enum = { icon = "ℰ", hl = "TSType" },
-      Interface = { icon = "ﰮ", hl = "TSType" },
-      Function = { icon = "", hl = "TSFunction" },
-      Variable = { icon = "", hl = "TSConstant" },
-      Constant = { icon = "", hl = "TSConstant" },
-      String = { icon = "𝓐", hl = "TSString" },
-      Number = { icon = "#", hl = "TSNumber" },
-      Boolean = { icon = "⊨", hl = "TSBoolean" },
-      Array = { icon = "", hl = "TSConstant" },
-      Object = { icon = "⦿", hl = "TSType" },
-      Key = { icon = "", hl = "TSType" },
-      Null = { icon = "NULL", hl = "TSType" },
-      EnumMember = { icon = "", hl = "TSField" },
-      Struct = { icon = "𝓢", hl = "TSType" },
-      Event = { icon = "🗲", hl = "TSType" },
-      Operator = { icon = "+", hl = "TSOperator" },
-      TypeParameter = { icon = "𝙏", hl = "TSParameter" },
-    },
-  }
+  require("symbols-outline").setup()
 end
 
 lsp.virtual_types = function() end
@@ -228,10 +195,14 @@ lsp.null = function()
       null.builtins.formatting.rustfmt,
       null.builtins.formatting.autopep8,
       null.builtins.formatting.fish_indent,
-      null.builtins.diagnostics.eslint,
-      null.builtins.completion.spell,
+      null.builtins.formatting.eslint,
+      null.builtins.formatting.markdownlint,
+      null.builtins.formatting.markdown_toc,
+      -- null.builtins.diagnostics.eslint,
+      -- null.builtins.completion.spell,
       -- null.builtins.code_actions.gitsigns,
       null.builtins.diagnostics.fish,
+      null.builtins.diagnostics.markdownlint,
     },
     on_attach = require("lsp-format").on_attach,
   })

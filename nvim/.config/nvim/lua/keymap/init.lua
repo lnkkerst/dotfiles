@@ -121,7 +121,7 @@ wk.register({
 
 wk.register({
   ["gr"] = {
-    "<cmd>lua require('renamer').rename()<cr>",
+    "<cmd>lua vim.lsp.buf.rename()<cr>",
     "renamer",
   },
 })
@@ -130,7 +130,6 @@ wk.register({
 wk.register({})
 
 -- Plugin accelerate_jk
-
 local accelerate_jk = {
   ["j"] = { "<Plug>(accelerated_jk_gj)", "accelerate j" },
   ["k"] = { "<Plug>(accelerated_jk_gk)", "accelerate k" },
@@ -170,7 +169,7 @@ wk.register({
 wk.register({
   ["f"] = {
     name = "+Telescope",
-    ["f"] = { "<cmd>Telescope find_files<cr>", "Telescope find files" },
+    ["f"] = { "<cmd>Telescope<cr>", "Telescope find files" },
     ["n"] = { "<cmd>Telescope notify<cr>", "Telescope notify" },
     ["b"] = { "<cmd>Telescope buffers<cr>", "Telescope buffers" },
     ["m"] = { "<cmd>Telescope marks<cr>", "Telescope marks" },
@@ -255,15 +254,15 @@ wk.register({
 }, { prefix = "<leader>" })
 
 -- Plugin focus.nvim
-wk.register({
-  ["F"] = {
-    name = "focus",
-    ["h"] = { "<cmd>FocusSplitLeft<cr>", "FocusSplitLeft" },
-    ["j"] = { "<cmd>FocusSplitDown<cr>", "FocusSplitDown" },
-    ["k"] = { "<cmd>FocusSplitUp<cr>", "FocusSplitUp" },
-    ["l"] = { "<cmd>FocusSplitRight<cr>", "FocusSplitRight" },
-  },
-}, { prefix = "<leader>" })
+-- wk.register({
+--   ["F"] = {
+--     name = "focus",
+--     ["h"] = { "<cmd>FocusSplitLeft<cr>", "FocusSplitLeft" },
+--     ["j"] = { "<cmd>FocusSplitDown<cr>", "FocusSplitDown" },
+--     ["k"] = { "<cmd>FocusSplitUp<cr>", "FocusSplitUp" },
+--     ["l"] = { "<cmd>FocusSplitRight<cr>", "FocusSplitRight" },
+--   },
+-- }, { prefix = "<leader>" })
 
 -- Plugin ToggleTerm
 wk.register({
@@ -330,6 +329,16 @@ wk.register({
   ['g"'] = { "<cmd>Telescope neoclip<cr>", "Neoclip" },
 })
 
+-- Plugin easy align
+local easy_align = {
+  ["ga"] = {
+    "<Plug>(EasyAlign)",
+    "EasyAlign",
+  },
+}
+wk.register(easy_align, { mode = "n" })
+wk.register(easy_align, { mode = "x" })
+
 wk.register({
   ["<C-S-i>"] = { "<cmd>Neoformat<cr>", "Neoformat" },
 }, { mode = "n" })
@@ -347,6 +356,11 @@ local fcitx5_ui = {
 }
 wk.register(fcitx5_ui, { mode = "i" })
 wk.register(fcitx5_ui, { mode = "n" })
+
+-- Plugin Venn
+wk.register({
+  ["<leader>v"] = { "<cmd>lua Toggle_venn()<cr>", "Toggle venn" },
+})
 
 local control = {
   ["<C-s>"] = { "<cmd>w<cr>", "Save file" },

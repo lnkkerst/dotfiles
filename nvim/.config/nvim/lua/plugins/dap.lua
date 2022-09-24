@@ -24,6 +24,7 @@ dap.dap = function()
     command = "/usr/bin/lldb-vscode",
     name = "lldb",
   }
+
   dap.configurations.cpp = {
     {
       name = "Launch",
