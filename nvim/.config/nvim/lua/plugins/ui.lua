@@ -1,77 +1,65 @@
 ---@diagnostic disable: missing-parameter
 local ui = {}
 
-ui.alpha = function()
-  local dashboard = require("alpha.themes.dashboard")
-  -- local header = {
-  --   [[███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗]],
-  --   [[████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║]],
-  --   [[██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║]],
-  --   [[██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║]],
-  --   [[██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║]],
-  --   [[╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
-  -- }
-  local header = {
-    "⣿⣿⡆⠀⠀⢸⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡆⠀⠀⢸⣷",
-    "⣿⣿⡇⠀⠀⢸⣿⢰⣿⡆⠀⣾⣿⡆⠀⣾⣷ ⣿⣿⡇⠀⠀⢸⣿",
-    "⣿⣿⡇⠀⠀⢸⣿⠘⣿⣿⣤⣿⣿⣿⣤⣿⡇ ⣿⣿⡇⠀⠀⢸⣿",
-    "⣿⣿⡇⠀⠀⢸⡿⠀⢹⣿⣿⣿⣿⣿⣿⣿⠁ ⣿⣿⡇⠀⠀⢸⡿",
-    "⠙⢿⣷⣶⣶⡿⠁⠀⠈⣿⣿⠟⠀⣿⣿⠇⠀ ⠙⢿⣷⣶⣶⡿⠁",
-  }
-  dashboard.section.header.type = "text"
-  dashboard.section.header.val = header
-  local startify = require("alpha.themes.startify")
-  startify.section.header.type = "text"
-  startify.section.header.val = header
-  require("alpha").setup(dashboard.config)
-end
-
 ui.dashboard = function()
-  local home = os.getenv("HOME")
-  local db = require("dashboard")
-  db.preview_command = "cat | lolcat -F 0.3"
-  -- db.preview_command = "ueberzug"
-  db.preview_file_path = vim.fn.stdpath("config") .. "/static/dashboard.cat"
-  db.preview_file_height = 10
-  db.preview_file_width = 10
-  db.custom_center = {
+  local dashboard = require("dashboard")
+
+  dashboard.custom_header = {
+    "                                                       ",
+    "                                                       ",
+    "                                                       ",
+    " ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
+    " ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
+    " ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
+    " ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
+    " ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
+    " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
+    "                                                       ",
+    "                                                       ",
+    "                                                       ",
+    "                                                       ",
+  }
+
+  dashboard.custom_center = {
     {
-      icon = "  ",
-      desc = "Recently latest session                  ",
-      shortcut = "SPC s l",
-      action = "SessionLoad",
+      icon = "  ",
+      desc = "Find  File                              ",
+      action = "Telescope find_files",
+      shortcut = "<Leader> f f",
     },
     {
       icon = "  ",
       desc = "Recently opened files                   ",
-      action = "DashboardFindHistory",
-      shortcut = "SPC f h",
+      action = "Telescope frecency",
+      shortcut = "<Leader> f r",
     },
     {
-      icon = "  ",
-      desc = "Find  File                              ",
-      action = "Telescope find_files find_command=rg,--hidden,--files",
-      shortcut = "SPC f f",
-    },
-    {
-      icon = "  ",
-      desc = "File Browser                            ",
-      action = "Telescope file_browser",
-      shortcut = "SPC f b",
-    },
-    {
-      icon = "  ",
-      desc = "Find  word                              ",
+      icon = "  ",
+      desc = "Project grep                            ",
       action = "Telescope live_grep",
-      shortcut = "SPC f w",
+      shortcut = "<Leader> f g",
     },
     {
-      icon = "  ",
-      desc = "Open Personal dotfiles                  ",
-      action = "Telescope dotfiles path=" .. home .. "/.dotfiles",
-      shortcut = "SPC f d",
+      icon = "  ",
+      desc = "New file                                ",
+      action = "enew",
+      shortcut = "e           ",
+    },
+    {
+      icon = "  ",
+      desc = "Quit Nvim                               ",
+      action = "qa",
+      shortcut = "q           ",
     },
   }
+
+  vim.cmd([[
+  augroup dashboard_enter
+    au!
+    autocmd FileType dashboard nnoremap <buffer> q :qa<CR>
+    autocmd FileType dashboard nnoremap <buffer> e :enew<CR>
+  augroup END
+  ]])
 end
 
 ui.tokyonight = function()
@@ -460,7 +448,6 @@ ui.tree = function()
     view = {
       adaptive_size = false,
       width = 30,
-      height = 30,
       side = "left",
       preserve_window_proportions = true,
       number = true,
@@ -563,12 +550,6 @@ ui.scrollbar = function()
   require("scrollbar.handlers.search").setup()
 end
 
-ui.focus = function()
-  require("focus").setup({
-    excluded_filetypes = { "toggleterm", "dap-repl" },
-  })
-end
-
 ui.trouble = function()
   require("trouble").setup({})
 end
@@ -587,6 +568,20 @@ ui.dressing = function()
   })
 end
 
-ui.lsp_status = function() end
+ui.noice = function()
+  require("noice").setup({
+    cmdline = {
+      view = "cmdline",
+      icons = {
+        ["/"] = { icon = " ", hl_group = "DiagnosticWarn" },
+        ["?"] = { icon = " ", hl_group = "DiagnosticWarn" },
+        [":"] = { icon = " ", hl_group = "DiagnosticInfo", firstc = false },
+      },
+    },
+    popupmenu = {
+      enabled = false,
+    },
+  })
+end
 
 return ui

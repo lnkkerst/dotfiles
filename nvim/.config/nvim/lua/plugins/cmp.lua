@@ -2,7 +2,6 @@ local nvim_cmp = {}
 
 nvim_cmp.cmp = function()
   local cmp = require("cmp")
-  local luasnip = require("luasnip")
 
   local source_mapping = {
     buffer = "[BUF]",
@@ -21,17 +20,6 @@ nvim_cmp.cmp = function()
   }
 
   cmp.setup({
-    -- sorting = {
-    --   comparators = {
-    --     cmp.config.compare.exact,
-    --     cmp.config.compare.locality,
-    --     cmp.config.compare.recently_used,
-    --     cmp.config.compare.score,
-    --     cmp.config.compare.offset,
-    --     cmp.config.compare.sort_text,
-    --     cmp.config.compare.order,
-    --   },
-    -- },
     formatting = {
       format = function(entry, vim_item)
         vim_item.kind =
@@ -72,7 +60,7 @@ nvim_cmp.cmp = function()
     mapping = cmp.mapping.preset.insert({
       ["<C-j>"] = cmp.mapping.select_next_item(),
       ["<C-k>"] = cmp.mapping.select_prev_item(),
-      ["<C-Space>"] = cmp.mapping.complete(),
+      ["<C-Space>"] = cmp.mapping.complete({}),
       ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-2), { "i", "c" }),
       ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(2), { "i", "c" }),
       ["<C-e>"] = cmp.mapping({
@@ -80,14 +68,11 @@ nvim_cmp.cmp = function()
         c = cmp.mapping.close(),
       }),
       ["<CR>"] = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Replace,
         select = false,
       }),
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
         else
           fallback()
         end
@@ -95,8 +80,6 @@ nvim_cmp.cmp = function()
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
         else
           fallback()
         end
@@ -105,16 +88,21 @@ nvim_cmp.cmp = function()
     sources = {
       { name = "nvim_lsp" },
       { name = "luasnip" },
-      { name = "buffer" },
+      { name = "buffer", keyword_length = 2 },
       { name = "path" },
-      { name = "emoji" },
+      { name = "omni" },
+      { name = "emoji", insert = true },
       { name = "fish" },
       { name = "nvim_lsp_signature_help" },
-      { name = "spell" },
-      { name = "treesitter" },
+      -- { name = "spell" },
+      { name = "treesitter", keyword_length = 2 },
       { name = "calc" },
       { name = "git" },
       { name = "npm", keyword_length = 4 },
+    },
+    completion = {
+      keyword_length = 1,
+      completeopt = "menu,noselect",
     },
   })
 

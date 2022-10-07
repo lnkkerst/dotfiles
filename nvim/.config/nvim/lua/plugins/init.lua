@@ -39,8 +39,7 @@ require("packer").startup({
     use({ "shaunsingh/nord.nvim", config = ui.nord })
     use({
       "nvim-lualine/lualine.nvim",
-      opt = true,
-      event = "BufReadPost",
+      event = "VimEnter",
       requires = { "kyazdani42/nvim-web-devicons", opt = true },
       config = ui.lualine,
     })
@@ -50,20 +49,19 @@ require("packer").startup({
     })
     use({
       "akinsho/bufferline.nvim",
-      event = "BufReadPost",
+      event = "VimEnter",
       requires = "kyazdani42/nvim-web-devicons",
       config = ui.bufferline,
     })
     use({
-      "goolord/alpha-nvim",
-      event = "BufWinEnter",
-      requires = { "kyazdani42/nvim-web-devicons" },
-      config = ui.alpha,
+      "glepnir/dashboard-nvim",
+      event = "VimEnter",
+      config = ui.dashboard,
     })
     use({
       "kyazdani42/nvim-tree.lua",
-      cmd = { "NvimTree*" },
-      event = { "BufReadPost", "BufNewFile" },
+      -- cmd = { "NvimTree*" },
+      -- event = { "BufReadPost", "BufNewFile" },
       requires = {
         "kyazdani42/nvim-web-devicons", -- optional, for file icon
       },
@@ -92,14 +90,22 @@ require("packer").startup({
     })
     use({
       "stevearc/dressing.nvim",
-      -- after = "telescope.nvim",
       config = ui.dressing,
+    })
+    use({
+      "folke/noice.nvim",
+      event = "VimEnter",
+      config = ui.noice,
+      requires = {
+        "MunifTanjim/nui.nvim",
+        "rcarriga/nvim-notify",
+      },
     })
 
     local editor = require("plugins.editor")
     use({
       "lukas-reineke/indent-blankline.nvim",
-      event = "BufReadPost",
+      event = "VimEnter",
       config = editor.indent_blankline,
     })
     use({
@@ -114,7 +120,6 @@ require("packer").startup({
     use({
       "windwp/nvim-autopairs",
       after = "nvim-treesitter",
-      cmd = "BufEnter",
       config = editor.autopairs,
     })
     use({
@@ -137,7 +142,10 @@ require("packer").startup({
       after = "nvim-treesitter",
       config = editor.context_vt,
     })
-    use({ "ethanholz/nvim-lastplace", config = editor.lastplace })
+    use({
+      "ethanholz/nvim-lastplace",
+      config = editor.lastplace,
+    })
     use({
       "nacro90/numb.nvim",
       event = "CmdlineEnter",
@@ -155,7 +163,6 @@ require("packer").startup({
     })
     use({
       "norcalli/nvim-colorizer.lua",
-      -- event = "BufReadPost",
       config = editor.colorizer,
     })
     use({
@@ -179,6 +186,7 @@ require("packer").startup({
       ft = {
         "cpp",
         "c",
+        "python",
         "typescript",
         "javascript",
         "vue",
@@ -192,6 +200,7 @@ require("packer").startup({
         "javascriptreact",
         "typescriptreact",
         "fish",
+        "java",
       },
       config = lsp.lspconfig,
     })
@@ -299,8 +308,6 @@ require("packer").startup({
     })
     use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
     use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
-    use({ "f3fora/cmp-spell", after = "nvim-cmp" })
-    use({ "lukas-reineke/cmp-under-comparator" })
     use({ "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" })
     use({ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" })
     use({ "mtoohey31/cmp-fish", after = "nvim-cmp", ft = "fish" })
@@ -420,7 +427,7 @@ require("packer").startup({
     use({
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
-      event = "BufRead",
+      -- event = "BufEnter",
       config = ts.treesitter,
     })
     use({
@@ -530,7 +537,6 @@ require("packer").startup({
     })
     use({
       "gpanders/editorconfig.nvim",
-      -- event = "InsertEnter",
       config = utils.editorconfig,
     })
     use({
@@ -543,22 +549,6 @@ require("packer").startup({
       ft = "qf",
       config = utils.bqf,
     })
-    use({
-      "kevinhwang91/rnvimr",
-      cmd = "Rnvimr*",
-      config = utils.rnvimr,
-    })
-    use({
-      "ldelossa/litee.nvim",
-      requires = {
-        "ldelossa/litee-calltree.nvim",
-        "ldelossa/litee-symboltree.nvim",
-        "ldelossa/litee-filetree.nvim",
-        "ldelossa/litee-bookmarks.nvim",
-      },
-      cmd = "LT*",
-      config = utils.litee,
-    })
     use({ "nathom/filetype.nvim", config = utils.filetype })
     use({
       "black-desk/fcitx5-ui.nvim",
@@ -566,7 +556,6 @@ require("packer").startup({
       rocks = { "lgi", "dbus_proxy" },
       config = utils.fcitx_ui,
     })
-    use({ "aserowy/tmux.nvim", config = utils.tmux })
     use({
       "gennaro-tedesco/nvim-jqx",
       ft = "json",
@@ -588,7 +577,6 @@ require("packer").startup({
       cmd = "ZenMode",
       config = utils.zen,
     })
-    use({ "tversteeg/registers.nvim", config = utils.registers })
     use({ "ThePrimeagen/harpoon", config = utils.harpoon })
     use({ "jbyuki/venn.nvim", cmd = "VBox*", config = utils.venn })
     use({

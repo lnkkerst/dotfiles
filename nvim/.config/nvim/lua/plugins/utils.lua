@@ -161,37 +161,12 @@ end
 utils.notify = function()
   local notify = require("notify")
   notify.setup({
-    -- Minimum level to show
     level = "info",
-
-    -- Animation style (see below for details)
-    stages = "fade",
-
-    -- Function called when a new window is opened, use for changing win settings/config
-    on_open = nil,
-
-    -- Function called when a window is closed
-    on_close = nil,
-
-    -- Render function for notifications. See notify-render()
+    stages = "static",
     render = "default",
-
-    -- Default timeout for notifications
-    timeout = 5000,
-
-    -- Max number of columns for messages
-    max_width = nil,
-    -- Max number of lines for a message
-    max_height = nil,
-
-    -- For stages that change opacity this is treated as the highlight behind the window
-    -- Set this to either a highlight group, an RGB hex value e.g. "#000000" or a function returning an RGB code for dynamic values
+    timeout = 1500,
     background_colour = "Normal",
-
-    -- Minimum width for notification windows
     minimum_width = 50,
-
-    -- Icons for the different levels
     icons = {
       ERROR = "",
       WARN = "",
@@ -200,6 +175,7 @@ utils.notify = function()
       TRACE = "✎",
     },
   })
+
   vim.notify = notify
   require("telescope").load_extension("notify")
 end
@@ -345,14 +321,6 @@ utils.bqf = function()
       },
     },
   })
-end
-
-utils.litee = function()
-  require("litee.lib").setup({})
-  require("litee.calltree").setup({})
-  require("litee.symboltree").setup({})
-  require("litee.filetree").setup({})
-  require("litee.bookmarks").setup({})
 end
 
 utils.filetype = function()

@@ -1,6 +1,6 @@
 require("keymap.config")
-
 require("plugins.utils").legendary()
+
 local wk = require("which-key")
 
 -- Plugin BufferLine
@@ -169,15 +169,16 @@ wk.register({
 wk.register({
   ["f"] = {
     name = "+Telescope",
-    ["f"] = { "<cmd>Telescope<cr>", "Telescope find files" },
+    ["f"] = { "<cmd>Telescope find_files<cr>", "Telescope find files" },
+    ["r"] = { "<cmd>Telescope frecency", "Telescope frecency" },
     ["n"] = { "<cmd>Telescope notify<cr>", "Telescope notify" },
     ["b"] = { "<cmd>Telescope buffers<cr>", "Telescope buffers" },
     ["m"] = { "<cmd>Telescope marks<cr>", "Telescope marks" },
     ["t"] = { "<cmd>Telescope<cr>", "Telescope buildin" },
-    ["g"] = { "<cmd>Telescope diagnostics<cr>", "Telescope diagnostics" },
+    ["g"] = { "<cmd>Telescope live_grep<cr>", "Telescope live grep" },
     ["c"] = {
-      "<cmd>Telescope current_buffer_fuzzy_finder<cr>",
-      "Telescope current_buffer_fuzzy_finder",
+      "<cmd>Telescope current_buffer_fuzzy_find<cr>",
+      "Telescope current_buffer_fuzzy_find",
     },
   },
 }, { prefix = "<leader>" })
@@ -253,34 +254,12 @@ wk.register({
   ["j"] = { "<cmd>Jaq<cr>", "Jaq" },
 }, { prefix = "<leader>" })
 
--- Plugin focus.nvim
--- wk.register({
---   ["F"] = {
---     name = "focus",
---     ["h"] = { "<cmd>FocusSplitLeft<cr>", "FocusSplitLeft" },
---     ["j"] = { "<cmd>FocusSplitDown<cr>", "FocusSplitDown" },
---     ["k"] = { "<cmd>FocusSplitUp<cr>", "FocusSplitUp" },
---     ["l"] = { "<cmd>FocusSplitRight<cr>", "FocusSplitRight" },
---   },
--- }, { prefix = "<leader>" })
-
--- Plugin ToggleTerm
 wk.register({
   ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", "ToggleTerm" },
 })
 wk.register({
   ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", "ToggleTerm" },
 }, { mode = "t" })
-
--- Plugin NeoScroll
-wk.register({
-  ["<C-b>"] = { "NeoScroll backward" },
-  ["<C-f>"] = { "NeoScroll forward" },
-  ["<C-u>"] = { "NeoScroll up" },
-  ["<C-d>"] = { "NeoScroll down" },
-  ["<C-y>"] = { "NeoScroll up" },
-  ["<C-e>"] = { "NeoScroll down" },
-})
 
 -- Plugin Dap
 wk.register({
