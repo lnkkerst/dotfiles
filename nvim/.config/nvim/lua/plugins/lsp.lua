@@ -62,6 +62,8 @@ lsp.lsp_setup = function()
     lineFoldingOnly = true,
   }
   global_capabilities.offsetEncoding = { "utf-16" }
+  global_capabilities.textDocument.completion.completionItem.snippetSupport =
+    true
 
   local global_attach = function(client, bufnr)
     require("aerial").on_attach(client, bufnr)
@@ -131,17 +133,18 @@ lsp.lsp_setup = function()
           end,
         },
       }),
-      sumneko_lua = require("lua-dev").setup({
-        lspconfig = {
-          settings = {
-            Lua = {
-              format = {
-                enable = true,
-              },
-            },
-          },
-        },
-      }),
+      -- sumneko_lua = require("lua-dev").setup({
+      --   lspconfig = {
+      --     settings = {
+      --       Lua = {
+      --         format = {
+      --           enable = true,
+      --         },
+      --       },
+      --     },
+      --   },
+      -- }),
+      sumneko_lua = {},
       jsonls = {
         settings = {
           json = {
@@ -151,7 +154,6 @@ lsp.lsp_setup = function()
       },
       volar = {},
       html = {},
-      lemminx = {},
       tailwindcss = {},
       eslint = {},
       cssls = {},
@@ -161,11 +163,10 @@ lsp.lsp_setup = function()
           require("virtualtypes").on_attach(client, bufnr)
         end,
       }),
-      -- tsserver = {},
       pyright = {},
       jdtls = {},
       bashls = {},
-      -- denols = {},
+      ["emmet-ls"] = {},
     },
   })
 

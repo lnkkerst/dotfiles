@@ -163,7 +163,7 @@ utils.notify = function()
   notify.setup({
     level = "info",
     stages = "static",
-    render = "default",
+    render = "minimal",
     timeout = 1500,
     background_colour = "Normal",
     minimum_width = 50,
@@ -550,6 +550,15 @@ utils.neorg = function()
     load = {
       ["core.defaults"] = {},
     },
+  })
+end
+
+utils.silicon = function()
+  require("silicon").setup({
+    font = "JetBrainsMono Nerd Font=16",
+    theme = "Monokai Extended",
+    background = "#1e1e2e",
+    line_number = true,
   })
 end
 

@@ -1,6 +1,7 @@
 local install_path = vim.fn.stdpath("data")
   .. "/site/pack/packer/start/packer.nvim"
 local packer_bootstrap = false
+
 ---@diagnostic disable-next-line: missing-parameter
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   packer_bootstrap = true
@@ -10,7 +11,6 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd([[packadd packer.nvim]])
 end
 
--- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
   return
@@ -40,7 +40,7 @@ require("packer").startup({
     use({
       "nvim-lualine/lualine.nvim",
       event = "VimEnter",
-      requires = { "kyazdani42/nvim-web-devicons", opt = true },
+      requires = { "kyazdani42/nvim-web-devicons" },
       config = ui.lualine,
     })
     use({
@@ -60,8 +60,6 @@ require("packer").startup({
     })
     use({
       "kyazdani42/nvim-tree.lua",
-      -- cmd = { "NvimTree*" },
-      -- event = { "BufReadPost", "BufNewFile" },
       requires = {
         "kyazdani42/nvim-web-devicons", -- optional, for file icon
       },
@@ -76,7 +74,6 @@ require("packer").startup({
       "petertriho/nvim-scrollbar",
       config = ui.scrollbar,
     })
-    -- use({ "beauwilliams/focus.nvim", config = ui.focus })
     use({
       "folke/trouble.nvim",
       cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
@@ -148,7 +145,6 @@ require("packer").startup({
     })
     use({
       "nacro90/numb.nvim",
-      event = "CmdlineEnter",
       config = editor.numb,
     })
     use({
@@ -170,7 +166,10 @@ require("packer").startup({
       requires = "kevinhwang91/promise-async",
       config = editor.ufo,
     })
-    use({ "Pocco81/HighStr.nvim", config = editor.highstr })
+    use({
+      "Pocco81/HighStr.nvim",
+      config = editor.highstr,
+    })
     use({
       "gbprod/yanky.nvim",
       config = editor.yanky,
@@ -254,10 +253,6 @@ require("packer").startup({
       after = "nvim-lspconfig",
     })
     use({
-      "jose-elias-alvarez/typescript.nvim",
-      ft = { "ts", "tsx", "vue", "js", "jsx", "cjs", "mjs", "html" },
-    })
-    use({
       "folke/lua-dev.nvim",
       after = "nvim-lspconfig",
     })
@@ -284,13 +279,6 @@ require("packer").startup({
       requires = { "nvim-lua/plenary.nvim" },
       config = lsp.null,
     })
-    use({
-      "amrbashir/nvim-docs-view",
-      cmd = { "DocsViewToggle" },
-      config = lsp.docs_view,
-    })
-    use({ "mfussenegger/nvim-lint", config = lsp.lint })
-    use({ "jubnzv/virtual-types.nvim" })
 
     local cmp = require("plugins.cmp")
     use({
@@ -347,11 +335,7 @@ require("packer").startup({
     use({ "hrsh7th/cmp-calc", after = "nvim-cmp" })
     use({ "hrsh7th/cmp-omni", after = "nvim-cmp" })
     use({ "hrsh7th/cmp-emoji", after = "nvim-cmp" })
-    use({
-      "dmitmel/cmp-cmdline-history",
-      after = "nvim-cmp",
-      config = cmp.cmdline_history,
-    })
+    use({ "lukas-reineke/cmp-rg", after = "nvim-cmp" })
 
     local telescope = require("plugins.telescope")
     use({
@@ -472,14 +456,12 @@ require("packer").startup({
     local utils = require("plugins.utils")
     use({
       "michaelb/sniprun",
-
       cmd = { "SnipRun", "'<,'>SnipRun" },
       run = "bash install.sh",
       config = utils.sniprun,
     })
     use({
       "akinsho/toggleterm.nvim",
-
       event = "UIEnter",
       config = utils.toggleterm,
     })
@@ -593,6 +575,21 @@ require("packer").startup({
       config = utils.neorg,
       requires = "nvim-lua/plenary.nvim",
     })
+    use({
+      "krivahtoo/silicon.nvim",
+      run = "./install.sh",
+      config = utils.silicon,
+    })
+    use({
+      "smjonas/live-command.nvim",
+      config = function()
+        require("live-command").setup({
+          commands = {
+            Norm = { cmd = "norm" },
+          },
+        })
+      end,
+    })
 
     local dap = require("plugins.dap")
     use({
@@ -639,6 +636,15 @@ require("packer").startup({
       requires = "MunifTanjim/nui.nvim",
       config = lang.package_info,
     })
+    use({ "posva/vim-vue" })
+    use({ "neoclide/vim-jsx-improve" })
+    use({
+      "jose-elias-alvarez/typescript.nvim",
+      ft = { "ts", "tsx", "vue", "js", "jsx", "cjs", "mjs", "html" },
+      config = lang.typescript,
+    })
+
+    -- use({ "neoclide/coc.nvim", branch = "release" })
 
     use({ "nvim-lua/popup.nvim" })
 

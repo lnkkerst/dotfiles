@@ -38,8 +38,11 @@ lang.package_info = function()
     -- provided one, if nothing is provided it will use `yarn`
     package_manager = "pnpm",
   })
-
   -- Keymappings are set in which key config
+end
+
+lang.typescript = function()
+  require("typescript").setup({})
 end
 
 return lang
