@@ -71,10 +71,6 @@ require("packer").startup({
       config = ui.transparent,
     })
     use({
-      "petertriho/nvim-scrollbar",
-      config = ui.scrollbar,
-    })
-    use({
       "folke/trouble.nvim",
       cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
       requires = "kyazdani42/nvim-web-devicons",
@@ -110,9 +106,8 @@ require("packer").startup({
       config = editor.accelerated_jk,
     })
     use({
-      "yamatsum/nvim-cursorline",
-      event = "BufReadPost",
-      config = editor.cursorline,
+      "RRethy/vim-illuminate",
+      config = editor.illuminate,
     })
     use({
       "windwp/nvim-autopairs",
@@ -134,11 +129,11 @@ require("packer").startup({
       "kevinhwang91/nvim-hlslens",
       config = editor.hlslens,
     })
-    use({
-      "haringsrob/nvim_context_vt",
-      after = "nvim-treesitter",
-      config = editor.context_vt,
-    })
+    -- use({
+    --   "haringsrob/nvim_context_vt",
+    --   after = "nvim-treesitter",
+    --   config = editor.context_vt,
+    -- })
     use({
       "ethanholz/nvim-lastplace",
       config = editor.lastplace,
@@ -253,8 +248,9 @@ require("packer").startup({
       after = "nvim-lspconfig",
     })
     use({
-      "folke/lua-dev.nvim",
+      "folke/neodev.nvim",
       after = "nvim-lspconfig",
+      config = lsp.neodev,
     })
     use({
       "junnplus/nvim-lsp-setup",
@@ -263,8 +259,9 @@ require("packer").startup({
         "mason.nvim",
         "mason-lspconfig.nvim",
         "schemastore.nvim",
-        "lua-dev.nvim",
+        "neodev.nvim",
         "clangd_extensions.nvim",
+        "typescript.nvim",
       },
       requires = {
         "neovim/nvim-lspconfig",
@@ -322,12 +319,9 @@ require("packer").startup({
         {
           "L3MON4D3/LuaSnip",
           after = "friendly-snippets",
-          -- event = "InsertCharPre",
           config = cmp.luasnip,
         },
-        {
-          "rafamadriz/friendly-snippets",
-        },
+        { "rafamadriz/friendly-snippets" },
       },
     })
     use({ "ray-x/cmp-treesitter", after = "nvim-cmp" })
@@ -347,45 +341,33 @@ require("packer").startup({
     use({
       "nvim-telescope/telescope-fzf-native.nvim",
       after = "telescope.nvim",
-      cmd = "Telescope",
       run = "make",
       config = ui.telescope_fzf_native,
     })
     use({
       "AckslD/nvim-neoclip.lua",
       after = "telescope.nvim",
-      cmd = "Telescope",
       requires = { "tami5/sqlite.lua", module = "sqlite" },
       config = telescope.neoclip,
     })
     use({
       "nvim-telescope/telescope-file-browser.nvim",
       after = "telescope.nvim",
-      cmd = "Telescope",
       config = telescope.file_browser,
     })
     use({
       "nvim-telescope/telescope-packer.nvim",
       after = "telescope.nvim",
-      cmd = "Telescope",
       config = telescope.packer,
-    })
-    use({
-      "nvim-telescope/telescope-symbols.nvim",
-      after = "telescope.nvim",
-      cmd = "Telescope",
-      config = telescope.symbols,
     })
     use({
       "nvim-telescope/telescope-github.nvim",
       after = "telescope.nvim",
-      cmd = "Telescope",
       config = telescope.github,
     })
     use({
       "nvim-telescope/telescope-frecency.nvim",
       after = "telescope.nvim",
-      cmd = "Telescope",
       requires = { "tami5/sqlite.lua" },
       config = telescope.frecency,
     })
@@ -397,13 +379,11 @@ require("packer").startup({
     use({
       "nvim-telescope/telescope-media-files.nvim",
       after = "telescope.nvim",
-      cmd = "Telescope",
       config = telescope.media,
     })
     use({
       "LinArcX/telescope-env.nvim",
       after = "telescope.nvim",
-      cmd = "Telescope",
       config = telescope.env,
     })
 
@@ -447,11 +427,6 @@ require("packer").startup({
       after = "nvim-treesitter",
       config = ts.surround,
     })
-    use({
-      "lewis6991/spellsitter.nvim",
-      after = "nvim-treesitter",
-      config = ts.spellsitter,
-    })
 
     local utils = require("plugins.utils")
     use({
@@ -466,11 +441,11 @@ require("packer").startup({
       config = utils.toggleterm,
     })
     use({
-      "stevearc/aerial.nvim",
-      after = "nvim-lspconfig",
-      config = utils.aerial,
+      "ellisonleao/glow.nvim",
+      cmd = "Glow",
+      branch = "main",
+      config = utils.glow,
     })
-    use({ "ellisonleao/glow.nvim", branch = "main", config = utils.glow })
     use({
       "folke/which-key.nvim",
       config = utils.which_key,
@@ -515,7 +490,6 @@ require("packer").startup({
     use({
       "sbdchd/neoformat",
       cmd = "Neoformat",
-      config = utils.neoformat,
     })
     use({
       "gpanders/editorconfig.nvim",
@@ -532,17 +506,17 @@ require("packer").startup({
       config = utils.bqf,
     })
     use({ "nathom/filetype.nvim", config = utils.filetype })
-    use({
-      "black-desk/fcitx5-ui.nvim",
-      after = "lualine.nvim",
-      rocks = { "lgi", "dbus_proxy" },
-      config = utils.fcitx_ui,
-    })
-    use({
-      "gennaro-tedesco/nvim-jqx",
-      ft = "json",
-      config = utils.jqx,
-    })
+    -- use({
+    --   "black-desk/fcitx5-ui.nvim",
+    --   after = "lualine.nvim",
+    --   rocks = { "lgi", "dbus_proxy" },
+    --   config = utils.fcitx_ui,
+    -- })
+    -- use({
+    --   "gennaro-tedesco/nvim-jqx",
+    --   ft = "json",
+    --   config = utils.jqx,
+    -- })
     use({
       "nvim-neotest/neotest",
       after = "nvim-treesitter",
@@ -579,16 +553,6 @@ require("packer").startup({
       "krivahtoo/silicon.nvim",
       run = "./install.sh",
       config = utils.silicon,
-    })
-    use({
-      "smjonas/live-command.nvim",
-      config = function()
-        require("live-command").setup({
-          commands = {
-            Norm = { cmd = "norm" },
-          },
-        })
-      end,
     })
 
     local dap = require("plugins.dap")
@@ -640,11 +604,8 @@ require("packer").startup({
     use({ "neoclide/vim-jsx-improve" })
     use({
       "jose-elias-alvarez/typescript.nvim",
-      ft = { "ts", "tsx", "vue", "js", "jsx", "cjs", "mjs", "html" },
       config = lang.typescript,
     })
-
-    -- use({ "neoclide/coc.nvim", branch = "release" })
 
     use({ "nvim-lua/popup.nvim" })
 

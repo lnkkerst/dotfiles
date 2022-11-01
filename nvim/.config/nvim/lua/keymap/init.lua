@@ -141,11 +141,6 @@ wk.register({
   ["<C-n>"] = { "<cmd>NvimTreeToggle<cr>", "NvimTreeToggle" },
 })
 
--- Plugin Aerial
-wk.register({
-  ["<A-a>"] = { "<cmd>AerialToggle<cr>", "AerialToggle" },
-})
-
 -- Plugin HighStr
 for i = 1, 8 do
   wk.register({
@@ -170,7 +165,7 @@ wk.register({
   ["f"] = {
     name = "+Telescope",
     ["f"] = { "<cmd>Telescope find_files<cr>", "Telescope find files" },
-    ["r"] = { "<cmd>Telescope frecency", "Telescope frecency" },
+    ["r"] = { "<cmd>Telescope frecency<cr>", "Telescope frecency" },
     ["n"] = { "<cmd>Telescope notify<cr>", "Telescope notify" },
     ["b"] = { "<cmd>Telescope buffers<cr>", "Telescope buffers" },
     ["m"] = { "<cmd>Telescope marks<cr>", "Telescope marks" },

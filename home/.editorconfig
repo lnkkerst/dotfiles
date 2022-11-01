@@ -42,3 +42,6 @@ indent_size = 2
 [*.{js,ts,vue,jsx,tsx,cjs,mjs}]
 indent_style = space
 indent_size = 2
+
+[*.rs]
+indent_size = 4

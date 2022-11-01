@@ -84,33 +84,48 @@ end
 
 ui.catppuccin = function()
   require("catppuccin").setup({
-    dim_inactive = {
-      enabled = false,
-      shade = "dark",
-      percentage = 0.15,
+    flavour = "mocha",
+    background = {
+      light = "latte",
+      dark = "mocha",
     },
     transparent_background = false,
     term_colors = false,
-    compile = {
-      enabled = true,
-      path = vim.fn.stdpath("cache") .. "/catppuccin",
-    },
     styles = {
       comments = { "italic" },
       conditionals = { "italic" },
-      loops = {},
-      functions = {},
-      keywords = {},
-      strings = {},
-      variables = {},
-      numbers = {},
-      booleans = {},
-      properties = {},
-      types = {},
-      operators = {},
     },
     integrations = {
+      cmp = true,
+      gitsigns = true,
+      nvimtree = true,
+      telescope = true,
       treesitter = true,
+      aerial = true,
+      dashboard = true,
+      harpoon = true,
+      hop = true,
+      lsp_saga = true,
+      mason = true,
+      neogit = true,
+      neotest = true,
+      noice = true,
+      notify = true,
+      treesitter_context = true,
+      ts_rainbow = true,
+      symbols_outline = true,
+      lsp_trouble = true,
+      which_key = true,
+      fidget = true,
+      illuminate = true,
+      indent_blankline = {
+        enabled = true,
+        colored_indent_levels = true,
+        dap = {
+          enabled = true,
+          enable_ui = true, -- enable nvim-dap-ui
+        },
+      },
       native_lsp = {
         enabled = true,
         virtual_text = {
@@ -126,54 +141,13 @@ ui.catppuccin = function()
           information = { "underline" },
         },
       },
-      coc_nvim = false,
-      lsp_trouble = true,
-      cmp = true,
-      lsp_saga = true,
-      gitgutter = false,
-      gitsigns = true,
-      telescope = true,
-      nvimtree = {
-        enabled = true,
-        show_root = true,
-        transparent_panel = true,
-      },
-      neotree = {
-        enabled = false,
-        show_root = true,
-        transparent_panel = false,
-      },
-      dap = {
-        enabled = true,
-        enable_ui = true,
-      },
-      which_key = true,
-      indent_blankline = {
-        enabled = true,
-        colored_indent_levels = true,
-      },
-      dashboard = true,
-      neogit = true,
-      vim_sneak = false,
-      fern = false,
-      barbar = false,
-      bufferline = true,
-      markdown = true,
-      lightspeed = false,
-      ts_rainbow = true,
-      hop = true,
-      notify = true,
-      telekasten = false,
-      symbols_outline = true,
-      mini = false,
-      aerial = true,
       navic = {
         enabled = true,
+        custom_bg = "NONE",
       },
     },
   })
-  vim.g.catppuccin_flavour = "mocha"
-  vim.cmd([[colorscheme catppuccin]])
+  vim.api.nvim_command("colorscheme catppuccin")
 end
 
 ui.material = function()
@@ -428,6 +402,7 @@ ui.bufferline = function()
         },
       },
     },
+    highlights = require("catppuccin.groups.integrations.bufferline").get(),
   })
 end
 

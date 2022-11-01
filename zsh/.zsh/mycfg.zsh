@@ -18,11 +18,11 @@ alias ls='exa'
 alias find='fd'
 alias dstat='dstat -cdlmnpsy'
 
-source /usr/share/nvm/init-nvm.sh
-
 # WPS
 alias wps="unset QT_AUTO_SCREEN_SCALE_FACTOR; wps"
 alias wpp="unset QT_AUTO_SCREEN_SCALE_FACTOR; wpp"
 alias wpp="unset QT_AUTO_SCREEN_SCALE_FACTOR; et"
 alias wpp="unset QT_AUTO_SCREEN_SCALE_FACTOR; wpspdf"
 
+eval "$(starship init zsh)"
+source $HOME/.zsh/zinit.zsh

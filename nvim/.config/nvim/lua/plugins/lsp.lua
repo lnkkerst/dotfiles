@@ -54,19 +54,16 @@ lsp.lspsaga = function()
 end
 
 lsp.lsp_setup = function()
-  local global_capabilities = vim.lsp.protocol.make_client_capabilities()
-  global_capabilities =
-    require("cmp_nvim_lsp").update_capabilities(global_capabilities)
+  local global_capabilities = require("cmp_nvim_lsp").default_capabilities()
   global_capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
   }
-  global_capabilities.offsetEncoding = { "utf-16" }
+  -- global_capabilities.offsetEncoding = { "utf-8", "utf-16" }
   global_capabilities.textDocument.completion.completionItem.snippetSupport =
     true
 
   local global_attach = function(client, bufnr)
-    require("aerial").on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
 
     vim.api.nvim_create_autocmd("CursorHold", {
@@ -80,7 +77,7 @@ lsp.lsp_setup = function()
             "InsertEnter",
             "FocusLost",
           },
-          border = "rounded",
+          border = "single",
           source = "always", -- show source in diagnostic popup window
           prefix = " ",
         }
@@ -133,18 +130,15 @@ lsp.lsp_setup = function()
           end,
         },
       }),
-      -- sumneko_lua = require("lua-dev").setup({
-      --   lspconfig = {
-      --     settings = {
-      --       Lua = {
-      --         format = {
-      --           enable = true,
-      --         },
-      --       },
-      --     },
-      --   },
-      -- }),
-      sumneko_lua = {},
+      sumneko_lua = {
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = "Replace",
+            },
+          },
+        },
+      },
       jsonls = {
         settings = {
           json = {
@@ -161,14 +155,16 @@ lsp.lsp_setup = function()
         on_attach = function(client, bufnr)
           global_attach(client, bufnr)
           require("virtualtypes").on_attach(client, bufnr)
+          -- require("lsp-format").on_attach(client, bufnr)
         end,
       }),
       pyright = {},
       jdtls = {},
       bashls = {},
-      ["emmet-ls"] = {},
     },
   })
+
+  require("lspconfig").volar.setup({})
 
   require("typescript").setup({
     disable_commands = false, -- prevent the plugin from creating Vim commands
@@ -208,24 +204,28 @@ end
 lsp.virtual_types = function() end
 
 lsp.null = function()
-  local null = require("null-ls")
-  null.setup({
+  local null_ls = require("null-ls")
+  local helpers = require("null-ls.helpers")
+
+  null_ls.setup({
     sources = {
-      null.builtins.formatting.stylua,
-      null.builtins.formatting.shfmt,
-      null.builtins.formatting.prettier,
-      null.builtins.formatting.clang_format,
-      null.builtins.formatting.rustfmt,
-      null.builtins.formatting.autopep8,
-      null.builtins.formatting.fish_indent,
-      null.builtins.formatting.eslint,
-      null.builtins.formatting.markdownlint,
-      null.builtins.formatting.markdown_toc,
+      null_ls.builtins.formatting.stylua,
+      null_ls.builtins.formatting.shfmt,
+      null_ls.builtins.formatting.prettier,
+      -- null.builtins.formatting.clang_format,
+      null_ls.builtins.formatting.rustfmt,
+      null_ls.builtins.formatting.autopep8,
+      null_ls.builtins.formatting.fish_indent,
+      null_ls.builtins.formatting.eslint,
+      null_ls.builtins.formatting.markdownlint,
+      null_ls.builtins.formatting.markdown_toc,
+      null_ls.builtins.formatting.nginx_beautifier,
       -- null.builtins.diagnostics.eslint,
       -- null.builtins.completion.spell,
       -- null.builtins.code_actions.gitsigns,
-      null.builtins.diagnostics.fish,
-      null.builtins.diagnostics.markdownlint,
+      null_ls.builtins.diagnostics.fish,
+      null_ls.builtins.diagnostics.markdownlint,
+      null_ls.builtins.diagnostics.tidy,
     },
     on_attach = require("lsp-format").on_attach,
   })
@@ -252,6 +252,10 @@ lsp.lint = function() end
 
 lsp.lsp_format = function()
   require("lsp-format").setup({})
+end
+
+lsp.neodev = function()
+  require("neodev").setup({})
 end
 
 return lsp

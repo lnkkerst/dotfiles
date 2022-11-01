@@ -52,11 +52,6 @@ function mkcd
     mkdir -p $argv[1] && cd $argv[1]
 end
 
-function tmpcd
-    set tmp_dir $(random | base64)
-    mkdir $tmp_dir && cd $tmp_dir
-end
-
 # bun
 if type -f bun >/dev/null 2>/dev/null
     set --export BUN_INSTALL "$HOME/.bun"
@@ -93,4 +88,19 @@ if type -f direnv >/dev/null 2>/dev/null
     direnv hook fish | source
 end
 
-starship init fish | source
+if type -f starship >/dev/null 2>/dev/null
+    starship init fish | source
+end
+
+# atuin
+if type -f fish >/dev/null 2>/dev/null
+    set -gx ATUIN_NOBIND true
+    atuin init fish | source
+    bind \cr _atuin_search
+    bind -M insert \cr _atuin_search
+end
+
+# thefuck
+if type -f thefuck >/dev/null 2>/dev/null
+    thefuck --alias | source
+end

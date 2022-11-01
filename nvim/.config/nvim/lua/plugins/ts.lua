@@ -148,8 +148,4 @@ ts.surround = function()
   require("nvim-surround").setup()
 end
 
-ts.spellsitter = function()
-  require("spellsitter").setup()
-end
-
 return ts

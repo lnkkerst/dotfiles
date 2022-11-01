@@ -78,8 +78,8 @@ super + shift + n
 # restart bspwm
 super + shift + r
 	bspc wm -r
-super + shift + Escape
-	bspc quit
+/* super + shift + Escape */
+/* 	bspc quit */
 
 # close and kill
 super + shift + {q,x}

@@ -17,10 +17,10 @@ $lock)
     sh ~/.config/bspwm/scripts/i3lock-color.sh
     ;;
 $shutdown)
-    loginctl poweroff
+    systemctl poweroff
     ;;
 $reboot)
-    loginctl reboot
+    systemctl reboot
     ;;
 $suspend)
     mpc -q pause

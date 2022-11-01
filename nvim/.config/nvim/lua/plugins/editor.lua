@@ -6,7 +6,6 @@ editor.autopairs = function()
     ts_config = {
       lua = { "string" },
       javascript = { "template_string" },
-      java = false,
     },
   })
   local cmp_autopairs = require("nvim-autopairs.completion.cmp")
@@ -84,6 +83,17 @@ editor.cursorline = function()
   })
 end
 
+editor.illuminate = function()
+  require("illuminate").configure({
+    providers = {
+      "lsp",
+      "treesitter",
+      "regex",
+    },
+    delay = 100,
+  })
+end
+
 editor.comment = function()
   require("Comment").setup({
     ---Add a space b/w comment and the line
@@ -138,6 +148,7 @@ editor.hop = function()
 end
 
 editor.hlslens = function()
+  require("hlslens").setup({})
   local kopts = { noremap = true, silent = true }
 
   vim.api.nvim_set_keymap(
@@ -325,11 +336,10 @@ editor.accelerated_jk = function()
 end
 
 editor.ufo = function()
-  vim.o.foldcolumn = "1"
+  vim.o.foldcolumn = "1" -- '0' is not bad
   vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
   vim.o.foldlevelstart = 99
-  -- vim.ojfoldenable = true
-  -- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep:│,foldclose:]]
+  vim.o.foldenable = true
 
   vim.keymap.set("n", "zR", require("ufo").openAllFolds, {})
   vim.keymap.set("n", "zM", require("ufo").closeAllFolds, {})

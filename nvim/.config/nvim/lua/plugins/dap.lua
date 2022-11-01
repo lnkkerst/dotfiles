@@ -14,11 +14,22 @@ dap.dap = function()
     dapui.close()
   end
 
-  vim.fn.sign_define(
-    "DapBreakpoint",
-    { text = "", texthl = "", linehl = "", numhl = "" }
-  )
+  require("dap")
 
+  local sign = vim.fn.sign_define
+
+  sign(
+    "DapBreakpoint",
+    { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" }
+  )
+  sign(
+    "DapBreakpointCondition",
+    { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" }
+  )
+  sign(
+    "DapLogPoint",
+    { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" }
+  )
   dap.adapters.lldb = {
     type = "executable",
     command = "/usr/bin/lldb-vscode",

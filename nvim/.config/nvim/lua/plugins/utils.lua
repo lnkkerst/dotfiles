@@ -75,12 +75,6 @@ utils.toggleterm = function()
   })
 end
 
-utils.aerial = function()
-  require("aerial").setup({
-    backends = { "lsp" },
-  })
-end
-
 utils.which_key = function()
   require("which-key").setup({
     plugins = {
@@ -556,8 +550,7 @@ end
 utils.silicon = function()
   require("silicon").setup({
     font = "JetBrainsMono Nerd Font=16",
-    theme = "Monokai Extended",
-    background = "#1e1e2e",
+    -- theme = "Catppuccin-mocha",
     line_number = true,
   })
 end

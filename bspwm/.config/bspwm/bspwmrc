@@ -69,6 +69,7 @@ bspc rule -a wemeetapp state=floating
 bspc rule -a Todesk border=off
 bspc rule -a Peek state=floating
 bspc rule -a copyq state=floating
+bspc rule -a bilibili state=floating
 
 # Autostart
 fish $SCRIPTS_DIR/autostart.fish

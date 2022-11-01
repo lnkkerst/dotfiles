@@ -3,7 +3,7 @@ local lang = {}
 lang.jdtls = function() end
 
 lang.rust_tools = function()
-  -- require("rust-tools").setup({})
+  require("rust-tools").setup({})
 end
 
 lang.crates = function()
