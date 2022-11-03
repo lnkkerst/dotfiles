@@ -161,6 +161,7 @@ lsp.lsp_setup = function()
       pyright = {},
       jdtls = {},
       bashls = {},
+      taplo = {},
     },
   })
 
@@ -214,6 +215,7 @@ lsp.null = function()
       null_ls.builtins.formatting.prettier,
       -- null.builtins.formatting.clang_format,
       null_ls.builtins.formatting.rustfmt,
+      null_ls.builtins.formatting.taplo,
       null_ls.builtins.formatting.autopep8,
       null_ls.builtins.formatting.fish_indent,
       null_ls.builtins.formatting.eslint,

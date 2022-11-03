@@ -17,6 +17,7 @@ nvim_cmp.cmp = function()
     cmdline = "[CMD]",
     npm = "[NPM]",
     fish = "[FISH]",
+    nvim_lsp_signature_help = "[SIGN]",
   }
 
   cmp.setup({
@@ -86,7 +87,7 @@ nvim_cmp.cmp = function()
       end, { "i", "s" }),
     }),
     sources = {
-      { name = "nvim_lsp" },
+      { name = "nvim_lsp", priority = 100 },
       { name = "luasnip" },
       { name = "buffer", keyword_length = 2 },
       { name = "path" },

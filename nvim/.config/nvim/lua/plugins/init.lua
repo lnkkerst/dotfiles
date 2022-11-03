@@ -195,13 +195,14 @@ require("packer").startup({
         "typescriptreact",
         "fish",
         "java",
+        "toml",
       },
       config = lsp.lspconfig,
     })
     use({
       "williamboman/mason.nvim",
-      cmd = "Mason",
-      after = "nvim-lspconfig",
+      -- cmd = "Mason",
+      -- after = "nvim-lspconfig",
       config = lsp.mason,
     })
     use({
@@ -505,7 +506,7 @@ require("packer").startup({
       ft = "qf",
       config = utils.bqf,
     })
-    use({ "nathom/filetype.nvim", config = utils.filetype })
+    -- use({ "nathom/filetype.nvim", config = utils.filetype })
     -- use({
     --   "black-desk/fcitx5-ui.nvim",
     --   after = "lualine.nvim",
