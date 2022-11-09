@@ -151,21 +151,25 @@ lsp.lsp_setup = function()
       tailwindcss = {},
       eslint = {},
       cssls = {},
-      clangd = require("lsp-setup.clangd_extensions").setup({
+      --   clangd = require("lsp-setup.clangd_extensions").setup({
+      --     on_attach = function(client, bufnr)
+      --       global_attach(client, bufnr)
+      --       require("virtualtypes").on_attach(client, bufnr)
+      --       -- require("lsp-format").on_attach(client, bufnr)
+      --     end,
+      --   }),
+      --   pyright = {},
+      --   jdtls = {},
+      --   bashls = {},
+      --   taplo = {},
+      clangd = {
         on_attach = function(client, bufnr)
           global_attach(client, bufnr)
-          require("virtualtypes").on_attach(client, bufnr)
-          -- require("lsp-format").on_attach(client, bufnr)
+          require("lsp-format").on_attach(client, bufnr)
         end,
-      }),
-      pyright = {},
-      jdtls = {},
-      bashls = {},
-      taplo = {},
+      },
     },
   })
-
-  require("lspconfig").volar.setup({})
 
   require("typescript").setup({
     disable_commands = false, -- prevent the plugin from creating Vim commands
@@ -212,13 +216,13 @@ lsp.null = function()
     sources = {
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.formatting.shfmt,
-      null_ls.builtins.formatting.prettier,
+      null_ls.builtins.formatting.prettierd,
       -- null.builtins.formatting.clang_format,
       null_ls.builtins.formatting.rustfmt,
       null_ls.builtins.formatting.taplo,
       null_ls.builtins.formatting.autopep8,
       null_ls.builtins.formatting.fish_indent,
-      null_ls.builtins.formatting.eslint,
+      null_ls.builtins.formatting.eslint_d,
       null_ls.builtins.formatting.markdownlint,
       null_ls.builtins.formatting.markdown_toc,
       null_ls.builtins.formatting.nginx_beautifier,

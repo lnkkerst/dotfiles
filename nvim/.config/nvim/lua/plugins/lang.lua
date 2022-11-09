@@ -42,7 +42,7 @@ lang.package_info = function()
 end
 
 lang.typescript = function()
-  require("typescript").setup({})
+  -- require("typescript").setup({})
 end
 
 return lang
