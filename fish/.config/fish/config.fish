@@ -41,11 +41,16 @@ alias fspbu='curl -F "c=@-" "http://fars.ee/?u=1"'
 alias mv='mv -i'
 alias sudoe='sudo -E'
 alias xc='xclip -sel clipboard'
-alias x='startx'
 alias t="tmux attach || tmux"
 alias rs='rsync -P'
 alias poweroff='loginctl poweroff'
 alias reboot='loginctl reboot'
+alias woman='man'
+alias 翻译='fanyi'
+
+# Key binding
+bind \co ranger-cd --mode insert
+bind \co ranger-cd --mode default
 
 # Functions
 function mkcd

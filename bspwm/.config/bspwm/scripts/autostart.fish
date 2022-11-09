@@ -12,10 +12,10 @@ xss-lock $HOME/.config/bspwm/scripts/i3lock-color.sh
 libinput-gestures
 $HOME/.config/polybar/launch.sh
 picom -b
-mpd
 dunst
 appimagelauncher appimagelauncherd
-sh $HOME/.config/bspwm/scripts/bspswallow"
+sh $HOME/.config/bspwm/scripts/bspswallow
+flameshot"
 
 for app in (string split \n $apps)
     if test (ps -ef | grep "$app" | grep -v grep | wc -l) = 0
