@@ -54,8 +54,8 @@ wk.register({
   ["<A-k>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
   ["<A-S-j>"] = { "<cmd>BufferLineMoveNext<cr>", "BufferLineMoveNext" },
   ["<A-S-k>"] = { "<cmd>BufferLineMovePrev<cr>", "BufferLineMovePrev" },
-  ["<Tab>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
-  ["<S-Tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
+  -- ["<Tab>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
+  -- ["<S-Tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
   ["<S-q>"] = { "<cmd>bd<cr>", "BufferLinePickClise" },
 })
 wk.register({
@@ -72,62 +72,6 @@ wk.register({
     ["p"] = { "<cmd>BufferLinePick<cr>", "BufferLinePick" },
   },
 }, { prefix = "<leader>" })
-
--- Plugin Lspsaga
-wk.register({
-  ["K"] = { "<cmd>Lspsaga hover_doc<cr>", "Lspsaga hover doc" },
-  ["g"] = {
-    -- name = "lspsaga action",
-    ["h"] = { "<cmd>Lspsaga lsp_finder<cr>", "Lspsaga finder" },
-    ["j"] = {
-      "<cmd>Lspsaga diagnostic_jump_next<cr>",
-      "Lspsaga next diagnostics",
-    },
-    ["k"] = {
-      "<cmd>Lspsaga diagnostic_jump_prev<cr>",
-      "Lspsaga prev diagnostics",
-    },
-    ["J"] = {
-      '<cmd>lua require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })<cr>',
-      "Lspsaga next error diagnostics",
-    },
-    ["K"] = {
-      '<cmd>lua require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })<cr>',
-      "Lspsaga prev error diagnostics",
-    },
-    -- ["r"] = { "<cmd>Lspsaga rename<cr>", "Lspsaga rename" },
-    ["d"] = {
-      "<cmd>Lspsaga peek_definition<cr>",
-      "Lspsaga preview definition",
-    },
-    ["<C-S-k>"] = {
-      "<cmd>Lspsaga signature_help<cr>",
-      "Lspsafa signature_help",
-    },
-  },
-})
-wk.register({
-  ["<leader>ca"] = {
-    "<cmd>Lspsaga code_action<cr>",
-    "Lspsaga range code action",
-  },
-}, { mode = "n" })
-wk.register({
-  ["<leader>ca"] = {
-    "<cmd><C-u>Lspsaga range_code_action<cr>",
-    "Lspsaga range code action",
-  },
-}, { mode = "v" })
-
-wk.register({
-  ["gr"] = {
-    "<cmd>lua vim.lsp.buf.rename()<cr>",
-    "renamer",
-  },
-})
-
--- Plugin lspconfig
-wk.register({})
 
 -- Plugin accelerate_jk
 local accelerate_jk = {
@@ -338,28 +282,9 @@ wk.register({
 
 local control = {
   ["<C-s>"] = { "<cmd>w<cr>", "Save file" },
-  ["<C-v>"] = { "<cmd>put<cr>", "Paste", mode = "i" },
 }
 wk.register(control)
 wk.register(control, { mode = "i" })
-
-local undo_redo = {
-  ["<A-z>"] = { "<cmd>undo<cr>", "Undo" },
-  ["<A-S-z>"] = { "<cmd>redo<cr>", "Redo" },
-}
-wk.register(undo_redo)
-wk.register(undo_redo, { mode = "i" })
-
--- Window movement
-local window_focus = {
-  ["<C-j>"] = { "<C-w>j", "Go to the down window" },
-  ["<C-k>"] = { "<C-w>k", "Go to the up window" },
-  ["<C-h>"] = { "<C-w>h", "Go to the left window" },
-  ["<C-l>"] = { "<C-w>l", "Go to the right window" },
-}
-
-wk.register(window_focus, { mode = "n" })
-wk.register(window_focus, { mode = "i" })
 
 -- Line move
 local line_move = {

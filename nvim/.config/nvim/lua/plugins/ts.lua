@@ -1,9 +1,6 @@
 local ts = {}
 
 ts.treesitter = function()
-  -- vim.api.nvim_command("set foldmethod=expr")
-  -- vim.api.nvim_command("set foldexpr=nvim_treesitter#foldexpr()")
-
   require("nvim-treesitter.configs").setup({
     ensure_installed = "all",
 
@@ -20,21 +17,6 @@ ts.treesitter = function()
       additional_vim_regex_highlighting = false,
       disable = false,
     },
-
-    rainbow = {
-      enable = true,
-      extended_mode = true, -- highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-      max_file_lines = 1000, -- do not enable for files with more than 1000 lines, int
-    },
-
-    autotag = {
-      enable = true,
-    },
-
-    context_commentstring = {
-      enable = true,
-      enable_autocmd = false,
-    },
   })
 end
 
@@ -43,7 +25,7 @@ ts.textobjects = function()
     textobjects = {
       move = {
         enable = true,
-        set_jumps = true, -- whether to set jumps in the jumplist
+        set_jumps = true,
         goto_next_start = {
           ["]m"] = "@function.outer",
           ["]]"] = "@class.outer",
@@ -68,21 +50,22 @@ ts.textobjects = function()
         lookahead = true,
 
         keymaps = {
-          -- You can use the capture groups defined in textobjects.scm
-          ["af"] = "@function.outer",
-          ["if"] = "@function.inner",
-          ["ac"] = "@class.outer",
-          -- you can optionally set descriptions to the mappings (used in the desc parameter of nvim_buf_set_keymap
+          ["af"] = {
+            query = "@function.outer",
+            desc = "Select outer part of a class region",
+          },
+          ["if"] = {
+            query = "@function.inner",
+            desc = "Select inner part of a function",
+          },
+          ["ac"] = {
+            query = "@class.outer",
+            desc = "Select outer part of a class region",
+          },
           ["ic"] = {
             query = "@class.inner",
             desc = "Select inner part of a class region",
           },
-        },
-        -- You can choose the select mode (default is charwise 'v')
-        selection_modes = {
-          ["@parameter.outer"] = "v", -- charwise
-          ["@function.outer"] = "V", -- linewise
-          ["@class.outer"] = "<c-v>", -- blockwise
         },
         -- If you set this to `true` (default is `false`) then any textobject is
         -- extended to include preceding xor succeeding whitespace. Succeeding
@@ -103,11 +86,31 @@ ts.textobjects = function()
   })
 end
 
+ts.rainbow = function()
+  require("nvim-treesitter.configs").setup({
+    rainbow = {
+      enable = true,
+      extended_mode = true,
+      max_file_lines = 2000,
+    },
+  })
+end
+
+ts.commentstring = function()
+  require("nvim-treesitter.configs").setup({
+    context_commentstring = {
+      enable = true,
+      enable_autocmd = false,
+    },
+  })
+end
+
 ts.context = function()
   require("treesitter-context").setup({
     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-    max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+    max_lines = 2000, -- How many lines the window should span. Values <= 0 mean no limit.
     trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+    min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
     patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
       -- For all filetypes
       -- Note that setting an entry here replaces all other patterns for this entry.
@@ -117,17 +120,52 @@ ts.context = function()
         "class",
         "function",
         "method",
-        -- 'for', -- These won't appear in the context
-        -- 'while',
-        -- 'if',
-        -- 'switch',
-        -- 'case',
+        "for",
+        "while",
+        "if",
+        "switch",
+        "case",
       },
-      -- Example for a specific filetype.
+      -- Patterns for specific filetypes
       -- If a pattern is missing, *open a PR* so everyone can benefit.
-      --   rust = {
-      --       'impl_item',
-      --   },
+      tex = {
+        "chapter",
+        "section",
+        "subsection",
+        "subsubsection",
+      },
+      rust = {
+        "impl_item",
+        "struct",
+        "enum",
+      },
+      scala = {
+        "object_definition",
+      },
+      vhdl = {
+        "process_statement",
+        "architecture_body",
+        "entity_declaration",
+      },
+      markdown = {
+        "section",
+      },
+      elixir = {
+        "anonymous_function",
+        "arguments",
+        "block",
+        "do_block",
+        "list",
+        "map",
+        "tuple",
+        "quoted_content",
+      },
+      json = {
+        "pair",
+      },
+      yaml = {
+        "block_mapping_pair",
+      },
     },
     exact_patterns = {
       -- Example for a specific filetype with Lua patterns
@@ -141,11 +179,22 @@ ts.context = function()
 
     zindex = 20, -- The Z-index of the context window
     mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
+    -- Separator between context and content. Should be a single character string, like '-'.
+    -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+    separator = nil,
   })
 end
 
 ts.surround = function()
   require("nvim-surround").setup()
+end
+
+ts.autotag = function()
+  require("nvim-treesitter.configs").setup({
+    autotag = {
+      enable = true,
+    },
+  })
 end
 
 return ts

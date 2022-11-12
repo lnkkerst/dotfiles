@@ -105,7 +105,6 @@ ui.catppuccin = function()
       dashboard = true,
       harpoon = true,
       hop = true,
-      lsp_saga = true,
       mason = true,
       neogit = true,
       neotest = true,
@@ -302,7 +301,7 @@ ui.lualine = function()
       section_separators = { left = "", right = "" },
       disabled_filetypes = {},
       always_divide_middle = true,
-      globalstatus = false,
+      globalstatus = true,
     },
     sections = {
       lualine_a = { "mode" },
@@ -409,6 +408,28 @@ end
 ui.tree = function()
   require("nvim-tree").setup({
     auto_reload_on_write = true,
+
+    renderer = {
+      icons = {
+        glyphs = {
+          git = {
+            unstaged = "",
+            staged = "",
+            unmerged = "",
+            renamed = "➜",
+            untracked = "",
+            deleted = "",
+            ignored = "◌",
+          },
+        },
+      },
+    },
+  })
+end
+
+ui.tree1 = function()
+  require("nvim-tree").setup({
+    auto_reload_on_write = true,
     disable_netrw = true,
     hijack_cursor = true,
     hijack_netrw = true,
@@ -421,7 +442,7 @@ ui.tree = function()
     update_cwd = true,
     respect_buf_cwd = true,
     view = {
-      adaptive_size = false,
+      adaptive_size = true,
       width = 30,
       side = "left",
       preserve_window_proportions = true,
@@ -538,7 +559,23 @@ end
 ui.dressing = function()
   require("dressing").setup({
     input = {
-      border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+      border = "single",
+    },
+    select = {
+      enabled = true,
+      telescope = {
+        border = {},
+        borderchars = {
+          "─",
+          "│",
+          "─",
+          "│",
+          "┌",
+          "┐",
+          "┘",
+          "└",
+        },
+      },
     },
   })
 end
@@ -553,10 +590,32 @@ ui.noice = function()
         [":"] = { icon = " ", hl_group = "DiagnosticInfo", firstc = false },
       },
     },
+    messages = {
+      enabled = true,
+      view_search = false,
+    },
     popupmenu = {
-      enabled = false,
+      enabled = true,
+      backend = "cmp",
+    },
+    lsp = {
+      hover = {
+        enabled = true,
+        opts = { border = "single" },
+      },
+      signature = {
+        enabled = true,
+        auto_open = {
+          enabled = false,
+        },
+        opts = { border = "single" },
+      },
     },
   })
+end
+
+ui.winsep = function()
+  require("colorful-winsep").setup({})
 end
 
 return ui

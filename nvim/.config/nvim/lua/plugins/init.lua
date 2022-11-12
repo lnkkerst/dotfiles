@@ -32,11 +32,7 @@ require("packer").startup({
       as = "catppuccin",
       config = ui.catppuccin,
     })
-    use({ "folke/tokyonight.nvim", config = ui.tokyonight })
-    use({ "sainnhe/gruvbox-material", config = ui.gruvbox_material })
     use({ "marko-cerovac/material.nvim", config = ui.material })
-    use({ "tomasiser/vim-code-dark" })
-    use({ "shaunsingh/nord.nvim", config = ui.nord })
     use({
       "nvim-lualine/lualine.nvim",
       event = "VimEnter",
@@ -49,7 +45,9 @@ require("packer").startup({
     })
     use({
       "akinsho/bufferline.nvim",
+      tag = "v3.*",
       event = "VimEnter",
+      after = { "catppuccin" },
       requires = "kyazdani42/nvim-web-devicons",
       config = ui.bufferline,
     })
@@ -63,6 +61,7 @@ require("packer").startup({
       requires = {
         "kyazdani42/nvim-web-devicons", -- optional, for file icon
       },
+      after = { "catppuccin" },
       config = ui.tree,
     })
     use({
@@ -87,12 +86,16 @@ require("packer").startup({
     })
     use({
       "folke/noice.nvim",
-      event = "VimEnter",
+      -- event = "VimEnter",
       config = ui.noice,
       requires = {
         "MunifTanjim/nui.nvim",
         "rcarriga/nvim-notify",
       },
+    })
+    use({
+      "nvim-zh/colorful-winsep.nvim",
+      config = ui.winsep,
     })
 
     local editor = require("plugins.editor")
@@ -126,17 +129,14 @@ require("packer").startup({
       config = editor.hop,
     })
     use({
+      "abecodes/tabout.nvim",
+      config = editor.tabout,
+      wants = { "nvim-treesitter" },
+      after = { "nvim-cmp" },
+    })
+    use({
       "kevinhwang91/nvim-hlslens",
       config = editor.hlslens,
-    })
-    -- use({
-    --   "haringsrob/nvim_context_vt",
-    --   after = "nvim-treesitter",
-    --   config = editor.context_vt,
-    -- })
-    use({
-      "ethanholz/nvim-lastplace",
-      config = editor.lastplace,
     })
     use({
       "nacro90/numb.nvim",
@@ -216,19 +216,12 @@ require("packer").startup({
       config = lsp.lsp_format,
     })
     use({
-      "glepnir/lspsaga.nvim",
-      after = "nvim-lsp-setup",
-      config = lsp.lspsaga,
+      "rmagatti/goto-preview",
     })
     use({
       "j-hui/fidget.nvim",
       after = "nvim-lsp-setup",
       config = lsp.fidget,
-    })
-    use({
-      "folke/lsp-colors.nvim",
-      after = "nvim-lsp-setup",
-      config = lsp.lsp_colors,
     })
     use({
       "b0o/schemastore.nvim",
@@ -298,13 +291,6 @@ require("packer").startup({
     use({ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" })
     use({ "mtoohey31/cmp-fish", after = "nvim-cmp", ft = "fish" })
     use({
-      "petertriho/cmp-git",
-      after = "nvim-cmp",
-      requires = "nvim-lua/plenary.nvim",
-      config = cmp.git,
-    })
-    use({ "andersevenrud/cmp-tmux", after = "nvim-cmp" })
-    use({
       "David-Kunz/cmp-npm",
       after = "nvim-cmp",
       requires = {
@@ -325,16 +311,13 @@ require("packer").startup({
         { "rafamadriz/friendly-snippets" },
       },
     })
-    use({ "ray-x/cmp-treesitter", after = "nvim-cmp" })
-    use({ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" })
-    use({ "hrsh7th/cmp-calc", after = "nvim-cmp" })
-    use({ "hrsh7th/cmp-omni", after = "nvim-cmp" })
     use({ "hrsh7th/cmp-emoji", after = "nvim-cmp" })
     use({ "lukas-reineke/cmp-rg", after = "nvim-cmp" })
 
     local telescope = require("plugins.telescope")
     use({
       "nvim-telescope/telescope.nvim",
+      branch = "0.1.x",
       -- cmd = { "Telescope", "Legendary" },
       requires = { { "nvim-lua/plenary.nvim" } },
       config = telescope.telescope,
@@ -343,7 +326,7 @@ require("packer").startup({
       "nvim-telescope/telescope-fzf-native.nvim",
       after = "telescope.nvim",
       run = "make",
-      config = ui.telescope_fzf_native,
+      config = telescope.telescope_fzf_native,
     })
     use({
       "AckslD/nvim-neoclip.lua",
@@ -355,16 +338,6 @@ require("packer").startup({
       "nvim-telescope/telescope-file-browser.nvim",
       after = "telescope.nvim",
       config = telescope.file_browser,
-    })
-    use({
-      "nvim-telescope/telescope-packer.nvim",
-      after = "telescope.nvim",
-      config = telescope.packer,
-    })
-    use({
-      "nvim-telescope/telescope-github.nvim",
-      after = "telescope.nvim",
-      config = telescope.github,
     })
     use({
       "nvim-telescope/telescope-frecency.nvim",
@@ -405,11 +378,13 @@ require("packer").startup({
       "p00f/nvim-ts-rainbow",
       after = "nvim-treesitter",
       requires = { "nvim-treesitter/nvim-treesitter" },
+      config = ts.rainbow,
     })
     use({
       "JoosepAlviste/nvim-ts-context-commentstring",
       after = "nvim-treesitter",
       requires = { "nvim-treesitter/nvim-treesitter" },
+      config = ts.commentstring,
     })
     use({
       "nvim-treesitter/nvim-treesitter-context",
@@ -421,6 +396,7 @@ require("packer").startup({
       "windwp/nvim-ts-autotag",
       after = "nvim-treesitter",
       requires = { "nvim-treesitter/nvim-treesitter" },
+      config = ts.autotag,
     })
     use({
       "kylechui/nvim-surround",
@@ -484,9 +460,8 @@ require("packer").startup({
       config = utils.neogit,
     })
     use({
-      "Shatur/neovim-session-manager",
-      cmd = "SessionManager",
-      config = utils.session_manager,
+      "rmagatti/auto-session",
+      config = utils.auto_session,
     })
     use({
       "sbdchd/neoformat",

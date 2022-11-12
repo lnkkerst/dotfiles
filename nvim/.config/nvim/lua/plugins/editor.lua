@@ -62,27 +62,6 @@ editor.indent_blankline = function()
   })
 end
 
-editor.cursorword = function()
-  vim.g.cursorword_min_width = 3
-  vim.g.cursorword_max_width = 50
-  vim.g.cursorword_disable_filetypes = {}
-end
-
-editor.cursorline = function()
-  require("nvim-cursorline").setup({
-    cursorline = {
-      enable = false,
-      timeout = 1000,
-      number = false,
-    },
-    cursorword = {
-      enable = true,
-      min_length = 3,
-      hl = { underline = true },
-    },
-  })
-end
-
 editor.illuminate = function()
   require("illuminate").configure({
     providers = {
@@ -90,7 +69,11 @@ editor.illuminate = function()
       "treesitter",
       "regex",
     },
-    delay = 100,
+    delay = 300,
+    filetypes_denylist = {
+      "dashboard",
+      "NvimTree",
+    },
   })
 end
 
@@ -138,13 +121,35 @@ editor.comment = function()
       block = "gb",
     },
 
-    pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(), ---Post-hook, called after commenting is done
-    post_hook = nil,
+    pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
   })
 end
 
 editor.hop = function()
   require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+end
+
+editor.tabout = function()
+  require("tabout").setup({
+    tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable
+    backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
+    act_as_tab = true, -- shift content if tab out is not possible
+    act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+    default_tab = "<C-t>", -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+    default_shift_tab = "<C-d>", -- reverse shift default action,
+    enable_backwards = true, -- well ...
+    completion = true, -- if the tabkey is used in a completion pum
+    tabouts = {
+      { open = "'", close = "'" },
+      { open = '"', close = '"' },
+      { open = "`", close = "`" },
+      { open = "(", close = ")" },
+      { open = "[", close = "]" },
+      { open = "{", close = "}" },
+    },
+    ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+    exclude = {}, -- tabout will ignore these filetypes
+  })
 end
 
 editor.hlslens = function()
@@ -271,43 +276,9 @@ editor.numb = function()
   })
 end
 
-editor.lastplace = function()
-  require("nvim-lastplace").setup({
-    lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
-    lastplace_ignore_filetype = {
-      "gitcommit",
-      "gitrebase",
-      "svn",
-      "hgcommit",
-    },
-    lastplace_open_folds = true,
-  })
-end
-
 editor.neogen = function()
   require("neogen").setup({
     snippet_engine = "luasnip",
-  })
-end
-
-editor.tabout = function()
-  require("tabout").setup({
-    tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable
-    backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
-    act_as_tab = true, -- shift content if tab out is not possible
-    act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
-    enable_backwards = true, -- well ...
-    completion = true, -- if the tabkey is used in a completion pum
-    tabouts = {
-      { open = "'", close = "'" },
-      { open = '"', close = '"' },
-      { open = "`", close = "`" },
-      { open = "(", close = ")" },
-      { open = "[", close = "]" },
-      { open = "{", close = "}" },
-    },
-    ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
-    exclude = {}, -- tabout will ignore these filetypes
   })
 end
 
@@ -328,12 +299,7 @@ editor.colorizer = function()
   })
 end
 
-editor.accelerated_jk = function()
-  require("which-key").register({
-    ["j"] = { "<Plug>(accelerated_jk_gj)", "accelerate j" },
-    ["k"] = { "<Plug>(accelerated_jk_gk)", "accelerate k" },
-  })
-end
+editor.accelerated_jk = function() end
 
 editor.ufo = function()
   vim.o.foldcolumn = "1" -- '0' is not bad
@@ -424,4 +390,5 @@ editor.yanky = function()
 end
 
 editor.easy_align = function() end
+
 return editor
