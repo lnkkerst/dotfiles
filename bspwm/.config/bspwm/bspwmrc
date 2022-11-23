@@ -19,7 +19,7 @@ else
 end
 
 # Borders and gaps
-bspc config border_width 2
+bspc config border_width 1
 if string length $DOUBLE_MONITER
     bspc config window_gap 12
 else
@@ -31,7 +31,7 @@ bspc config borderless_monocle true
 bspc config gapless_monocle true
 bspc config presel_feedback_color "#b7bdf8"
 bspc config active_border_color "#b7bdf8"
-bspc config normal_border_color "#7d84a2"
+# bspc config normal_border_color "#7d84a2"
 bspc config focused_border_color "#c6a0f6"
 
 # Special window rules
@@ -65,11 +65,12 @@ bspc rule -a "tim.exe" state=floating border=off
 bspc rule -a Xfce4-appfinder state=floating
 bspc rule -a wechat-devtools state=floating
 bspc rule -a guvcview state=floating
-bspc rule -a wemeetapp state=floating
+bspc rule -a wemeetapp state=floating border=off
 bspc rule -a Todesk border=off
 bspc rule -a Peek state=floating
 bspc rule -a copyq state=floating
 bspc rule -a bilibili state=floating
+bspc rule -a lx-music-desktop state=floating border=off
 
 # Autostart
 fish $SCRIPTS_DIR/autostart.fish

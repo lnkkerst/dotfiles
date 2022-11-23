@@ -5,7 +5,7 @@ fcitx5 -d
 /usr/libexec/polkit-gnome-authentication-agent-1
 nitrogen --restore; sleep 1; picom -b
 nm-applet
-copyq
+clipcatd
 blueman-applet
 xidlehook --not-when-audio --not-when-fullscreen --timer 1200 "$HOME/.config/bspwm/scripts/i3lock-color.sh"
 xss-lock $HOME/.config/bspwm/scripts/i3lock-color.sh

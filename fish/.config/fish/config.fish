@@ -41,7 +41,7 @@ alias fspbu='curl -F "c=@-" "http://fars.ee/?u=1"'
 alias mv='mv -i'
 alias sudoe='sudo -E'
 alias xc='xclip -sel clipboard'
-alias t="tmux attach || tmux"
+alias t="tmux attach -t main 2> /dev/null || tmux new -s main"
 alias rs='rsync -P'
 alias poweroff='loginctl poweroff'
 alias reboot='loginctl reboot'
@@ -51,23 +51,42 @@ alias 翻译='fanyi'
 # Key binding
 bind \co ranger-cd --mode insert
 bind \co ranger-cd --mode default
+bind \eq 'fish_commandline_prepend pc' --mode insert
+bind \eq 'fish_commandline_prepend pc' --mode default
 
 # Functions
 function mkcd
     mkdir -p $argv[1] && cd $argv[1]
 end
 
+function proxy_env
+    if test $argv[1] = on
+        set -gx all_proxy socks://127.0.0.1:20170
+        set -gx http_proxy http://127.0.0.1:20171
+        set -gx https_proxy http://127.0.0.1:20170
+    else if test $argv[1] = off
+        set -e all_proxy
+        set -e http_proxy
+        set -e https_proxy
+    else
+        return 1
+    end
+end
+
+
 # bun
 if type -f bun >/dev/null 2>/dev/null
     set --export BUN_INSTALL "$HOME/.bun"
     # set --export PATH $BUN_INSTALL/bin $PATH
 end
+
 # fnm
 if type -f fnm >/dev/null 2>/dev/null
     fish_add_path -g $HOME/.cargo/bin
     fnm env --use-on-cd --shell fish | source
     fnm completions --shell fish | source
 end
+
 # zoxide
 if type -f zoxide >/dev/null 2>/dev/null
     zoxide init fish | source
@@ -108,4 +127,9 @@ end
 # thefuck
 if type -f thefuck >/dev/null 2>/dev/null
     thefuck --alias | source
+end
+
+if not test $TMUX
+    and not test -z $DISPLAY
+    t
 end
