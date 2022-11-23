@@ -17,6 +17,10 @@ ts.treesitter = function()
       additional_vim_regex_highlighting = false,
       disable = false,
     },
+
+    indent = {
+      enable = true,
+    },
   })
 end
 

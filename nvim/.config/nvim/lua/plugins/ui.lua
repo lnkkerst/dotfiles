@@ -112,7 +112,9 @@ ui.catppuccin = function()
       notify = true,
       treesitter_context = true,
       ts_rainbow = true,
-      symbols_outline = true,
+      symbols_outline = {
+        enabled = true,
+      },
       lsp_trouble = true,
       which_key = true,
       fidget = true,

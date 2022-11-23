@@ -14,49 +14,49 @@ wk.register({
   ["<A-7>"] = { "<cmd>BufferLineGoToBuffer 7<cr>", "BufferLineGoToBuffer 7" },
   ["<A-8>"] = { "<cmd>BufferLineGoToBuffer 8<cr>", "BufferLineGoToBuffer 8" },
   ["<A-9>"] = { "<cmd>BufferLineGoToBuffer 9<cr>", "BufferLineGoToBuffer 9" },
-  ["<leader>1"] = {
-    "<cmd>BufferLineGoToBuffer 1<cr>",
-    "BufferLineGoToBuffer 1",
-  },
-  ["<leader>2"] = {
-    "<cmd>BufferLineGoToBuffer 2<cr>",
-    "BufferLineGoToBuffer 2",
-  },
-  ["<leader>3"] = {
-    "<cmd>BufferLineGoToBuffer 3<cr>",
-    "BufferLineGoToBuffer 3",
-  },
-  ["<leader>4"] = {
-    "<cmd>BufferLineGoToBuffer 4<cr>",
-    "BufferLineGoToBuffer 4",
-  },
-  ["<leader>5"] = {
-    "<cmd>BufferLineGoToBuffer 5<cr>",
-    "BufferLineGoToBuffer 5",
-  },
-  ["<leader>6"] = {
-    "<cmd>BufferLineGoToBuffer 6<cr>",
-    "BufferLineGoToBuffer 6",
-  },
-  ["<leader>7"] = {
-    "<cmd>BufferLineGoToBuffer 7<cr>",
-    "BufferLineGoToBuffer 7",
-  },
-  ["<leader>8"] = {
-    "<cmd>BufferLineGoToBuffer 8<cr>",
-    "BufferLineGoToBuffer 8",
-  },
-  ["<leader>9"] = {
-    "<cmd>BufferLineGoToBuffer 9<cr>",
-    "BufferLineGoToBuffer 9",
-  },
-  ["<A-j>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
-  ["<A-k>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
-  ["<A-S-j>"] = { "<cmd>BufferLineMoveNext<cr>", "BufferLineMoveNext" },
-  ["<A-S-k>"] = { "<cmd>BufferLineMovePrev<cr>", "BufferLineMovePrev" },
+  -- ["<leader>1"] = {
+  --   "<cmd>BufferLineGoToBuffer 1<cr>",
+  --   "BufferLineGoToBuffer 1",
+  -- },
+  -- ["<leader>2"] = {
+  --   "<cmd>BufferLineGoToBuffer 2<cr>",
+  --   "BufferLineGoToBuffer 2",
+  -- },
+  -- ["<leader>3"] = {
+  --   "<cmd>BufferLineGoToBuffer 3<cr>",
+  --   "BufferLineGoToBuffer 3",
+  -- },
+  -- ["<leader>4"] = {
+  --   "<cmd>BufferLineGoToBuffer 4<cr>",
+  --   "BufferLineGoToBuffer 4",
+  -- },
+  -- ["<leader>5"] = {
+  --   "<cmd>BufferLineGoToBuffer 5<cr>",
+  --   "BufferLineGoToBuffer 5",
+  -- },
+  -- ["<leader>6"] = {
+  --   "<cmd>BufferLineGoToBuffer 6<cr>",
+  --   "BufferLineGoToBuffer 6",
+  -- },
+  -- ["<leader>7"] = {
+  --   "<cmd>BufferLineGoToBuffer 7<cr>",
+  --   "BufferLineGoToBuffer 7",
+  -- },
+  -- ["<leader>8"] = {
+  --   "<cmd>BufferLineGoToBuffer 8<cr>",
+  --   "BufferLineGoToBuffer 8",
+  -- },
+  -- ["<leader>9"] = {
+  --   "<cmd>BufferLineGoToBuffer 9<cr>",
+  --   "BufferLineGoToBuffer 9",
+  -- },
+  ["<A-S-j>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
+  ["<A-S-k>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
+  -- ["<A-S-j>"] = { "<cmd>BufferLineMoveNext<cr>", "BufferLineMoveNext" },
+  -- ["<A-S-k>"] = { "<cmd>BufferLineMovePrev<cr>", "BufferLineMovePrev" },
   -- ["<Tab>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
   -- ["<S-Tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
-  ["<S-q>"] = { "<cmd>bd<cr>", "BufferLinePickClise" },
+  ["<S-q>"] = { "<cmd>Bdelete<cr>", "Bufdelete" },
 })
 wk.register({
   ["b"] = {
@@ -143,10 +143,10 @@ wk.register({
 })
 
 -- Plugin yanky
-wk.register({
-  ["<C-j>"] = { "<Plug>(YankyCycleForward)", "yank for" },
-  ["<C-k>"] = { "<Plug>(YankyCycleBackward)", "yank_back" },
-})
+-- wk.register({
+--   ["<C-j>"] = { "<Plug>(YankyCycleForward)", "yank for" },
+--   ["<C-k>"] = { "<Plug>(YankyCycleBackward)", "yank_back" },
+-- })
 
 -- Plugin Hop
 wk.register({
@@ -189,16 +189,16 @@ vim.api.nvim_set_keymap(
 )
 
 -- Plugin Jaq
-wk.register({
-  ["j"] = { "<cmd>Jaq<cr>", "Jaq" },
-}, { prefix = "<leader>" })
+-- wk.register({
+--   ["j"] = { "<cmd>Jaq<cr>", "Jaq" },
+-- }, { prefix = "<leader>" })
 
-wk.register({
-  ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", "ToggleTerm" },
-})
-wk.register({
-  ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", "ToggleTerm" },
-}, { mode = "t" })
+-- wk.register({
+--   ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", "ToggleTerm" },
+-- })
+-- wk.register({
+--   ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", "ToggleTerm" },
+-- }, { mode = "t" })
 
 -- Plugin Dap
 wk.register({
@@ -224,6 +224,14 @@ wk.register({
 wk.register({
   ["<A-s>"] = { "<cmd>SymbolsOutline<cr>", "Symbols outline" },
 })
+
+-- Plugin Aerial
+local aerial = {
+  ["<A-a>"] = { "<cmd>AerialToggle<cr>", "Aerial" },
+}
+wk.register(aerial, { mode = { "n" } })
+wk.register(aerial, { mode = { "i" } })
+wk.register(aerial, { mode = { "x" } })
 
 -- Plugin hlslens
 wk.register({
@@ -258,11 +266,11 @@ wk.register(easy_align, { mode = "n" })
 wk.register(easy_align, { mode = "x" })
 
 wk.register({
-  ["<C-S-i>"] = { "<cmd>Neoformat<cr>", "Neoformat" },
+  ["<M-S-f>"] = { "<cmd>Neoformat<cr>", "Neoformat" },
 }, { mode = "n" })
 
 wk.register({
-  ["<C-S-i>"] = { "<cmd>Neoformat<cr>", "Neoformat" },
+  ["<M-S-f>"] = { "<cmd>Neoformat<cr>", "Neoformat" },
 }, { mode = "i" })
 
 -- Plugin fcitx5-ui

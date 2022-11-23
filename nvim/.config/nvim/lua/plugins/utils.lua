@@ -64,15 +64,28 @@ end
 
 utils.toggleterm = function()
   require("toggleterm").setup({
-    -- open_mapping = [[<C-\>]],
+    open_mapping = [[<C-\>]],
     shade_terminals = false,
-    -- start_in_insert = true,
-    -- insert_mappings = true, -- whether or not the open mapping applies in insert mode
-    -- terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
+    start_in_insert = true,
+    insert_mappings = true,
+    terminal_mappings = true,
     float_opts = {
       border = "single",
     },
   })
+
+  function _G.set_terminal_keymaps()
+    local opts = { buffer = 0 }
+    vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+    vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
+    vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+    vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+    vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+    vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+  end
+
+  -- if you only want these mappings for toggle term use term://*toggleterm#* instead
+  vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 end
 
 utils.which_key = function()
@@ -315,42 +328,17 @@ utils.editorconfig = function() end
 
 utils.code_runner = function()
   require("code_runner").setup({
-    -- choose default mode (valid term, tab, float, toggle)
-    mode = "term",
-    -- Focus on runner window(only works on toggle, term and tab mode)
+    mode = "toggleterm",
     focus = true,
-    -- startinsert (see ':h inserting-ex')
-    startinsert = false,
-    term = {
-      --  Position to open the terminal, this option is ignored if mode is tab
-      position = "bot",
-      -- window size, this option is ignored if tab is true
-      size = 8,
-    },
-    float = {
-      -- Window border (see ':h nvim_open_win')
-      border = "none",
-
-      -- Num from `0 - 1` for measurements
-      height = 0.8,
-      width = 0.8,
-      x = 0.5,
-      y = 0.5,
-
-      -- Highlight group for floating window/border (see ':h winhl')
-      border_hl = "FloatBorder",
-      float_hl = "Normal",
-
-      -- Transparency (see ':h winblend')
-      blend = 0,
-    },
-    filetype_path = vim.fn.stdpath("data")
-      .. "/site/pack/packer/start/code_runner.nvim/lua/code_runner/code_runner.json",
+    startinsert = true,
     filetype = {
       cpp = "cd $dir && clang++ $fileName && $dir/$fileNameWithoutExt",
+      python = "python3 -u",
+      typescript = "ts-node",
+      rust = "cd $dir && rustc $fileName && $dir/$fileNameWithoutExt",
+      lua = "lua",
+      java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
     },
-    project_path = vim.fn.stdpath("data")
-      .. "/site/pack/packer/start/code_runner.nvim/lua/code_runner/project_manager.json",
     project = {},
   })
 end
@@ -388,39 +376,6 @@ utils.fcitx_ui = function()
   local cfg = require("lualine").get_config()
   table.insert(cfg.sections.lualine_y, 'require("fcitx5-ui").getCurrentIM()')
   require("lualine").setup(cfg)
-end
-
-utils.nvimux = function()
-  local nvimux = require("nvimux")
-  nvimux.setup({
-    config = {
-      prefix = "<C-a>",
-    },
-    bindings = {
-      { { "n", "v", "i", "t" }, "s", nvimux.commands.horizontal_split },
-      { { "n", "v", "i", "t" }, "v", nvimux.commands.vertical_split },
-    },
-  })
-end
-
-utils.tmux = function()
-  require("tmux").setup({
-    -- overwrite default configuration
-    -- here, e.g. to enable default bindings
-    copy_sync = {
-      -- enables copy sync and overwrites all register actions to
-      -- sync registers *, +, unnamed, and 0 till 9 from tmux in advance
-      enable = false,
-    },
-    navigation = {
-      -- enables default keybindings (C-hjkl) for normal mode
-      enable_default_keybindings = false,
-    },
-    resize = {
-      -- enables default keybindings (A-hjkl) for normal mode
-      enable_default_keybindings = false,
-    },
-  })
 end
 
 utils.neotest = function()
@@ -541,6 +496,30 @@ end
 utils.auto_session = function()
   require("auto-session").setup({
     log_level = "error",
+  })
+end
+
+utils.tmux = function()
+  require("tmux").setup({
+    copy_sync = {
+      enable = false,
+    },
+    navigation = {
+      enable_default_keybindings = true,
+      cycle_navigation = true,
+    },
+    resize = {
+      enable_default_keybindings = true,
+    },
+  })
+end
+
+utils.aerial = function()
+  require("aerial").setup({
+    on_attach = function(bufnr)
+      vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+      vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+    end,
   })
 end
 

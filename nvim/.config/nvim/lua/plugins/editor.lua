@@ -339,7 +339,7 @@ editor.ufo = function()
   end
 
   require("ufo").setup({
-    provider_selector = function(bufnr, filetype, buftype)
+    provider_selector = function()
       return { "lsp", "indent" }
     end,
     fold_virt_text_handler = handler,

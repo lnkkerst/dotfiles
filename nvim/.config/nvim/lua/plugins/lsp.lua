@@ -104,7 +104,7 @@ lsp.lsp_setup = function()
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set("n", "<C-S-k>", vim.lsp.buf.signature_help, bufopts)
     vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
     vim.keymap.set(
       "n",
@@ -166,12 +166,9 @@ lsp.lsp_setup = function()
               },
             },
           },
-          on_attach = function(client, bufnr)
-            global_attach(client, bufnr)
-            require("virtualtypes").on_attach(client, bufnr)
-          end,
         },
       }),
+
       sumneko_lua = {
         settings = {
           Lua = {
@@ -181,6 +178,7 @@ lsp.lsp_setup = function()
           },
         },
       },
+
       jsonls = {
         settings = {
           json = {
@@ -188,17 +186,27 @@ lsp.lsp_setup = function()
           },
         },
       },
+
       volar = {},
       html = {},
-      tailwindcss = {},
       eslint = {},
       cssls = {},
+      cssmodules_ls = {},
+
       clangd = {
         on_attach = function(client, bufnr)
           global_attach(client, bufnr)
           require("lsp-format").on_attach(client)
         end,
       },
+
+      cmake = {},
+      pyright = {},
+      bashls = {},
+      dockerls = {},
+      emmet_ls = {},
+      yamlls = {},
+      zls = {},
     },
   })
 
@@ -211,15 +219,6 @@ lsp.lsp_setup = function()
     },
   })
 end
-
--- lsp.lsp_colors = function()
---   require("lsp-colors").setup({
---     Error = "#db4b4b",
---     Warning = "#e0af68",
---     Information = "#0db9d7",
---     Hint = "#10B981",
---   })
--- end
 
 lsp.fidget = function()
   require("fidget").setup({
@@ -247,15 +246,21 @@ lsp.null = function()
       null_ls.builtins.formatting.prettierd,
       null_ls.builtins.formatting.rustfmt,
       null_ls.builtins.formatting.taplo,
-      null_ls.builtins.formatting.autopep8,
+      -- null_ls.builtins.formatting.autopep8,
+      null_ls.builtins.formatting.black,
       null_ls.builtins.formatting.fish_indent,
       null_ls.builtins.formatting.eslint_d,
       null_ls.builtins.formatting.markdownlint,
       null_ls.builtins.formatting.markdown_toc,
       null_ls.builtins.formatting.nginx_beautifier,
+      null_ls.builtins.formatting.zigfmt,
       null_ls.builtins.diagnostics.fish,
       null_ls.builtins.diagnostics.markdownlint,
       null_ls.builtins.diagnostics.tidy,
+      -- null_ls.builtins.diagnostics.stylelint,
+      null_ls.builtins.diagnostics.checkmake,
+      null_ls.builtins.diagnostics.commitlint,
+      null_ls.builtins.diagnostics.commitlint,
     },
     on_attach = require("lsp-format").on_attach,
   })

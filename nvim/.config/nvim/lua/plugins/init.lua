@@ -101,7 +101,7 @@ require("packer").startup({
     local editor = require("plugins.editor")
     use({
       "lukas-reineke/indent-blankline.nvim",
-      event = "VimEnter",
+      -- event = "VimEnter",
       config = editor.indent_blankline,
     })
     use({
@@ -177,26 +177,26 @@ require("packer").startup({
     local lsp = require("plugins.lsp")
     use({
       "neovim/nvim-lspconfig",
-      ft = {
-        "cpp",
-        "c",
-        "python",
-        "typescript",
-        "javascript",
-        "vue",
-        "lua",
-        "html",
-        "css",
-        "rust",
-        "json",
-        "jsonc",
-        "markdown",
-        "javascriptreact",
-        "typescriptreact",
-        "fish",
-        "java",
-        "toml",
-      },
+      -- ft = {
+      --   "cpp",
+      --   "c",
+      --   "python",
+      --   "typescript",
+      --   "javascript",
+      --   "vue",
+      --   "lua",
+      --   "html",
+      --   "css",
+      --   "rust",
+      --   "json",
+      --   "jsonc",
+      --   "markdown",
+      --   "javascriptreact",
+      --   "typescriptreact",
+      --   "fish",
+      --   "java",
+      --   "toml",
+      -- },
       config = lsp.lspconfig,
     })
     use({
@@ -229,7 +229,7 @@ require("packer").startup({
     })
     use({
       "simrat39/symbols-outline.nvim",
-      after = "nvim-lsp-setup",
+      -- after = "nvim-lsp-setup",
       config = lsp.symbols_outline,
     })
     use({
@@ -328,12 +328,12 @@ require("packer").startup({
       run = "make",
       config = telescope.telescope_fzf_native,
     })
-    use({
-      "AckslD/nvim-neoclip.lua",
-      after = "telescope.nvim",
-      requires = { "tami5/sqlite.lua", module = "sqlite" },
-      config = telescope.neoclip,
-    })
+    -- use({
+    --   "AckslD/nvim-neoclip.lua",
+    --   after = "telescope.nvim",
+    --   requires = { "tami5/sqlite.lua", module = "sqlite" },
+    --   config = telescope.neoclip,
+    -- })
     use({
       "nvim-telescope/telescope-file-browser.nvim",
       after = "telescope.nvim",
@@ -440,7 +440,6 @@ require("packer").startup({
       after = "telescope.nvim",
       config = utils.notify,
     })
-    use({ "is0n/jaq-nvim", config = utils.jaq })
     use({
       "lewis6991/gitsigns.nvim",
       event = { "BufReadPost", "BufNewFile" },
@@ -481,18 +480,12 @@ require("packer").startup({
       ft = "qf",
       config = utils.bqf,
     })
+    use({
+      "CRAG666/code_runner.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      config = utils.code_runner,
+    })
     -- use({ "nathom/filetype.nvim", config = utils.filetype })
-    -- use({
-    --   "black-desk/fcitx5-ui.nvim",
-    --   after = "lualine.nvim",
-    --   rocks = { "lgi", "dbus_proxy" },
-    --   config = utils.fcitx_ui,
-    -- })
-    -- use({
-    --   "gennaro-tedesco/nvim-jqx",
-    --   ft = "json",
-    --   config = utils.jqx,
-    -- })
     use({
       "nvim-neotest/neotest",
       after = "nvim-treesitter",
@@ -519,16 +512,18 @@ require("packer").startup({
       config = utils.todo_comments,
     })
     use({
-      "nvim-neorg/neorg",
-      ft = "norg",
-      after = "nvim-treesitter",
-      config = utils.neorg,
-      requires = "nvim-lua/plenary.nvim",
-    })
-    use({
       "krivahtoo/silicon.nvim",
       run = "./install.sh",
       config = utils.silicon,
+    })
+    use({
+      "aserowy/tmux.nvim",
+      config = utils.tmux,
+    })
+    use("famiu/bufdelete.nvim")
+    use({
+      "stevearc/aerial.nvim",
+      config = utils.aerial,
     })
 
     local dap = require("plugins.dap")

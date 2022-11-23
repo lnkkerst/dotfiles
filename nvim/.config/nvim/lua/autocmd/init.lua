@@ -94,9 +94,9 @@ local augroups = {
   --     [[silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=300})]],
   --   },
   -- },
-  toggleterm = {
-    { "TermOpen", "term://*", "lua set_terminal_keymaps()" },
-  },
+  -- toggleterm = {
+  --   { "TermOpen", "term://*", "lua set_terminal_keymaps()" },
+  -- },
 }
 
 create_augroups(augroups)
