@@ -47,6 +47,7 @@ alias poweroff='loginctl poweroff'
 alias reboot='loginctl reboot'
 alias woman='man'
 alias 翻译='fanyi'
+alias sl='ls'
 
 # Key binding
 bind \co ranger-cd --mode insert
@@ -129,7 +130,7 @@ if type -f thefuck >/dev/null 2>/dev/null
     thefuck --alias | source
 end
 
-if not test $TMUX
-    and not test -z $DISPLAY
-    t
-end
+# if not test $TMUX
+#     and not test -z $DISPLAY
+#     t
+# end

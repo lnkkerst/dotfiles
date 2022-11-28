@@ -12,4 +12,3 @@ end
 if string match -r '^Minecraft.*' $class then
     echo "state=floating border=off"
 end
-
