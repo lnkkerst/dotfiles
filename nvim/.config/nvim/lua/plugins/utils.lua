@@ -86,6 +86,24 @@ utils.toggleterm = function()
 
   -- if you only want these mappings for toggle term use term://*toggleterm#* instead
   vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+
+  --[[ local Terminal = require("toggleterm.terminal").Terminal
+
+  local lazygit = Terminal:new({
+    cmd = "lazygit",
+    hidden = true,
+    direction = "float",
+  })
+
+  function _G._toggleterm_lazygit_toggle()
+    lazygit:toggle()
+  end
+
+  vim.api.nvim_create_user_command(
+    "Lazygit",
+    "lua _toggleterm_lazygit_toggle()",
+    {}
+  ) ]]
 end
 
 utils.which_key = function()

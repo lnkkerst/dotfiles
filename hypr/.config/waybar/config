@@ -1,0 +1,163 @@
+{
+  "layer": "top", // Waybar at top layer
+  "position": "top", // Waybar position (top|bottom|left|right)
+  // "height": 28, // Waybar height (to be removed for auto height)
+  // "width": 1280, // Waybar width
+  // "spacing": 0, // Gaps between modules (4px)
+  // Choose the order of the modules
+  "modules-left": ["wlr/workspaces", "hyprland/window"],
+  "modules-center": [],
+  "modules-right": [
+    "idle_inhibitor",
+    "pulseaudio",
+    "cpu",
+    "memory",
+    "temperature",
+    "backlight",
+    "keyboard-state",
+    "battery",
+    "clock",
+    "tray"
+  ],
+  "hyprland/window": {
+    "format": "{}"
+  },
+  "wlr/workspaces": {
+    "format": "{name}",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "on-click": "activate",
+    "format-icons": {
+      "1:web": "",
+      "2:code": "",
+      "3:term": "",
+      "4:work": "",
+      "5:music": "",
+      "6:docs": "",
+      "urgent": "",
+      "focused": "",
+      "default": ""
+    }
+  },
+  "keyboard-state": {
+    "numlock": false,
+    "capslock": true,
+    "format": {
+      "numlock": "N {icon} ",
+      "capslock": "{icon}"
+    },
+    "format-icons": {
+      "locked": "",
+      "unlocked": ""
+    }
+  },
+  "sway/mode": {
+    "tooltip": "Oops! You are not in the default mode!"
+  },
+  "mpd": {
+    "format": "{stateIcon} {consumeIcon} {randomIcon} {repeatIcon} {singleIcon} {title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) [{songPosition}|{queueLength}] {volume}% ",
+    "format-disconnected": "Disconnected ",
+    "format-stopped": "Stopped ",
+    "unknown-tag": "N/A",
+    "interval": 2,
+    "consume-icons": {
+      "on": ""
+    },
+    "random-icons": {
+      "off": "<span color=\"#f53c3c\"></span> ",
+      "on": ""
+    },
+    "repeat-icons": {
+      "on": "凌"
+    },
+    "single-icons": {
+      "on": "綾"
+    },
+    "state-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "tooltip-format": "MPD (connected)",
+    "tooltip-format-disconnected": "MPD (disconnected)"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "tray": {
+    // "icon-size": 21,
+    "spacing": 10
+  },
+  "clock": {
+    "timezone": "Asia/Shanghai",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%Y-%m-%d} ",
+    "format": "{:%H:%M} "
+  },
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": false
+  },
+  "memory": {
+    "format": "{}% "
+  },
+  "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C {icon}",
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": ["", "", ""]
+  },
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "{percent}% {icon}",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "on-scroll-up": "light -A 3",
+    "on-scroll-down": "light -U 3"
+  },
+  "battery": {
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    // "format-good": "", // An empty format will hide the module
+    // "format-full": "",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+  "pulseaudio": {
+    //"scroll-step": 1,
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": "",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""]
+    },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol"
+  }
+}
+// vim: ft=jsonc

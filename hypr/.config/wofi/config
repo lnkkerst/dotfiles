@@ -1,0 +1,15 @@
+# vim: ft=dosini
+show=drun
+width=36%
+height=36%
+allow_images=true
+allow_markup=true
+term=kitty
+hide_scroll=true
+gtk_dark=true
+image_size=24
+no_actions=true
+columns=1
+line_wrap=word_char
+hide_scroll=true
+insensitive=true
