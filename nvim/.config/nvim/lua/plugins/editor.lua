@@ -370,18 +370,18 @@ end
 
 editor.yanky = function()
   require("yanky").setup({})
-  vim.g.clipboard = {
-    name = "xsel_override",
-    copy = {
-      ["+"] = "xsel --input --clipboard",
-      ["*"] = "xsel --input --primary",
-    },
-    paste = {
-      ["+"] = "xsel --output --clipboard",
-      ["*"] = "xsel --output --primary",
-    },
-    cache_enabled = 1,
-  }
+  -- vim.g.clipboard = {
+  --   name = "xsel_override",
+  --   copy = {
+  --     ["+"] = "xsel --input --clipboard",
+  --     ["*"] = "xsel --input --primary",
+  --   },
+  --   paste = {
+  --     ["+"] = "xsel --output --clipboard",
+  --     ["*"] = "xsel --output --primary",
+  --   },
+  --   cache_enabled = 1,
+  -- }
   vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
   vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
   vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")

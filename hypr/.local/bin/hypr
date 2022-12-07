@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+export XDG_CURRENT_DESKTOP=Hyprland
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=Hyprland
+
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_QPA_PLATFORM="wayland;xcb"
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+export GTK_THEME=Catppuccin-Mocha
+export BEMENU_BACKEND=wayland
+
+export CLUTTER_BACKEND=wayland
+export SDL_VIDEODRIVER=wayland
+export MOZ_ENABLE_WAYLAND=1
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+export INPUT_METHOD=fcitx
+# export SDL_IM_MODULE=fcitx
+# export GLFW_IM_MODULE=ibus
+export GLFW_IM_MODULE=fcitx
+export IMSETTINGS_MODULE=fcitx
+
+export GDK_SCALE=2
+# export XCURSOR_SIZE=48
+
+exec Hyprland
