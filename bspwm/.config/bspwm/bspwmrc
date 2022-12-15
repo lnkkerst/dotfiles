@@ -19,7 +19,7 @@ else
 end
 
 # Borders and gaps
-bspc config border_width 1
+bspc config border_width 2
 if string length $DOUBLE_MONITER
     bspc config window_gap 12
 else
