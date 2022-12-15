@@ -21,6 +21,8 @@ nvim_cmp.cmp = function()
   }
 
   cmp.setup({
+    enabled = true,
+    preselect = cmp.PreselectMode.None,
     formatting = {
       format = function(entry, vim_item)
         vim_item.kind =
@@ -131,11 +133,6 @@ end
 nvim_cmp.luasnip = function()
   require("luasnip.loaders.from_vscode").lazy_load()
   require("luasnip.loaders.from_snipmate").lazy_load()
-end
-
-nvim_cmp.cmdline_history = function() end
-nvim_cmp.git = function()
-  require("cmp_git").setup()
 end
 
 nvim_cmp.npm = function()

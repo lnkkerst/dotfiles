@@ -2,9 +2,7 @@ local lang = {}
 
 lang.jdtls = function() end
 
-lang.rust_tools = function()
-  require("rust-tools").setup({})
-end
+lang.rust_tools = function() end
 
 lang.crates = function()
   vim.api.nvim_create_autocmd("BufRead", {

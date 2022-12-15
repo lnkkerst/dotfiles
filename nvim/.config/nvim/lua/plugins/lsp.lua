@@ -148,11 +148,8 @@ lsp.lsp_setup = function()
   require("lsp-setup").setup({
     default_mappings = false,
     mappings = {},
-    -- Global on_attach
     on_attach = global_attach,
-    -- Global capabilities
     capabilities = global_capabilities,
-    -- Configuration of LSP servers
     servers = {
       rust_analyzer = require("lsp-setup.rust-tools").setup({
         server = {
@@ -193,12 +190,7 @@ lsp.lsp_setup = function()
       cssls = {},
       cssmodules_ls = {},
 
-      clangd = {
-        on_attach = function(client, bufnr)
-          global_attach(client, bufnr)
-          require("lsp-format").on_attach(client)
-        end,
-      },
+      clangd = require("lsp-setup.clangd_extensions").setup({}),
 
       cmake = {},
       pyright = {},

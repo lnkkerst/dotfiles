@@ -65,20 +65,10 @@ require("packer").startup({
       config = ui.tree,
     })
     use({
-      "xiyaowong/nvim-transparent",
-      cmd = "Transparent*",
-      config = ui.transparent,
-    })
-    use({
       "folke/trouble.nvim",
       cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
       requires = "kyazdani42/nvim-web-devicons",
       config = ui.trouble,
-    })
-    use({
-      "sidebar-nvim/sidebar.nvim",
-      cmd = "SidebarNvim*",
-      config = ui.sidebar,
     })
     use({
       "stevearc/dressing.nvim",
@@ -86,7 +76,6 @@ require("packer").startup({
     })
     use({
       "folke/noice.nvim",
-      -- event = "VimEnter",
       config = ui.noice,
       requires = {
         "MunifTanjim/nui.nvim",
@@ -101,7 +90,6 @@ require("packer").startup({
     local editor = require("plugins.editor")
     use({
       "lukas-reineke/indent-blankline.nvim",
-      -- event = "VimEnter",
       config = editor.indent_blankline,
     })
     use({
@@ -153,7 +141,7 @@ require("packer").startup({
       config = editor.better_escape,
     })
     use({
-      "norcalli/nvim-colorizer.lua",
+      "NvChad/nvim-colorizer.lua",
       config = editor.colorizer,
     })
     use({
@@ -166,43 +154,21 @@ require("packer").startup({
       config = editor.highstr,
     })
     use({
-      "gbprod/yanky.nvim",
-      config = editor.yanky,
-    })
-    use({
       "junegunn/vim-easy-align",
       config = editor.easy_align,
+    })
+    use({
+      "gbprod/yanky.nvim",
+      config = editor.yanky,
     })
 
     local lsp = require("plugins.lsp")
     use({
       "neovim/nvim-lspconfig",
-      -- ft = {
-      --   "cpp",
-      --   "c",
-      --   "python",
-      --   "typescript",
-      --   "javascript",
-      --   "vue",
-      --   "lua",
-      --   "html",
-      --   "css",
-      --   "rust",
-      --   "json",
-      --   "jsonc",
-      --   "markdown",
-      --   "javascriptreact",
-      --   "typescriptreact",
-      --   "fish",
-      --   "java",
-      --   "toml",
-      -- },
       config = lsp.lspconfig,
     })
     use({
       "williamboman/mason.nvim",
-      -- cmd = "Mason",
-      -- after = "nvim-lspconfig",
       config = lsp.mason,
     })
     use({
@@ -229,7 +195,6 @@ require("packer").startup({
     })
     use({
       "simrat39/symbols-outline.nvim",
-      -- after = "nvim-lsp-setup",
       config = lsp.symbols_outline,
     })
     use({
@@ -318,7 +283,6 @@ require("packer").startup({
     use({
       "nvim-telescope/telescope.nvim",
       branch = "0.1.x",
-      -- cmd = { "Telescope", "Legendary" },
       requires = { { "nvim-lua/plenary.nvim" } },
       config = telescope.telescope,
     })
@@ -328,12 +292,6 @@ require("packer").startup({
       run = "make",
       config = telescope.telescope_fzf_native,
     })
-    -- use({
-    --   "AckslD/nvim-neoclip.lua",
-    --   after = "telescope.nvim",
-    --   requires = { "tami5/sqlite.lua", module = "sqlite" },
-    --   config = telescope.neoclip,
-    -- })
     use({
       "nvim-telescope/telescope-file-browser.nvim",
       after = "telescope.nvim",
@@ -502,7 +460,6 @@ require("packer").startup({
       cmd = "ZenMode",
       config = utils.zen,
     })
-    use({ "ThePrimeagen/harpoon", config = utils.harpoon })
     use({ "jbyuki/venn.nvim", cmd = "VBox*", config = utils.venn })
     use({
       "folke/todo-comments.nvim",
