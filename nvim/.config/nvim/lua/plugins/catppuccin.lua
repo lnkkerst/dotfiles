@@ -10,6 +10,11 @@ require("catppuccin").setup({
     comments = { "italic" },
     conditionals = { "italic" },
   },
+  custom_highlights = function()
+    return {
+      LspFloatWinNormal = { link = "Normal" },
+    }
+  end,
   integrations = {
     cmp = true,
     gitsigns = true,
@@ -31,6 +36,7 @@ require("catppuccin").setup({
       enabled = true,
     },
     lsp_trouble = true,
+    lsp_saga = true,
     which_key = true,
     fidget = true,
     illuminate = true,

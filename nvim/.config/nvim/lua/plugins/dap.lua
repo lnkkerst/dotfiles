@@ -174,3 +174,19 @@ require("dapui").setup({
 })
 
 require("nvim-dap-virtual-text").setup({})
+
+local wk = require("which-key")
+
+wk.register({
+  ["d"] = {
+    name = "Dap for debug",
+    ["u"] = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle dap UI" },
+    ["b"] = {
+      "<cmd>lua require('dap').toggle_breakpoint()<cr>",
+      "Toggle breakpoint",
+    },
+    ["r"] = { "<cmd>lua require('dap').continue()<cr>", "Dap Continue" },
+    ["o"] = { "<cmd>lua require('dapui').open()<cr>", "Open dap UI" },
+    ["c"] = { "<cmd>lua require('dapui').close()<cr>", "Close dap UI" },
+  },
+}, { prefix = "<leader>" })

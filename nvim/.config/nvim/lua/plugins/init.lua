@@ -23,9 +23,7 @@ packer.init({
       return require("packer.util").float({ border = "single" })
     end,
   },
-  profile = {
-    enabled = true,
-  },
+  profile = { enabled = true },
 })
 
 require("packer").startup(function(use)
@@ -120,6 +118,14 @@ require("packer").startup(function(use)
   })
   use({
     "rainbowhxch/accelerated-jk.nvim",
+    config = function()
+      local wk = require("which-key")
+      local accelerate_jk = {
+        ["j"] = { "<Plug>(accelerated_jk_gj)", "accelerate j" },
+        ["k"] = { "<Plug>(accelerated_jk_gk)", "accelerate k" },
+      }
+      wk.register(accelerate_jk)
+    end,
   })
   use({
     "RRethy/vim-illuminate",
@@ -129,14 +135,12 @@ require("packer").startup(function(use)
   })
   use({
     "windwp/nvim-autopairs",
-    after = "nvim-treesitter",
     config = function()
       require("plugins.autopairs")
     end,
   })
   use({
     "numToStr/Comment.nvim",
-    after = "nvim-treesitter",
     config = function()
       require("plugins.comment")
     end,
@@ -146,7 +150,7 @@ require("packer").startup(function(use)
     branch = "v2",
     event = "BufReadPost",
     config = function()
-      require("hop").setup()
+      require("plugins.hop")
     end,
   })
   use({
@@ -211,7 +215,6 @@ require("packer").startup(function(use)
     "gbprod/yanky.nvim",
     config = function()
       require("yanky").setup({})
-
       vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
       vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
       vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
@@ -228,6 +231,7 @@ require("packer").startup(function(use)
   })
   use({ "williamboman/mason.nvim" })
   use({ "williamboman/mason-lspconfig.nvim", after = "mason.nvim" })
+  use({ "glepnir/lspsaga.nvim", branch = "main" })
   use({
     "lukas-reineke/lsp-format.nvim",
     after = "nvim-lspconfig",
@@ -235,65 +239,26 @@ require("packer").startup(function(use)
       require("lsp-format").setup()
     end,
   })
-  use({ "rmagatti/goto-preview" })
   use({
     "j-hui/fidget.nvim",
-    after = "nvim-lsp-setup",
     config = function()
       require("fidget").setup({
-        sources = {
-          ["null-ls"] = {
-            ignore = true,
-          },
-        },
+        sources = { ["null-ls"] = { ignore = true } },
       })
     end,
   })
-  use({
-    "b0o/schemastore.nvim",
-    after = "nvim-lspconfig",
-  })
+  use({ "b0o/schemastore.nvim", after = "nvim-lspconfig" })
   use({
     "simrat39/symbols-outline.nvim",
     config = function()
       require("symbols-outline").setup()
     end,
   })
-  use({
-    "jubnzv/virtual-types.nvim",
-    after = "nvim-lsp-setup",
-  })
-  use({
-    "p00f/clangd_extensions.nvim",
-    after = "nvim-lspconfig",
-  })
-  use({
-    "folke/neodev.nvim",
-    after = "nvim-lspconfig",
-    config = function()
-      require("neodev").setup()
-    end,
-  })
-  use({
-    "junnplus/nvim-lsp-setup",
-    after = {
-      "nvim-lspconfig",
-      "mason.nvim",
-      "mason-lspconfig.nvim",
-      "schemastore.nvim",
-      "neodev.nvim",
-      "clangd_extensions.nvim",
-      "typescript.nvim",
-    },
-    requires = {
-      "neovim/nvim-lspconfig",
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-    },
-  })
+  use({ "jubnzv/virtual-types.nvim" })
+  use({ "p00f/clangd_extensions.nvim" })
+  use({ "folke/neodev.nvim" })
   use({
     "jose-elias-alvarez/null-ls.nvim",
-    after = "nvim-lsp-setup",
     requires = { "nvim-lua/plenary.nvim" },
     config = function()
       require("plugins.null_ls")
@@ -352,64 +317,42 @@ require("packer").startup(function(use)
     run = "make",
   })
   use({
-    "nvim-telescope/telescope-file-browser.nvim",
-    after = "telescope.nvim",
-  })
-  use({
     "nvim-telescope/telescope-frecency.nvim",
     after = "telescope.nvim",
     requires = { "tami5/sqlite.lua" },
   })
-  use({
-    "nvim-telescope/telescope-project.nvim",
-    after = "telescope.nvim",
-  })
-  use({
-    "nvim-telescope/telescope-media-files.nvim",
-    after = "telescope.nvim",
-  })
-  use({
-    "LinArcX/telescope-env.nvim",
-    after = "telescope.nvim",
-  })
+  use({ "nvim-telescope/telescope-media-files.nvim", after = "telescope.nvim" })
 
   use({
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    -- event = "BufEnter",
     config = function()
       require("plugins.treesitter")
     end,
   })
   use({
     "nvim-treesitter/nvim-treesitter-textobjects",
-    after = "nvim-treesitter",
     requires = { "nvim-treesitter/nvim-treesitter" },
   })
   use({
     "p00f/nvim-ts-rainbow",
-    after = "nvim-treesitter",
     requires = { "nvim-treesitter/nvim-treesitter" },
   })
   use({
     "JoosepAlviste/nvim-ts-context-commentstring",
-    after = "nvim-treesitter",
     requires = { "nvim-treesitter/nvim-treesitter" },
   })
   use({
     "nvim-treesitter/nvim-treesitter-context",
     requires = { "nvim-treesitter/nvim-treesitter" },
-    after = "nvim-treesitter",
   })
   use({
     "windwp/nvim-ts-autotag",
-    after = "nvim-treesitter",
     requires = { "nvim-treesitter/nvim-treesitter" },
   })
   use({
     "kylechui/nvim-surround",
     tag = "*",
-    after = "nvim-treesitter",
     config = function()
       require("nvim-surround").setup()
     end,
@@ -441,6 +384,14 @@ require("packer").startup(function(use)
     "mrjones2014/legendary.nvim",
     config = function()
       require("legendary").setup()
+      local wk = require("which-key")
+      local legendary = {
+        ["<C-A-p>"] = { "<cmd>Legendary<cr>", "Legendary" },
+      }
+      wk.register(legendary, { mode = "n" })
+      wk.register(legendary, { mode = "x" })
+      wk.register(legendary, { mode = "t" })
+      wk.register(legendary, { mode = "i" })
     end,
   })
   use({
