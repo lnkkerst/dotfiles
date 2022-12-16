@@ -1,5 +1,5 @@
 require("keymap.config")
-require("plugins.utils").legendary()
+require("legendary").setup()
 
 local wk = require("which-key")
 

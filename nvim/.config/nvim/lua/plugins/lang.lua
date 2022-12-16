@@ -1,18 +1,8 @@
 local lang = {}
 
-lang.jdtls = function() end
-
 lang.rust_tools = function() end
 
-lang.crates = function()
-  vim.api.nvim_create_autocmd("BufRead", {
-    group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
-    pattern = "Cargo.toml",
-    callback = function()
-      require("cmp").setup.buffer({ sources = { { name = "crates" } } })
-    end,
-  })
-end
+lang.crates = function() end
 
 lang.package_info = function()
   require("package-info").setup({
