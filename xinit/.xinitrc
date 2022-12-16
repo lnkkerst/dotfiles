@@ -2,8 +2,8 @@
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
-sysresources=/etc/X11/xinit/Xresources
-sysmodmap=/etc/X11/xinit/Xmodmap
+sysresources=/etc/X11/xinit/.Xresources
+sysmodmap=/etc/X11/xinit/.Xmodmap
 
 # merge in defaults and keymaps
 
@@ -27,8 +27,10 @@ if [ -f "$usermodmap" ]; then
   xmodmap "$usermodmap"
 fi
 
+# start some nice programs
+
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
-  for f in /etc/X11/xinit/xinitrc.d/?*; do
+  for f in /etc/X11/xinit/xinitrc.d/?*.sh; do
     [ -x "$f" ] && . "$f"
   done
   unset f
@@ -56,7 +58,7 @@ export XDG_DATA_DIRS=$XDG_DATA_DIRS:$HOME/.nix-profile/share
 export LANG=en_US.UTF-8
 
 ## multi display support
-MONITOR_AMOUNT=$(xrandr -d :0 -q | grep ' connected' | wc -l)
+MONITOR_AMOUNT=$(xrandr -d $DISPLAY -q | grep ' connected' | wc -l)
 
 if [ "$MONITOR_AMOUNT" == "1" ]; then
   echo "Xft.dpi: 192" | xrdb -merge
@@ -77,4 +79,4 @@ fi
 # start wm
 export DESKTOP_SESSION=bspwm
 # exec dbus-launch --sh-syntax --exit-with-session --autolaunch=$(cat /var/lib/dbus/machine-id) bspwm
-exec bspwm
+exec dbus-launch bspwm
