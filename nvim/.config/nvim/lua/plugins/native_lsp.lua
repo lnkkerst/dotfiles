@@ -1,4 +1,5 @@
 local wk = require("which-key")
+local lsp_format = require("lsp-format")
 
 -- Mason
 require("mason").setup({
@@ -121,10 +122,21 @@ require("rust-tools").setup({
 
 require("clangd_extensions").setup({
   server = {
-    on_attach = global_attach,
+    on_attach = function(client, bufnr)
+      global_attach(client, bufnr)
+      lsp_format.on_attach(client)
+    end,
     capabilities = global_capabilities,
   },
 })
+
+-- require("lspconfig").ccls.setup({
+--   on_attach = function(client, bufnr)
+--     global_attach(client, bufnr)
+--     lsp_format.on_attach(client)
+--   end,
+--   capabilities = global_capabilities,
+-- })
 
 require("neodev").setup({})
 

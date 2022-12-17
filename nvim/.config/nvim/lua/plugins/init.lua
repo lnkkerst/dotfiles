@@ -434,7 +434,6 @@ require("packer").startup(function(use)
   use({ "gpanders/editorconfig.nvim" })
   use({
     "ahmedkhalf/project.nvim",
-    after = "nvim-tree.lua",
     config = function()
       require("project_nvim").setup()
     end,
@@ -554,6 +553,7 @@ require("packer").startup(function(use)
   use({ "posva/vim-vue" })
   use({ "neoclide/vim-jsx-improve" })
   use({ "jose-elias-alvarez/typescript.nvim" })
+  use({ "igankevich/mesonic" })
 
   use({ "nvim-lua/popup.nvim" })
 
