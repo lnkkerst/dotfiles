@@ -27,3 +27,15 @@ null_ls.setup({
     require("lsp-format").on_attach(client)
   end,
 })
+
+local muon = {
+  name = "muon",
+  method = null_ls.methods.FORMATTING,
+  filetypes = { "meson" },
+  generator = require("null-ls.helpers").formatter_factory({
+    command = "muon",
+    args = { "fmt", "$FILENAME" },
+  }),
+}
+
+null_ls.register(muon)
