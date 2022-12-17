@@ -1,13 +1,12 @@
 vim.opt.list = true
 -- vim.opt.listchars:append("space: ")
--- vim.opt.listchars:append("eol:↴")
+vim.opt.listchars:append("eol:↴")
 
 require("indent_blankline").setup({
-  char = "┊",
+  -- char = "┊",
   space_char_blankline = " ",
   show_current_context = true,
-  show_current_context_start = false,
-  show_end_of_line = true,
+  show_current_context_start = true,
   use_treesitter = true,
   char_highlight_list = {
     "IndentBlanklineIndent1",

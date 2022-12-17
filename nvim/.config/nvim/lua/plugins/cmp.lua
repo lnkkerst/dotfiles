@@ -1,4 +1,6 @@
 local cmp = require("cmp")
+local lspkind = require("lspkind")
+local luasnip = require("luasnip")
 
 local source_mapping = {
   buffer = "[BUF]",
@@ -21,32 +23,14 @@ cmp.setup({
   enabled = true,
   preselect = cmp.PreselectMode.None,
   formatting = {
-    format = function(entry, vim_item)
-      vim_item.kind =
-        require("lspkind").symbolic(vim_item.kind, { with_text = false })
-      local menu = source_mapping[entry.source.name] or entry.source.name
-      local maxwidth = 50
-
-      if entry.source.name == "cmp_tabnine" then
-        if
-          entry.completion_item.data ~= nil
-          and entry.completion_item.data.detail ~= nil
-        then
-          menu = menu .. entry.completion_item.data.detail
-        else
-          menu = menu .. "TBN"
-        end
-      end
-
-      vim_item.menu = menu
-      vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
-
-      return vim_item
-    end,
+    format = lspkind.cmp_format({
+      mode = "symbol_text",
+      menu = source_mapping,
+    }),
   },
   snippet = {
     expand = function(args)
-      require("luasnip").lsp_expand(args.body)
+      luasnip.lsp_expand(args.body)
     end,
   },
   window = {
@@ -73,6 +57,8 @@ cmp.setup({
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
       else
         fallback()
       end
@@ -80,6 +66,8 @@ cmp.setup({
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end
@@ -92,7 +80,7 @@ cmp.setup({
     { name = "path", priority = 50 },
     { name = "emoji", insert = true, priority = 0 },
     { name = "fish" },
-    { name = "nvim_lsp_signature_help" },
+    { name = "nvim_lsp_signature_help", priority = 110 },
   },
   completion = {
     keyword_length = 1,

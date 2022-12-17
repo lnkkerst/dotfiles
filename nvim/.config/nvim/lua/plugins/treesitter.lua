@@ -2,10 +2,8 @@
 require("nvim-treesitter.configs").setup({
   ensure_installed = "all",
 
-  -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
 
-  -- List of parsers to ignore installing (for "all")
   ignore_install = { "phpdoc" },
 
   auto_install = true,
@@ -13,11 +11,26 @@ require("nvim-treesitter.configs").setup({
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
-    disable = false,
+    disable = function(_, buf)
+      local max_filesize = 100 * 1024
+      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+      if ok and stats and stats.size > max_filesize then
+        return true
+      end
+    end,
   },
 
   indent = {
     enable = true,
+  },
+
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = false,
+      node_incremental = "]n",
+      node_decremental = "[n",
+    },
   },
 })
 
@@ -28,44 +41,114 @@ require("nvim-treesitter.configs").setup({
       enable = true,
       set_jumps = true,
       goto_next_start = {
-        ["]m"] = "@function.outer",
-        ["]]"] = "@class.outer",
+        ["]f"] = {
+          query = "@function.outer",
+          desc = "Next function start",
+        },
+        ["]c"] = {
+          query = "@class.outer",
+          desc = "Next class start",
+        },
+        ["]l"] = {
+          query = "@loop.outer",
+          desc = "Next loop start",
+        },
+        ["]p"] = {
+          query = "@parameter.outer",
+          desc = "Next paramter start",
+        },
+        ["]a"] = {
+          query = "@attribute.outer",
+          desc = "Next attribute start",
+        },
       },
       goto_next_end = {
-        ["]M"] = "@function.outer",
-        ["]["] = "@class.outer",
+        ["]F"] = {
+          query = "@function.outer",
+          desc = "Next function end",
+        },
+        ["]C"] = {
+          query = "@class.outer",
+          desc = "Next class end",
+        },
+        ["]L"] = {
+          query = "@loop.outer",
+          desc = "Next loop end",
+        },
+        ["]P"] = {
+          query = "@parameter.outer",
+          desc = "Next paramter end",
+        },
+        ["]A"] = {
+          query = "@attribute.outer",
+          desc = "Next attribute end",
+        },
       },
       goto_previous_start = {
-        ["[m"] = "@function.outer",
-        ["[["] = "@class.outer",
+        ["[f"] = {
+          query = "@function.outer",
+          desc = "Previous function start",
+        },
+        ["[c"] = {
+          query = "@class.outer",
+          desc = "Previous class start",
+        },
+        ["[l"] = {
+          query = "@loop.outer",
+          desc = "Previous loop start",
+        },
+        ["[p"] = {
+          query = "@parameter.outer",
+          desc = "Previous paramter start",
+        },
+        ["[a"] = {
+          query = "@attribute.outer",
+          desc = "Previous attribute start",
+        },
       },
       goto_previous_end = {
-        ["[M"] = "@function.outer",
-        ["[]"] = "@class.outer",
+        ["[F"] = {
+          query = "@function.outer",
+          desc = "Previous function end",
+        },
+        ["[C"] = {
+          query = "@class.outer",
+          desc = "Previous class end",
+        },
+        ["[L"] = {
+          query = "@loop.outer",
+          desc = "Previous loop end",
+        },
+        ["[P"] = {
+          query = "@parameter.outer",
+          desc = "Previous paramter end",
+        },
+        ["[A"] = {
+          query = "@attribute.outer",
+          desc = "Previous attribute end",
+        },
       },
     },
+
     select = {
       enable = true,
-
-      -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = true,
-
       keymaps = {
         ["af"] = {
           query = "@function.outer",
-          desc = "Select outer part of a class region",
+          desc = "outer part of a function region",
         },
         ["if"] = {
           query = "@function.inner",
-          desc = "Select inner part of a function",
+          desc = "inner part of a function region",
         },
         ["ac"] = {
           query = "@class.outer",
-          desc = "Select outer part of a class region",
+          desc = "outer part of a class region",
         },
         ["ic"] = {
           query = "@class.inner",
-          desc = "Select inner part of a class region",
+          desc = "inner part of a class region",
         },
       },
       -- If you set this to `true` (default is `false`) then any textobject is
@@ -74,6 +157,7 @@ require("nvim-treesitter.configs").setup({
       -- `ap`.
       include_surrounding_whitespace = true,
     },
+
     swap = {
       enable = true,
       swap_next = {
@@ -83,15 +167,6 @@ require("nvim-treesitter.configs").setup({
         ["<leader>A"] = "@parameter.inner",
       },
     },
-  },
-})
-
--- Rainbow
-require("nvim-treesitter.configs").setup({
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    max_file_lines = 2000,
   },
 })
 
@@ -108,7 +183,7 @@ require("treesitter-context").setup({
   enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
   max_lines = 2000, -- How many lines the window should span. Values <= 0 mean no limit.
   trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-  min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+  min_window_height = 6, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
   patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
     -- For all filetypes
     -- Note that setting an entry here replaces all other patterns for this entry.
@@ -123,6 +198,9 @@ require("treesitter-context").setup({
       "if",
       "switch",
       "case",
+      "interface",
+      "struct",
+      "enum",
     },
     -- Patterns for specific filetypes
     -- If a pattern is missing, *open a PR* so everyone can benefit.
@@ -171,15 +249,6 @@ require("treesitter-context").setup({
     -- exactly match "impl_item" only)
     -- rust = true,
   },
-
-  -- [!] The options below are exposed but shouldn't require your attention,
-  --     you can safely ignore them.
-
-  zindex = 20, -- The Z-index of the context window
-  mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
-  -- Separator between context and content. Should be a single character string, like '-'.
-  -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
-  separator = nil,
 })
 
 -- Autotag

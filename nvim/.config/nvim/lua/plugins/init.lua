@@ -47,12 +47,6 @@ require("packer").startup(function(use)
     end,
   })
   use({
-    "SmiteshP/nvim-navic",
-    config = function()
-      require("plugins.navic")
-    end,
-  })
-  use({
     "akinsho/bufferline.nvim",
     tag = "v3.*",
     event = "VimEnter",
@@ -154,20 +148,6 @@ require("packer").startup(function(use)
     end,
   })
   use({
-    "abecodes/tabout.nvim",
-    wants = { "nvim-treesitter" },
-    after = { "nvim-cmp" },
-    config = function()
-      require("tabout").setup({})
-    end,
-  })
-  use({
-    "kevinhwang91/nvim-hlslens",
-    config = function()
-      require("plugins.hlslens")
-    end,
-  })
-  use({
     "nacro90/numb.nvim",
     config = function()
       require("numb").setup()
@@ -203,12 +183,6 @@ require("packer").startup(function(use)
     end,
   })
   use({
-    "Pocco81/HighStr.nvim",
-    config = function()
-      require("plugins.highstr")
-    end,
-  })
-  use({
     "junegunn/vim-easy-align",
   })
   use({
@@ -231,7 +205,13 @@ require("packer").startup(function(use)
   })
   use({ "williamboman/mason.nvim" })
   use({ "williamboman/mason-lspconfig.nvim", after = "mason.nvim" })
-  use({ "glepnir/lspsaga.nvim", branch = "main" })
+  use({
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+      require("plugins.lspsaga")
+    end,
+  })
   use({
     "lukas-reineke/lsp-format.nvim",
     after = "nvim-lspconfig",
@@ -248,13 +228,6 @@ require("packer").startup(function(use)
     end,
   })
   use({ "b0o/schemastore.nvim", after = "nvim-lspconfig" })
-  use({
-    "simrat39/symbols-outline.nvim",
-    config = function()
-      require("symbols-outline").setup()
-    end,
-  })
-  use({ "jubnzv/virtual-types.nvim" })
   use({ "p00f/clangd_extensions.nvim" })
   use({ "folke/neodev.nvim" })
   use({
@@ -279,11 +252,6 @@ require("packer").startup(function(use)
   use({ "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" })
   use({ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" })
   use({ "mtoohey31/cmp-fish", after = "nvim-cmp", ft = "fish" })
-  use({
-    "David-Kunz/cmp-npm",
-    after = "nvim-cmp",
-    requires = { "nvim-lua/plenary.nvim" },
-  })
   use({ "onsails/lspkind.nvim", after = "nvim-cmp" })
   use({
     "saadparwaiz1/cmp_luasnip",
@@ -332,10 +300,6 @@ require("packer").startup(function(use)
   })
   use({
     "nvim-treesitter/nvim-treesitter-textobjects",
-    requires = { "nvim-treesitter/nvim-treesitter" },
-  })
-  use({
-    "p00f/nvim-ts-rainbow",
     requires = { "nvim-treesitter/nvim-treesitter" },
   })
   use({
@@ -399,7 +363,6 @@ require("packer").startup(function(use)
     ft = "markdown",
     run = "cd app && pnpm install",
   })
-  use({ "jghauser/mkdir.nvim" })
   use({
     "rcarriga/nvim-notify",
     after = "telescope.nvim",
@@ -435,7 +398,9 @@ require("packer").startup(function(use)
   use({
     "ahmedkhalf/project.nvim",
     config = function()
-      require("project_nvim").setup()
+      require("project_nvim").setup({
+        ignore_lsp = { "null-ls" },
+      })
     end,
   })
   use({
@@ -479,7 +444,6 @@ require("packer").startup(function(use)
       require("zen-mode").setup()
     end,
   })
-  use({ "jbyuki/venn.nvim", cmd = "VBox*" })
   use({
     "folke/todo-comments.nvim",
     after = "nvim-treesitter",
@@ -516,25 +480,13 @@ require("packer").startup(function(use)
 
   use({
     "mfussenegger/nvim-dap",
-    cmd = {
-      "DapSetLogLevel",
-      "DapShowLog",
-      "DapContinue",
-      "DapToggleBreakpoint",
-      "DapToggleRepl",
-      "DapStepOver",
-      "DapStepInto",
-      "DapStepOut",
-      "DapTerminate",
-    },
     config = function()
       require("plugins.dap")
     end,
   })
-  use({ "rcarriga/nvim-dap-ui", after = "nvim-dap" })
-  use({ "theHamsta/nvim-dap-virtual-text", after = "nvim-dap" })
+  use({ "rcarriga/nvim-dap-ui" })
+  use({ "theHamsta/nvim-dap-virtual-text" })
 
-  use({ "mfussenegger/nvim-jdtls", ft = "java" })
   use({ "simrat39/rust-tools.nvim" })
   use({
     "saecki/crates.nvim",

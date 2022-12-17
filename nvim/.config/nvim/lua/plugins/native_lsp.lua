@@ -13,14 +13,6 @@ require("mason").setup({
 })
 require("mason-lspconfig").setup({})
 
--- Lspsaga
-local saga = require("lspsaga")
-saga.init_lsp_saga({
-  diagnostic_header = { "😡", "😥", "😤", "😐" },
-  code_action_icon = "",
-  custom_kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
-})
-
 local signs = {
   Error = " ",
   Warn = " ",
@@ -88,8 +80,6 @@ local global_attach = function(client, bufnr)
   }, { buffer = bufnr })
 
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-  require("nvim-navic").attach(client, bufnr)
 end
 
 local servers = {
@@ -137,6 +127,13 @@ require("clangd_extensions").setup({
 --   end,
 --   capabilities = global_capabilities,
 -- })
+
+require("typescript").setup({
+  server = {
+    on_attach = global_attach,
+    capabilities = global_capabilities,
+  },
+})
 
 require("neodev").setup({})
 

@@ -21,28 +21,6 @@ wk.register(aerial, { mode = { "n" } })
 wk.register(aerial, { mode = { "i" } })
 wk.register(aerial, { mode = { "x" } })
 
--- Plugin hlslens
-wk.register({
-  ["n"] = {
-    "<cmd>execute('normal! ' . v:count1 . 'n')<cr><cmd>lua require('hlslens').start()<cr>",
-    "hlslens search forward",
-  },
-  ["N"] = {
-    "<cmd>execute('normal! ' . v:count1 . 'N')<cr><cmd>lua require('hlslens').start()<cr>",
-    "hlslens search backward",
-  },
-  ["*"] = { "*<cmd>lua require('hlslens').start()<cr>", "hlslens start" },
-  ["#"] = { "#<cmd>lua require('hlslens').start()<cr>", "hlslens start" },
-  ["g*"] = { "g*<cmd>lua require('hlslens').start()<cr>", "hlslens start" },
-  ["g#"] = { "g#<cmd>lua require('hlslens').start()<cr>", "hlslens start" },
-  ["<leader>l"] = { "<cmd>noh<cr>", "Exit hlslens" },
-})
-
--- Plugin neoclip {
-wk.register({
-  ['g"'] = { "<cmd>Telescope neoclip<cr>", "Neoclip" },
-})
-
 -- Plugin easy align
 local easy_align = {
   ["ga"] = {
@@ -71,11 +49,6 @@ local fcitx5_ui = {
 wk.register(fcitx5_ui, { mode = "i" })
 wk.register(fcitx5_ui, { mode = "n" })
 
--- Plugin Venn
-wk.register({
-  ["<leader>v"] = { "<cmd>lua Toggle_venn()<cr>", "Toggle venn" },
-})
-
 local control = {
   ["<C-s>"] = { "<cmd>w<cr>", "Save file" },
 }
@@ -102,3 +75,7 @@ wk.register(del_char_without_yank, { mode = "v" })
 wk.register({
   ["p"] = { '"_dP', "Visual paste without yank" },
 }, { mode = "v" })
+
+wk.register({
+  ["l"] = { "<cmd>noh<cr>", "noh" },
+}, { prefix = "<leader>" })
