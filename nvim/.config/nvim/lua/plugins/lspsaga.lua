@@ -58,6 +58,7 @@ local function config_winbar_or_statusline()
     ["prompt"] = true,
     ["NvimTree"] = true,
     ["help"] = true,
+    ["lspsagaoutline"] = true,
   } -- Ignore float windows and exclude filetype
   if vim.api.nvim_win_get_config(0).zindex or exclude[vim.bo.filetype] then
     vim.wo.winbar = ""

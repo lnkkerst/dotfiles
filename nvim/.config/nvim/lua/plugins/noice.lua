@@ -9,6 +9,7 @@ require("noice").setup({
   },
   messages = {
     enabled = true,
+    view_search = false,
   },
   popupmenu = {
     enabled = false,
@@ -22,16 +23,14 @@ require("noice").setup({
     signature = {
       enabled = true,
       auto_open = {
-        enabled = true,
+        enabled = false,
       },
       opts = { border = "single" },
     },
     override = {
       ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
+      -- ["vim.lsp.util.stylize_markdown"] = true,
       ["cmp.entry.get_documentation"] = true,
     },
   },
 })
-
-require("telescope").load_extension("noice")

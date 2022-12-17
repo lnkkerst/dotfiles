@@ -43,10 +43,10 @@ require("catppuccin").setup({
     indent_blankline = {
       enabled = true,
       colored_indent_levels = true,
-      dap = {
-        enabled = true,
-        enable_ui = true, -- enable nvim-dap-ui
-      },
+    },
+    dap = {
+      enabled = true,
+      enable_ui = true, -- enable nvim-dap-ui
     },
     native_lsp = {
       enabled = true,

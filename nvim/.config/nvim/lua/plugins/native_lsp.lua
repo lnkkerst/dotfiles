@@ -42,7 +42,7 @@ global_capabilities.textDocument.foldingRange = {
 }
 global_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local global_attach = function(client, bufnr)
+_G.lsp_global_attach = function(_, bufnr)
   wk.register({
     ["g"] = {
       ["d"] = { "<cmd>Lspsaga peek_definition<cr>", "Peek definition" },
@@ -76,6 +76,10 @@ local global_attach = function(client, bufnr)
     ["<leader>"] = {
       ["ca"] = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
       ["rn"] = { "<cmd>Lspsaga rename<cr>", "Rename symbol" },
+      ["cd"] = {
+        "<cmd>Lspsaga show_line_diagnostics<CR>",
+        "Show line diagnostics",
+      },
     },
   }, { buffer = bufnr })
 
@@ -98,14 +102,14 @@ local servers = {
 
 for _, server in ipairs(servers) do
   lspconfig[server].setup({
-    on_attach = global_attach,
+    on_attach = lsp_global_attach,
     capabilities = global_capabilities,
   })
 end
 
 require("rust-tools").setup({
   server = {
-    on_attach = global_attach,
+    on_attach = lsp_global_attach,
     capabilities = global_capabilities,
   },
 })
@@ -113,7 +117,7 @@ require("rust-tools").setup({
 require("clangd_extensions").setup({
   server = {
     on_attach = function(client, bufnr)
-      global_attach(client, bufnr)
+      lsp_global_attach(client, bufnr)
       lsp_format.on_attach(client)
     end,
     capabilities = global_capabilities,
@@ -130,7 +134,7 @@ require("clangd_extensions").setup({
 
 require("typescript").setup({
   server = {
-    on_attach = global_attach,
+    on_attach = lsp_global_attach,
     capabilities = global_capabilities,
   },
 })
@@ -138,7 +142,7 @@ require("typescript").setup({
 require("neodev").setup({})
 
 lspconfig.sumneko_lua.setup({
-  on_attach = global_attach,
+  on_attach = lsp_global_attach,
   capabilities = global_capabilities,
   settings = {
     Lua = {

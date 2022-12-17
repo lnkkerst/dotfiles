@@ -22,5 +22,8 @@ null_ls.setup({
     null_ls.builtins.diagnostics.checkmake,
     null_ls.builtins.diagnostics.commitlint,
   },
-  on_attach = require("lsp-format").on_attach,
+  on_attach = function(client, bufnr)
+    lsp_global_attach(client, bufnr)
+    require("lsp-format").on_attach(client)
+  end,
 })
