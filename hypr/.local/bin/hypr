@@ -25,7 +25,9 @@ export INPUT_METHOD=fcitx
 export GLFW_IM_MODULE=fcitx
 export IMSETTINGS_MODULE=fcitx
 
-export GDK_SCALE=2
-# export XCURSOR_SIZE=48
+if [ $(xrandr -d $DISPLAY -q | grep ' connected' | wc -l) -eq 1 ]; then
+  xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
+  export GDK_SCALE=2
+fi
 
 exec Hyprland
