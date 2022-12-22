@@ -249,7 +249,7 @@ require("packer").startup(function(use)
   use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
   use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
   use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
-  use({ "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" })
+  -- use({ "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" })
   use({ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" })
   use({ "mtoohey31/cmp-fish", after = "nvim-cmp", ft = "fish" })
   use({ "onsails/lspkind.nvim", after = "nvim-cmp" })
@@ -330,6 +330,7 @@ require("packer").startup(function(use)
       require("plugins.sniprun")
     end,
   })
+  use({ "skywind3000/asyncrun.vim" })
   use({
     "akinsho/toggleterm.nvim",
     event = "UIEnter",
@@ -502,10 +503,7 @@ require("packer").startup(function(use)
       })
     end,
   })
-  use({ "posva/vim-vue" })
-  use({ "neoclide/vim-jsx-improve" })
   use({ "jose-elias-alvarez/typescript.nvim" })
-  use({ "igankevich/mesonic" })
 
   use({ "nvim-lua/popup.nvim" })
 

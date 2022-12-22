@@ -8,11 +8,6 @@ wk.register({
   ["<A-t>"] = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
 })
 
--- Plugin Symbols-outline
-wk.register({
-  ["<A-s>"] = { "<cmd>SymbolsOutline<cr>", "Symbols outline" },
-})
-
 -- Plugin Aerial
 local aerial = {
   ["<A-a>"] = { "<cmd>AerialToggle<cr>", "Aerial" },
@@ -38,16 +33,6 @@ wk.register({
 wk.register({
   ["<M-S-f>"] = { "<cmd>Neoformat<cr>", "Neoformat" },
 }, { mode = "i" })
-
--- Plugin fcitx5-ui
-local fcitx5_ui = {
-  ["<A-i>"] = {
-    "<cmd>lua require'fcitx5-ui'.toggle()<cr>",
-    "Fcitx5-ui toggle",
-  },
-}
-wk.register(fcitx5_ui, { mode = "i" })
-wk.register(fcitx5_ui, { mode = "n" })
 
 local control = {
   ["<C-s>"] = { "<cmd>w<cr>", "Save file" },
