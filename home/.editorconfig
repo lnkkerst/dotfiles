@@ -51,3 +51,9 @@ indent_size = 4
 
 [*.java]
 indent_size = 4
+
+[meson.build]
+indent_size = 4
+
+[*.zig]
+indent_size = 4

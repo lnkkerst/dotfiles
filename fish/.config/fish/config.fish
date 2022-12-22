@@ -20,7 +20,10 @@ set -gx JAVA_HOME /usr/lib/jvm/java-18-jdk
 set -gx HASTE_SERVER https://pb.lnkkerst.me
 set -gx LOCALE_ARCHIVE $HOME/.nix-profile/lib/locale/locale-archive
 
-set -gx FZF_DEFAULT_OPTS "--color=bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD --color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96 --color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD"
+set -gx FZF_DEFAULT_OPTS "\
+    --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+    --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+    --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
 # Alias
 alias gitu='git add . && git commit && git push'

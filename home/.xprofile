@@ -1,0 +1,17 @@
+export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_SELECT=5
+export GTK_THEME=materia-catppuccin
+#export QT_AUTO_SCREEN_SCALE_FACTOR=1
+#export PULSE_LATENCY_MSEC=21
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export INPUT_METHOD=fcitx
+export SDL_IM_MODULE=fcitx
+export GLFW_IM_MODULE=ibus
+
+export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share
+export XDG_DATA_DIRS=$XDG_DATA_DIRS:$HOME/.nix-profile/share
+
+export LANG=en_US.UTF-8
