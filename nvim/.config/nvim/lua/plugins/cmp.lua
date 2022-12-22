@@ -75,8 +75,8 @@ cmp.setup({
   }),
   sources = {
     { name = "nvim_lsp", priority = 100 },
-    -- { name = "luasnip", priority = 90 },
-    -- { name = "buffer", keyword_length = 2, priority = 10 },
+    { name = "luasnip", priority = 90 },
+    { name = "buffer", keyword_length = 3, priority = 10 },
     { name = "path", priority = 50 },
     { name = "emoji", insert = true, priority = 0 },
     { name = "fish" },

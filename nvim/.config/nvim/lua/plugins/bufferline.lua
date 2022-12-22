@@ -31,8 +31,8 @@ wk.register({
   -- ["<A-S-k>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
   ["<A-S-j>"] = { "<cmd>BufferLineMoveNext<cr>", "BufferLineMoveNext" },
   ["<A-S-k>"] = { "<cmd>BufferLineMovePrev<cr>", "BufferLineMovePrev" },
-  ["<Tab>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
-  ["<S-Tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
+  ["<M-Tab>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
+  ["<M-S-Tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
   ["<S-q>"] = { "<cmd>Bdelete<cr>", "Bufdelete" },
 })
 wk.register({
