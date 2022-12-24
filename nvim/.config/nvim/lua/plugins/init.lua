@@ -227,7 +227,7 @@ require("packer").startup(function(use)
       })
     end,
   })
-  use({ "b0o/schemastore.nvim", after = "nvim-lspconfig" })
+  use({ "b0o/schemastore.nvim" })
   use({ "p00f/clangd_extensions.nvim" })
   use({ "folke/neodev.nvim" })
   use({
@@ -245,14 +245,14 @@ require("packer").startup(function(use)
       require("plugins.cmp")
     end,
   })
-  use({ "hrsh7th/cmp-nvim-lsp", after = { "nvim-lspconfig", "nvim-cmp" } })
+  use({ "hrsh7th/cmp-nvim-lsp" })
   use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
   use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
   use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
   -- use({ "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" })
   use({ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" })
   use({ "mtoohey31/cmp-fish", after = "nvim-cmp", ft = "fish" })
-  use({ "onsails/lspkind.nvim", after = "nvim-cmp" })
+  use({ "onsails/lspkind.nvim" })
   use({
     "saadparwaiz1/cmp_luasnip",
     after = "LuaSnip",
@@ -281,12 +281,10 @@ require("packer").startup(function(use)
   })
   use({
     "nvim-telescope/telescope-fzf-native.nvim",
-    after = "telescope.nvim",
     run = "make",
   })
   use({
     "nvim-telescope/telescope-frecency.nvim",
-    after = "telescope.nvim",
     requires = { "tami5/sqlite.lua" },
   })
   use({ "nvim-telescope/telescope-media-files.nvim", after = "telescope.nvim" })
@@ -366,7 +364,6 @@ require("packer").startup(function(use)
   })
   use({
     "rcarriga/nvim-notify",
-    after = "telescope.nvim",
     config = function()
       require("plugins.notify")
     end,
