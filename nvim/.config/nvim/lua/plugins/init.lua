@@ -204,7 +204,7 @@ require("packer").startup(function(use)
     end,
   })
   use({ "williamboman/mason.nvim" })
-  use({ "williamboman/mason-lspconfig.nvim", after = "mason.nvim" })
+  use({ "williamboman/mason-lspconfig.nvim" })
   use({
     "glepnir/lspsaga.nvim",
     branch = "main",
@@ -214,7 +214,6 @@ require("packer").startup(function(use)
   })
   use({
     "lukas-reineke/lsp-format.nvim",
-    after = "nvim-lspconfig",
     config = function()
       require("lsp-format").setup()
     end,
@@ -246,12 +245,11 @@ require("packer").startup(function(use)
     end,
   })
   use({ "hrsh7th/cmp-nvim-lsp" })
-  use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
-  use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
-  use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
-  -- use({ "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" })
-  use({ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" })
-  use({ "mtoohey31/cmp-fish", after = "nvim-cmp", ft = "fish" })
+  use({ "hrsh7th/cmp-buffer" })
+  use({ "hrsh7th/cmp-path" })
+  use({ "hrsh7th/cmp-cmdline" })
+  use({ "hrsh7th/cmp-nvim-lsp-signature-help" })
+  use({ "mtoohey31/cmp-fish", ft = "fish" })
   use({ "onsails/lspkind.nvim" })
   use({
     "saadparwaiz1/cmp_luasnip",
@@ -268,8 +266,8 @@ require("packer").startup(function(use)
       { "rafamadriz/friendly-snippets" },
     },
   })
-  use({ "hrsh7th/cmp-emoji", after = "nvim-cmp" })
-  use({ "lukas-reineke/cmp-rg", after = "nvim-cmp" })
+  use({ "hrsh7th/cmp-emoji" })
+  use({ "lukas-reineke/cmp-rg" })
 
   use({
     "nvim-telescope/telescope.nvim",
@@ -287,7 +285,7 @@ require("packer").startup(function(use)
     "nvim-telescope/telescope-frecency.nvim",
     requires = { "tami5/sqlite.lua" },
   })
-  use({ "nvim-telescope/telescope-media-files.nvim", after = "telescope.nvim" })
+  use({ "nvim-telescope/telescope-media-files.nvim" })
 
   use({
     "nvim-treesitter/nvim-treesitter",
