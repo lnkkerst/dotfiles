@@ -1,10 +1,10 @@
 -- Treesitter
 require("nvim-treesitter.configs").setup({
-  ensure_installed = "all",
+  -- ensure_installed = "all",
 
   sync_install = false,
 
-  ignore_install = { "phpdoc" },
+  -- ignore_install = { "phpdoc" },
 
   auto_install = true,
 
