@@ -12,7 +12,7 @@ saga.init_lsp_saga({
       local en = node.range["end"]
       if button == "l" then
         if clicks == 2 then
-          -- double left click to do nothing
+        -- double left click to do nothing
         else -- jump to node's starting line+char
           vim.fn.cursor(st.line + 1, st.character + 1)
         end
