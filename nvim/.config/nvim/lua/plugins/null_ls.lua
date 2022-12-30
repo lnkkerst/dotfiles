@@ -15,6 +15,7 @@ null_ls.setup({
     null_ls.builtins.formatting.markdown_toc,
     null_ls.builtins.formatting.nginx_beautifier,
     null_ls.builtins.formatting.zigfmt,
+    null_ls.builtins.formatting.gofmt,
     null_ls.builtins.diagnostics.fish,
     -- null_ls.builtins.diagnostics.markdownlint,
     null_ls.builtins.diagnostics.tidy,

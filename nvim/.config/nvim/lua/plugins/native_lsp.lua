@@ -98,6 +98,7 @@ local servers = {
   "emmet_ls",
   "yamlls",
   "zls",
+  "gopls",
 }
 
 for _, server in ipairs(servers) do
