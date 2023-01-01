@@ -99,6 +99,7 @@ require("packer").startup(function(use)
   })
   use({
     "nvim-zh/colorful-winsep.nvim",
+    event = "VimEnter",
     config = function()
       require("colorful-winsep").setup()
     end,
@@ -129,6 +130,7 @@ require("packer").startup(function(use)
   })
   use({
     "windwp/nvim-autopairs",
+    event = "InsertEnter",
     config = function()
       require("plugins.autopairs")
     end,
@@ -148,14 +150,9 @@ require("packer").startup(function(use)
     end,
   })
   use({
-    "nacro90/numb.nvim",
-    config = function()
-      require("numb").setup()
-    end,
-  })
-  use({
     "danymat/neogen",
     requires = { "nvim-treesitter/nvim-treesitter" },
+    cmd = "Neogen",
     config = function()
       require("neogen").setup({
         snippet_engine = "luasnip",
@@ -204,7 +201,10 @@ require("packer").startup(function(use)
     end,
   })
   use({ "williamboman/mason.nvim" })
-  use({ "williamboman/mason-lspconfig.nvim" })
+  use({
+    "williamboman/mason-lspconfig.nvim",
+    requires = { "neovim/nvim-lspconfig" },
+  })
   use({
     "glepnir/lspsaga.nvim",
     branch = "main",
@@ -240,17 +240,20 @@ require("packer").startup(function(use)
   use({
     "hrsh7th/nvim-cmp",
     event = { "InsertEnter", "CmdlineEnter" },
+    requires = {
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-path" },
+      { "hrsh7th/cmp-cmdline" },
+      { "hrsh7th/cmp-nvim-lsp-signature-help" },
+      { "hrsh7th/cmp-emoji" },
+      { "mtoohey31/cmp-fish" },
+      { "onsails/lspkind.nvim" },
+    },
     config = function()
       require("plugins.cmp")
     end,
   })
-  use({ "hrsh7th/cmp-nvim-lsp" })
-  use({ "hrsh7th/cmp-buffer" })
-  use({ "hrsh7th/cmp-path" })
-  use({ "hrsh7th/cmp-cmdline" })
-  use({ "hrsh7th/cmp-nvim-lsp-signature-help" })
-  use({ "mtoohey31/cmp-fish", ft = "fish" })
-  use({ "onsails/lspkind.nvim" })
   use({
     "saadparwaiz1/cmp_luasnip",
     after = "LuaSnip",
@@ -266,26 +269,22 @@ require("packer").startup(function(use)
       { "rafamadriz/friendly-snippets" },
     },
   })
-  use({ "hrsh7th/cmp-emoji" })
-  use({ "lukas-reineke/cmp-rg" })
 
   use({
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
-    requires = { { "nvim-lua/plenary.nvim" } },
+    requires = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+      {
+        "nvim-telescope/telescope-frecency.nvim",
+        requires = { "tami5/sqlite.lua" },
+      },
+      { "nvim-telescope/telescope-media-files.nvim" },
+    },
     config = function()
       require("plugins.telescope")
     end,
   })
-  use({
-    "nvim-telescope/telescope-fzf-native.nvim",
-    run = "make",
-  })
-  use({
-    "nvim-telescope/telescope-frecency.nvim",
-    requires = { "tami5/sqlite.lua" },
-  })
-  use({ "nvim-telescope/telescope-media-files.nvim" })
 
   use({
     "nvim-treesitter/nvim-treesitter",
@@ -296,23 +295,18 @@ require("packer").startup(function(use)
   })
   use({
     "nvim-treesitter/nvim-treesitter-textobjects",
-    requires = { "nvim-treesitter/nvim-treesitter" },
   })
   use({
     "JoosepAlviste/nvim-ts-context-commentstring",
-    requires = { "nvim-treesitter/nvim-treesitter" },
   })
   use({
     "nvim-treesitter/nvim-treesitter-context",
-    requires = { "nvim-treesitter/nvim-treesitter" },
   })
   use({
     "windwp/nvim-ts-autotag",
-    requires = { "nvim-treesitter/nvim-treesitter" },
   })
   use({
     "kylechui/nvim-surround",
-    tag = "*",
     config = function()
       require("nvim-surround").setup()
     end,
@@ -383,12 +377,6 @@ require("packer").startup(function(use)
       require("neogit").setup()
     end,
   })
-  use({
-    "rmagatti/auto-session",
-    config = function()
-      require("auto-session").setup({})
-    end,
-  })
   use({ "sbdchd/neoformat", cmd = "Neoformat" })
   use({ "gpanders/editorconfig.nvim" })
   use({
@@ -420,26 +408,19 @@ require("packer").startup(function(use)
       })
     end,
   })
-  use({
-    "nvim-neotest/neotest",
-    after = "nvim-treesitter",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim",
-      "haydenmeade/neotest-jest",
-    },
-    config = function()
-      require("plugins.neotest")
-    end,
-  })
-  use({
-    "folke/zen-mode.nvim",
-    cmd = "ZenMode",
-    config = function()
-      require("zen-mode").setup()
-    end,
-  })
+  -- use({
+  --   "nvim-neotest/neotest",
+  --   after = "nvim-treesitter",
+  --   requires = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "antoinemadec/FixCursorHold.nvim",
+  --     "haydenmeade/neotest-jest",
+  --   },
+  --   config = function()
+  --     require("plugins.neotest")
+  --   end,
+  -- })
   use({
     "folke/todo-comments.nvim",
     after = "nvim-treesitter",
@@ -447,17 +428,6 @@ require("packer").startup(function(use)
     requires = "nvim-lua/plenary.nvim",
     config = function()
       require("todo-comments").setup()
-    end,
-  })
-  use({
-    "krivahtoo/silicon.nvim",
-    run = "./install.sh",
-    config = function()
-      require("silicon").setup({
-        font = "JetBrainsMono Nerd Font=16",
-        -- theme = "Catppuccin-mocha",
-        line_number = true,
-      })
     end,
   })
   use({
@@ -480,25 +450,13 @@ require("packer").startup(function(use)
       require("plugins.dap")
     end,
   })
-  use({ "rcarriga/nvim-dap-ui" })
-  use({ "theHamsta/nvim-dap-virtual-text" })
+  use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+  use({
+    "theHamsta/nvim-dap-virtual-text",
+    requires = { "mfussenegger/nvim-dap" },
+  })
 
   use({ "simrat39/rust-tools.nvim" })
-  use({
-    "saecki/crates.nvim",
-    event = { "BufRead Cargo.toml" },
-    requires = { { "nvim-lua/plenary.nvim" } },
-    config = function()
-      vim.api.nvim_create_autocmd("BufRead", {
-        group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
-        pattern = "Cargo.toml",
-        callback = function()
-          require("cmp").setup.buffer({ sources = { { name = "crates" } } })
-        end,
-      })
-    end,
-  })
-  use({ "jose-elias-alvarez/typescript.nvim" })
 
   use({ "nvim-lua/popup.nvim" })
 

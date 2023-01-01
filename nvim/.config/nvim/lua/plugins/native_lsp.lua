@@ -88,14 +88,12 @@ end
 
 local servers = {
   "pyright",
-  "volar",
   "html",
   "eslint",
   "cssls",
   "cmake",
   "bashls",
   "dockerls",
-  "emmet_ls",
   "yamlls",
   "zls",
   "gopls",
@@ -133,12 +131,12 @@ require("clangd_extensions").setup({
 --   capabilities = global_capabilities,
 -- })
 
-require("typescript").setup({
-  server = {
-    on_attach = lsp_global_attach,
-    capabilities = global_capabilities,
-  },
-})
+-- require("typescript").setup({
+--   server = {
+--     on_attach = lsp_global_attach,
+--     capabilities = global_capabilities,
+--   },
+-- })
 
 require("neodev").setup({})
 
@@ -155,9 +153,46 @@ lspconfig.sumneko_lua.setup({
 })
 
 lspconfig.jsonls.setup({
+  on_attach = lsp_global_attach,
+  capabilities = global_capabilities,
   settings = {
     json = {
       schemas = require("schemastore").json.schemas(),
     },
   },
+})
+
+local util = require("lspconfig.util")
+local function get_typescript_server_path(root_dir)
+  local global_ts =
+    "/home/lnk/.local/share/pnpm/global/5/node_modules/typescript/lib"
+  local found_ts = ""
+  local function check_dir(path)
+    found_ts = util.path.join(path, "node_modules", "typescript", "lib")
+    if util.path.exists(found_ts) then
+      return path
+    end
+  end
+  if util.search_ancestors(root_dir, check_dir) then
+    return found_ts
+  else
+    return global_ts
+  end
+end
+
+require("lspconfig").volar.setup({
+  on_attach = lsp_global_attach,
+  capabilities = global_capabilities,
+  filetypes = {
+    "typescript",
+    "javascript",
+    "javascriptreact",
+    "typescriptreact",
+    "vue",
+    "json",
+  },
+  on_new_config = function(new_config, new_root_dir)
+    new_config.init_options.typescript.tsdk =
+      get_typescript_server_path(new_root_dir)
+  end,
 })

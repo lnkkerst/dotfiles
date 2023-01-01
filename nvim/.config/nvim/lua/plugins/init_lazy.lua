@@ -52,6 +52,15 @@ require("lazy").setup({
   },
   {
     "folke/noice.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      {
+        "rcarriga/nvim-notify",
+        config = function()
+          require("plugins.notify")
+        end,
+      },
+    },
     config = function()
       require("plugins.noice")
     end,
@@ -102,7 +111,7 @@ require("lazy").setup({
   },
   {
     "danymat/neogen",
-    requires = { "nvim-treesitter/nvim-treesitter" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("neogen").setup({
         snippet_engine = "luasnip",
@@ -124,7 +133,7 @@ require("lazy").setup({
   },
   {
     "kevinhwang91/nvim-ufo",
-    requires = "kevinhwang91/promise-async",
+    dependencies = { "kevinhwang91/promise-async" },
     config = function()
       require("plugins.ufo")
     end,
@@ -186,7 +195,7 @@ require("lazy").setup({
   { "folke/neodev.nvim" },
   {
     "jose-elias-alvarez/null-ls.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     config = function()
       require("plugins.null_ls")
     end,
@@ -206,7 +215,7 @@ require("lazy").setup({
         dependencies = {
           {
             "L3MON4D3/LuaSnip",
-            dependencies = { "friendly-snippets" },
+            dependencies = { "rafamadriz/friendly-snippets" },
             config = function()
               require("luasnip.loaders.from_vscode").lazy_load()
               require("luasnip.loaders.from_snipmate").lazy_load()
@@ -227,7 +236,7 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim",
       {
         "nvim-telescope/telescope-frecency.nvim",
-        requires = { "tami5/sqlite.lua" },
+        dependencies = { "tami5/sqlite.lua" },
       },
       {
         "nvim-telescope/telescope-fzf-native.nvim",
@@ -274,4 +283,80 @@ require("lazy").setup({
       require("plugins.sniprun")
     end,
   },
+  {
+    "skywind3000/asyncrun.vim",
+  },
+  {
+    "folke/which-key.nvim",
+    config = function()
+      require("plugins.which_key")
+    end,
+  },
+  {
+    "mrjones2014/legendary.nvim",
+    config = function()
+      require("legendary").setup()
+      local wk = require("which-key")
+      local legendary = {
+        ["<C-A-p>"] = { "<cmd>Legendary<cr>", "Legendary" },
+      }
+      wk.register(legendary, { mode = "n" })
+      wk.register(legendary, { mode = "x" })
+      wk.register(legendary, { mode = "t" })
+      wk.register(legendary, { mode = "i" })
+    end,
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    ft = "markdown",
+    build = "cd app && pnpm install",
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    config = true,
+  },
+  { "sindrets/diffview.nvim" },
+  {
+    "TimUntersberger/neogit",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = "Neogit",
+    config = true,
+  },
+  {
+    "sbdchd/neoformat",
+    cmd = "Neoformat",
+  },
+  { "gpanders/editorconfig.nvim" },
+  {
+    "ahmedkhalf/project.nvim",
+    name = "project_nvim",
+    config = { ignore_lsp = { "null-ls" } },
+  },
+  { "kevinhwang91/nvim-bqf", ft = "qf", config = true },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = true,
+  },
+  {
+    "aserowy/tmux.nvim",
+    config = function()
+      require("plugins.tmux")
+    end,
+  },
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require("plugins.dap")
+    end,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap" },
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    dependencies = { "mfussenegger/nvim-dap" },
+  },
+  { "simrat39/rust-tools.nvim" },
 }, {})
