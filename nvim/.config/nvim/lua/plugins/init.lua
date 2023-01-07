@@ -363,7 +363,7 @@ require("packer").startup(function(use)
   use({
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPost", "BufNewFile" },
-    tag = "release",
+    -- tag = "release",
     config = function()
       require("gitsigns").setup()
     end,
