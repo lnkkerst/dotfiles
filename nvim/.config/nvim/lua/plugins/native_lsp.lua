@@ -1,18 +1,6 @@
 local wk = require("which-key")
 local lsp_format = require("lsp-format")
 
--- Mason
-require("mason").setup({
-  ui = {
-    icons = {
-      package_installed = "✓",
-      package_pending = "➜",
-      package_uninstalled = "✗",
-    },
-  },
-})
-require("mason-lspconfig").setup({})
-
 local signs = {
   Error = " ",
   Warn = " ",
@@ -97,6 +85,7 @@ local servers = {
   "yamlls",
   "zls",
   "gopls",
+  "sumneko_lua",
 }
 
 for _, server in ipairs(servers) do
@@ -120,35 +109,6 @@ require("clangd_extensions").setup({
       lsp_format.on_attach(client)
     end,
     capabilities = global_capabilities,
-  },
-})
-
--- require("lspconfig").ccls.setup({
---   on_attach = function(client, bufnr)
---     global_attach(client, bufnr)
---     lsp_format.on_attach(client)
---   end,
---   capabilities = global_capabilities,
--- })
-
--- require("typescript").setup({
---   server = {
---     on_attach = lsp_global_attach,
---     capabilities = global_capabilities,
---   },
--- })
-
-require("neodev").setup({})
-
-lspconfig.sumneko_lua.setup({
-  on_attach = lsp_global_attach,
-  capabilities = global_capabilities,
-  settings = {
-    Lua = {
-      completion = {
-        callSnippet = "Replace",
-      },
-    },
   },
 })
 

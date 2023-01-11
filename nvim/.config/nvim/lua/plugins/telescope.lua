@@ -1,4 +1,6 @@
-require("telescope").setup({
+local telescope = require("telescope")
+
+telescope.setup({
   defaults = {
     prompt_prefix = " ",
     selection_caret = " ",
@@ -38,27 +40,7 @@ require("telescope").setup({
   },
 })
 
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("frecency")
-
-local wk = require("which-key")
-
-wk.register({
-  ["f"] = {
-    name = "+Telescope",
-    ["f"] = { "<cmd>Telescope find_files<cr>", "Telescope find files" },
-    ["r"] = { "<cmd>Telescope frecency<cr>", "Telescope frecency" },
-    ["n"] = { "<cmd>Telescope notify<cr>", "Telescope notify" },
-    ["b"] = { "<cmd>Telescope buffers<cr>", "Telescope buffers" },
-    ["m"] = { "<cmd>Telescope marks<cr>", "Telescope marks" },
-    ["t"] = { "<cmd>Telescope<cr>", "Telescope buildin" },
-    ["g"] = { "<cmd>Telescope live_grep<cr>", "Telescope live grep" },
-    ["c"] = {
-      "<cmd>Telescope current_buffer_fuzzy_find<cr>",
-      "Telescope current_buffer_fuzzy_find",
-    },
-  },
-}, { prefix = "<leader>" })
-wk.register({
-  ["<C-p>"] = { "<cmd>Telescope find_files<cr>", "Find files" },
-})
+telescope.load_extension("fzf")
+telescope.load_extension("frecency")
+telescope.load_extension("notify")
+telescope.load_extension("yank_history")

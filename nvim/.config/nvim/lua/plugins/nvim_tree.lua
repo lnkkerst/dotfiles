@@ -23,9 +23,3 @@ require("nvim-tree").setup({
     },
   },
 })
-
-local wk = require("which-key")
-
-wk.register({
-  ["<C-n>"] = { "<cmd>NvimTreeToggle<cr>", "NvimTreeToggle" },
-})

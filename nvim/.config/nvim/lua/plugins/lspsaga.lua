@@ -94,3 +94,9 @@ vim.api.nvim_create_autocmd("User", {
     config_winbar_or_statusline()
   end,
 })
+
+local wk = require("which-key")
+
+wk.register({
+  ["<A-s>"] = { "<cmd>Lspsaga outline<cr>", "Lspsaga outline" },
+})
