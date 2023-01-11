@@ -247,6 +247,7 @@ require("packer").startup(function(use)
     "hrsh7th/nvim-cmp",
     event = { "InsertEnter", "CmdlineEnter" },
     requires = {
+      { "lukas-reineke/cmp-under-comparator" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
@@ -379,6 +380,11 @@ require("packer").startup(function(use)
     config = function()
       require("gitsigns").setup()
     end,
+  })
+  use({
+    "TimUntersberger/neogit",
+    requires = "nvim-lua/plenary.nvim",
+    cmd = "Neogit",
   })
   use({ "sindrets/diffview.nvim", cmd = "Diffview*" })
   use({ "sbdchd/neoformat", cmd = "Neoformat" })

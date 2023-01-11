@@ -22,6 +22,19 @@ local source_mapping = {
 cmp.setup({
   enabled = true,
   preselect = cmp.PreselectMode.None,
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      require("cmp-under-comparator").under,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
+  },
   formatting = {
     format = lspkind.cmp_format({
       mode = "symbol_text",
