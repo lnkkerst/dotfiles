@@ -454,6 +454,7 @@ require("packer").startup(function(use)
       "DapStepOut",
       "DapTerminate",
     },
+    opt = true,
     module = "dap",
     config = function()
       require("plugins.dap")
