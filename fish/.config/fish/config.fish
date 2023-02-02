@@ -1,4 +1,4 @@
-fish_add_path -g $HOME/.gem/ruby/2.7.0/bin
+fish_add_path -g $HOME/.local/share/gem/ruby/3.0.0/bin
 fish_add_path -g $HOME/.cargo/bin
 fish_add_path -g $HOME/.local/bin
 fish_add_path -g $HOME/.pyenv/bin
@@ -51,6 +51,7 @@ alias reboot='loginctl reboot'
 alias woman='man'
 alias 翻译='fanyi'
 alias sl='ls'
+alias icat="kitty +kitten icat"
 
 # Key binding
 bind \co ranger-cd --mode insert

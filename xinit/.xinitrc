@@ -43,7 +43,7 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_SELECT=5
 export GTK_THEME=materia-catppuccin
 #export QT_AUTO_SCREEN_SCALE_FACTOR=1
-export PULSE_LATENCY_MSEC=21
+# export PULSE_LATENCY_MSEC=21
 
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
@@ -79,4 +79,5 @@ fi
 # start wm
 export DESKTOP_SESSION=bspwm
 # exec dbus-launch --sh-syntax --exit-with-session --autolaunch=$(cat /var/lib/dbus/machine-id) bspwm
-exec dbus-launch bspwm
+# exec dbus-launch bspwm
+exec bspwm
