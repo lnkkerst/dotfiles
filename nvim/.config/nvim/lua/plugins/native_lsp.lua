@@ -18,7 +18,7 @@ vim.diagnostic.config({
   update_in_insert = true,
   underline = false,
   severity_sort = true,
-  virtual_text = true,
+  -- virtual_text = true,
 })
 
 -- Lspconfig
@@ -102,6 +102,7 @@ local servers = {
   "html",
   "eslint",
   "cssls",
+  "stylelint_lsp",
   "cmake",
   "bashls",
   "dockerls",
@@ -178,4 +179,10 @@ require("lspconfig").volar.setup({
       tsdk = "/usr/lib/node_modules/typescript/lib",
     },
   },
+})
+
+require("lspconfig").sqls.setup({
+  on_attach = function(client, bufnr)
+    require("sqls").on_attach(client, bufnr)
+  end,
 })

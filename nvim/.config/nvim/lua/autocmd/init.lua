@@ -69,7 +69,7 @@ local augroups = {
     { "VimResized", "*", [[tabdo wincmd =]] },
   },
   ft = {
-    { "FileType", "markdown", "set wrap" },
+    -- { "FileType", "markdown", "set wrap" },
     { "FileType", "make", "set noexpandtab shiftwidth=8 softtabstop=0" },
     -- Google tab style
     -- { "FileType", "c,cpp", "set expandtab tabstop=2 shiftwidth=2" },

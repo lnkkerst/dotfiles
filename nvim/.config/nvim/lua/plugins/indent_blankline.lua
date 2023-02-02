@@ -37,6 +37,7 @@ require("indent_blankline").setup({
     "undotree",
     "flutterToolsOutline",
     "alpha",
+    "OverseerForm",
   },
   buftype_exclude = { "terminal", "nofile", "telescope" },
 })

@@ -36,6 +36,8 @@ saga.setup({
     theme = "round",
     border = "single",
     code_action = "",
+    colors = require("catppuccin.groups.integrations.lsp_saga").custom_colors(),
+    kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
   },
 })
 

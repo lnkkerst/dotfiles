@@ -37,6 +37,7 @@ require("catppuccin").setup({
     },
     lsp_trouble = true,
     lsp_saga = true,
+    leap = true,
     which_key = true,
     fidget = true,
     illuminate = true,

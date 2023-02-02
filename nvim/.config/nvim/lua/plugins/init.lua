@@ -105,6 +105,12 @@ require("packer").startup(function(use)
       require("colorful-winsep").setup()
     end,
   })
+  use({
+    "kevinhwang91/nvim-hlslens",
+    config = function()
+      require("plugins.hlslens")
+    end,
+  })
 
   use({
     "lukas-reineke/indent-blankline.nvim",
@@ -188,6 +194,33 @@ require("packer").startup(function(use)
       require("plugins.yanky")
     end,
   })
+  use({
+    "abecodes/tabout.nvim",
+    wants = { "nvim-treesitter" },
+    after = { "nvim-cmp" },
+    config = function()
+      require("tabout").setup({})
+    end,
+  })
+  use({ "tpope/vim-repeat" })
+  use({
+    "ggandor/leap.nvim",
+    config = function()
+      require("leap").add_default_mappings()
+    end,
+  })
+  use({
+    "ggandor/flit.nvim",
+    config = function()
+      require("flit").setup()
+    end,
+  })
+  use({
+    "nacro90/numb.nvim",
+    config = function()
+      require("numb").setup()
+    end,
+  })
 
   use({
     "neovim/nvim-lspconfig",
@@ -242,6 +275,20 @@ require("packer").startup(function(use)
       require("plugins.null_ls")
     end,
   })
+  use({
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup()
+      vim.api.nvim_create_user_command(
+        "LspLinesToggle",
+        "lua require('lsp_lines').toggle()",
+        {}
+      )
+      vim.diagnostic.config({
+        virtual_text = false,
+      })
+    end,
+  })
 
   use({
     "hrsh7th/nvim-cmp",
@@ -279,7 +326,7 @@ require("packer").startup(function(use)
 
   use({
     "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
+    cmd = { "Telescope", "Cheatsheet" },
     requires = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
@@ -293,6 +340,15 @@ require("packer").startup(function(use)
       require("plugins.telescope")
     end,
   })
+  use({
+    "sudormrfbin/cheatsheet.nvim",
+    cmd = { "Cheatsheet" },
+    requires = {
+      { "nvim-telescope/telescope.nvim" },
+      { "nvim-lua/popup.nvim" },
+      { "nvim-lua/plenary.nvim" },
+    },
+  })
 
   use({
     "nvim-treesitter/nvim-treesitter",
@@ -303,15 +359,10 @@ require("packer").startup(function(use)
       require("plugins.treesitter")
     end,
   })
-  use({
-    "nvim-treesitter/nvim-treesitter-textobjects",
-  })
-  use({
-    "JoosepAlviste/nvim-ts-context-commentstring",
-  })
-  use({
-    "nvim-treesitter/nvim-treesitter-context",
-  })
+  use({ "nvim-treesitter/nvim-treesitter-textobjects" })
+  use({ "JoosepAlviste/nvim-ts-context-commentstring" })
+  use({ "nvim-treesitter/nvim-treesitter-context" })
+  use({ "mrjones2014/nvim-ts-rainbow" })
   use({
     "windwp/nvim-ts-autotag",
     requires = { "nvim-treesitter/nvim-treesitter" },
@@ -334,6 +385,12 @@ require("packer").startup(function(use)
   use({
     "skywind3000/asyncrun.vim",
     cmd = { "AsyncRun", "AsyncStop", "AsyncReset" },
+  })
+  use({
+    "stevearc/overseer.nvim",
+    config = function()
+      require("plugins.overseer")
+    end,
   })
   use({
     "akinsho/toggleterm.nvim",
@@ -367,6 +424,13 @@ require("packer").startup(function(use)
     "iamcco/markdown-preview.nvim",
     ft = "markdown",
     run = "cd app && pnpm install",
+  })
+  use({
+    "ellisonleao/glow.nvim",
+    cmd = "Glow",
+    config = function()
+      require("glow").setup()
+    end,
   })
   use({
     "rcarriga/nvim-notify",
@@ -472,6 +536,7 @@ require("packer").startup(function(use)
   })
 
   use({ "simrat39/rust-tools.nvim" })
+  use({ "nanotee/sqls.nvim" })
 
   use({ "nvim-lua/popup.nvim" })
 
