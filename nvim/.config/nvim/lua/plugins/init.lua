@@ -275,20 +275,20 @@ require("packer").startup(function(use)
       require("plugins.null_ls")
     end,
   })
-  use({
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    config = function()
-      require("lsp_lines").setup()
-      vim.api.nvim_create_user_command(
-        "LspLinesToggle",
-        "lua require('lsp_lines').toggle()",
-        {}
-      )
-      vim.diagnostic.config({
-        virtual_text = false,
-      })
-    end,
-  })
+  -- use({
+  --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  --   config = function()
+  --     require("lsp_lines").setup()
+  --     vim.api.nvim_create_user_command(
+  --       "LspLinesToggle",
+  --       "lua require('lsp_lines').toggle()",
+  --       {}
+  --     )
+  --     vim.diagnostic.config({
+  --       virtual_text = false,
+  --     })
+  --   end,
+  -- })
 
   use({
     "hrsh7th/nvim-cmp",

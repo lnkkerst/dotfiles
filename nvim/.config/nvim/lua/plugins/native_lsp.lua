@@ -72,6 +72,11 @@ _G.lsp_global_attach = function(_, bufnr)
     },
   }, { buffer = bufnr })
 
+  wk.register(
+    { ["<leader>ca"] = { "<cmd>Lspsaga code_action<cr>", "Code Action" } },
+    { buffer = bufnr, mode = "x" }
+  )
+
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
@@ -109,7 +114,7 @@ local servers = {
   "yamlls",
   "zls",
   "gopls",
-  "sumneko_lua",
+  "lua_ls",
 }
 
 for _, server in ipairs(servers) do
@@ -119,6 +124,20 @@ for _, server in ipairs(servers) do
   })
 end
 
+lspconfig.ccls.setup({
+  on_attach = function(client, bufnr)
+    lsp_global_attach(client, bufnr)
+    lsp_format.on_attach(client)
+  end,
+  capabilities = global_capabilities,
+  root_dir = lspconfig.util.root_pattern(
+    "compile_commands.json",
+    ".ccls",
+    ".git",
+    ".clang-format"
+  ),
+})
+
 require("rust-tools").setup({
   server = {
     on_attach = lsp_global_attach,
@@ -126,25 +145,25 @@ require("rust-tools").setup({
   },
 })
 
-require("clangd_extensions").setup({
-  server = {
-    on_attach = function(client, bufnr)
-      lsp_global_attach(client, bufnr)
-      lsp_format.on_attach(client)
-    end,
-    capabilities = global_capabilities,
-  },
-})
-
-lspconfig.jsonls.setup({
-  on_attach = lsp_global_attach,
-  capabilities = global_capabilities,
-  settings = {
-    json = {
-      schemas = require("schemastore").json.schemas(),
-    },
-  },
-})
+-- require("clangd_extensions").setup({
+--   server = {
+--     on_attach = function(client, bufnr)
+--       lsp_global_attach(client, bufnr)
+--       lsp_format.on_attach(client)
+--     end,
+--     capabilities = global_capabilities,
+--   },
+-- })
+--
+-- lspconfig.jsonls.setup({
+--   on_attach = lsp_global_attach,
+--   capabilities = global_capabilities,
+--   settings = {
+--     json = {
+--       schemas = require("schemastore").json.schemas(),
+--     },
+--   },
+-- })
 
 local function get_typescript_server_path(root_dir)
   local global_ts =

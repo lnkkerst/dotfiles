@@ -28,8 +28,6 @@ cmp.setup({
       cmp.config.compare.offset,
       cmp.config.compare.exact,
       cmp.config.compare.score,
-      cmp.config.compare.recently_used,
-      cmp.config.compare.locality,
       require("cmp-under-comparator").under,
       cmp.config.compare.kind,
       cmp.config.compare.sort_text,
@@ -69,24 +67,40 @@ cmp.setup({
     ["<CR>"] = cmp.mapping.confirm({
       select = false,
     }),
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    ["<Tab>"] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
+        vim.fn.feedkeys(
+          vim.api.nvim_replace_termcodes(
+            "<Plug>luasnip-expand-or-jump",
+            true,
+            true,
+            true
+          ),
+          ""
+        )
       else
         fallback()
       end
-    end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
+    end,
+    ["<S-Tab>"] = function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+        vim.fn.feedkeys(
+          vim.api.nvim_replace_termcodes(
+            "<Plug>luasnip-jump-prev",
+            true,
+            true,
+            true
+          ),
+          ""
+        )
       else
         fallback()
       end
-    end, { "i", "s" }),
+    end,
   }),
   sources = {
     { name = "nvim_lsp", priority = 100, max_item_count = 30 },
