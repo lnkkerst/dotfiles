@@ -60,5 +60,5 @@ fi
 # autostart
 
 # start wm
-export DESKTOP_SESSION=leftwm
-exec leftwm
+export DESKTOP_SESSION=bspwm
+exec bspwm
