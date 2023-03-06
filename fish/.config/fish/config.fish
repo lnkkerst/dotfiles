@@ -1,7 +1,7 @@
 fish_add_path -g $HOME/.local/share/gem/ruby/3.0.0/bin
 fish_add_path -g $HOME/.cargo/bin
 fish_add_path -g $HOME/.local/bin
-fish_add_path -g $HOME/.pyenv/bin
+# fish_add_path -g $HOME/.pyenv/bin
 fish_add_path -g $HOME/.bun/bin
 
 if not status is-interactive
@@ -52,6 +52,7 @@ alias woman='man'
 alias 翻译='fanyi'
 alias sl='ls'
 alias icat="kitty +kitten icat"
+alias datef="date +%Y%m%d%H%M%S_%s"
 
 # Key binding
 bind \co ranger-cd --mode insert
@@ -99,9 +100,9 @@ if type -f zoxide >/dev/null 2>/dev/null
 end
 
 #pyenv
-if type -f pyenv >/dev/null 2>/dev/null
-    pyenv init - | source
-end
+# if type -f pyenv >/dev/null 2>/dev/null
+#     pyenv init - | source
+# end
 
 # pnpm
 if type -f pnpm >/dev/null 2>/dev/null
