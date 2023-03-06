@@ -15,3 +15,5 @@ export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:$HOME/.nix-profile/share
 
 export LANG=en_US.UTF-8
+
+# vim: ft=sh

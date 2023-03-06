@@ -39,45 +39,26 @@ fi
 ## general
 
 # env
-export QT_QPA_PLATFORMTHEME=qt5ct
-export QT_SELECT=5
-export GTK_THEME=materia-catppuccin
-#export QT_AUTO_SCREEN_SCALE_FACTOR=1
-# export PULSE_LATENCY_MSEC=21
-
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-export INPUT_METHOD=fcitx
-export SDL_IM_MODULE=fcitx
-export GLFW_IM_MODULE=ibus
-
-export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share
-export XDG_DATA_DIRS=$XDG_DATA_DIRS:$HOME/.nix-profile/share
-
-export LANG=en_US.UTF-8
+source $HOME/.xprofile
 
 ## multi display support
-MONITOR_AMOUNT=$(xrandr -d $DISPLAY -q | grep ' connected' | wc -l)
+EXTRA_MONITOR=$(xrandr -d $DISPLAY -q | grep ' connected' | awk '{print $1}' | grep -v '^eDP')
 
-if [ "$MONITOR_AMOUNT" == "1" ]; then
+if [ "$EXTRA_MONITOR" == "DP-1" ]; then
+  export ROFI_DPI=96
+  export XCURSOR_SIZE=24
+  xrandr --output HDMI-1 --off --output eDP-1 --mode 1440x900 --pos 2560x0 --rotate normal --output DP-1 --primary --mode 2560x1440 --pos 0x0 --rotate normal --rate 120 --output DP-2 --off
+else
   echo "Xft.dpi: 192" | xrdb -merge
   export GDK_SCALE=2
   export GDK_DPI_SCALE=0.5
   export ROFI_DPI=192
   export XCURSOR_SIZE=48
-  xrandr --output HDMI-A-0 --off --output eDP --primary --mode 2560x1600 --pos 0x0 --rotate normal --output DisplayPort-0 --off --output DisplayPort-1 --off
-else
-  export ROFI_DPI=96
-  export XCURSOR_SIZE=24
-  xrandr --output HDMI-A-0 --off --output eDP --mode 1440x900 --pos 0x540 --rotate normal --output DisplayPort-0 --primary --mode 2560x1440 --rate 120 --pos 1440x0 --rotate normal --output DisplayPort-1 --off
+  xrandr --output HDMI-1 --off --output eDP-1 --primary --mode 2560x1600 --pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --off
 fi
 
 # autostart
-#setxkbmap -option "caps:swapescape"
-# dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+
 # start wm
-export DESKTOP_SESSION=bspwm
-# exec dbus-launch --sh-syntax --exit-with-session --autolaunch=$(cat /var/lib/dbus/machine-id) bspwm
-# exec dbus-launch bspwm
-exec bspwm
+export DESKTOP_SESSION=leftwm
+exec leftwm
