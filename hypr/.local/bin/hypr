@@ -25,8 +25,7 @@ export INPUT_METHOD=fcitx
 export GLFW_IM_MODULE=fcitx
 export IMSETTINGS_MODULE=fcitx
 
-if [ $(xrandr -d $DISPLAY -q | grep ' connected' | wc -l) -eq 1 ]; then
-  xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
+if [ $1 -eq 1 ]; then
   export GDK_SCALE=2
 fi
 
