@@ -10,9 +10,9 @@ super + Return
 super + d
 	rofi -dpi $ROFI_DPI -show
 super + shift + d
-    rofi -dpi $ROFI_DPI -show window
+  rofi -dpi $ROFI_DPI -show window
 super + ctrl + d
-    fish $HOME/.config/rofi/env_launcher.fish
+  fish $HOME/.config/rofi/env_launcher.fish
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -24,12 +24,12 @@ super + Escape
 
 # Screenshot
 Print
-    PIC_FILE=$(date +"$HOME/Pictures/maim/%Y-%m-%d-%H%M%S-%s.png") && maim $PIC_FILE && notify-send "Screenshot has saved to $PIC_FILE"
+  PIC_FILE=$(date +"$HOME/Pictures/maim/%Y-%m-%d-%H%M%S-%s.png") && maim $PIC_FILE && notify-send "Screenshot has saved to $PIC_FILE"
 shift + Print
-    PIC_FILE=$(date +"$HOME/Pictures/maim/%Y-%m-%d-%H%M%S-%s.png") && maim -s $PIC_FILE && xclip -selection clipboard -t image/png $PIC_FILE && notify-send "Screenshot has sent to clipboard"
+  PIC_FILE=$(date +"$HOME/Pictures/maim/%Y-%m-%d-%H%M%S-%s.png") && maim -s $PIC_FILE && xclip -selection clipboard -t image/png $PIC_FILE && notify-send "Screenshot has sent to clipboard"
 
 super + 0
-    bash $HOME/.config/bspwm/scripts/rofi/powermenu.sh
+  bash $HOME/.config/bspwm/scripts/rofi/powermenu.sh
 
 # Backlight control
 XF86MonBrightnessUp
@@ -78,8 +78,8 @@ super + shift + n
 # restart bspwm
 super + shift + r
 	bspc wm -r
-/* super + shift + Escape */
-/* 	bspc quit */
+#super + shift + Escape
+# 	bspc quit
 
 # close and kill
 super + shift + {q,x}
@@ -195,4 +195,4 @@ super + shift + {Left,Down,Up,Right}
 
 # focus floating or tiling window
 super + {_,shift} + c
-    bspc node -f next.local.!hidden.window.{floating,tiled}
+  bspc node -f next.local.!hidden.window.{floating,tiled}

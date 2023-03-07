@@ -1,30 +1,28 @@
-#! /bin/env fish
+#!/bin/bash
 
-# vim:ft=fish
+# vim: ft=sh
 
-set SCRIPTS_DIR $HOME/.config/bspwm/scripts
+export SCRIPTPATH="$(
+  cd "$(dirname "$0")"
+  pwd -P
+)"
 xsetroot -cursor_name left_ptr
 
 # For sxhkd
-set -gx SXHKD_SHELL /bin/bash
+export SXHKD_SHELL=/bin/bash
 pgrep -x sxhkd >/dev/null || sxhkd &
 
 # Multi-monitor support
-set DOUBLE_MONITER (xrandr --listmonitors | grep DisplayPort)
-if string length $DOUBLE_MONITER
-    bspc monitor eDP -d 7 8 9 10
-    bspc monitor DisplayPort-0 -d 1 2 3 4 5 6
-else
-    bspc monitor -d 1 2 3 4 5 6 7 8 9 10
-end
-
-# Borders and gaps
+EXTRA_MONITOR=$(xrandr -d $DISPLAY -q | grep ' connected' | awk '{print $1}' | grep -v '^eDP')
 bspc config border_width 2
-if string length $DOUBLE_MONITER
-    bspc config window_gap 12
+if [ "$EXTRA_MONITOR" == DP-1 ]; then
+  bspc monitor eDP-1 -d 7 8 9 10
+  bspc monitor DP-1 -d 1 2 3 4 5 6
+  bspc config window_gap 12
 else
-    bspc config window_gap 12
-end
+  bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+  bspc config window_gap 12
+fi
 
 bspc config split_ratio 0.5
 bspc config borderless_monocle true
@@ -35,7 +33,7 @@ bspc config active_border_color "#b7bdf8"
 bspc config focused_border_color "#c6a0f6"
 
 # Special window rules
-bspc config external_rules_command $HOME/.config/bspwm/scripts/external_rules.fish
+# bspc config external_rules_command $SCRIPTPATH/scripts/external_rules.fish
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
@@ -73,4 +71,4 @@ bspc rule -a bilibili state=floating
 bspc rule -a lx-music-desktop state=floating border=off
 
 # Autostart
-fish $SCRIPTS_DIR/autostart.fish
+$SCRIPTPATH/scripts/autostart.sh
