@@ -4,7 +4,7 @@ apps=(
   "xsettingsd"
   "fcitx5 -d"
   "/usr/libexec/polkit-gnome-authentication-agent-1"
-  "nitrogen --restore; sleep 1; picom -b"
+  "sleep 2; nitrogen --restore; sleep 1; picom -b"
   "nm-applet"
   "clipit"
   "blueman-applet"
@@ -19,10 +19,9 @@ apps=(
 )
 
 for value in "${apps[@]}"; do
-  echo $value
   isExist=$(ps -ef | grep "$value" | grep -v grep | wc -l)
   if [ $isExist == 0 ]; then
-    exec "$value" &
+    sh -c "$value" &
   fi
 done
 
