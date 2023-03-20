@@ -39,4 +39,15 @@ local muon = {
   }),
 }
 
+local caddy = {
+  name = "caddy",
+  method = null_ls.methods.FORMATTING,
+  filetypes = { "Caddyfile" },
+  generator = require("null-ls.helpers").formatter_factory({
+    command = "caddy",
+    args = { "fmt", "$FILENAME" },
+  }),
+}
+
 null_ls.register(muon)
+null_ls.register(caddy)
