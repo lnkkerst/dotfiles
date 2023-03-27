@@ -426,6 +426,17 @@ require("packer").startup(function(use)
     run = "cd app && pnpm install",
   })
   use({
+    "krivahtoo/silicon.nvim",
+    run = "./install.sh build",
+    config = function()
+      require("silicon").setup({
+        font = "JetbrainsMono Nerd Font",
+        theme = "Catppuccin-mocha",
+        line_number = true,
+      })
+    end,
+  })
+  use({
     "ellisonleao/glow.nvim",
     cmd = "Glow",
     config = function()
