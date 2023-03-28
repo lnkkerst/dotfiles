@@ -18,8 +18,6 @@ vim.g.loaded_netrwSettings = 1
 vim.g.loaded_netrwFileHandlers = 1
 vim.g.loaded_python3_provider = 1
 
-pcall(require, "impatient")
-
 vim.g.os = vim.loop.os_uname().sysname
 -- vim.g.open_command = "xdg-open"
 vim.g.mapleader = " "
