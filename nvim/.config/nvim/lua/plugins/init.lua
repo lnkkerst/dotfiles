@@ -34,7 +34,7 @@ require("lazy").setup({
     "akinsho/bufferline.nvim",
     version = "v3.*",
     event = "VimEnter",
-    dependencies = "kyazdani42/nvim-web-devicons",
+    dependencies = { "kyazdani42/nvim-web-devicons", "catppuccin/nvim" },
     config = function()
       require("plugins.bufferline")
     end,
@@ -81,9 +81,7 @@ require("lazy").setup({
   {
     "nvim-zh/colorful-winsep.nvim",
     event = "VimEnter",
-    config = function()
-      require("colorful-winsep").setup()
-    end,
+    config = true,
   },
   {
     "kevinhwang91/nvim-hlslens",
@@ -125,16 +123,6 @@ require("lazy").setup({
   },
   {
     "numToStr/Comment.nvim",
-    lazy = true,
-    keys = {
-      { "gc" },
-      { "gb" },
-      { "gc" },
-      { "gc" },
-      { "gc" },
-      { "gb" },
-      { "gc" },
-    },
     config = function()
       require("plugins.comment")
     end,
@@ -226,6 +214,7 @@ require("lazy").setup({
     config = function()
       require("fidget").setup({
         sources = { ["null-ls"] = { ignore = true } },
+        window = { blend = 0 },
       })
     end,
   },
@@ -310,16 +299,14 @@ require("lazy").setup({
   { "nvim-treesitter/nvim-treesitter-textobjects" },
   { "JoosepAlviste/nvim-ts-context-commentstring" },
   { "nvim-treesitter/nvim-treesitter-context" },
-  { "mrjones2014/nvim-ts-rainbow" },
+  { "HiPhish/nvim-ts-rainbow2" },
   {
     "windwp/nvim-ts-autotag",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   {
     "kylechui/nvim-surround",
-    config = function()
-      require("nvim-surround").setup()
-    end,
+    config = true,
   },
 
   {
@@ -387,9 +374,7 @@ require("lazy").setup({
   {
     "ellisonleao/glow.nvim",
     cmd = "Glow",
-    config = function()
-      require("glow").setup()
-    end,
+    config = true,
   },
   {
     "rcarriga/nvim-notify",
@@ -400,9 +385,7 @@ require("lazy").setup({
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPost", "BufNewFile" },
-    config = function()
-      require("gitsigns").setup()
-    end,
+    config = true,
   },
   {
     "TimUntersberger/neogit",
@@ -447,9 +430,7 @@ require("lazy").setup({
     "folke/todo-comments.nvim",
     event = "BufReadPost",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter" },
-    config = function()
-      require("todo-comments").setup()
-    end,
+    config = true,
   },
   {
     "aserowy/tmux.nvim",
@@ -460,9 +441,7 @@ require("lazy").setup({
   { "famiu/bufdelete.nvim" },
   {
     "stevearc/aerial.nvim",
-    config = function()
-      require("aerial").setup()
-    end,
+    config = true,
   },
 
   {
@@ -494,9 +473,10 @@ require("lazy").setup({
   },
 
   { "simrat39/rust-tools.nvim" },
-  { "nanotee/sqls.nvim" },
 
   { "nvim-lua/popup.nvim" },
+
+  { "eandrju/cellular-automaton.nvim", cmd = "CellularAutomaton" },
 }, {
   defaults = {},
   ui = { border = "single" },

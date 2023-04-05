@@ -5,10 +5,26 @@ require("catppuccin").setup({
     dark = "mocha",
   },
   transparent_background = false,
+  show_end_of_buffer = true,
   term_colors = false,
+  dim_inactive = {
+    enabled = true,
+    shade = "dark",
+    percentage = 0.15,
+  },
   styles = {
     comments = { "italic" },
     conditionals = { "italic" },
+    loops = {},
+    functions = {},
+    keywords = {},
+    strings = {},
+    variables = {},
+    numbers = {},
+    booleans = {},
+    properties = {},
+    types = {},
+    operators = {},
   },
   custom_highlights = function()
     return {
@@ -31,7 +47,7 @@ require("catppuccin").setup({
     noice = true,
     notify = true,
     treesitter_context = true,
-    ts_rainbow = true,
+    ts_rainbow2 = true,
     symbols_outline = {
       enabled = true,
     },
@@ -47,16 +63,16 @@ require("catppuccin").setup({
     },
     dap = {
       enabled = true,
-      enable_ui = true, -- enable nvim-dap-ui
+      enable_ui = true,
     },
     native_lsp = {
       enabled = true,
-      virtual_text = {
-        errors = { "italic" },
-        hints = { "italic" },
-        warnings = { "italic" },
-        information = { "italic" },
-      },
+      -- virtual_text = {
+      --   errors = { "italic" },
+      --   hints = { "italic" },
+      --   warnings = { "italic" },
+      --   information = { "italic" },
+      -- },
       underlines = {
         errors = { "underline" },
         hints = { "underline" },

@@ -23,7 +23,7 @@ vim.g.os = vim.loop.os_uname().sysname
 vim.g.mapleader = " "
 
 require("neovide")
-require("internal.packer_commands")
+-- require("internal.packer_commands")
 require("plugins")
 require("options")
 require("autocmd")

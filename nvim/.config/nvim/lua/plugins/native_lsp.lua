@@ -192,16 +192,11 @@ require("lspconfig").volar.setup({
     "typescriptreact",
     "vue",
     "json",
+    "sqlls",
   },
   init_options = {
     typescript = {
       tsdk = "/usr/lib/node_modules/typescript/lib",
     },
   },
-})
-
-require("lspconfig").sqls.setup({
-  on_attach = function(client, bufnr)
-    require("sqls").on_attach(client, bufnr)
-  end,
 })
