@@ -261,6 +261,7 @@ require("nvim-treesitter.configs").setup({
 -- Rainbow
 require("nvim-treesitter.configs").setup({
   rainbow = {
-    enable = true,
+    enable = false,
+    query = "rainbow-parens",
   },
 })

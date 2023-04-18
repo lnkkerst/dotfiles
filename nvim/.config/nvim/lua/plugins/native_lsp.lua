@@ -115,6 +115,7 @@ local servers = {
   "zls",
   "gopls",
   "lua_ls",
+  "prismals",
 }
 
 for _, server in ipairs(servers) do
@@ -124,19 +125,19 @@ for _, server in ipairs(servers) do
   })
 end
 
-lspconfig.ccls.setup({
-  on_attach = function(client, bufnr)
-    lsp_global_attach(client, bufnr)
-    lsp_format.on_attach(client)
-  end,
-  capabilities = global_capabilities,
-  root_dir = lspconfig.util.root_pattern(
-    "compile_commands.json",
-    ".ccls",
-    ".git",
-    ".clang-format"
-  ),
-})
+-- lspconfig.ccls.setup({
+--   on_attach = function(client, bufnr)
+--     lsp_global_attach(client, bufnr)
+--     lsp_format.on_attach(client)
+--   end,
+--   capabilities = global_capabilities,
+--   root_dir = lspconfig.util.root_pattern(
+--     "compile_commands.json",
+--     ".ccls",
+--     ".git",
+--     ".clang-format"
+--   ),
+-- })
 
 require("rust-tools").setup({
   server = {
@@ -145,25 +146,26 @@ require("rust-tools").setup({
   },
 })
 
--- require("clangd_extensions").setup({
---   server = {
---     on_attach = function(client, bufnr)
---       lsp_global_attach(client, bufnr)
---       lsp_format.on_attach(client)
---     end,
---     capabilities = global_capabilities,
---   },
--- })
---
--- lspconfig.jsonls.setup({
---   on_attach = lsp_global_attach,
---   capabilities = global_capabilities,
---   settings = {
---     json = {
---       schemas = require("schemastore").json.schemas(),
---     },
---   },
--- })
+require("clangd_extensions").setup({
+  server = {
+    on_attach = function(client, bufnr)
+      lsp_global_attach(client, bufnr)
+      lsp_format.on_attach(client)
+    end,
+    capabilities = global_capabilities,
+    cmd = { "clangd", "--enable-config" },
+  },
+})
+
+lspconfig.jsonls.setup({
+  on_attach = lsp_global_attach,
+  capabilities = global_capabilities,
+  settings = {
+    json = {
+      schemas = require("schemastore").json.schemas(),
+    },
+  },
+})
 
 local function get_typescript_server_path(root_dir)
   local global_ts =

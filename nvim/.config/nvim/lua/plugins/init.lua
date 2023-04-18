@@ -360,17 +360,17 @@ require("lazy").setup({
     ft = "markdown",
     build = "cd app && pnpm install",
   },
-  {
-    "krivahtoo/silicon.nvim",
-    build = "./install.sh build",
-    config = function()
-      require("silicon").setup({
-        font = "JetbrainsMono Nerd Font",
-        theme = "Catppuccin-mocha",
-        line_number = true,
-      })
-    end,
-  },
+  --  {
+  --    "krivahtoo/silicon.nvim",
+  --    build = "./install.sh build",
+  --    config = function()
+  --      require("silicon").setup({
+  --        font = "JetbrainsMono Nerd Font",
+  --        theme = "Catppuccin-mocha",
+  --        line_number = true,
+  --      })
+  --    end,
+  --  },
   {
     "ellisonleao/glow.nvim",
     cmd = "Glow",

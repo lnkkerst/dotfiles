@@ -7,11 +7,6 @@ require("catppuccin").setup({
   transparent_background = false,
   show_end_of_buffer = true,
   term_colors = false,
-  dim_inactive = {
-    enabled = true,
-    shade = "dark",
-    percentage = 0.15,
-  },
   styles = {
     comments = { "italic" },
     conditionals = { "italic" },
