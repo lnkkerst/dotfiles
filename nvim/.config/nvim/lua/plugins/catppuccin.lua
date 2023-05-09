@@ -5,7 +5,7 @@ require("catppuccin").setup({
     dark = "mocha",
   },
   transparent_background = false,
-  show_end_of_buffer = true,
+  show_end_of_buffer = false,
   term_colors = false,
   styles = {
     comments = { "italic" },

@@ -36,7 +36,7 @@ alias dstat='dstat -cdlmnpsy'
 alias py='python'
 alias :q='exit'
 alias :wq='exit'
-alias nv='WINIT_UNIX_BACKEND=x11 XCURSOR_SIZE=48 neovide --nofork --multigrid'
+alias nv='neovide --nofork'
 alias cp='cp -i'
 alias cpr='cp --reflink'
 alias fspb='curl -F "c=@-" "http://fars.ee/"'
@@ -67,11 +67,11 @@ end
 
 function proxy_env
     if test $argv[1] = on
-        set -gx all_proxy socks://127.0.0.1:20170
+        # set -gx all_proxy socks://127.0.0.1:20170
         set -gx http_proxy http://127.0.0.1:20171
         set -gx https_proxy http://127.0.0.1:20170
     else if test $argv[1] = off
-        set -e all_proxy
+        # set -e all_proxy
         set -e http_proxy
         set -e https_proxy
     else
@@ -139,3 +139,5 @@ end
 #     and not test -z $DISPLAY
 #     t
 # end
+
+source ~/.config/fish/secrets.fish

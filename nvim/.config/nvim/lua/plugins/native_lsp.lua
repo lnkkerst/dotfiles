@@ -25,6 +25,7 @@ vim.diagnostic.config({
 local lspconfig = require("lspconfig")
 
 local global_capabilities = require("cmp_nvim_lsp").default_capabilities()
+global_capabilities.offsetEncoding = { "utf-16" }
 global_capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true,
@@ -125,6 +126,18 @@ for _, server in ipairs(servers) do
   })
 end
 
+local servers_with_format = {}
+
+for _, server in ipairs(servers_with_format) do
+  lspconfig[server].setup({
+    on_attach = function(client, bufnr)
+      lsp_global_attach(client, bufnr)
+      lsp_format.on_attach(client)
+    end,
+    capabilities = global_capabilities,
+  })
+end
+
 -- lspconfig.ccls.setup({
 --   on_attach = function(client, bufnr)
 --     lsp_global_attach(client, bufnr)
@@ -143,6 +156,20 @@ require("rust-tools").setup({
   server = {
     on_attach = lsp_global_attach,
     capabilities = global_capabilities,
+    root_dir = function(filepath, bufnr)
+      local res = util.find_git_ancestor(filepath, bufnr)
+      if res then
+        return res
+      end
+      res = util.root_pattern("src-tauri")(filepath, bufnr)
+      if res then
+        return res
+      end
+      return util.root_pattern("Cargo.toml", "rust-project.json")(
+        filepath,
+        bufnr
+      )
+    end,
   },
 })
 

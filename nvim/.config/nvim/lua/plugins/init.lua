@@ -261,6 +261,25 @@ require("lazy").setup({
       require("plugins.cmp")
     end,
   },
+  {
+    "zbirenbaum/copilot.lua",
+    config = true,
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    dependencies = { "copilot.lua" },
+    config = true,
+  },
+  {
+    "dpayne/CodeGPT.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require("codegpt.config")
+    end,
+  },
 
   {
     "nvim-telescope/telescope.nvim",
@@ -360,17 +379,17 @@ require("lazy").setup({
     ft = "markdown",
     build = "cd app && pnpm install",
   },
-  --  {
-  --    "krivahtoo/silicon.nvim",
-  --    build = "./install.sh build",
-  --    config = function()
-  --      require("silicon").setup({
-  --        font = "JetbrainsMono Nerd Font",
-  --        theme = "Catppuccin-mocha",
-  --        line_number = true,
-  --      })
-  --    end,
-  --  },
+  {
+    "krivahtoo/silicon.nvim",
+    build = "./install.sh build",
+    config = function()
+      -- require("silicon").setup({
+      --   font = "JetbrainsMono Nerd Font",
+      --   theme = "Catppuccin-mocha",
+      --   line_number = true,
+      -- })
+    end,
+  },
   {
     "ellisonleao/glow.nvim",
     cmd = "Glow",
