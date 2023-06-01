@@ -1,7 +1,12 @@
 snippet codeforces use in codeforces
+	#pragma GCC optimize(2)
 	#include <iostream>
 	#include <algorithm>
 	#include <vector>
+	#include <map>
+	#include <set>
+	#include <unordered_map>
+	#include <unordered_set>
 	using namespace std;
 
 	void solve() {
@@ -9,6 +14,9 @@ snippet codeforces use in codeforces
 	}
 
 	int main() {
+		ios::sync_with_stdio(false);
+		cin.tie(nullptr);
+		cout.tie(nullptr);
 		int t;
 		cin >> t;
 		while(t--) {

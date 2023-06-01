@@ -32,7 +32,7 @@ global_capabilities.textDocument.foldingRange = {
 }
 global_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-_G.lsp_global_attach = function(_, bufnr)
+_G.lsp_global_attach = function(client, bufnr)
   wk.register({
     ["g"] = {
       ["d"] = { "<cmd>Lspsaga peek_definition<cr>", "Peek definition" },
@@ -79,6 +79,8 @@ _G.lsp_global_attach = function(_, bufnr)
   )
 
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+  require("lsp-inlayhints").on_attach(client, bufnr)
 end
 
 local configs = require("lspconfig.configs")
@@ -138,19 +140,50 @@ for _, server in ipairs(servers_with_format) do
   })
 end
 
--- lspconfig.ccls.setup({
---   on_attach = function(client, bufnr)
---     lsp_global_attach(client, bufnr)
---     lsp_format.on_attach(client)
---   end,
---   capabilities = global_capabilities,
---   root_dir = lspconfig.util.root_pattern(
---     "compile_commands.json",
---     ".ccls",
---     ".git",
---     ".clang-format"
---   ),
--- })
+lspconfig.tsserver.setup({
+  enabled = false,
+  on_attach = lsp_global_attach,
+  capabilities = global_capabilities,
+  settings = {
+    javascript = {
+      inlayHints = {
+        includeInlayEnumMemberValueHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayVariableTypeHints = true,
+      },
+    },
+    typescript = {
+      inlayHints = {
+        includeInlayEnumMemberValueHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayVariableTypeHints = true,
+      },
+    },
+  },
+})
+
+lspconfig.ccls.setup({
+  enabled = false,
+  on_attach = function(client, bufnr)
+    lsp_global_attach(client, bufnr)
+    lsp_format.on_attach(client)
+  end,
+  capabilities = global_capabilities,
+  root_dir = lspconfig.util.root_pattern(
+    "compile_commands.json",
+    ".ccls",
+    ".git",
+    ".clang-format"
+  ),
+})
 
 require("rust-tools").setup({
   server = {
@@ -171,6 +204,11 @@ require("rust-tools").setup({
       )
     end,
   },
+  tools = {
+    inlay_hints = {
+      auto = false,
+    },
+  },
 })
 
 require("clangd_extensions").setup({
@@ -181,6 +219,9 @@ require("clangd_extensions").setup({
     end,
     capabilities = global_capabilities,
     cmd = { "clangd", "--enable-config" },
+  },
+  extensions = {
+    autoSetHints = false,
   },
 })
 

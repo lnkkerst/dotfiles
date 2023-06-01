@@ -90,6 +90,25 @@ require("lazy").setup({
       require("plugins.hlslens")
     end,
   },
+  { "nvim-pack/nvim-spectre" },
+  {
+    "nvim-neorg/neorg",
+    build = ":Neorg sync-parsers",
+    opts = {
+      load = {
+        ["core.defaults"] = {}, -- Loads default behaviour
+        ["core.concealer"] = {}, -- Adds pretty icons to your documents
+        ["core.dirman"] = { -- Manages Neorg workspaces
+          config = {
+            workspaces = {
+              notes = "~/notes",
+            },
+          },
+        },
+      },
+    },
+    dependencies = { { "nvim-lua/plenary.nvim" } },
+  },
 
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -228,6 +247,7 @@ require("lazy").setup({
       require("plugins.null_ls")
     end,
   },
+  { "lvimuser/lsp-inlayhints.nvim", config = true, branch = "anticonceal" },
 
   {
     "hrsh7th/nvim-cmp",
@@ -261,15 +281,15 @@ require("lazy").setup({
       require("plugins.cmp")
     end,
   },
-  {
-    "zbirenbaum/copilot.lua",
-    config = true,
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    dependencies = { "copilot.lua" },
-    config = true,
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   config = true,
+  -- },
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   dependencies = { "copilot.lua" },
+  --   config = true,
+  -- },
   {
     "dpayne/CodeGPT.nvim",
     dependencies = {

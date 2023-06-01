@@ -11,12 +11,12 @@ null_ls.setup({
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.fish_indent,
     null_ls.builtins.formatting.eslint_d,
-    null_ls.builtins.formatting.markdownlint,
-    null_ls.builtins.formatting.markdown_toc,
+    -- null_ls.builtins.formatting.markdownlint,
+    -- null_ls.builtins.formatting.markdown_toc,
     null_ls.builtins.formatting.nginx_beautifier,
     null_ls.builtins.formatting.zigfmt,
     null_ls.builtins.formatting.gofmt,
-    null_ls.builtins.formatting.prismaFmt,
+    -- null_ls.builtins.formatting.prismaFmt,
     null_ls.builtins.formatting.cmake_format,
     null_ls.builtins.diagnostics.fish,
     -- null_ls.builtins.diagnostics.markdownlint,
@@ -51,5 +51,16 @@ local caddy = {
   }),
 }
 
+local prismaFmtLegacy = {
+  name = "prisma-fmt",
+  method = null_ls.methods.FORMATTING,
+  filetypes = { "prisma" },
+  generator = require("null-ls.helpers").formatter_factory({
+    command = "prisma-fmt",
+    args = { "format", "-i", "$FILENAME" },
+  }),
+}
+
 null_ls.register(muon)
 null_ls.register(caddy)
+null_ls.register(prismaFmtLegacy)

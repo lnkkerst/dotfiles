@@ -21,9 +21,14 @@ require("catppuccin").setup({
     types = {},
     operators = {},
   },
-  custom_highlights = function()
+  custom_highlights = function(colors)
     return {
       LspFloatWinNormal = { link = "Normal" },
+      LspInlayHint = {
+        fg = colors.overlay2,
+        bg = colors.surface0,
+        style = { "italic" },
+      },
     }
   end,
   integrations = {
