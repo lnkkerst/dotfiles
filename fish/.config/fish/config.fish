@@ -69,7 +69,7 @@ function proxy_env
     if test $argv[1] = on
         # set -gx all_proxy socks://127.0.0.1:20170
         set -gx http_proxy http://127.0.0.1:20171
-        set -gx https_proxy http://127.0.0.1:20170
+        set -gx https_proxy http://127.0.0.1:20171
     else if test $argv[1] = off
         # set -e all_proxy
         set -e http_proxy
