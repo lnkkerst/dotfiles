@@ -123,7 +123,7 @@ if type -f starship >/dev/null 2>/dev/null
 end
 
 # atuin
-if type -f fish >/dev/null 2>/dev/null
+if type -f atuin >/dev/null 2>/dev/null
     set -gx ATUIN_NOBIND true
     atuin init fish | source
     bind \cr _atuin_search
