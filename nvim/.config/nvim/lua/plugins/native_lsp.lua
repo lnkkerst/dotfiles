@@ -119,6 +119,7 @@ local servers = {
   "gopls",
   "lua_ls",
   "prismals",
+  "dartls",
 }
 
 for _, server in ipairs(servers) do

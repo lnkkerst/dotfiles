@@ -229,6 +229,7 @@ require("lazy").setup({
   },
   {
     "j-hui/fidget.nvim",
+    tag = "legacy",
     dependencies = "nvim-lspconfig",
     config = function()
       require("fidget").setup({

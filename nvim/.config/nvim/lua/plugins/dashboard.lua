@@ -17,13 +17,13 @@ dashboard.setup({
     },
     center = {
       {
-        icon = "  ",
+        icon = "󰈞  ",
         desc = "Find  File                                        ",
         action = "Telescope find_files",
         key = "<Leader> f f",
       },
       {
-        icon = "  ",
+        icon = "󱑂  ",
         desc = "Recently opened files",
         action = "Telescope frecency",
         key = "<Leader> f r",
@@ -41,7 +41,7 @@ dashboard.setup({
         key = "e",
       },
       {
-        icon = "  ",
+        icon = "󰗼  ",
         desc = "Quit Nvim",
         action = "qa",
         key = "q",
