@@ -61,4 +61,5 @@ fi
 
 # start wm
 export DESKTOP_SESSION=bspwm
+export XDG_CURRENT_DESKTOP=bspwm
 exec bspwm

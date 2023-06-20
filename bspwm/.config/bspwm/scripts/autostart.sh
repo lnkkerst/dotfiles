@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apps=(
-  "xsettingsd"
+  # "xsettingsd"
   "fcitx5 -d"
   "/usr/libexec/polkit-gnome-authentication-agent-1"
   "sleep 2; nitrogen --restore; sleep 1; picom -b"

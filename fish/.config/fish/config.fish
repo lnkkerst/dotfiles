@@ -25,6 +25,11 @@ set -gx FZF_DEFAULT_OPTS "\
     --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
     --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
+set -gx PUB_HOSTED_URL "https://mirrors.tuna.tsinghua.edu.cn/dart-pub"
+
+set -gx ANDROID_HOME $HOME/Android/Sdk
+set -gx NDK_HOME $ANDROID_HOME/ndk/25.2.9519653
+
 # Alias
 alias gitu='git add . && git commit && git push'
 alias trm='/bin/rm'
