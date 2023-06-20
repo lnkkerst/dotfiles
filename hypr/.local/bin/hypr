@@ -9,7 +9,8 @@ export QT_QPA_PLATFORM="wayland;xcb"
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-export GTK_THEME=Catppuccin-Mocha
+export GDK_BACKEND=wayland,x11
+export GTK_THEME=Catppuccin-Mocha-Standard-Blue-Dark
 export BEMENU_BACKEND=wayland
 
 export CLUTTER_BACKEND=wayland

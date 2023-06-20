@@ -9,5 +9,5 @@ profile {
 
 profile {
   output eDP-1 mode 2560x1600@60 position 2560,640 scale 2
-  output DP-1 mode 2560x1440@120 position 0,0 scale 1
+  output DP-1 mode 2560x1440@165 position 0,0 scale 1
 }

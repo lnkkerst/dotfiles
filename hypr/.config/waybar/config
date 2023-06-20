@@ -33,7 +33,7 @@
       "3:term": "",
       "4:work": "",
       "5:music": "",
-      "6:docs": "",
+      "6:docs": "󰈙",
       "urgent": "",
       "focused": "",
       "default": ""
@@ -83,8 +83,8 @@
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
-      "activated": "",
-      "deactivated": ""
+      "activated": "󰈈",
+      "deactivated": "󰈉"
     }
   },
   "tray": {
@@ -94,8 +94,8 @@
   "clock": {
     "timezone": "Asia/Shanghai",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d} ",
-    "format": "{:%H:%M} "
+    "format-alt": "{:%Y-%m-%d} ",
+    "format": "{:%H:%M} "
   },
   "cpu": {
     "format": "{usage}% ",
