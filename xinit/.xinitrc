@@ -44,7 +44,7 @@ source $HOME/.xprofile
 ## multi display support
 EXTRA_MONITOR=$(xrandr -d $DISPLAY -q | grep ' connected' | awk '{print $1}' | grep -v '^eDP')
 
-if [ "$EXTRA_MONITOR" == "DP-1" ]; then
+if [ "$EXTRA_MONITOR" == "DisplayPort-0" ]; then
   export ROFI_DPI=96
   export XCURSOR_SIZE=24
   xrandr --output HDMI-1 --off --output eDP-1 --mode 1440x900 --pos 2560x540 --rotate normal --output DP-1 --primary --mode 2560x1440 --pos 0x0 --rotate normal --rate 120 --output DP-2 --off
