@@ -64,12 +64,14 @@ require("lazy").setup({
   },
   {
     "stevearc/dressing.nvim",
+    enabled = true,
     config = function()
       require("plugins.dressing")
     end,
   },
   {
     "folke/noice.nvim",
+    enabled = false,
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
@@ -90,9 +92,10 @@ require("lazy").setup({
       require("plugins.hlslens")
     end,
   },
-  { "nvim-pack/nvim-spectre" },
+  { "nvim-pack/nvim-spectre", enabled = false },
   {
     "nvim-neorg/neorg",
+    enabled = false,
     build = ":Neorg sync-parsers",
     opts = {
       load = {
@@ -305,6 +308,7 @@ require("lazy").setup({
   {
     "nvim-telescope/telescope.nvim",
     cmd = { "Telescope", "Cheatsheet" },
+    lazy = true,
     dependencies = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -376,13 +380,14 @@ require("lazy").setup({
   },
   {
     "folke/which-key.nvim",
-    dependencies = "legendary.nvim",
+    -- dependencies = "legendary.nvim",
     config = function()
       require("plugins.which_key")
     end,
   },
   {
     "mrjones2014/legendary.nvim",
+    enabled = false,
     config = function()
       require("legendary").setup()
       local wk = require("which-key")
@@ -404,11 +409,11 @@ require("lazy").setup({
     "krivahtoo/silicon.nvim",
     build = "./install.sh build",
     config = function()
-      -- require("silicon").setup({
-      --   font = "JetbrainsMono Nerd Font",
-      --   theme = "Catppuccin-mocha",
-      --   line_number = true,
-      -- })
+      require("silicon").setup({
+        font = "JetbrainsMono Nerd Font",
+        theme = "Catppuccin-mocha",
+        line_number = true,
+      })
     end,
   },
   {
@@ -435,12 +440,17 @@ require("lazy").setup({
   {
     "sindrets/diffview.nvim",--[[  cmd = "Diffview*" ]]
   },
-  { "sbdchd/neoformat", cmd = "Neoformat" },
+  {
+    "sbdchd/neoformat",
+    cmd = "Neoformat",
+    config = true,
+  },
   { "gpanders/editorconfig.nvim" },
   {
     "ahmedkhalf/project.nvim",
     config = function()
       require("project_nvim").setup({
+        manual_mode = true,
         ignore_lsp = { "null-ls" },
       })
     end,
@@ -468,6 +478,7 @@ require("lazy").setup({
   },
   {
     "folke/todo-comments.nvim",
+    enabled = false,
     event = "BufReadPost",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter" },
     config = true,
@@ -477,10 +488,12 @@ require("lazy").setup({
     config = function()
       require("plugins.tmux")
     end,
+    cond = not vim.g.vscode,
   },
   { "famiu/bufdelete.nvim" },
   {
     "stevearc/aerial.nvim",
+    cmd = { "AerialToggle" },
     config = true,
   },
 
@@ -516,7 +529,10 @@ require("lazy").setup({
 
   { "nvim-lua/popup.nvim" },
 
-  { "eandrju/cellular-automaton.nvim", cmd = "CellularAutomaton" },
+  {
+    "eandrju/cellular-automaton.nvim",
+    cmd = "CellularAutomaton",
+  },
 }, {
   defaults = {},
   ui = { border = "single" },

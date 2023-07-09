@@ -12,7 +12,6 @@ local function create_augroups(augroups)
 end
 
 local augroups = {
-  packer = {},
   bufs = {
     -- Reload vim config automatically
     {
