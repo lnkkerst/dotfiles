@@ -102,6 +102,7 @@ cmp.setup({
     { name = "emoji", insert = true, priority = 0 },
     { name = "fish" },
     { name = "nvim_lsp_signature_help", priority = 110 },
+    { name = "crates" },
   },
   completion = {
     keyword_length = 1,

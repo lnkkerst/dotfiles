@@ -547,6 +547,13 @@ require("lazy").setup({
   },
 
   { "simrat39/rust-tools.nvim" },
+  {
+    "Saecki/crates.nvim",
+    event = "BufRead Cargo.toml",
+    config = function()
+      require("plugins.crates")
+    end,
+  },
 
   { "nvim-lua/popup.nvim" },
 

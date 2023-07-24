@@ -34,12 +34,25 @@ local lazygit = Terminal:new({
   direction = "float",
 })
 
-function _G._toggleterm_lazygit_toggle()
+vim.api.nvim_create_user_command("Lazygit", function()
   lazygit:toggle()
-end
+end, {})
 
-vim.api.nvim_create_user_command(
-  "Lazygit",
-  "lua _toggleterm_lazygit_toggle()",
-  {}
-)
+local floatterm = Terminal:new({
+  hidden = true,
+  direction = "float",
+})
+
+vim.api.nvim_create_user_command("FloatTerm", function()
+  floatterm:toggle()
+end, {})
+
+local ranger = Terminal:new({
+  cmd = "ranger",
+  hidden = true,
+  direction = "float",
+})
+
+vim.api.nvim_create_user_command("Ranger", function()
+  ranger:toggle()
+end, {})

@@ -186,7 +186,9 @@ lspconfig.ccls.setup({
   ),
 })
 
-require("rust-tools").setup({
+local rt = require("rust-tools")
+
+rt.setup({
   server = {
     on_attach = lsp_global_attach,
     capabilities = global_capabilities,
@@ -208,6 +210,10 @@ require("rust-tools").setup({
   tools = {
     inlay_hints = {
       auto = false,
+    },
+    hover_actions = {
+      auto_focus = true,
+      border = "single",
     },
   },
 })
