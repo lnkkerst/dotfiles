@@ -94,6 +94,7 @@ require("lualine").setup({
         icon = " LSP:",
         -- color = { fg = "#ffffff", gui = "bold" },
       },
+      { require("codegpt").get_status },
     },
     lualine_x = {
       {

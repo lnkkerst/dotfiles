@@ -219,8 +219,8 @@ require("lazy").setup({
     config = true,
   },
   {
-    "glepnir/lspsaga.nvim",
-    branch = "main",
+    "nvimdev/lspsaga.nvim",
+    -- branch = "main",
     dependencies = { "nvim-lspconfig" },
     config = function()
       require("plugins.lspsaga")
@@ -302,6 +302,12 @@ require("lazy").setup({
     },
     config = function()
       require("codegpt.config")
+      vim.g["codegpt_commands"] = {
+        -- ["doc"] = {
+        --   model = "gpt-3.5-turbo-16k",
+        --   max_tokens = 16384,
+        -- },
+      }
     end,
   },
 
@@ -443,7 +449,6 @@ require("lazy").setup({
   {
     "sbdchd/neoformat",
     cmd = "Neoformat",
-    config = true,
   },
   { "gpanders/editorconfig.nvim" },
   {
@@ -477,6 +482,12 @@ require("lazy").setup({
     end,
   },
   {
+    "junegunn/fzf",
+    build = function()
+      vim.fn["fzf#install"]()
+    end,
+  },
+  {
     "folke/todo-comments.nvim",
     enabled = false,
     event = "BufReadPost",
@@ -495,6 +506,16 @@ require("lazy").setup({
     "stevearc/aerial.nvim",
     cmd = { "AerialToggle" },
     config = true,
+  },
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-treesitter/nvim-treesitter" },
+    },
+    config = function()
+      require("plugins.refactoring")
+    end,
   },
 
   {

@@ -15,7 +15,7 @@ end
 
 vim.diagnostic.config({
   signs = true,
-  update_in_insert = true,
+  update_in_insert = false,
   underline = false,
   severity_sort = true,
   -- virtual_text = true,
@@ -36,7 +36,7 @@ _G.lsp_global_attach = function(client, bufnr)
   wk.register({
     ["g"] = {
       ["d"] = { "<cmd>Lspsaga peek_definition<cr>", "Peek definition" },
-      ["h"] = { "<cmd>Lspsaga lsp_finder<cr>", "Lsp finder" },
+      ["h"] = { "<cmd>Lspsaga finder<cr>", "Lsp finder" },
     },
     ["]d"] = {
       "<cmd>Lspsaga diagnostic_jump_next<cr>",
@@ -48,7 +48,7 @@ _G.lsp_global_attach = function(client, bufnr)
     },
     ["]D"] = {
       function()
-        require("lspsaga.diagnostic").goto_next({
+        require("lspsaga.diagnostic"):goto_next({
           severity = vim.diagnostic.severity.ERROR,
         })
       end,
@@ -56,7 +56,7 @@ _G.lsp_global_attach = function(client, bufnr)
     },
     ["[D"] = {
       function()
-        require("lspsaga.diagnostic").goto_prev({
+        require("lspsaga.diagnostic"):goto_prev({
           severity = vim.diagnostic.severity.ERROR,
         })
       end,
@@ -106,7 +106,6 @@ configs["unocss"] = {
 }
 
 local servers = {
-  "pyright",
   "html",
   "eslint",
   "cssls",
@@ -120,6 +119,7 @@ local servers = {
   "lua_ls",
   "prismals",
   "dartls",
+  "taplo",
 }
 
 for _, server in ipairs(servers) do
@@ -142,7 +142,7 @@ for _, server in ipairs(servers_with_format) do
 end
 
 lspconfig.tsserver.setup({
-  enabled = false,
+  enabled = true,
   on_attach = lsp_global_attach,
   capabilities = global_capabilities,
   settings = {
@@ -253,7 +253,8 @@ local function get_typescript_server_path(root_dir)
   end
 end
 
-require("lspconfig").volar.setup({
+lspconfig.volar.setup({
+  enabled = false,
   on_attach = lsp_global_attach,
   capabilities = global_capabilities,
   filetypes = {
@@ -268,6 +269,23 @@ require("lspconfig").volar.setup({
   init_options = {
     typescript = {
       tsdk = "/usr/lib/node_modules/typescript/lib",
+    },
+  },
+})
+
+lspconfig.pyright.setup({
+  on_attach = lsp_global_attach,
+  capabilities = global_capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = false,
+        useLibraryCodeForTypes = false,
+        diagnosticMode = "openFilesOnly",
+      },
     },
   },
 })

@@ -41,7 +41,7 @@ saga.setup({
   },
 })
 
-vim.wo.winbar = require("lspsaga.symbolwinbar"):get_winbar()
+-- vim.wo.winbar = require("lspsaga.symbolwinbar"):get_winbar()
 
 -- local function get_file_name(include_path)
 --   local file_name = require("lspsaga.symbolwinbar").get_file_name()
