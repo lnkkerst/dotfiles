@@ -192,6 +192,7 @@ require("lazy").setup({
       require("leap").add_default_mappings()
     end,
   },
+  { "phaazon/hop.nvim", config = true },
   {
     "ggandor/flit.nvim",
     config = true,
