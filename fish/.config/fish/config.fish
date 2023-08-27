@@ -16,7 +16,7 @@ set -gx TERMINAL kitty
 set -gx EDITOR nvim
 set -gx PAGER less
 set -gx nvm_default_version v16.14.2
-set -gx JAVA_HOME /usr/lib/jvm/java-18-jdk
+set -gx JAVA_HOME /usr/lib/jvm/default
 set -gx HASTE_SERVER https://pb.lnkkerst.me
 set -gx LOCALE_ARCHIVE $HOME/.nix-profile/lib/locale/locale-archive
 set -gx GOPROXY https://mirrors.aliyun.com/goproxy/,direct
@@ -30,6 +30,13 @@ set -gx PUB_HOSTED_URL "https://mirrors.tuna.tsinghua.edu.cn/dart-pub"
 
 set -gx ANDROID_HOME $HOME/Android/Sdk
 set -gx NDK_HOME $ANDROID_HOME/ndk/25.2.9519653
+
+# Flutter
+set -gx PUB_HOSTED_URL https://pub.flutter-io.cn
+set -gx FLUTTER_STORAGE_BASE_URL https://storage.flutter-io.cn
+set -gx CHROME_EXECUTABLE google-chrome-stable
+fish_add_path -g /opt/flutter/bin
+
 
 # Alias
 alias gitu='git add . && git commit && git push'
@@ -94,7 +101,6 @@ end
 
 # fnm
 if type -f fnm >/dev/null 2>/dev/null
-    fish_add_path -g $HOME/.cargo/bin
     fnm env --use-on-cd --shell fish | source
     fnm completions --shell fish | source
 end

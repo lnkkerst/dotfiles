@@ -15,9 +15,9 @@ pgrep -x sxhkd >/dev/null || sxhkd &
 # Multi-monitor support
 EXTRA_MONITOR=$(xrandr -d $DISPLAY -q | grep ' connected' | awk '{print $1}' | grep -v '^eDP')
 bspc config border_width 2
-if [ "$EXTRA_MONITOR" == DP-1 ]; then
-  bspc monitor eDP-1 -d 7 8 9 10
-  bspc monitor DP-1 -d 1 2 3 4 5 6
+if [ -n "$EXTRA_MONITOR" ]; then
+  bspc monitor eDP -d 7 8 9 10
+  bspc monitor "$EXTRA_MONITOR" -d 1 2 3 4 5 6
   bspc config window_gap 12
 else
   bspc monitor -d 1 2 3 4 5 6 7 8 9 10
