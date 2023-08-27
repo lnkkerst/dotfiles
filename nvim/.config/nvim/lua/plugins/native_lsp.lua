@@ -107,7 +107,6 @@ configs["unocss"] = {
 
 local servers = {
   "html",
-  "eslint",
   "cssls",
   "stylelint_lsp",
   "cmake",
@@ -232,6 +231,14 @@ require("clangd_extensions").setup({
   },
 })
 
+lspconfig.clangd.setup({
+  on_attach = function(client, bufnr)
+    lsp_global_attach(client, bufnr)
+    lsp_format.on_attach(client, bufnr)
+  end,
+  capabilities = global_capabilities,
+})
+
 lspconfig.jsonls.setup({
   on_attach = lsp_global_attach,
   capabilities = global_capabilities,
@@ -260,17 +267,17 @@ local function get_typescript_server_path(root_dir)
 end
 
 lspconfig.volar.setup({
-  enabled = false,
+  enabled = true,
   on_attach = lsp_global_attach,
   capabilities = global_capabilities,
   filetypes = {
-    "typescript",
-    "javascript",
-    "javascriptreact",
-    "typescriptreact",
+    -- "typescript",
+    -- "javascript",
+    -- "javascriptreact",
+    -- "typescriptreact",
     "vue",
-    "json",
-    "sqlls",
+    -- "json",
+    -- "sqlls",
   },
   init_options = {
     typescript = {
@@ -287,11 +294,19 @@ lspconfig.pyright.setup({
   },
   settings = {
     python = {
-      analysis = {
-        autoSearchPaths = false,
-        useLibraryCodeForTypes = false,
-        diagnosticMode = "openFilesOnly",
-      },
+      -- analysis = {
+      --   autoSearchPaths = false,
+      --   useLibraryCodeForTypes = false,
+      --   diagnosticMode = "openFilesOnly",
+      -- },
     },
   },
+})
+
+lspconfig.eslint.setup({
+  on_attach = function(client, bufnr)
+    lsp_global_attach(client, bufnr)
+    lsp_format.on_attach(client)
+  end,
+  capabilities = global_capabilities,
 })

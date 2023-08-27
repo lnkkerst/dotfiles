@@ -5,6 +5,7 @@ null_ls.setup({
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.dprint,
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.taplo,
     -- null_ls.builtins.formatting.autopep8,

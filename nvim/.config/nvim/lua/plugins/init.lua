@@ -245,14 +245,20 @@ require("lazy").setup({
   { "b0o/schemastore.nvim" },
   { "p00f/clangd_extensions.nvim" },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "mskelton/null-ls.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     event = "BufReadPre",
     config = function()
       require("plugins.null_ls")
     end,
   },
-  { "lvimuser/lsp-inlayhints.nvim", config = true, branch = "anticonceal" },
+  {
+    "lvimuser/lsp-inlayhints.nvim",
+    config = function()
+      require("plugins.inlayhints")
+    end,
+    branch = "anticonceal",
+  },
 
   {
     "hrsh7th/nvim-cmp",
@@ -304,10 +310,10 @@ require("lazy").setup({
     config = function()
       require("codegpt.config")
       vim.g["codegpt_commands"] = {
-        -- ["doc"] = {
-        --   model = "gpt-3.5-turbo-16k",
-        --   max_tokens = 16384,
-        -- },
+        ["doc"] = {
+          model = "gpt-3.5-turbo-16k",
+          max_tokens = 16384,
+        },
       }
     end,
   },
@@ -413,6 +419,7 @@ require("lazy").setup({
     build = "cd app && pnpm install",
   },
   {
+    enabled = false,
     "krivahtoo/silicon.nvim",
     build = "./install.sh build",
     config = function()
