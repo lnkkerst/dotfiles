@@ -3,7 +3,7 @@
 apps=(
   # "xsettingsd"
   "fcitx5 -d"
-  "/usr/libexec/polkit-gnome-authentication-agent-1"
+  "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
   "sleep 2; nitrogen --restore; sleep 1; picom -b"
   "nm-applet"
   "clipit"

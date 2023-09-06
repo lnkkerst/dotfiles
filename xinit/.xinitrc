@@ -47,12 +47,10 @@ EXTRA_MONITOR=$(xrandr -d $DISPLAY -q | grep ' connected' | awk '{print $1}' | g
 if [ -n "$EXTRA_MONITOR" ]; then
   export ROFI_DPI=96
   export XCURSOR_SIZE=24
-  if [ "$EXTRA_MONITOR" == DisplayPort-0 ]; then
-    xrandr --output eDP --mode 1440x900 --pos 2560x540 --rotate normal
-    xrandr --output ${EXTRA_MONITOR} --primary --mode 2560x1440 --pos 0x0 --rotate normal --rate 120
+  if [ "$EXTRA_MONITOR" == "DisplayPort-0" ]; then
+    xrandr --output eDP --mode 1440x900 --pos 2560x540 --rotate normal --output ${EXTRA_MONITOR} --primary --mode 2560x1440 --pos 0x0 --rotate normal --rate 120
   else
-    xrandr --output eDP --mode 1440x900 --pos 1920x180 --rotate normal
-    xrandr --output ${EXTRA_MONITOR} --primary --mode 1920x1080 --pos 0x0 --rotate normal --rate 120
+    xrandr --output eDP --mode 1440x900 --pos 1920x180 --rotate normal --output ${EXTRA_MONITOR} --primary --mode 1920x1080 --pos 0x0 --rotate normal --rate 120
   fi
 else
   echo "Xft.dpi: 192" | xrdb -merge
