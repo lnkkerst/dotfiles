@@ -17,7 +17,6 @@ null_ls.setup({
     null_ls.builtins.formatting.nginx_beautifier,
     null_ls.builtins.formatting.zigfmt,
     null_ls.builtins.formatting.gofmt,
-    null_ls.builtins.formatting.prismaFmt,
     null_ls.builtins.formatting.cmake_format,
     null_ls.builtins.formatting.dart_format,
     null_ls.builtins.diagnostics.fish,

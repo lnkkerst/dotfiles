@@ -257,7 +257,7 @@ require("lazy").setup({
     config = function()
       require("plugins.inlayhints")
     end,
-    branch = "anticonceal",
+    -- branch = "anticonceal",
   },
 
   {
