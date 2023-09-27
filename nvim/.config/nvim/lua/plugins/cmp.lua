@@ -100,7 +100,6 @@ cmp.setup({
     { name = "buffer", keyword_length = 3, priority = 10 },
     { name = "path", priority = 50 },
     { name = "emoji", insert = true, priority = 0 },
-    { name = "fish" },
     { name = "nvim_lsp_signature_help", priority = 110 },
     { name = "crates" },
   },

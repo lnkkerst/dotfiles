@@ -58,6 +58,7 @@ require("lazy").setup({
   },
   {
     "folke/trouble.nvim",
+    enabled = false,
     cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
     dependencies = "kyazdani42/nvim-web-devicons",
     config = true,
@@ -233,6 +234,7 @@ require("lazy").setup({
   },
   {
     "j-hui/fidget.nvim",
+    enabled = false,
     tag = "legacy",
     dependencies = "nvim-lspconfig",
     config = function()
@@ -245,7 +247,7 @@ require("lazy").setup({
   { "b0o/schemastore.nvim" },
   { "p00f/clangd_extensions.nvim" },
   {
-    "mskelton/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     event = "BufReadPre",
     config = function()
@@ -271,7 +273,6 @@ require("lazy").setup({
       { "hrsh7th/cmp-cmdline" },
       { "hrsh7th/cmp-nvim-lsp-signature-help" },
       { "hrsh7th/cmp-emoji" },
-      { "mtoohey31/cmp-fish" },
       { "onsails/lspkind.nvim" },
       {
         "saadparwaiz1/cmp_luasnip",
@@ -327,9 +328,8 @@ require("lazy").setup({
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       {
         "nvim-telescope/telescope-frecency.nvim",
-        dependencies = { "tami5/sqlite.lua" },
+        dependencies = { "kkharji/sqlite.lua" },
       },
-      { "nvim-telescope/telescope-media-files.nvim" },
     },
     config = function()
       require("plugins.telescope")
@@ -337,6 +337,7 @@ require("lazy").setup({
   },
   {
     "sudormrfbin/cheatsheet.nvim",
+    enabled = false,
     cmd = { "Cheatsheet" },
     dependencies = {
       { "nvim-telescope/telescope.nvim" },
@@ -357,10 +358,7 @@ require("lazy").setup({
   { "JoosepAlviste/nvim-ts-context-commentstring" },
   { "nvim-treesitter/nvim-treesitter-context" },
   { "HiPhish/nvim-ts-rainbow2" },
-  {
-    "windwp/nvim-ts-autotag",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-  },
+  { "windwp/nvim-ts-autotag" },
   {
     "kylechui/nvim-surround",
     config = true,
@@ -419,19 +417,24 @@ require("lazy").setup({
     build = "cd app && pnpm install",
   },
   {
-    enabled = false,
     "krivahtoo/silicon.nvim",
+    enabled = false,
     build = "./install.sh build",
     config = function()
       require("silicon").setup({
-        font = "JetbrainsMono Nerd Font",
+        font = "JetbrainsMono NF",
         theme = "Catppuccin-mocha",
         line_number = true,
+        output = {
+          clipboard = true,
+          path = "",
+        },
       })
     end,
   },
   {
     "ellisonleao/glow.nvim",
+    enabled = false,
     cmd = "Glow",
     config = true,
   },
@@ -447,9 +450,10 @@ require("lazy").setup({
     config = true,
   },
   {
-    "TimUntersberger/neogit",
+    "NeogitOrg/neogit",
     dependencies = "nvim-lua/plenary.nvim",
     cmd = "Neogit",
+    config = true,
   },
   {
     "sindrets/diffview.nvim",--[[  cmd = "Diffview*" ]]

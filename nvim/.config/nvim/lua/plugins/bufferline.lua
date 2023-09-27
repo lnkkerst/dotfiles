@@ -31,11 +31,12 @@ wk.register({
   -- ["<A-S-k>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
   ["<A-S-j>"] = { "<cmd>BufferLineMoveNext<cr>", "BufferLineMoveNext" },
   ["<A-S-k>"] = { "<cmd>BufferLineMovePrev<cr>", "BufferLineMovePrev" },
-  ["<M-n>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
-  ["<M-p>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
-  ["<M-Tab>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
-  ["<M-S-Tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
+  ["<A-n>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
+  ["<A-p>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
+  ["<A-Tab>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
+  ["<A-S-Tab>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
   ["<S-q>"] = { "<cmd>Bdelete<cr>", "Bufdelete" },
+  ["<C-q>"] = { "<cmd>:q<cr>", "Close window" },
 })
 wk.register({
   ["b"] = {

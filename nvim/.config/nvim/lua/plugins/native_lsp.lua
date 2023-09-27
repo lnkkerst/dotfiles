@@ -24,13 +24,20 @@ vim.diagnostic.config({
 -- Lspconfig
 local lspconfig = require("lspconfig")
 
-local global_capabilities = require("cmp_nvim_lsp").default_capabilities()
+local global_capabilities = vim.lsp.protocol.make_client_capabilities()
+require("cmp_nvim_lsp").default_capabilities()
 global_capabilities.offsetEncoding = { "utf-16" }
 global_capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true,
 }
+vim.tbl_deep_extend(
+  "force",
+  global_capabilities,
+  require("cmp_nvim_lsp").default_capabilities()
+)
 global_capabilities.textDocument.completion.completionItem.snippetSupport = true
+global_capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 
 _G.lsp_global_attach = function(client, bufnr)
   wk.register({
@@ -119,6 +126,7 @@ local servers = {
   "prismals",
   "dartls",
   "taplo",
+  "sqlls",
 }
 
 for _, server in ipairs(servers) do
