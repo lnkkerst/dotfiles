@@ -32,7 +32,6 @@ require("lazy").setup({
   },
   {
     "akinsho/bufferline.nvim",
-    version = "v3.*",
     event = "VimEnter",
     dependencies = { "kyazdani42/nvim-web-devicons", "catppuccin/nvim" },
     config = function()
@@ -355,9 +354,10 @@ require("lazy").setup({
     end,
   },
   { "nvim-treesitter/nvim-treesitter-textobjects" },
+  { "RRethy/nvim-treesitter-textsubjects" },
   { "JoosepAlviste/nvim-ts-context-commentstring" },
   { "nvim-treesitter/nvim-treesitter-context" },
-  { "HiPhish/nvim-ts-rainbow2" },
+  { "HiPhish/rainbow-delimiters.nvim" },
   { "windwp/nvim-ts-autotag" },
   {
     "kylechui/nvim-surround",

@@ -3,6 +3,7 @@ fish_add_path -g $HOME/.cargo/bin
 fish_add_path -g $HOME/.local/bin
 # fish_add_path -g $HOME/.pyenv/bin
 fish_add_path -g $HOME/.bun/bin
+fish_add_path -g $HOME/.nix-profile/bin
 
 if not status is-interactive
     return
@@ -18,7 +19,7 @@ set -gx PAGER less
 set -gx nvm_default_version v16.14.2
 set -gx JAVA_HOME /usr/lib/jvm/default
 set -gx HASTE_SERVER https://pb.lnkkerst.me
-set -gx LOCALE_ARCHIVE $HOME/.nix-profile/lib/locale/locale-archive
+# set -gx LOCALE_ARCHIVE $HOME/.nix-profile/lib/locale/locale-archive
 set -gx GOPROXY https://mirrors.aliyun.com/goproxy/,direct
 
 set -gx FZF_DEFAULT_OPTS "\

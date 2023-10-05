@@ -47,7 +47,7 @@ require("catppuccin").setup({
     noice = true,
     notify = true,
     treesitter_context = true,
-    ts_rainbow2 = true,
+    rainbow_delimiters = true,
     symbols_outline = {
       enabled = true,
     },
@@ -59,6 +59,7 @@ require("catppuccin").setup({
     illuminate = true,
     indent_blankline = {
       enabled = true,
+      scope_color = "lavender",
       colored_indent_levels = true,
     },
     dap = {

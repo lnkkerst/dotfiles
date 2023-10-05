@@ -1,6 +1,6 @@
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_SELECT=5
-export GTK_THEME=Catppuccin-Mocha-Standard-Blue-dark
+export GTK_THEME=Catppuccin-Mocha-Standard-Blue-Dark
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 #export PULSE_LATENCY_MSEC=21
 

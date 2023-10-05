@@ -26,7 +26,7 @@ super + Escape
 Print
   PIC_FILE=$(date +"$HOME/Pictures/maim/%Y-%m-%d-%H%M%S-%s.png") && maim $PIC_FILE && notify-send "Screenshot has saved to $PIC_FILE"
 shift + Print
-  PIC_FILE=$(date +"$HOME/Pictures/maim/%Y-%m-%d-%H%M%S-%s.png") && maim -s $PIC_FILE && xclip -selection clipboard -t image/png $PIC_FILE && notify-send "Screenshot has sent to clipboard"
+  PIC_FILE=$(date +"$HOME/Pictures/maim/%Y-%m-%d-%H%M%S-%s.png") && maim -s -u $PIC_FILE && xclip -selection clipboard -t image/png $PIC_FILE && notify-send "Screenshot has sent to clipboard"
 
 super + 0
   bash $HOME/.config/bspwm/scripts/rofi/powermenu.sh
