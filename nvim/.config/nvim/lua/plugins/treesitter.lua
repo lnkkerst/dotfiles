@@ -9,7 +9,7 @@ require("nvim-treesitter.configs").setup({
   auto_install = true,
 
   highlight = {
-    enable = false,
+    enable = true,
     additional_vim_regex_highlighting = false,
     disable = function(_, buf)
       local max_filesize = 100 * 1024
