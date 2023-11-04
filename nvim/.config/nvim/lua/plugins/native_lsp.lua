@@ -127,6 +127,7 @@ local servers = {
   "dartls",
   "taplo",
   "sqlls",
+  "csharp_ls",
 }
 
 for _, server in ipairs(servers) do

@@ -19,6 +19,7 @@ null_ls.setup({
     null_ls.builtins.formatting.gofmt,
     null_ls.builtins.formatting.cmake_format,
     null_ls.builtins.formatting.dart_format,
+    null_ls.builtins.formatting.csharpier,
     null_ls.builtins.diagnostics.fish,
     -- null_ls.builtins.diagnostics.markdownlint,
     null_ls.builtins.diagnostics.tidy,
