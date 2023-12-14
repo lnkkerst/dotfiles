@@ -171,12 +171,13 @@ require("nvim-treesitter.configs").setup({
 })
 
 -- Commentstring
-require("nvim-treesitter.configs").setup({
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
-})
+-- require("nvim-treesitter.configs").setup({
+--   context_commentstring = {
+--     enable = true,
+--     enable_autocmd = false,
+--   },
+-- })
+require("ts_context_commentstring").setup({})
 
 -- Autotag
 require("nvim-treesitter.configs").setup({

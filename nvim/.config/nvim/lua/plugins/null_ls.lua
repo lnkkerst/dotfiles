@@ -11,7 +11,7 @@ null_ls.setup({
     -- null_ls.builtins.formatting.autopep8,
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.fish_indent,
-    null_ls.builtins.formatting.eslint_d,
+    -- null_ls.builtins.formatting.eslint_d,
     -- null_ls.builtins.formatting.markdownlint,
     -- null_ls.builtins.formatting.markdown_toc,
     null_ls.builtins.formatting.nginx_beautifier,
@@ -20,6 +20,8 @@ null_ls.setup({
     null_ls.builtins.formatting.cmake_format,
     null_ls.builtins.formatting.dart_format,
     null_ls.builtins.formatting.csharpier,
+    -- null_ls.builtins.formatting.stylish_haskell,
+    null_ls.builtins.formatting.fourmolu,
     null_ls.builtins.diagnostics.fish,
     -- null_ls.builtins.diagnostics.markdownlint,
     null_ls.builtins.diagnostics.tidy,
@@ -65,4 +67,4 @@ local prismaFmtLegacy = {
 
 null_ls.register(muon)
 null_ls.register(caddy)
--- null_ls.register(prismaFmtLegacy)
+null_ls.register(prismaFmtLegacy)

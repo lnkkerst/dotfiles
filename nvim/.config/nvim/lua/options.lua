@@ -1,7 +1,7 @@
 local options = {
   termguicolors = true,
   mouse = "a",
-  errorbells = true,
+  errorbells = false,
   visualbell = true,
   hidden = true,
   fileformats = "unix,mac,dos",
@@ -73,7 +73,6 @@ local options = {
   winblend = 10,
   autoread = true,
   autowrite = true,
-
   undofile = true,
   synmaxcol = 2500,
   formatoptions = "1jcroql",
@@ -94,6 +93,7 @@ local options = {
   conceallevel = 0,
   concealcursor = "niv",
 }
+
 local globals = {
   mapleader = " ",
   speeddating_no_mappings = 1,

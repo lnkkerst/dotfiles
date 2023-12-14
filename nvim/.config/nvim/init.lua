@@ -22,9 +22,9 @@ vim.g.os = vim.loop.os_uname().sysname
 -- vim.g.open_command = "xdg-open"
 vim.g.mapleader = " "
 
+require("options")
 require("neovide")
 -- require("internal.packer_commands")
 require("plugins")
-require("options")
 require("autocmd")
 require("keymap")

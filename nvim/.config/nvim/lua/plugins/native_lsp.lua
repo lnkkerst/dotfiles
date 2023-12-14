@@ -1,31 +1,27 @@
-local wk = require("which-key")
 local lsp_format = require("lsp-format")
 local util = require("lspconfig.util")
 
-local signs = {
-  Error = " ",
-  Warn = " ",
-  Info = " ",
-  Hint = " ",
-}
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
 vim.diagnostic.config({
-  signs = true,
-  update_in_insert = false,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN] = " ",
+      [vim.diagnostic.severity.INFO] = " ",
+      [vim.diagnostic.severity.HINT] = " ",
+    },
+  },
+  update_in_insert = true,
   underline = false,
   severity_sort = true,
-  -- virtual_text = true,
+  virtual_text = {
+    source = false,
+  },
 })
 
 -- Lspconfig
 local lspconfig = require("lspconfig")
 
 local global_capabilities = vim.lsp.protocol.make_client_capabilities()
-require("cmp_nvim_lsp").default_capabilities()
 global_capabilities.offsetEncoding = { "utf-16" }
 global_capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
@@ -40,77 +36,32 @@ global_capabilities.textDocument.completion.completionItem.snippetSupport = true
 global_capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 
 _G.lsp_global_attach = function(client, bufnr)
-  wk.register({
-    ["g"] = {
-      ["d"] = { "<cmd>Lspsaga peek_definition<cr>", "Peek definition" },
-      ["h"] = { "<cmd>Lspsaga finder<cr>", "Lsp finder" },
-    },
-    ["]d"] = {
-      "<cmd>Lspsaga diagnostic_jump_next<cr>",
-      "Jump to next diagnostic",
-    },
-    ["[d"] = {
-      "<cmd>Lspsaga diagnostic_jump_prev<cr>",
-      "Jump to prev diagnostic",
-    },
-    ["]D"] = {
-      function()
-        require("lspsaga.diagnostic"):goto_next({
-          severity = vim.diagnostic.severity.ERROR,
-        })
-      end,
-      "Jump to next error diagnostic",
-    },
-    ["[D"] = {
-      function()
-        require("lspsaga.diagnostic"):goto_prev({
-          severity = vim.diagnostic.severity.ERROR,
-        })
-      end,
-      "Jump to prev error diagnostic",
-    },
-    ["K"] = { "<cmd>Lspsaga hover_doc<cr>", "Hover doc" },
-    ["<leader>"] = {
-      ["ca"] = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
-      ["rn"] = { "<cmd>Lspsaga rename<cr>", "Rename symbol" },
-      ["cd"] = {
-        "<cmd>Lspsaga show_line_diagnostics<CR>",
-        "Show line diagnostics",
-      },
-    },
-  }, { buffer = bufnr })
-
-  wk.register(
-    { ["<leader>ca"] = { "<cmd>Lspsaga code_action<cr>", "Code Action" } },
-    { buffer = bufnr, mode = "x" }
-  )
-
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   require("lsp-inlayhints").on_attach(client, bufnr)
 end
 
-local configs = require("lspconfig.configs")
-configs["unocss"] = {
-  default_config = {
-    cmd = { "unocss-language-server", "--stdio" },
-    filetypes = {
-      "html",
-      "javascriptreact",
-      "rescript",
-      "typescriptreact",
-      "vue",
-      "svelte",
-    },
-    on_new_config = function(new_config) end,
-    root_dir = function(fname)
-      return util.root_pattern("unocss.config.js", "unocss.config.ts")(fname)
-        or util.find_package_json_ancestor(fname)
-        or util.find_node_modules_ancestor(fname)
-        or util.find_git_ancestor(fname)
-    end,
-  },
-}
+-- local configs = require("lspconfig.configs")
+-- configs["unocss"] = {
+--   default_config = {
+--     cmd = { "unocss-language-server", "--stdio" },
+--     filetypes = {
+--       "html",
+--       "javascriptreact",
+--       "rescript",
+--       "typescriptreact",
+--       "vue",
+--       "svelte",
+--     },
+--     on_new_config = function(new_config) end,
+--     root_dir = function(fname)
+--       return util.root_pattern("unocss.config.js", "unocss.config.ts")(fname)
+--         or util.find_package_json_ancestor(fname)
+--         or util.find_node_modules_ancestor(fname)
+--         or util.find_git_ancestor(fname)
+--     end,
+--   },
+-- }
 
 local servers = {
   "html",
@@ -128,6 +79,8 @@ local servers = {
   "taplo",
   "sqlls",
   "csharp_ls",
+  "hls",
+  "unocss",
 }
 
 for _, server in ipairs(servers) do

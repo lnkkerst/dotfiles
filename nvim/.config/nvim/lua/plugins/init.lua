@@ -17,7 +17,6 @@ require("lazy").setup({
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    lazy = true,
     config = function()
       require("plugins.catppuccin")
     end,
@@ -25,7 +24,7 @@ require("lazy").setup({
   {
     "nvim-lualine/lualine.nvim",
     event = "VimEnter",
-    dependencies = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("plugins.lualine")
     end,
@@ -222,6 +221,7 @@ require("lazy").setup({
   {
     "nvimdev/lspsaga.nvim",
     -- branch = "main",
+    event = "LspAttach",
     dependencies = { "nvim-lspconfig" },
     config = function()
       require("plugins.lspsaga")
@@ -292,15 +292,21 @@ require("lazy").setup({
       require("plugins.cmp")
     end,
   },
-  -- {
-  --   "zbirenbaum/copilot.lua",
-  --   config = true,
-  -- },
-  -- {
-  --   "zbirenbaum/copilot-cmp",
-  --   dependencies = { "copilot.lua" },
-  --   config = true,
-  -- },
+  {
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    dependencies = { "copilot.lua" },
+    config = true,
+  },
   {
     "dpayne/CodeGPT.nvim",
     dependencies = {

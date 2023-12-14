@@ -7,3 +7,5 @@ function M.executable(name)
 
   return false
 end
+
+return M
