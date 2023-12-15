@@ -408,18 +408,8 @@ require("lazy").setup({
   },
   {
     "mrjones2014/legendary.nvim",
-    enabled = false,
-    config = function()
-      require("legendary").setup()
-      local wk = require("which-key")
-      local legendary = {
-        ["<C-A-p>"] = { "<cmd>Legendary<cr>", "Legendary" },
-      }
-      wk.register(legendary, { mode = "n" })
-      wk.register(legendary, { mode = "x" })
-      wk.register(legendary, { mode = "t" })
-      wk.register(legendary, { mode = "i" })
-    end,
+    enabled = true,
+    config = true,
   },
   {
     "iamcco/markdown-preview.nvim",
