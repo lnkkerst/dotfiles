@@ -42,17 +42,18 @@ local floatterm = Terminal:new({
   hidden = true,
   direction = "float",
 })
-
 vim.api.nvim_create_user_command("FloatTerm", function()
   floatterm:toggle()
 end, {})
+vim.keymap.set({ "n", "i" }, [[<C-A-\>]], function()
+  floatterm:toggle()
+end, { desc = "Open float term" })
 
 local ranger = Terminal:new({
   cmd = "ranger",
   hidden = true,
   direction = "float",
 })
-
 vim.api.nvim_create_user_command("Ranger", function()
   ranger:toggle()
 end, {})

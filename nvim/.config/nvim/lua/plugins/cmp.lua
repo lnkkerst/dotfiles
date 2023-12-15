@@ -1,7 +1,6 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
-
 local source_mapping = {
   buffer = "[BUF]",
   orgmode = "[ORG]",
@@ -63,12 +62,12 @@ cmp.setup({
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-Space>"] = cmp.mapping.complete({}),
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-2), { "i", "c" }),
-    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(2), { "i", "c" }),
+    ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(2), { "i", "c" }),
     ["<C-e>"] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
-    ["<A-space>"] = cmp.mapping({
+    ["<C-l>"] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),

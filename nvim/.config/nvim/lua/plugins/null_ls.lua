@@ -24,7 +24,7 @@ null_ls.setup({
     null_ls.builtins.formatting.fourmolu,
     null_ls.builtins.diagnostics.fish,
     -- null_ls.builtins.diagnostics.markdownlint,
-    null_ls.builtins.diagnostics.tidy,
+    -- null_ls.builtins.diagnostics.tidy,
     -- null_ls.builtins.diagnostics.stylelint,
     null_ls.builtins.diagnostics.checkmake,
     null_ls.builtins.diagnostics.commitlint,

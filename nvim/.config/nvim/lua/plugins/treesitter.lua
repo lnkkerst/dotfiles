@@ -12,7 +12,7 @@ require("nvim-treesitter.configs").setup({
     enable = true,
     additional_vim_regex_highlighting = false,
     disable = function(_, buf)
-      local max_filesize = 100 * 1024
+      local max_filesize = 10 * 1024
       local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
       if ok and stats and stats.size > max_filesize then
         return true
@@ -41,7 +41,7 @@ require("nvim-treesitter.configs").setup({
       enable = true,
       set_jumps = true,
       goto_next_start = {
-        ["]f"] = {
+        ["]m"] = {
           query = "@function.outer",
           desc = "Next function start",
         },
@@ -63,7 +63,7 @@ require("nvim-treesitter.configs").setup({
         },
       },
       goto_next_end = {
-        ["]F"] = {
+        ["]M"] = {
           query = "@function.outer",
           desc = "Next function end",
         },
@@ -85,7 +85,7 @@ require("nvim-treesitter.configs").setup({
         },
       },
       goto_previous_start = {
-        ["[f"] = {
+        ["[m"] = {
           query = "@function.outer",
           desc = "Previous function start",
         },
@@ -107,7 +107,7 @@ require("nvim-treesitter.configs").setup({
         },
       },
       goto_previous_end = {
-        ["[F"] = {
+        ["[M"] = {
           query = "@function.outer",
           desc = "Previous function end",
         },
@@ -170,13 +170,6 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
--- Commentstring
--- require("nvim-treesitter.configs").setup({
---   context_commentstring = {
---     enable = true,
---     enable_autocmd = false,
---   },
--- })
 require("ts_context_commentstring").setup({})
 
 -- Autotag
@@ -194,6 +187,24 @@ require("nvim-treesitter.configs").setup({
     keymaps = {
       ["<cr>"] = "textsubjects-smart",
       [";"] = "textsubjects-container-outer",
+      ["i;"] = "textsubjects-container-inner",
     },
+  },
+})
+
+-- refactor
+require("nvim-treesitter.configs").setup({
+  refactor = {
+    highlight_current_scope = { enable = false },
+  },
+})
+
+-- context
+require("treesitter-context").setup({})
+
+-- matchup
+require("nvim-treesitter.configs").setup({
+  matchup = {
+    enable = true,
   },
 })

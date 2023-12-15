@@ -326,7 +326,7 @@ require("lazy").setup({
 
   {
     "nvim-telescope/telescope.nvim",
-    cmd = { "Telescope", "Cheatsheet" },
+    cmd = { "Telescope" },
     lazy = true,
     dependencies = {
       { "nvim-lua/plenary.nvim" },
@@ -360,6 +360,7 @@ require("lazy").setup({
     end,
   },
   { "nvim-treesitter/nvim-treesitter-textobjects" },
+  { "nvim-treesitter/nvim-treesitter-refactor" },
   { "RRethy/nvim-treesitter-textsubjects" },
   { "JoosepAlviste/nvim-ts-context-commentstring" },
   { "nvim-treesitter/nvim-treesitter-context" },
@@ -369,6 +370,9 @@ require("lazy").setup({
     "kylechui/nvim-surround",
     config = true,
   },
+  { "folke/twilight.nvim" },
+  { "folke/zen-mode.nvim" },
+  { "andymass/vim-matchup" },
 
   {
     "michaelb/sniprun",
@@ -549,7 +553,7 @@ require("lazy").setup({
       "DapStepOut",
       "DapTerminate",
     },
-    lazy = true,
+    -- lazy = true,
     config = function()
       require("plugins.dap")
     end,
@@ -557,7 +561,7 @@ require("lazy").setup({
   {
     "rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap" },
-    lazy = true,
+    -- lazy = true,
   },
   {
     "theHamsta/nvim-dap-virtual-text",
