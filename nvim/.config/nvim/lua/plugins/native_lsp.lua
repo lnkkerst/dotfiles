@@ -81,6 +81,8 @@ local servers = {
   "csharp_ls",
   "hls",
   "unocss",
+  "jdtls",
+  "pyright",
 }
 
 for _, server in ipairs(servers) do
@@ -244,23 +246,6 @@ lspconfig.volar.setup({
   init_options = {
     typescript = {
       tsdk = "/usr/lib/node_modules/typescript/lib",
-    },
-  },
-})
-
-lspconfig.pyright.setup({
-  on_attach = lsp_global_attach,
-  capabilities = global_capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  settings = {
-    python = {
-      -- analysis = {
-      --   autoSearchPaths = false,
-      --   useLibraryCodeForTypes = false,
-      --   diagnosticMode = "openFilesOnly",
-      -- },
     },
   },
 })

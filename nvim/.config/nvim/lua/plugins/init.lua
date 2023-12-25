@@ -201,6 +201,14 @@ require("lazy").setup({
     event = { "CmdlineEnter" },
     config = true,
   },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("plugins.harpoon")
+    end,
+  },
 
   {
     "neovim/nvim-lspconfig",
@@ -415,6 +423,22 @@ require("lazy").setup({
     "iamcco/markdown-preview.nvim",
     ft = "markdown",
     build = "cd app && pnpm install",
+  },
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*",
+    ft = "markdown",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {
+      workspaces = {
+        {
+          name = "personal",
+          path = "~/codes/obsidian/notes",
+        },
+      },
+    },
   },
   {
     "krivahtoo/silicon.nvim",

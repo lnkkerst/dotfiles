@@ -22,13 +22,12 @@ cmp.setup({
   enabled = true,
   preselect = cmp.PreselectMode.None,
   sorting = {
-    priority_weight = 2,
     comparators = {
-      require("copilot_cmp.comparators").prioritize,
       cmp.config.compare.offset,
       cmp.config.compare.exact,
       cmp.config.compare.score,
       cmp.config.compare.recently_used,
+      require("copilot_cmp.comparators").prioritize,
       cmp.config.compare.locality,
       require("cmp-under-comparator").under,
       cmp.config.compare.kind,
@@ -95,7 +94,7 @@ cmp.setup({
   }),
   sources = {
     { name = "nvim_lsp", priority = 100, max_item_count = 30 },
-    { name = "copilot", priority = 99 },
+    { name = "copilot", priority = 91 },
     { name = "luasnip", priority = 90 },
     { name = "buffer", keyword_length = 3, priority = 10 },
     { name = "path", priority = 50 },
