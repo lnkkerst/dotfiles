@@ -22,6 +22,7 @@ set -gx FZF_DEFAULT_OPTS "\
     --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
 set -gx PUB_HOSTED_URL "https://mirrors.tuna.tsinghua.edu.cn/dart-pub"
+set -gx FLUTTER_STORAGE_BASE_URL "https://mirrors.tuna.tsinghua.edu.cn/flutter"
 
 set -gx ANDROID_HOME $HOME/Android/Sdk
 set -gx NDK_HOME $ANDROID_HOME/ndk/25.2.9519653
