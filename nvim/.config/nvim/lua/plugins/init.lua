@@ -590,6 +590,7 @@ require("lazy").setup({
       require("plugins.crates")
     end,
   },
+  { "mfussenegger/nvim-jdtls" },
 
   { "nvim-lua/popup.nvim" },
 

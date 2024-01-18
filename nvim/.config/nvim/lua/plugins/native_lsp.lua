@@ -64,6 +64,7 @@ local servers = {
   "marksman",
   "typst_lsp",
   "tailwindcss",
+  "kotlin_language_server",
 }
 
 for _, server in ipairs(servers) do
