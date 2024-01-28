@@ -426,6 +426,7 @@ require("lazy").setup({
   },
   {
     "epwalsh/obsidian.nvim",
+    enabled = false,
     version = "*",
     ft = "markdown",
     dependencies = {
