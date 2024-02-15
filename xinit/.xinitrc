@@ -50,7 +50,7 @@ if [ -n "$EXTRA_MONITOR" ]; then
   if [ "$EXTRA_MONITOR" == "DisplayPort-0" ]; then
     xrandr --output eDP --mode 1440x900 --pos 2560x540 --rotate normal --output ${EXTRA_MONITOR} --primary --mode 2560x1440 --pos 0x0 --rotate normal --rate 120
   else
-    xrandr --output eDP --mode 1440x900 --pos 1920x180 --rotate normal --output ${EXTRA_MONITOR} --primary --mode 1920x1080 --pos 0x0 --rotate normal --rate 120
+    xrandr --output eDP --mode 1440x900 --pos 1920x180 --rotate normal --output ${EXTRA_MONITOR} --primary --mode 1920x1080 --pos 0x0 --rotate normal --rate 165
   fi
 else
   echo "Xft.dpi: 192" | xrdb -merge
@@ -58,7 +58,7 @@ else
   export GDK_DPI_SCALE=0.5
   export ROFI_DPI=192
   export XCURSOR_SIZE=48
-  xrandr --output HDMI-1 --off --output eDP-1 --primary --mode 2560x1600 --pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --off
+  xrandr --output HDMI-1 --off --output eDP-1 --primary --mode 2240x1400 --pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --off
 fi
 
 # autostart

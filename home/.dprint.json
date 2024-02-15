@@ -1,0 +1,47 @@
+{
+  "lineWidth": 80,
+  "useTabs": false,
+  "indentWidth": 2,
+  "newLineKind": "lf",
+
+  "typescript": {
+    "semiColons": "always",
+    "quoteStyle": "alwaysDouble",
+    "quoteProps": "asNeeded",
+    "useBraces": "always",
+    "bracePosition": "sameLine",
+    "singleBodyPosition": "nextLine",
+    "nextControlFlowPosition": "sameLine",
+    "trailingCommas": "onlyMultiLine",
+    "operatorPosition": "nextLine",
+    "arrowFunction.useParentheses": "preferNone",
+    "enumDeclaration.memberSpacing": "newLine"
+  },
+  "json": {},
+  "markdown": {},
+  "toml": {},
+  "prettier": {
+    "singleQuote": false,
+    "semi": true,
+    "trailingComma": "all",
+    "arrowParens": "avoid",
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "quoteProps": "as-needed",
+    "bracketSpacing": true,
+    "rangeStart": 0,
+    "endOfLine": "lf",
+    "htmlWhitespaceSensitivity": "ignore"
+  },
+  "dockerfile": {},
+  "excludes": ["**/node_modules", "**/*-lock.json"],
+  "plugins": [
+    "https://plugins.dprint.dev/typescript-0.89.0.wasm",
+    "https://plugins.dprint.dev/json-0.19.1.wasm",
+    "https://plugins.dprint.dev/markdown-0.16.3.wasm",
+    "https://plugins.dprint.dev/toml-0.6.0.wasm",
+    "https://plugins.dprint.dev/dockerfile-0.3.0.wasm",
+    "https://plugins.dprint.dev/prettier-0.36.0.json@5cc11bcb86b783ba9e33d171ee5caefe413a6ee31a4f1521592ccb28363412af"
+  ]
+}
