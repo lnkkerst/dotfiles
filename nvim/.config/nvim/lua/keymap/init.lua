@@ -1,5 +1,5 @@
 require("keymap.config")
-require("legendary").setup()
+-- require("legendary").setup()
 
 local wk = require("which-key")
 
@@ -12,7 +12,6 @@ wk.register({
 wk.register({
   ["<A-a>"] = { "<cmd>AerialToggle<cr>", "Aerial" },
 }, { mode = { "n", "i", "v" } })
-
 -- Plugin Neoformat
 wk.register({
   ["<M-S-f>"] = { "<cmd>Neoformat<cr>", "Neoformat" },

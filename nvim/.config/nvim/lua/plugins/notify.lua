@@ -1,18 +1,25 @@
-local notify = require("notify")
-notify.setup({
-  level = "info",
-  stages = "static",
-  render = "minimal",
-  timeout = 1500,
-  background_colour = "Normal",
-  minimum_width = 50,
-  icons = {
-    ERROR = "",
-    WARN = "",
-    INFO = "",
-    DEBUG = "",
-    TRACE = "✎",
-  },
-})
+return {
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      local notify = require("notify")
+      notify.setup({
+        level = "info",
+        stages = "static",
+        render = "minimal",
+        timeout = 1500,
+        background_colour = "Normal",
+        minimum_width = 50,
+        icons = {
+          ERROR = "",
+          WARN = "",
+          INFO = "",
+          DEBUG = "",
+          TRACE = "✎",
+        },
+      })
 
-vim.notify = notify
+      vim.notify = notify
+    end,
+  },
+}
