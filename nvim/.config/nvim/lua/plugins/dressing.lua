@@ -4,18 +4,19 @@ require("dressing").setup({
   },
   select = {
     enabled = true,
-    telescope = {
-      border = {},
-      borderchars = {
-        "─",
-        "│",
-        "─",
-        "│",
-        "┌",
-        "┐",
-        "┘",
-        "└",
-      },
-    },
+    backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
+    -- telescope = {
+    --   border = {},
+    --   borderchars = {
+    --     "─",
+    --     "│",
+    --     "─",
+    --     "│",
+    --     "┌",
+    --     "┐",
+    --     "┘",
+    --     "└",
+    --   },
+    -- },
   },
 })

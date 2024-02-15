@@ -4,8 +4,10 @@ null_ls.setup({
   sources = {
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.shfmt,
-    null_ls.builtins.formatting.prettierd,
-    null_ls.builtins.formatting.dprint,
+    -- null_ls.builtins.formatting.prettierd,
+    -- null_ls.builtins.formatting.prettier,
+    -- null_ls.builtins.formatting.dprint,
+    -- null_ls.builtins.formatting.biome,
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.taplo,
     -- null_ls.builtins.formatting.autopep8,
@@ -32,7 +34,7 @@ null_ls.setup({
     null_ls.builtins.diagnostics.commitlint,
   },
   on_attach = function(client, bufnr)
-    lsp_global_attach(client, bufnr)
+    require("plugins.native_lsp").common_on_attach(client, bufnr)
     require("lsp-format").on_attach(client)
   end,
 })

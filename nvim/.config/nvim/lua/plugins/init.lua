@@ -214,7 +214,7 @@ require("lazy").setup({
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
     config = function()
-      require("plugins.native_lsp")
+      require("plugins.native_lsp").init()
     end,
   },
   {
@@ -241,7 +241,7 @@ require("lazy").setup({
   },
   {
     "j-hui/fidget.nvim",
-    enabled = false,
+    enabled = true,
     tag = "legacy",
     dependencies = "nvim-lspconfig",
     config = function()
@@ -592,6 +592,10 @@ require("lazy").setup({
     end,
   },
   { "mfussenegger/nvim-jdtls" },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  },
 
   { "nvim-lua/popup.nvim" },
 
