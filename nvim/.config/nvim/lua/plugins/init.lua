@@ -1,6 +1,5 @@
 return {
   { "nvim-lua/plenary.nvim" },
-
   {
     "nvim-zh/colorful-winsep.nvim",
     enabled = true,
@@ -11,7 +10,7 @@ return {
   {
     "danymat/neogen",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    cmd = "Neogen",
+    -- cmd = "Neogen",
     config = {
       snippet_engine = "luasnip",
     },
@@ -40,7 +39,7 @@ return {
 
   {
     "skywind3000/asyncrun.vim",
-    cmd = { "AsyncRun", "AsyncStop", "AsyncReset" },
+    -- cmd = { "AsyncRun", "AsyncStop", "AsyncReset" },
   },
 
   {
@@ -61,7 +60,7 @@ return {
 
   {
     "sbdchd/neoformat",
-    cmd = "Neoformat",
+    -- cmd = "Neoformat",
   },
 
   { "gpanders/editorconfig.nvim" },
@@ -77,7 +76,7 @@ return {
 
   {
     "stevearc/aerial.nvim",
-    cmd = { "AerialToggle" },
+    -- cmd = { "AerialToggle" },
     config = true,
   },
 
@@ -85,6 +84,17 @@ return {
 
   {
     "eandrju/cellular-automaton.nvim",
-    cmd = "CellularAutomaton",
+    -- cmd = "CellularAutomaton",
+  },
+
+  {
+    "xiyaowong/transparent.nvim",
+    enabled = false,
+    config = function()
+      require("transparent").setup({
+        extra_groups = { "Pmenu", "Float", "NormalFloat" },
+      })
+      require("transparent").clear_prefix("BufferLine")
+    end,
   },
 }

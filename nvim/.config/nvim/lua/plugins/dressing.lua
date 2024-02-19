@@ -9,19 +9,19 @@ return {
         select = {
           enabled = true,
           backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
-          -- telescope = {
-          --   border = {},
-          --   borderchars = {
-          --     "─",
-          --     "│",
-          --     "─",
-          --     "│",
-          --     "┌",
-          --     "┐",
-          --     "┘",
-          --     "└",
-          --   },
-          -- },
+          telescope = {
+            border = {},
+            borderchars = {
+              "─",
+              "│",
+              "─",
+              "│",
+              "┌",
+              "┐",
+              "┘",
+              "└",
+            },
+          },
         },
       })
     end,

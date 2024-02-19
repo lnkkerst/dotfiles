@@ -1,5 +1,6 @@
 local plugin_lsp = require("utils.native_lsp")
 local lsp_format = require("lsp-format")
+local lspconfig = require("lspconfig")
 
 local M = {}
 
@@ -20,10 +21,10 @@ function M.init()
 
   -- lspconfig.clangd.setup({
   --   on_attach = function(client, bufnr)
-  --     lsp_global_attach(client, bufnr)
+  --     plugin_lsp.common_on_attach(client, bufnr)
   --     lsp_format.on_attach(client, bufnr)
   --   end,
-  --   capabilities = global_capabilities,
+  --   capabilities = plugin_lsp.global_capabilities,
   -- })
 end
 

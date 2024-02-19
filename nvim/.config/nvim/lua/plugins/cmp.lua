@@ -49,7 +49,12 @@ return {
       }
 
       cmp.setup({
-        enabled = true,
+        enabled = function()
+          if vim.bo.buftype == "prompt" then
+            return false
+          end
+          return true
+        end,
         preselect = cmp.PreselectMode.None,
         sorting = {
           comparators = {
@@ -65,6 +70,7 @@ return {
             cmp.config.compare.length,
             cmp.config.compare.order,
           },
+          priority_weight = 1,
         },
         formatting = {
           format = lspkind.cmp_format({
@@ -86,17 +92,13 @@ return {
             border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
           }),
         },
-        mapping = cmp.mapping.preset.insert({
+        mapping = {
           ["<C-j>"] = cmp.mapping.select_next_item(),
           ["<C-k>"] = cmp.mapping.select_prev_item(),
           ["<C-Space>"] = cmp.mapping.complete({}),
           ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-2), { "i", "c" }),
           ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(2), { "i", "c" }),
           ["<C-e>"] = cmp.mapping({
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close(),
-          }),
-          ["<C-l>"] = cmp.mapping({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
           }),
@@ -121,7 +123,7 @@ return {
               fallback()
             end
           end, { "i", "s" }),
-        }),
+        },
         sources = {
           { name = "nvim_lsp", priority = 100, max_item_count = 30 },
           -- { name = "copilot", priority = 0 },

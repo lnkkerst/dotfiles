@@ -9,7 +9,7 @@ return {
           light = "latte",
           dark = "mocha",
         },
-        transparent_background = false,
+        transparent_background = not vim.g.neovide,
         show_end_of_buffer = false,
         term_colors = false,
         styles = {
@@ -53,9 +53,6 @@ return {
           notify = true,
           treesitter_context = true,
           rainbow_delimiters = true,
-          symbols_outline = {
-            enabled = true,
-          },
           lsp_trouble = true,
           lsp_saga = true,
           leap = true,
@@ -67,18 +64,16 @@ return {
             scope_color = "lavender",
             colored_indent_levels = true,
           },
-          dap = {
-            enabled = true,
-            enable_ui = true,
-          },
+          dap = true,
+          dap_ui = true,
           native_lsp = {
             enabled = true,
-            -- virtual_text = {
-            --   errors = { "italic" },
-            --   hints = { "italic" },
-            --   warnings = { "italic" },
-            --   information = { "italic" },
-            -- },
+            virtual_text = {
+              errors = { "italic" },
+              hints = { "italic" },
+              warnings = { "italic" },
+              information = { "italic" },
+            },
             underlines = {
               errors = { "underline" },
               hints = { "underline" },

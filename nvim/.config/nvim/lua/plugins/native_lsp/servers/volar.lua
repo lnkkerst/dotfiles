@@ -26,6 +26,10 @@ function M.init()
     enabled = true,
     on_attach = plugin_lsp.common_on_attach,
     capabilities = plugin_lsp.common_capabilities,
+    on_new_config = function(new_config, new_root_dir)
+      new_config.init_options.typescript.tsdk =
+        get_typescript_server_path(new_root_dir)
+    end,
     filetypes = {
       -- "typescript",
       -- "javascript",

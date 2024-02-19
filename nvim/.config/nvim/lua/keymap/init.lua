@@ -44,25 +44,6 @@ wk.register({
   ["l"] = { "<cmd>noh<cr>", "noh" },
 }, { prefix = "<leader>" })
 
--- Telescope
-wk.register({
-  ["<leader>f"] = {
-    name = "+Telescope",
-    -- ["f"] = { "<cmd>Telescope find_files<cr>", "Telescope find files" },
-    ["f"] = { "<cmd>Telescope<cr>", "Telescope builtins" },
-    ["r"] = { "<cmd>Telescope frecency<cr>", "Telescope frecency" },
-    ["n"] = { "<cmd>Telescope notify<cr>", "Telescope notify" },
-    ["b"] = { "<cmd>Telescope buffers<cr>", "Telescope buffers" },
-    ["m"] = { "<cmd>Telescope marks<cr>", "Telescope marks" },
-    ["g"] = { "<cmd>Telescope live_grep<cr>", "Telescope live grep" },
-    ["c"] = {
-      "<cmd>Telescope current_buffer_fuzzy_find<cr>",
-      "Telescope current_buffer_fuzzy_find",
-    },
-  },
-  ["<C-p>"] = { "<cmd>Telescope find_files<cr>", "Find files" },
-})
-
 -- Dap
 wk.register({
   ["d"] = {

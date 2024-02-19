@@ -3,17 +3,17 @@
 return {
   {
     "mfussenegger/nvim-dap",
-    cmd = {
-      "DapSetLogLevel",
-      "DapShowLog",
-      "DapContinue",
-      "DapToggleBreakpoint",
-      "DapToggleRepl",
-      "DapStepOver",
-      "DapStepInto",
-      "DapStepOut",
-      "DapTerminate",
-    },
+    -- cmd = {
+    --   "DapSetLogLevel",
+    --   "DapShowLog",
+    --   "DapContinue",
+    --   "DapToggleBreakpoint",
+    --   "DapToggleRepl",
+    --   "DapStepOver",
+    --   "DapStepInto",
+    --   "DapStepOut",
+    --   "DapTerminate",
+    -- },
     -- lazy = true,
     config = function()
       local dap = require("dap")
