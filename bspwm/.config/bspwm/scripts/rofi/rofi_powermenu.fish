@@ -3,7 +3,7 @@
 set shutdown 
 set reboot 
 set lock 
-set suspend 鈴
+set suspend 󰒲
 set logout 
 set opt (echo "$shutdown
 $reboot
@@ -17,7 +17,8 @@ switch $opt
     case $reboot
         systemctl reboot
     case $lock
-        sleep 0.3; bash $HOME/.config/bspwm/scripts/i3lock-color.sh
+        sleep 0.3
+        bash $HOME/.config/bspwm/scripts/i3lock-color.sh
     case $suspend
         systemctl suspend
     case $logout

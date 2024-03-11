@@ -69,7 +69,6 @@ bspc rule -a Peek state=floating
 bspc rule -a copyq state=floating
 bspc rule -a bilibili state=floating
 bspc rule -a lx-music-desktop state=floating border=off
-bspc rule -a "*:*:^Android Emulator" state=floating border=off
 
 # Autostart
 $SCRIPTPATH/scripts/autostart.sh

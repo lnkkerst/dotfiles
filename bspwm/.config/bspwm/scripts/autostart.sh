@@ -13,7 +13,7 @@ apps=(
   "libinput-gestures"
   "$HOME/.config/polybar/launch.sh"
   "dunst"
-  "appimagelauncher appimagelauncherd"
+  # "appimagelauncher appimagelauncherd"
   "sh $HOME/.config/bspwm/scripts/bspswallow"
   "flameshot"
 )
