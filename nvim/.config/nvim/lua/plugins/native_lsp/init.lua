@@ -1,7 +1,14 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    -- event = "BufReadPre",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "mason.nvim",
+      "mason-lspconfig.nvim",
+      "lsp-format.nvim",
+      "fidget.nvim",
+      "vim-illuminate",
+    },
     config = function()
       vim.diagnostic.config({
         signs = {
@@ -25,25 +32,29 @@ return {
   },
   {
     "williamboman/mason.nvim",
+    lazy = true,
+    cmd = { "Mason" },
     config = true,
   },
 
   {
     "williamboman/mason-lspconfig.nvim",
+    lazy = true,
     dependencies = { "neovim/nvim-lspconfig" },
     config = true,
   },
 
   {
     "lukas-reineke/lsp-format.nvim",
+    lazy = true,
     config = true,
   },
 
   {
     "j-hui/fidget.nvim",
     enabled = true,
+    lazy = true,
     tag = "legacy",
-    dependencies = "nvim-lspconfig",
     config = function()
       require("fidget").setup({
         sources = { ["null-ls"] = { ignore = true } },
@@ -51,5 +62,5 @@ return {
       })
     end,
   },
-  { "b0o/schemastore.nvim" },
+  { "b0o/schemastore.nvim", event = { "LspAttach" } },
 }

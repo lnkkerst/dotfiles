@@ -1,13 +1,13 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    -- event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile" },
     config = true,
   },
   {
     "NeogitOrg/neogit",
     dependencies = "nvim-lua/plenary.nvim",
-    -- cmd = "Neogit",
+    cmd = { "Neogit", "NeogitResetState" },
     config = true,
   },
 }

@@ -2,7 +2,19 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    -- event = "BufReadPost",
+    dependencies = {
+      { "nvim-treesitter/nvim-treesitter-textobjects" },
+      { "nvim-treesitter/nvim-treesitter-refactor" },
+      { "RRethy/nvim-treesitter-textsubjects" },
+      { "JoosepAlviste/nvim-ts-context-commentstring" },
+      { "nvim-treesitter/nvim-treesitter-context" },
+      { "HiPhish/rainbow-delimiters.nvim" },
+      { "windwp/nvim-ts-autotag" },
+      { "kylechui/nvim-surround", config = true },
+      { "abecodes/tabout.nvim", config = true },
+      { "andymass/vim-matchup" },
+    },
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       -- Treesitter
       require("nvim-treesitter.configs").setup({
@@ -216,27 +228,5 @@ return {
         },
       })
     end,
-  },
-  { "nvim-treesitter/nvim-treesitter-textobjects" },
-  {
-    "nvim-treesitter/nvim-treesitter-refactor",
-  },
-  { "RRethy/nvim-treesitter-textsubjects" },
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-  },
-  { "nvim-treesitter/nvim-treesitter-context" },
-  {
-    "HiPhish/rainbow-delimiters.nvim",
-  },
-  { "windwp/nvim-ts-autotag" },
-  {
-    "kylechui/nvim-surround",
-    config = true,
-  },
-  {
-    "abecodes/tabout.nvim",
-    dependencies = { "nvim-treesitter" },
-    config = true,
   },
 }

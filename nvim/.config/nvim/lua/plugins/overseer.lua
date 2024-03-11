@@ -1,6 +1,21 @@
 return {
   {
     "stevearc/overseer.nvim",
+    cmd = {
+      "OverseerRun",
+      "OverseerInfo",
+      "OverseerOpen",
+      "OverseerBuild",
+      "OverseerClose",
+      "OverseerRunCmd",
+      "OverseerToggle",
+      "OverseerCleanCache",
+      "OverseerLoadBundle",
+      "OverseerSaveBundle",
+      "OverseerTaskAction",
+      "OverseerQuickAction",
+      "OverseerDeleteBundle",
+    },
     config = function()
       local overseer = require("overseer")
       overseer.setup()

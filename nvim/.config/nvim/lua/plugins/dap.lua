@@ -3,21 +3,53 @@
 return {
   {
     "mfussenegger/nvim-dap",
-    -- cmd = {
-    --   "DapSetLogLevel",
-    --   "DapShowLog",
-    --   "DapContinue",
-    --   "DapToggleBreakpoint",
-    --   "DapToggleRepl",
-    --   "DapStepOver",
-    --   "DapStepInto",
-    --   "DapStepOut",
-    --   "DapTerminate",
-    -- },
-    -- lazy = true,
+    cmd = {
+      "DapSetLogLevel",
+      "DapShowLog",
+      "DapContinue",
+      "DapToggleBreakpoint",
+      "DapToggleRepl",
+      "DapStepOver",
+      "DapStepInto",
+      "DapStepOut",
+      "DapTerminate",
+      "DapLoadLaunchJSON",
+    },
+    keys = function()
+      local suffix = { "u", "b", "r", "o", "c" }
+      local keys = {}
+      for _, v in ipairs(suffix) do
+        table.insert(keys, "<leader>d" .. v)
+      end
+    end,
+    dependencies = {
+      {
+        "rcarriga/nvim-dap-ui",
+        lazy = true,
+      },
+      {
+        "theHamsta/nvim-dap-virtual-text",
+        lazy = true,
+      },
+    },
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
+      local wk = require("which-key")
+
+      wk.register({
+        ["d"] = {
+          name = "Dap for debug",
+          ["u"] = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle dap UI" },
+          ["b"] = {
+            "<cmd>lua require('dap').toggle_breakpoint()<cr>",
+            "Toggle breakpoint",
+          },
+          ["r"] = { "<cmd>lua require('dap').continue()<cr>", "Dap Continue" },
+          ["o"] = { "<cmd>lua require('dapui').open()<cr>", "Open dap UI" },
+          ["c"] = { "<cmd>lua require('dapui').close()<cr>", "Close dap UI" },
+        },
+      }, { prefix = "<leader>" })
 
       dap.listeners.after.event_initialized["dapui"] = function()
         dapui.open()
@@ -177,14 +209,5 @@ return {
 
       require("nvim-dap-virtual-text").setup({})
     end,
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    dependencies = { "mfussenegger/nvim-dap" },
-    -- lazy = true,
-  },
-  {
-    "theHamsta/nvim-dap-virtual-text",
-    dependencies = { "mfussenegger/nvim-dap" },
   },
 }

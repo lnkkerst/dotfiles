@@ -22,6 +22,7 @@ function M.init()
     }
   end
   lspconfig.oxlint.setup({
+    enabled = false,
     on_attach = function(client, bufnr)
       plugin_lsp.common_on_attach(client, bufnr)
       lsp_format.on_attach(client)

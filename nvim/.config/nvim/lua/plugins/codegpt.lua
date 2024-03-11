@@ -1,6 +1,7 @@
 return {
   {
     "dpayne/CodeGPT.nvim",
+    cmd = { "Chat", "CodeGPTStatus" },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",

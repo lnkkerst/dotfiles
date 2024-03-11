@@ -1,7 +1,6 @@
 return {
   {
     "akinsho/bufferline.nvim",
-    -- event = "VimEnter",
     dependencies = { "kyazdani42/nvim-web-devicons", "catppuccin/nvim" },
     config = function()
       require("bufferline").setup({

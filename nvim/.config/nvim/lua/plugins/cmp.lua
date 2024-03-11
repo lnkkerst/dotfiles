@@ -1,7 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    -- event = { "InsertEnter", "CmdlineEnter" },
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       { "lukas-reineke/cmp-under-comparator" },
       { "hrsh7th/cmp-nvim-lsp" },

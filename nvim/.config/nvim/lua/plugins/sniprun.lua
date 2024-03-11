@@ -1,7 +1,7 @@
 return {
   {
     "michaelb/sniprun",
-    -- cmd = { "SnipRun", "'<,'>SnipRun" },
+    cmd = { "SnipRun" },
     build = "bash install.sh",
     config = function()
       require("sniprun").setup({

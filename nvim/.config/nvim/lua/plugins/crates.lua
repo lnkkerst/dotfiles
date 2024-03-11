@@ -1,7 +1,7 @@
 return {
   {
     "Saecki/crates.nvim",
-    -- event = "BufRead Cargo.toml",
+    event = "BufRead Cargo.toml",
     config = function()
       local crates = require("crates")
 

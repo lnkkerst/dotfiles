@@ -3,14 +3,14 @@ return {
   {
     "nvim-zh/colorful-winsep.nvim",
     enabled = true,
-    -- event = "VimEnter",
+    event = "VimEnter",
     config = true,
   },
 
   {
     "danymat/neogen",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    -- cmd = "Neogen",
+    cmd = "Neogen",
     config = {
       snippet_engine = "luasnip",
     },
@@ -18,7 +18,7 @@ return {
 
   {
     "max397574/better-escape.nvim",
-    -- event = "InsertEnter",
+    event = "InsertEnter",
     config = true,
   },
 
@@ -29,17 +29,19 @@ return {
 
   {
     "nacro90/numb.nvim",
-    -- event = { "CmdlineEnter" },
+    event = { "CmdlineEnter" },
     config = true,
   },
 
-  { "folke/twilight.nvim" },
-  { "folke/zen-mode.nvim" },
-  { "andymass/vim-matchup" },
+  {
+    "folke/twilight.nvim",
+    cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
+  },
+  { "folke/zen-mode.nvim", cmd = { "ZenMode" } },
 
   {
     "skywind3000/asyncrun.vim",
-    -- cmd = { "AsyncRun", "AsyncStop", "AsyncReset" },
+    cmd = { "AsyncRun", "AsyncStop", "AsyncReset" },
   },
 
   {
@@ -55,18 +57,28 @@ return {
   },
 
   {
-    "sindrets/diffview.nvim",--[[  cmd = "Diffview*" ]]
+    "sindrets/diffview.nvim",
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewClose",
+      "DiffviewLog",
+      "DiffviewRefresh",
+      "DiffviewFocusFiles",
+      "DiffviewFileHistory",
+      "DiffviewToggleFiles",
+    },
   },
 
   {
     "sbdchd/neoformat",
-    -- cmd = "Neoformat",
+    cmd = "Neoformat",
   },
 
-  { "gpanders/editorconfig.nvim" },
+  { "gpanders/editorconfig.nvim", event = "VeryLazy" },
 
   {
     "junegunn/fzf",
+    lazy = true,
     build = function()
       vim.fn["fzf#install"]()
     end,
@@ -76,15 +88,28 @@ return {
 
   {
     "stevearc/aerial.nvim",
-    -- cmd = { "AerialToggle" },
+    cmd = {
+      "AerialToggle",
+      "AerialGo",
+      "AerialInfo",
+      "AerialNavToggle",
+      "AerialNext",
+      "AerialPrev",
+      "AerialOpen",
+      "AerialClose",
+      "AerialNavOpen",
+      "AerialNavClose",
+      "AerialOpenAll",
+      "AerialCloseAll",
+    },
     config = true,
   },
 
-  { "nvim-lua/popup.nvim" },
+  { "nvim-lua/popup.nvim", lazy = true },
 
   {
     "eandrju/cellular-automaton.nvim",
-    -- cmd = "CellularAutomaton",
+    cmd = "CellularAutomaton",
   },
 
   {

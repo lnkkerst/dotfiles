@@ -1,11 +1,17 @@
 return {
   {
     "kyazdani42/nvim-tree.lua",
-    -- cmd = "NvimTreeToggle",
+    cmd = "NvimTreeToggle",
     dependencies = {
       "kyazdani42/nvim-web-devicons",
     },
+    keys = { "<C-n>" },
     config = function()
+      local wk = require("which-key")
+      wk.register({
+        ["<C-n>"] = { "<cmd>NvimTreeToggle<cr>", "NvimTreeToggle" },
+      })
+
       require("nvim-tree").setup({
         auto_reload_on_write = true,
         sync_root_with_cwd = true,

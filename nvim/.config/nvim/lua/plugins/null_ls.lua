@@ -1,8 +1,8 @@
 return {
   {
     "nvimtools/none-ls.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    -- event = "BufReadPre",
+    dependencies = { "nvim-lua/plenary.nvim", "mason.nvim" },
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       local null_ls = require("null-ls")
 
@@ -14,8 +14,6 @@ return {
           -- null_ls.builtins.formatting.prettier,
           -- null_ls.builtins.formatting.dprint,
           -- null_ls.builtins.formatting.biome,
-          null_ls.builtins.formatting.rustfmt,
-          null_ls.builtins.formatting.taplo,
           -- null_ls.builtins.formatting.autopep8,
           null_ls.builtins.formatting.black,
           null_ls.builtins.formatting.fish_indent,
@@ -23,13 +21,11 @@ return {
           -- null_ls.builtins.formatting.markdownlint,
           -- null_ls.builtins.formatting.markdown_toc,
           null_ls.builtins.formatting.nginx_beautifier,
-          null_ls.builtins.formatting.zigfmt,
           null_ls.builtins.formatting.gofmt,
           null_ls.builtins.formatting.cmake_format,
           null_ls.builtins.formatting.dart_format,
           null_ls.builtins.formatting.csharpier,
           -- null_ls.builtins.formatting.stylish_haskell,
-          null_ls.builtins.formatting.fourmolu,
           null_ls.builtins.formatting.google_java_format,
           null_ls.builtins.formatting.ktlint,
           null_ls.builtins.diagnostics.fish,

@@ -19,7 +19,6 @@ function M.init()
     "taplo",
     "sqlls",
     "csharp_ls",
-    "hls",
     "unocss",
     "jdtls",
     "marksman",
@@ -35,7 +34,7 @@ function M.init()
     })
   end
 
-  local servers_with_format = { "biome" }
+  local servers_with_format = { "biome", "hls" }
 
   for _, server in ipairs(servers_with_format) do
     lspconfig[server].setup({

@@ -1,7 +1,6 @@
 return {
   {
     "nvim-lualine/lualine.nvim",
-    -- event = "VimEnter",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       local function search_result()
@@ -100,7 +99,6 @@ return {
               icon = " LSP:",
               -- color = { fg = "#ffffff", gui = "bold" },
             },
-            { require("codegpt").get_status },
           },
           lualine_x = {
             {
@@ -147,10 +145,14 @@ return {
           "nvim-dap-ui",
           "quickfix",
           "symbols-outline",
-          {
-            sections = mini_sections,
-            filetypes = { "aerial" },
-          },
+          "aerial",
+          "fzf",
+          "lazy",
+          "man",
+          "mason",
+          "overseer",
+          "toggleterm",
+          "trouble",
         },
       })
     end,

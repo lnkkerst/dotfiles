@@ -4,7 +4,7 @@ return {
   {
     "nvimdev/lspsaga.nvim",
     -- branch = "main",
-    -- event = "LspAttach",
+    event = "LspAttach",
     dependencies = { "nvim-lspconfig" },
     config = function()
       local saga = require("lspsaga")

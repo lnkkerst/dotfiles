@@ -1,3 +1,7 @@
 return {
-  { "phaazon/hop.nvim", config = true },
+  {
+    "phaazon/hop.nvim",
+    enabled = false,
+    config = true,
+  },
 }

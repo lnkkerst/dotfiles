@@ -5,6 +5,9 @@ local plugin_lsp = require("utils.native_lsp")
 local M = {}
 
 function M.init()
+  if true then
+    return nil
+  end
   lspconfig.ccls.setup({
     enabled = false,
     on_attach = function(client, bufnr)

@@ -1,6 +1,7 @@
 return {
   {
     "lvimuser/lsp-inlayhints.nvim",
+    event = { "LspAttach" },
     config = function()
       local inlayhints = require("lsp-inlayhints")
 

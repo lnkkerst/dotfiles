@@ -1,8 +1,8 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    -- cmd = { "Telescope" },
-    -- lazy = true,
+    cmd = { "Telescope" },
+    lazy = true,
     dependencies = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -11,6 +11,14 @@ return {
       --   dependencies = { "kkharji/sqlite.lua" },
       -- },
     },
+    keys = function()
+      local suffix = { "f", "n", "b", "m", "g", "c", "p", "j" }
+      local keys = { "<C-p>" }
+      for _, v in ipairs(suffix) do
+        table.insert(keys, "<leader>f" .. v)
+      end
+      return keys
+    end,
     config = function()
       local telescope = require("telescope")
 

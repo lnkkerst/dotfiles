@@ -1,7 +1,7 @@
 return {
   {
     "kevinhwang91/nvim-hlslens",
-    -- event = { "CmdlineEnter" },
+    event = { "CmdlineEnter" },
     config = function()
       require("hlslens").setup({})
       local kopts = { noremap = true, silent = true }

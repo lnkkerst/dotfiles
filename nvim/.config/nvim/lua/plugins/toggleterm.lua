@@ -1,7 +1,7 @@
 return {
   {
     "akinsho/toggleterm.nvim",
-    -- event = "UIEnter",
+    keys = { [[<C-\>]] },
     config = function()
       require("toggleterm").setup({
         open_mapping = [[<C-\>]],
