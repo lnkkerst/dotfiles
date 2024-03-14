@@ -1,7 +1,7 @@
 return {
   {
     "numToStr/Comment.nvim",
-    keys = { "gcc", "gbc", "gc", "gb" },
+    keys = { "gcc", "gbc", { "gc", "gb", mode = { "x" } } },
     config = function()
       require("Comment").setup({
         ---Add a space b/w comment and the line
