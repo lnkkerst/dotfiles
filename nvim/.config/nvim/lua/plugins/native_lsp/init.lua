@@ -19,7 +19,7 @@ return {
             [vim.diagnostic.severity.HINT] = " ",
           },
         },
-        update_in_insert = true,
+        update_in_insert = false,
         underline = false,
         severity_sort = true,
         virtual_text = {

@@ -8,8 +8,9 @@ reboot=Reboot
 lock=Lock
 suspend=Suspend
 logout=Logout
+hibernate=Hibernate
 
-options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
+options="$shutdown\n$reboot\n$lock\n$suspend\n$logout\n$hibernate"
 
 chosen="$(echo -e "$options" | $wofi_command)"
 case $chosen in
@@ -25,7 +26,10 @@ $reboot)
 $suspend)
   mpc -q pause
   amixer set Master mute
-  loginctl suspend
+  systemctl suspend
+  ;;
+$hibernate)
+  systemctl hibernate
   ;;
 $logout)
   hyprctl dispatch exit ""
