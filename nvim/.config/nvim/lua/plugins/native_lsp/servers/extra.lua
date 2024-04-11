@@ -25,6 +25,7 @@ function M.init()
     "typst_lsp",
     "tailwindcss",
     "kotlin_language_server",
+    "asm_lsp",
   }
 
   for _, server in ipairs(servers) do

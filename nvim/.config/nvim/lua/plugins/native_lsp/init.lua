@@ -43,7 +43,7 @@ return {
     dependencies = { "mason.nvim" },
     config = true,
     opts = {
-      automatic_installation = true,
+      automatic_installation = false,
     },
   },
 
