@@ -37,6 +37,25 @@ function M.init()
   require("typescript-tools").setup({
     on_attach = plugin_lsp.common_on_attach,
     capabilities = plugin_lsp.common_capabilities,
+    init_options = {
+      hostInfo = "neovim",
+      plugins = {
+        {
+          name = "@vue/typescript-plugin",
+          location = "/home/lnk/.local/share/pnpm/global/5/node_modules/@vue/typescript-plugin",
+          languages = { "javascript", "typescript", "vue" },
+        },
+      },
+    },
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+      "vue",
+    },
   })
 end
 

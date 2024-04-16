@@ -21,7 +21,7 @@ end)()
 function M.common_on_attach(client, bufnr)
   -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  require("lsp-inlayhints").on_attach(client, bufnr)
+  -- require("lsp-inlayhints").on_attach(client, bufnr)
 end
 
 function M.init() end

@@ -25,7 +25,6 @@ function M.init()
     "typst_lsp",
     "tailwindcss",
     "kotlin_language_server",
-    "asm_lsp",
   }
 
   for _, server in ipairs(servers) do
@@ -35,7 +34,7 @@ function M.init()
     })
   end
 
-  local servers_with_format = { "biome", "hls" }
+  local servers_with_format = { "biome", "hls", "asm_lsp" }
 
   for _, server in ipairs(servers_with_format) do
     lspconfig[server].setup({

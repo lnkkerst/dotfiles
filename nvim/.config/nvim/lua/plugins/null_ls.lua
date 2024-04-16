@@ -28,7 +28,7 @@ return {
           -- null_ls.builtins.formatting.stylish_haskell,
           null_ls.builtins.formatting.google_java_format,
           null_ls.builtins.formatting.ktlint,
-          null_ls.builtins.formatting.asmfmt,
+          -- null_ls.builtins.formatting.asmfmt,
           null_ls.builtins.diagnostics.fish,
           -- null_ls.builtins.diagnostics.markdownlint,
           -- null_ls.builtins.diagnostics.tidy,
