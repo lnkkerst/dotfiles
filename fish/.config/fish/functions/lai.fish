@@ -1,4 +1,0 @@
-function lai --wraps='eza $EXA_STANDARD_OPTIONS $EXA_LAI_OPTIONS $EXA_L_OPTIONS' --description 'alias lai eza $EXA_STANDARD_OPTIONS $EXA_LAI_OPTIONS $EXA_L_OPTIONS'
-  eza $EXA_STANDARD_OPTIONS $EXA_LAI_OPTIONS $EXA_L_OPTIONS $argv
-        
-end

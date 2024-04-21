@@ -1,4 +1,0 @@
-function ltad --wraps='eza $EXA_STANDARD_OPTIONS $EXA_LAD_OPTIONS $EXA_LT_OPTIONS' --description 'alias ltad eza $EXA_STANDARD_OPTIONS $EXA_LAD_OPTIONS $EXA_LT_OPTIONS'
-  eza $EXA_STANDARD_OPTIONS $EXA_LAD_OPTIONS $EXA_LT_OPTIONS $argv
-        
-end

@@ -1,4 +1,0 @@
-function leaaid --wraps='eza $EXA_STANDARD_OPTIONS $EXA_LAAID_OPTIONS $EXA_LE_OPTIONS' --description 'alias leaaid eza $EXA_STANDARD_OPTIONS $EXA_LAAID_OPTIONS $EXA_LE_OPTIONS'
-  eza $EXA_STANDARD_OPTIONS $EXA_LAAID_OPTIONS $EXA_LE_OPTIONS $argv
-        
-end

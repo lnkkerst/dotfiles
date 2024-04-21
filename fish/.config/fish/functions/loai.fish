@@ -1,4 +1,0 @@
-function loai --wraps='eza $EXA_STANDARD_OPTIONS $EXA_LAI_OPTIONS $EXA_LO_OPTIONS' --description 'alias loai eza $EXA_STANDARD_OPTIONS $EXA_LAI_OPTIONS $EXA_LO_OPTIONS'
-  eza $EXA_STANDARD_OPTIONS $EXA_LAI_OPTIONS $EXA_LO_OPTIONS $argv
-        
-end

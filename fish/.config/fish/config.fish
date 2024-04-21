@@ -69,13 +69,6 @@ function fish_command_not_found
     echo `$argv[1]` not found 😢
 end
 
-
-# bun
-if type -f bun >/dev/null 2>/dev/null
-    set --export BUN_INSTALL "$HOME/.bun"
-    # set --export PATH $BUN_INSTALL/bin $PATH
-end
-
 # fnm
 if type -f fnm >/dev/null 2>/dev/null
     fnm env --use-on-cd --shell fish | source
@@ -86,20 +79,6 @@ end
 if type -f zoxide >/dev/null 2>/dev/null
     zoxide init fish | source
     alias j='z'
-end
-
-#pyenv
-# if type -f pyenv >/dev/null 2>/dev/null
-#     pyenv init - | source
-# end
-
-# pnpm
-if type -f pnpm >/dev/null 2>/dev/null
-    set -gx PNPM_HOME "/home/lnk/.local/share/pnpm"
-    set -gx PATH "$PNPM_HOME" $PATH
-    # tabtab source for packages
-    # uninstall by removing these lines
-    [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
 end
 
 # direnv
@@ -123,8 +102,3 @@ end
 if type -f thefuck >/dev/null 2>/dev/null
     thefuck --alias | source
 end
-
-# if not test $TMUX
-#     and not test -z $DISPLAY
-#     t
-# end

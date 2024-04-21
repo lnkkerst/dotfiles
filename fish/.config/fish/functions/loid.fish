@@ -1,4 +1,0 @@
-function loid --wraps='eza $EXA_STANDARD_OPTIONS $EXA_LID_OPTIONS $EXA_LO_OPTIONS' --description 'alias loid eza $EXA_STANDARD_OPTIONS $EXA_LID_OPTIONS $EXA_LO_OPTIONS'
-  eza $EXA_STANDARD_OPTIONS $EXA_LID_OPTIONS $EXA_LO_OPTIONS $argv
-        
-end

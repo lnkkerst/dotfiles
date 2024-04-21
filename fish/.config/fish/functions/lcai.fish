@@ -1,4 +1,0 @@
-function lcai --wraps='eza $EXA_STANDARD_OPTIONS $EXA_LAI_OPTIONS $EXA_LC_OPTIONS' --description 'alias lcai eza $EXA_STANDARD_OPTIONS $EXA_LAI_OPTIONS $EXA_LC_OPTIONS'
-  eza $EXA_STANDARD_OPTIONS $EXA_LAI_OPTIONS $EXA_LC_OPTIONS $argv
-        
-end

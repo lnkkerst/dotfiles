@@ -1,4 +1,0 @@
-function leid --wraps='eza $EXA_STANDARD_OPTIONS $EXA_LID_OPTIONS $EXA_LE_OPTIONS' --description 'alias leid eza $EXA_STANDARD_OPTIONS $EXA_LID_OPTIONS $EXA_LE_OPTIONS'
-  eza $EXA_STANDARD_OPTIONS $EXA_LID_OPTIONS $EXA_LE_OPTIONS $argv
-        
-end

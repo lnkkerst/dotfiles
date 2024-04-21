@@ -1,4 +1,0 @@
-function lgaid --wraps='eza $EXA_STANDARD_OPTIONS $EXA_LAID_OPTIONS $EXA_LG_OPTIONS' --description 'alias lgaid eza $EXA_STANDARD_OPTIONS $EXA_LAID_OPTIONS $EXA_LG_OPTIONS'
-  eza $EXA_STANDARD_OPTIONS $EXA_LAID_OPTIONS $EXA_LG_OPTIONS $argv
-        
-end

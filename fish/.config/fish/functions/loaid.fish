@@ -1,4 +1,0 @@
-function loaid --wraps='eza $EXA_STANDARD_OPTIONS $EXA_LAID_OPTIONS $EXA_LO_OPTIONS' --description 'alias loaid eza $EXA_STANDARD_OPTIONS $EXA_LAID_OPTIONS $EXA_LO_OPTIONS'
-  eza $EXA_STANDARD_OPTIONS $EXA_LAID_OPTIONS $EXA_LO_OPTIONS $argv
-        
-end
