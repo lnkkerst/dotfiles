@@ -15,7 +15,7 @@ return {
           -- null_ls.builtins.formatting.dprint,
           -- null_ls.builtins.formatting.biome,
           -- null_ls.builtins.formatting.autopep8,
-          null_ls.builtins.formatting.black,
+          -- null_ls.builtins.formatting.black,
           null_ls.builtins.formatting.fish_indent,
           -- null_ls.builtins.formatting.eslint_d,
           -- null_ls.builtins.formatting.markdownlint,

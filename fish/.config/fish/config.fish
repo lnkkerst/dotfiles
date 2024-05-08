@@ -31,6 +31,7 @@ alias 翻译='fanyi'
 alias sl='ls'
 alias icat="kitty +kitten icat"
 alias datef="date +%Y%m%d%H%M%S_%s"
+alias dates="date '+%Y-%m-%d %H:%M:%S %Z'"
 
 # Key binding
 bind \co ranger-cd --mode insert

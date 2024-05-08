@@ -35,7 +35,14 @@ function M.init()
   -- })
 
   require("typescript-tools").setup({
-    on_attach = plugin_lsp.common_on_attach,
+    on_attach = function(client, bufnr)
+      plugin_lsp.common_on_attach(client, bufnr)
+
+      -- require("workspace-diagnostics").populate_workspace_diagnostics(
+      --   client,
+      --   bufnr
+      -- )
+    end,
     capabilities = plugin_lsp.common_capabilities,
     init_options = {
       hostInfo = "neovim",
@@ -54,7 +61,6 @@ function M.init()
       "typescript",
       "typescriptreact",
       "typescript.tsx",
-      "vue",
     },
   })
 end

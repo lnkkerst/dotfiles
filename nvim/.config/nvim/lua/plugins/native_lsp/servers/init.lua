@@ -13,7 +13,7 @@ M.init_all = function()
     )
   do
     local m = file:match(".+/(.+).lua$")
-    if m ~= "init" then
+    if m and m ~= "init" then
       require(module_path .. "." .. m).init()
     end
   end

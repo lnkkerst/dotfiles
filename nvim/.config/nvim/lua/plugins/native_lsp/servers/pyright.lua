@@ -8,7 +8,7 @@ function M.init()
   lspconfig.pyright.setup({
     on_attach = plugin_lsp.common_on_attach,
     capabilities = plugin_lsp.common_capabilities,
-    -- cmd = { "delance-langserver", "--stdio" },
+    cmd = { "delance-langserver", "--stdio" },
   })
 end
 
