@@ -70,6 +70,11 @@ function fish_command_not_found
     echo `$argv[1]` not found 😢
 end
 
+function first-ip
+    set ip (ip addr show | grep 'inet ' | grep -v '127.0.0.1' | awk '{print $2}' | cut -d '/' -f1 | head -n 1)
+    echo $ip
+end
+
 # fnm
 if type -f fnm >/dev/null 2>/dev/null
     fnm env --use-on-cd --shell fish | source

@@ -29,4 +29,16 @@ function M.merge_sets(array1, array2)
   return merged_array
 end
 
+function M.join_strings(separator, ...)
+  local result = ""
+  local arg = { ... }
+  for i = 1, #arg do
+    if i > 1 then
+      result = result .. separator
+    end
+    result = result .. arg[i]
+  end
+  return result
+end
+
 return M
