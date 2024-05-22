@@ -35,6 +35,7 @@ return {
           -- null_ls.builtins.diagnostics.stylelint,
           null_ls.builtins.diagnostics.checkmake,
           null_ls.builtins.diagnostics.commitlint,
+          null_ls.builtins.diagnostics.selene,
         },
         on_attach = function(client, bufnr)
           require("utils.native_lsp").common_on_attach(client, bufnr)

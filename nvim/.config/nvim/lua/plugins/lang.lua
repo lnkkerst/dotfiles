@@ -10,6 +10,18 @@ return {
     "mrcjkb/rustaceanvim",
     version = "^4", -- Recommended
     lazy = false, -- This plugin is already lazy
+    config = function()
+      local lsp_utils = require("utils.native_lsp")
+      vim.g.rustaceanvim = {
+        server = {
+          on_attach = function(client, bufnr)
+            lsp_utils.common_on_attach(client, bufnr)
+            require("lsp-format").on_attach(client, bufnr)
+          end,
+          capabilities = lsp_utils.common_capabilities,
+        },
+      }
+    end,
   },
 
   {

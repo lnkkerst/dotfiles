@@ -61,6 +61,7 @@ function M.init()
       "typescript",
       "typescriptreact",
       "typescript.tsx",
+      "vue",
     },
   })
 end
