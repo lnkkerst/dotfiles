@@ -12,7 +12,7 @@ export QT_SELECT=5
 export QT_STYLE_OVERRIDE=kvantum
 
 export GDK_BACKEND=wayland,x11
-export GTK_THEME=Catppuccin-Mocha-Standard-Blue-Dark
+export GTK_THEME=catppuccin-mocha-blue-standard+default
 export BEMENU_BACKEND=wayland
 
 export CLUTTER_BACKEND=wayland

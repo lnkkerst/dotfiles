@@ -14,7 +14,7 @@ set -gx nvm_default_version v16.14.2
 set -gx JAVA_HOME /usr/lib/jvm/default
 set -gx HASTE_SERVER https://pb.lnkkerst.me
 # set -gx LOCALE_ARCHIVE $HOME/.nix-profile/lib/locale/locale-archive
-set -gx GOPROXY https://mirrors.aliyun.com/goproxy/,direct
+# set -gx GOPROXY https://mirrors.aliyun.com/goproxy/,direct
 
 set -gx FZF_DEFAULT_OPTS "\
     --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \

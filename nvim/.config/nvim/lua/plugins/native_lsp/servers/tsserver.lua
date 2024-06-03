@@ -37,6 +37,7 @@ function M.init()
   require("typescript-tools").setup({
     on_attach = function(client, bufnr)
       plugin_lsp.common_on_attach(client, bufnr)
+      client.server_capabilities.semanticTokensProvider = false
 
       -- require("workspace-diagnostics").populate_workspace_diagnostics(
       --   client,
@@ -49,10 +50,14 @@ function M.init()
       plugins = {
         {
           name = "@vue/typescript-plugin",
-          location = "/home/lnk/.local/share/pnpm/global/5/node_modules/@vue/typescript-plugin",
+          location = "/usr/lib/node_modules/@vue/typescript-plugin",
           languages = { "javascript", "typescript", "vue" },
         },
       },
+    },
+    settings = {
+      tsserver_path = "/usr/lib/node_modules/typescript/lib/tsserver.js",
+      tsserver_plugins = { "@vue/typescript-plugin" },
     },
     filetypes = {
       "javascript",

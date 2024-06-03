@@ -191,13 +191,6 @@ return {
 
       require("ts_context_commentstring").setup({})
 
-      -- Autotag
-      require("nvim-treesitter.configs").setup({
-        autotag = {
-          enable = true,
-        },
-      })
-
       -- textsubjects
       require("nvim-treesitter.configs").setup({
         textsubjects = {
@@ -227,6 +220,9 @@ return {
           enable = true,
         },
       })
+
+      -- ts-auto-tag
+      require("nvim-ts-autotag").setup()
     end,
   },
 }
