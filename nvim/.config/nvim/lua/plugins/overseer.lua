@@ -18,7 +18,9 @@ return {
     },
     config = function()
       local overseer = require("overseer")
-      overseer.setup()
+      overseer.setup({
+        templates = { "builtin" },
+      })
 
       overseer.register_template({
         name = "g++ build",

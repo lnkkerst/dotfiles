@@ -82,6 +82,7 @@ return {
               information = { "underline" },
             },
           },
+          overseer = true,
         },
       })
       vim.api.nvim_command("colorscheme catppuccin")

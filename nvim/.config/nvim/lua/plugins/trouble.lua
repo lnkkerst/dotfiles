@@ -1,7 +1,13 @@
 return {
   "folke/trouble.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
-  cmd = { "Trouble", "TroubleClose", "TroubleToggle", "TroubleRefresh" },
+  cmd = "Trouble",
   opts = {},
-  config = function() end,
+  keys = {
+    {
+      "<A-t>",
+      "<cmd>Trouble diagnostics toggle<cr>",
+      desc = "Toggle Trouble diagnostics",
+    },
+  },
 }

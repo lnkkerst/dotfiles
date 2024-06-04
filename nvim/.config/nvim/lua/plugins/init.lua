@@ -1,5 +1,6 @@
 return {
   { "nvim-lua/plenary.nvim" },
+
   {
     "nvim-zh/colorful-winsep.nvim",
     enabled = true,
@@ -42,6 +43,9 @@ return {
   {
     "skywind3000/asyncrun.vim",
     cmd = { "AsyncRun", "AsyncStop", "AsyncReset" },
+    config = function()
+      vim.g.asyncrun_open = 6
+    end,
   },
 
   {
@@ -72,6 +76,13 @@ return {
   {
     "sbdchd/neoformat",
     cmd = "Neoformat",
+    keys = {
+      {
+        "<M-S-f>",
+        "<cmd>Neoformat<cr>",
+        desc = "Neoformat",
+      },
+    },
   },
 
   { "gpanders/editorconfig.nvim", event = "VeryLazy" },
@@ -102,6 +113,13 @@ return {
       "AerialOpenAll",
       "AerialCloseAll",
     },
+    keys = {
+      {
+        "<A-a>",
+        "<cmd>AerialToggle<cr>",
+        desc = "Toggle Aerial",
+      },
+    },
     config = true,
   },
 
@@ -121,5 +139,32 @@ return {
       })
       require("transparent").clear_prefix("BufferLine")
     end,
+  },
+
+  {
+    "tzachar/highlight-undo.nvim",
+    opts = {},
+  },
+
+  {
+    "stevearc/oil.nvim",
+    opts = {
+      columns = {
+        "icon",
+        "permissions",
+        "size",
+        "mtime",
+      },
+    },
+  },
+
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
   },
 }

@@ -1,0 +1,3 @@
+[rules]
+mixed_table = "allow"
+shadowing = "allow"

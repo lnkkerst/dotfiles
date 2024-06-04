@@ -2,6 +2,7 @@ return {
   {
     "akinsho/toggleterm.nvim",
     keys = { [[<C-\>]] },
+    cmd = { "Lazygit", "Ranger", "FloatTerm" },
     config = function()
       require("toggleterm").setup({
         open_mapping = [[<C-\>]],

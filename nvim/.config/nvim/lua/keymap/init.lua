@@ -3,20 +3,6 @@ require("keymap.config")
 
 local wk = require("which-key")
 
--- Plugin Trouble
-wk.register({
-  ["<A-t>"] = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
-})
-
--- Plugin Aerial
-wk.register({
-  ["<A-a>"] = { "<cmd>AerialToggle<cr>", "Aerial" },
-}, { mode = { "n", "i", "v" } })
--- Plugin Neoformat
-wk.register({
-  ["<M-S-f>"] = { "<cmd>Neoformat<cr>", "Neoformat" },
-}, { mode = { "n", "i" } })
-
 -- Save file
 wk.register({
   ["<C-s>"] = { "<cmd>w<cr>", "Save file" },
