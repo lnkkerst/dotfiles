@@ -57,11 +57,12 @@ return {
         end,
         preselect = cmp.PreselectMode.None,
         sorting = {
+          priority_weight = 2,
           comparators = {
             cmp.config.compare.offset,
             cmp.config.compare.exact,
-            cmp.config.compare.score,
             cmp.config.compare.recently_used,
+            cmp.config.compare.score,
             require("copilot_cmp.comparators").prioritize,
             cmp.config.compare.locality,
             require("cmp-under-comparator").under,
@@ -70,7 +71,6 @@ return {
             cmp.config.compare.length,
             cmp.config.compare.order,
           },
-          priority_weight = 1,
         },
         formatting = {
           format = lspkind.cmp_format({
@@ -126,7 +126,7 @@ return {
         },
         sources = {
           { name = "nvim_lsp", priority = 100, max_item_count = 30 },
-          -- { name = "copilot", priority = 0 },
+          { name = "copilot", priority = 0 },
           { name = "luasnip", priority = 90 },
           { name = "buffer", keyword_length = 3, priority = 10 },
           { name = "path", priority = 50 },

@@ -95,7 +95,7 @@ return {
     end,
   },
 
-  { "famiu/bufdelete.nvim" },
+  { "famiu/bufdelete.nvim", enable = false },
 
   {
     "stevearc/aerial.nvim",
