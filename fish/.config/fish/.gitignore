@@ -1,3 +1,7 @@
-fishd.tmp.*
-fisher/
-secrets.fish
+# whitelist mode
+*
+
+!common.fish
+!diff/
+!diff/**
+!fish_plugins

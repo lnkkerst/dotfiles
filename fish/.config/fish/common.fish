@@ -1,8 +1,21 @@
+function fish_command_not_found
+    echo `$argv[1]` not found 😢
+end
+
 if not status is-interactive
     return
 end
 
-# Alias
+#############
+# Variables #
+#############
+
+set -gx fish_greeting
+
+#########
+# Alias #
+#########
+
 alias gitu='git add . && git commit && git push'
 alias trm='/bin/rm'
 alias rm='trash-put'
@@ -33,18 +46,25 @@ alias icat="kitty +kitten icat"
 alias datef="date +%Y%m%d%H%M%S_%s"
 alias dates="date '+%Y-%m-%d %H:%M:%S %Z'"
 
-# Key binding
+###############
+# Keybindings #
+###############
+
 bind \co ranger-cd --mode insert
 bind \co ranger-cd --mode default
 bind \eq 'fish_commandline_prepend pc' --mode insert
 bind \eq 'fish_commandline_prepend pc' --mode default
 
-# Functions
-function mkcd
+
+#############
+# Functions #
+#############
+
+function mkcd -d "Make dir and cd"
     mkdir -p $argv[1] && cd $argv[1]
 end
 
-function proxy_env
+function proxy-env -d "Manage env for proxy"
     if test $argv[1] = on
         # set -gx all_proxy socks://127.0.0.1:20170
         set -gx http_proxy http://127.0.0.1:20171
@@ -58,7 +78,7 @@ function proxy_env
     end
 end
 
-function ranger-cd
+function ranger-cd -d "Ranger with auto cd"
     set dir (mktemp -t ranger_cd.XXX)
     ranger --choosedir=$dir
     cd (cat $dir) $argv
@@ -66,46 +86,59 @@ function ranger-cd
     commandline -f repaint
 end
 
-function swpesc
+function swpesc -d "Swap caps and esc or not"
+    argparse --min-args=1 -- $argv
+    or return
+
+    set kb_options ""
     if test $argv[1] = on
-        hyprctl keyword input:kb_options "caps:swapescape"
-    else if test $argv[1] = off
-        hyprctl keyword input:kb_options ""
+        set kb_options "caps:swapescape"
+    end
+
+    if set -q WAYLAND_DISPLAY
+        hyprctl keyword input:kb_options $kb_options
+    else if set -q DISPLAY
+        setxkbmap -option $kb_options
+    else
+        echo "It seems that you are not in X11 or Wayland environment."
+        return 1
     end
 end
 
-function fish_command_not_found
-    echo `$argv[1]` not found 😢
+function first-ip -d "Get first local ip"
+    set ip (ip addr show | grep 'inet ' | grep -v '127.0.0.1' | awk '{print $2}' | cut -d '/' -f1 | head -n 1)
+    echo -n $ip
 end
 
-function first-ip
-    set ip (ip addr show | grep 'inet ' | grep -v '127.0.0.1' | awk '{print $2}' | cut -d '/' -f1 | head -n 1)
-    echo $ip
-end
+
+################
+# Applications #
+################
 
 # fnm
-if type -f fnm >/dev/null 2>/dev/null
+if type -qf fnm
     fnm env --use-on-cd --shell fish | source
     fnm completions --shell fish | source
 end
 
 # zoxide
-if type -f zoxide >/dev/null 2>/dev/null
+if type -qf zoxide
     zoxide init fish | source
     alias j='z'
 end
 
 # direnv
-if type -f direnv >/dev/null 2>/dev/null
+if type -qf direnv
     direnv hook fish | source
 end
 
-if type -f starship >/dev/null 2>/dev/null
+# starship
+if type -qf starship
     starship init fish | source
 end
 
 # atuin
-if type -f atuin >/dev/null 2>/dev/null
+if type -qf atuin
     set -gx ATUIN_NOBIND true
     atuin init fish | source
     bind \cr _atuin_search
@@ -113,6 +146,11 @@ if type -f atuin >/dev/null 2>/dev/null
 end
 
 # thefuck
-if type -f thefuck >/dev/null 2>/dev/null
+if type -qf thefuck
     thefuck --alias | source
+end
+
+# rye
+if type -qf rye
+    rye self completion --shell fish | source
 end

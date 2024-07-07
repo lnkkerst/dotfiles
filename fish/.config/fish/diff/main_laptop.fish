@@ -4,7 +4,6 @@
 # fish_add_path -g $HOME/.bun/bin
 # fish_add_path -g $HOME/.nix-profile/bin
 
-set -gx fish_greeting
 set -gx DISABLE_FZF_AUTO_COMPLETION true
 
 set -gx TERMINAL kitty
@@ -26,3 +25,24 @@ set -gx FLUTTER_STORAGE_BASE_URL "https://mirrors.tuna.tsinghua.edu.cn/flutter"
 
 set -gx ANDROID_HOME $HOME/Android/Sdk
 set -gx NDK_HOME $ANDROID_HOME/ndk/25.2.9519653
+
+
+if not status is-interactive
+    return
+end
+
+function select-area -d "Select screen area (only support Hyprland)"
+    if test (count $argv) -ge 1
+        set active_workspace $argv[1]
+    else
+        set active_workspace $(hyprctl activeworkspace -j | jq .id)
+    end
+
+    set windows $(hyprctl clients -j | jq -r ".[] | select(.workspace.id == $active_workspace) | \"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])\"")
+    printf "%s\n" $windows | slurp
+end
+
+function record-selected -d "Select screen area and record (only support Hyprland)"
+    set area (select-area $argv)
+    wf-recorder -g "$area" -f ~/Videos/wf-recorder/(datef).mp4
+end
