@@ -1,3 +1,5 @@
+@import "mocha.css";
+
 * {
   border: none;
   border-radius: 0;
@@ -8,19 +10,17 @@
 
 window#waybar {
   background: transparent;
-  color: #cdd6f4;
+  color: @text;
 }
 
 #workspaces button {
-  padding: 0 5px;
-  background: transparent;
-  color: #cdd6f4;
+  padding: 0 4px;
   border-top: 2px solid transparent;
 }
 
 #workspaces button.active {
-  color: #cba6f7;
-  border-top: 2px solid #cba6f7;
+  color: @mauve;
+  border-top: 2px solid @mauve;
 }
 
 #clock,
@@ -35,48 +35,48 @@ window#waybar {
 #keyboard-state,
 #tray,
 #mode {
-  padding: 0 8px 0 3px;
+  padding: 0 8px 0 6px;
   margin: 0 2px;
 }
 
 #idle_inhibitor {
-  border-top: 2px solid #f2cdcd;
+  border-top: 2px solid @flamingo;
 }
 
 #pulseaudio {
-  border-top: 2px solid #f5c2e7;
+  border-top: 2px solid @pink;
 }
 
 #cpu {
-  border-top: 2px solid #eba0ac;
+  border-top: 2px solid @maroon;
 }
 
 #memory {
-  border-top: 2px solid #fab387;
+  border-top: 2px solid @peach;
 }
 
 #temperature {
-  border-top: 2px solid #f9e2af;
+  border-top: 2px solid @yellow;
 }
 
 #backlight {
-  border-top: 2px solid #a6e3a1;
+  border-top: 2px solid @green;
 }
 
 #keyboard-state {
-  border-top: 2px solid #94e2d5;
+  border-top: 2px solid @teal;
 }
 
 #battery {
-  border-top: 2px solid #74c7ec;
+  border-top: 2px solid @sky;
 }
 
 #clock {
-  border-top: 2px solid #89b4fa;
+  border-top: 2px solid @blue;
 }
 
 #tray {
-  border-top: 2px solid #b4befe;
+  border-top: 2px solid @lavender;
 }
 
 #window {
@@ -84,18 +84,18 @@ window#waybar {
 }
 
 #battery icon {
-  color: red;
+  color: @red;
 }
 
 @keyframes blink {
   to {
-    background-color: #ffffff;
-    color: black;
+    background-color: @yellow;
+    color: @base;
   }
 }
 
 #battery.warning:not(.charging) {
-  color: #cdd6f4;
+  color: @text;
   animation-name: blink;
   animation-duration: 0.5s;
   animation-timing-function: linear;
@@ -104,5 +104,5 @@ window#waybar {
 }
 
 #network.disconnected {
-  background: #f53c3c;
+  background: @red;
 }
