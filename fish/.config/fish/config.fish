@@ -66,6 +66,14 @@ function ranger-cd
     commandline -f repaint
 end
 
+function swpesc
+    if test $argv[1] = on
+        hyprctl keyword input:kb_options "caps:swapescape"
+    else if test $argv[1] = off
+        hyprctl keyword input:kb_options ""
+    end
+end
+
 function fish_command_not_found
     echo `$argv[1]` not found 😢
 end
