@@ -1,3 +1,5 @@
+local conditions = require("utils.conditions")
+
 return {
   {
     "nvimtools/none-ls.nvim",
@@ -10,10 +12,12 @@ return {
         sources = {
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.shfmt,
-          -- null_ls.builtins.formatting.prettierd,
+          null_ls.builtins.formatting.prettierd.with({
+            condition = function()
+              return conditions.use_prettier()
+            end,
+          }),
           -- null_ls.builtins.formatting.prettier,
-          -- null_ls.builtins.formatting.dprint,
-          -- null_ls.builtins.formatting.biome,
           -- null_ls.builtins.formatting.autopep8,
           -- null_ls.builtins.formatting.black,
           null_ls.builtins.formatting.fish_indent,

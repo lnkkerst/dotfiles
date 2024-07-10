@@ -7,6 +7,7 @@ local M = {}
 function M.init()
   lspconfig.eslint.setup({
     on_attach = function(client, bufnr)
+      client.server_capabilities.documentFormattingProvider = true
       plugin_lsp.common_on_attach(client, bufnr)
       lsp_format.on_attach(client)
     end,
