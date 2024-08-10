@@ -4,28 +4,35 @@ require("keymap.config")
 local wk = require("which-key")
 
 -- Save file
-wk.register({
-  ["<C-s>"] = { "<cmd>w<cr>", "Save file" },
-}, { mode = { "n", "i" } })
+wk.add({
+  "<C-s>",
+  "<cmd>w<cr>",
+  desc = "Save file",
+  mode = { "n", "i" },
+})
 
 -- Line move
-wk.register({
-  ["H"] = { "^", "Move to the first non-blank character" },
-  ["L"] = { "g_", "Move to the latest non-blank character" },
-}, { mode = { "n", "v" } })
+wk.add({
+  mode = { "n", "v" },
+  { "H", "^", desc = "Move to the first non-blank character" },
+  { "L", "g_", desc = "Move to the latest non-blank character" },
+})
 
 -- Delete char without yank
-wk.register({
-  ["x"] = { '"_x', "Delete current char without yank" },
-  ["X"] = { '"_X', "Delete prev char without yank" },
-}, { mode = { "n", "v" } })
+wk.add({
+  mode = { "n", "v" },
+  { "x", '"_x', desc = "Delete current char without yank" },
+  { "X", '"_X', desc = "Delete prev char without yank" },
+})
 
 -- Visual paste without yank
-wk.register({
-  ["p"] = { '"_dP', "Visual paste without yank" },
-}, { mode = "v" })
+wk.add({
+  mode = "v",
+  { "p", '"_dP', desc = "Visual paste without yank" },
+})
 
 -- No highlight
-wk.register({
-  ["l"] = { "<cmd>noh<cr>", "noh" },
-}, { prefix = "<leader>" })
+wk.add({
+  mode = "n",
+  { "<leader>l", "<cmd>noh<cr>", desc = "noh" },
+})

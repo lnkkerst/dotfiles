@@ -16,20 +16,23 @@ return {
     },
     event = { "BufReadPost", "BufNewFile" },
     config = function()
-      -- Treesitter
       require("nvim-treesitter.configs").setup({
-        -- ensure_installed = "all",
+        ensure_installed = {},
 
         sync_install = false,
 
-        -- ignore_install = { "phpdoc" },
+        ignore_install = { "phpdoc" },
 
         auto_install = true,
 
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = false,
-          disable = function(_, buf)
+          disable = function(lang, buf)
+            local disabled_langs = { "vue" }
+            if vim.tbl_contains(disabled_langs, lang) then
+              return true
+            end
             local max_filesize = 10 * 1024
             local ok, stats =
               pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
@@ -41,15 +44,6 @@ return {
 
         indent = {
           enable = true,
-        },
-
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = false,
-            node_incremental = "]n",
-            node_decremental = "[n",
-          },
         },
       })
 

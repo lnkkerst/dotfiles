@@ -2,12 +2,22 @@ profile {
   output eDP-1 mode 2240x1400@60 position 0,0 scale 1.46
 }
 
+#profile {
+#  output HDMI-A-1 mode 2560x1440@120 position 0,0 scale 1
+#  output eDP-1 mode 2240x1400@60 position 2560,640 scale 1.46
+#}
+
 profile {
-  output HDMI-A-1 mode 2560x1440@120 position 0,0 scale 1
-  output eDP-1 mode 2240x1400@60 position 2560,640 scale 1.46
+  output HDMI-A-1 mode 1920x1080@120 position 0,0 scale 1
+  output eDP-1 mode 2240x1400@60 position 1920,480 scale 1.46
 }
 
 profile {
-  output eDP-1 mode 2240x1400@60 position 2560,640 scale 1.46
-  output DP-1 mode 2560x1440@165 position 0,0 scale 1
+  output eDP-1 mode 2240x1400@60 position 1920,480 scale 1.46
+  output DP-1 mode 1920x1080@120 position 0,0 scale 1
+}
+
+profile {
+  output eDP-1 mode 2240x1400@60 position 1920,480 scale 1.46
+  output DP-2 mode 1920x1080@120 position 0,0 scale 1
 }

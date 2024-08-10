@@ -36,7 +36,7 @@ return {
     ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
   },
   {
-    "folke/neodev.nvim",
+    "folke/lazydev.nvim",
     opts = {},
     lazy = true,
     ft = "lua",

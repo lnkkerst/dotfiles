@@ -4,11 +4,12 @@ return {
     event = "VeryLazy",
     config = function()
       local wk = require("which-key")
-      local accelerate_jk = {
-        ["j"] = { "<Plug>(accelerated_jk_gj)", "accelerate j" },
-        ["k"] = { "<Plug>(accelerated_jk_gk)", "accelerate k" },
-      }
-      wk.register(accelerate_jk)
+      wk.add({
+        mode = { "n" },
+        noremap = true,
+        { "j", "<Plug>(accelerated_jk_gj)", desc = "accelerate j" },
+        { "k", "<Plug>(accelerated_jk_gk)", desc = "accelerate k" },
+      })
     end,
   },
 }

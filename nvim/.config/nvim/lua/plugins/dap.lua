@@ -38,35 +38,36 @@ return {
       local dapui = require("dapui")
       local wk = require("which-key")
 
-      wk.register({
-        ["d"] = {
-          name = "Dap for debug",
-          ["u"] = {
-            function()
-              dapui.toggle()
-            end,
-            "Toggle dap UI",
-          },
-          ["b"] = {
-            function()
-              dap.toggle_breakpoint()
-            end,
-            "Toggle breakpoint",
-          },
-          ["r"] = {
-            function()
-              dap.continue()
-            end,
-            "Dap Continue",
-          },
-          ["s"] = {
-            function()
-              dap.step_into()
-            end,
-            "Dap step_into",
-          },
+      wk.add({
+        {
+          "<leader>du",
+          function()
+            dapui.toggle()
+          end,
+          desc = "Toggle dap UI",
         },
-      }, { prefix = "<leader>" })
+        {
+          "<leader>db",
+          function()
+            dap.toggle_breakpoint()
+          end,
+          desc = "Toggle breakpoint",
+        },
+        {
+          "<leader>dr",
+          function()
+            dap.continue()
+          end,
+          desc = "Dap Continue",
+        },
+        {
+          "<leader>ds",
+          function()
+            dap.step_into()
+          end,
+          desc = "Dap step_into",
+        },
+      })
 
       dap.listeners.after.event_initialized["dapui"] = function()
         dapui.open()
@@ -97,7 +98,7 @@ return {
 
       dap.adapters.lldb = {
         type = "executable",
-        command = "/usr/bin/lldb-vscode",
+        command = "/usr/bin/lldb-dap",
         name = "lldb",
       }
 

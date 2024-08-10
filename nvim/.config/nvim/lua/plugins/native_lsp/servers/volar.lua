@@ -6,8 +6,7 @@ local M = {}
 
 function M.init()
   local function get_typescript_server_path(root_dir)
-    local global_ts =
-      "/home/lnk/.local/share/pnpm/global/5/node_modules/typescript/lib"
+    local global_ts = "/usr/lib/node_modules/typescript/lib"
     local found_ts = ""
     local function check_dir(path)
       found_ts = util.path.join(path, "node_modules", "typescript", "lib")
@@ -26,10 +25,15 @@ function M.init()
     enabled = true,
     on_attach = plugin_lsp.common_on_attach,
     capabilities = plugin_lsp.common_capabilities,
-    on_new_config = function(new_config, new_root_dir)
-      new_config.init_options.typescript.tsdk =
-        get_typescript_server_path(new_root_dir)
-    end,
+    init_options = {
+      typescript = {
+        tsdk = "/usr/lib/node_modules/typescript/lib",
+      },
+    },
+    -- on_new_config = function(new_config, new_root_dir)
+    --   new_config.init_options.typescript.tsdk =
+    --     get_typescript_server_path(new_root_dir)
+    -- end,
   })
 end
 

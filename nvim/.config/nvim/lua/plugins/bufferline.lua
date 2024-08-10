@@ -22,71 +22,104 @@ return {
 
       local wk = require("which-key")
 
-      wk.register({
-        ["{ A-1 }"] = {
+      wk.add({
+        {
+          "<A-1>",
           "<cmd>BufferLineGoToBuffer 1<cr>",
-          "BufferLineGoToBuffer 1",
+          desc = "BufferLineGoToBuffer 1",
         },
-        ["<A-2>"] = {
+        {
+          "<A-2>",
           "<cmd>BufferLineGoToBuffer 2<cr>",
-          "BufferLineGoToBuffer 2",
+          desc = "BufferLineGoToBuffer 2",
         },
-        ["<A-3>"] = {
+        {
+          "<A-3>",
           "<cmd>BufferLineGoToBuffer 3<cr>",
-          "BufferLineGoToBuffer 3",
+          desc = "BufferLineGoToBuffer 3",
         },
-        ["<A-4>"] = {
+        {
+          "<A-4>",
           "<cmd>BufferLineGoToBuffer 4<cr>",
-          "BufferLineGoToBuffer 4",
+          desc = "BufferLineGoToBuffer 4",
         },
-        ["<A-5>"] = {
+        {
+          "<A-5>",
           "<cmd>BufferLineGoToBuffer 5<cr>",
-          "BufferLineGoToBuffer 5",
+          desc = "BufferLineGoToBuffer 5",
         },
-        ["<A-6>"] = {
+        {
+          "<A-6>",
           "<cmd>BufferLineGoToBuffer 6<cr>",
-          "BufferLineGoToBuffer 6",
+          desc = "BufferLineGoToBuffer 6",
         },
-        ["<A-7>"] = {
+        {
+          "<A-7>",
           "<cmd>BufferLineGoToBuffer 7<cr>",
-          "BufferLineGoToBuffer 7",
+          desc = "BufferLineGoToBuffer 7",
         },
-        ["<A-8>"] = {
+        {
+          "<A-8>",
           "<cmd>BufferLineGoToBuffer 8<cr>",
-          "BufferLineGoToBuffer 8",
+          desc = "BufferLineGoToBuffer 8",
         },
-        ["<A-9>"] = {
+        {
+          "<A-9>",
           "<cmd>BufferLineGoToBuffer 9<cr>",
-          "BufferLineGoToBuffer 9",
+          desc = "BufferLineGoToBuffer 9",
         },
-        -- ["<A-S-j>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
-        -- ["<A-S-k>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
-        ["<A-S-j>"] = { "<cmd>BufferLineMoveNext<cr>", "BufferLineMoveNext" },
-        ["<A-S-k>"] = { "<cmd>BufferLineMovePrev<cr>", "BufferLineMovePrev" },
-        ["<A-n>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
-        ["<A-p>"] = { "<cmd>BufferLineCyclePrev<cr>", "BufferLineCyclePrev" },
-        ["<A-Tab>"] = { "<cmd>BufferLineCycleNext<cr>", "BufferLineCycleNext" },
-        ["<A-S-Tab>"] = {
+        {
+          "<A-S-j>",
+          "<cmd>BufferLineMoveNext<cr>",
+          desc = "BufferLineMoveNext",
+        },
+        {
+          "<A-S-k>",
+          "<cmd>BufferLineMovePrev<cr>",
+          desc = "BufferLineMovePrev",
+        },
+        {
+          "<A-n>",
+          "<cmd>BufferLineCycleNext<cr>",
+          desc = "BufferLineCycleNext",
+        },
+        {
+          "<A-p>",
           "<cmd>BufferLineCyclePrev<cr>",
-          "BufferLineCyclePrev",
+          desc = "BufferLineCyclePrev",
         },
-        ["<S-q>"] = { "<cmd>Bdelete<cr>", "Bufdelete" },
-        ["<C-q>"] = { "<cmd>:q<cr>", "Close window" },
+        {
+          "<A-Tab>",
+          "<cmd>BufferLineCycleNext<cr>",
+          desc = "BufferLineCycleNext",
+        },
+        {
+          "<A-S-Tab>",
+          "<cmd>BufferLineCyclePrev<cr>",
+          desc = "BufferLineCyclePrev",
+        },
+        { "<S-q>", "<cmd>Bdelete<cr>", desc = "Bufdelete" },
+        { "<C-q>", "<cmd>:q<cr>", desc = "Close window" },
       })
-      wk.register({
-        ["b"] = {
-          name = "bufferline action",
-          ["e"] = {
-            "<cmd>BufferLineSortByExtension<cr>",
-            "BufferLineSortByExtension",
-          },
-          ["d"] = {
-            "<cmd>BufferLineSortByDirectory<cr>",
-            "BufferLineSortByDirectory",
-          },
-          ["p"] = { "<cmd>BufferLinePick<cr>", "BufferLinePick" },
+
+      wk.add({
+        {
+          "<leader>b",
+          desc = "bufferline action",
+          group = "Bufferline actions",
         },
-      }, { prefix = "<leader>" })
+        {
+          "<leader>be",
+          "<cmd>BufferLineSortByExtension<cr>",
+          desc = "BufferLineSortByExtension",
+        },
+        {
+          "<leader>bd",
+          "<cmd>BufferLineSortByDirectory<cr>",
+          desc = "BufferLineSortByDirectory",
+        },
+        { "<leader>bp", "<cmd>BufferLinePick<cr>", desc = "BufferLinePick" },
+      })
     end,
   },
 }

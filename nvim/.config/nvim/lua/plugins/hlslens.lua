@@ -43,7 +43,7 @@ return {
         kopts
       )
 
-      vim.api.nvim_set_keymap("n", "<Leader>l", ":noh<CR>", kopts)
+      -- vim.api.nvim_set_keymap("n", "<Leader>l", ":noh<CR>", kopts)
     end,
   },
 }

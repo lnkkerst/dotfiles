@@ -37,7 +37,7 @@ function M.init()
   require("typescript-tools").setup({
     on_attach = function(client, bufnr)
       plugin_lsp.common_on_attach(client, bufnr)
-      client.server_capabilities.semanticTokensProvider = false
+      -- client.server_capabilities.semanticTokensProvider = false
 
       -- require("workspace-diagnostics").populate_workspace_diagnostics(
       --   client,
@@ -51,7 +51,13 @@ function M.init()
         {
           name = "@vue/typescript-plugin",
           location = "/usr/lib/node_modules/@vue/typescript-plugin",
-          languages = { "javascript", "typescript", "vue" },
+          languages = {
+            "javascript",
+            "typescript",
+            "vue",
+            "javascriptreact",
+            "typescriptreact",
+          },
         },
       },
     },
@@ -59,6 +65,13 @@ function M.init()
       tsserver_path = "/usr/lib/node_modules/typescript/lib/tsserver.js",
       tsserver_plugins = { "@vue/typescript-plugin" },
     },
+    root_dir = lspconfig.util.root_pattern(
+      "pnpm-workspace.yaml",
+      "tsconfig.json",
+      "jsconfig.json",
+      "package.json",
+      ".git"
+    ),
     filetypes = {
       "javascript",
       "javascriptreact",

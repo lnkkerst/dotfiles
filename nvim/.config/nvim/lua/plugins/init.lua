@@ -20,7 +20,17 @@ return {
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
-    config = true,
+    opts = {
+      default_mappings = false,
+      mappings = {
+        i = {
+          j = {
+            k = "<Esc>",
+            j = "<Esc>",
+          },
+        },
+      },
+    },
   },
 
   {
@@ -89,6 +99,7 @@ return {
 
   {
     "junegunn/fzf",
+    enabled = false,
     lazy = true,
     build = function()
       vim.fn["fzf#install"]()

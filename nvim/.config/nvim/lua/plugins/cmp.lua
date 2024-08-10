@@ -57,7 +57,7 @@ return {
         end,
         preselect = cmp.PreselectMode.None,
         sorting = {
-          priority_weight = 2,
+          priority_weight = 10,
           comparators = {
             cmp.config.compare.offset,
             cmp.config.compare.exact,
@@ -125,10 +125,10 @@ return {
           end, { "i", "s" }),
         },
         sources = {
-          { name = "nvim_lsp", priority = 100, max_item_count = 30 },
+          { name = "nvim_lsp", priority = 100, max_item_count = 50 },
           { name = "copilot", priority = 0 },
           { name = "luasnip", priority = 90 },
-          { name = "buffer", keyword_length = 3, priority = 10 },
+          { name = "buffer", keyword_length = 1, priority = 10 },
           { name = "path", priority = 50 },
           { name = "emoji", insert = true, priority = 0 },
           { name = "nvim_lsp_signature_help", priority = 110 },
@@ -139,7 +139,6 @@ return {
           completeopt = "menu,noselect",
         },
       })
-
       -- Set configuration for specific filetype.
       cmp.setup.filetype("gitcommit", {
         sources = cmp.config.sources({
