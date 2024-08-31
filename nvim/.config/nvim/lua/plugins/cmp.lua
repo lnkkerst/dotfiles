@@ -57,17 +57,20 @@ return {
         end,
         preselect = cmp.PreselectMode.None,
         sorting = {
-          priority_weight = 10,
+          priority_weight = 2,
           comparators = {
+            function(...)
+              return require("cmp_buffer"):compare_locality(...)
+            end,
             cmp.config.compare.offset,
             cmp.config.compare.exact,
-            cmp.config.compare.recently_used,
             cmp.config.compare.score,
-            require("copilot_cmp.comparators").prioritize,
-            cmp.config.compare.locality,
             require("cmp-under-comparator").under,
+            -- require("copilot_cmp.comparators").prioritize,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
             cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
+            -- cmp.config.compare.sort_text,
             cmp.config.compare.length,
             cmp.config.compare.order,
           },
@@ -78,6 +81,11 @@ return {
             menu = source_mapping,
             symbol_map = { Copilot = "" },
           }),
+          fields = {
+            "abbr",
+            "kind",
+            "menu",
+          },
         },
         snippet = {
           expand = function(args)
@@ -124,21 +132,26 @@ return {
             end
           end, { "i", "s" }),
         },
-        sources = {
-          { name = "nvim_lsp", priority = 100, max_item_count = 50 },
-          { name = "copilot", priority = 0 },
-          { name = "luasnip", priority = 90 },
-          { name = "buffer", keyword_length = 1, priority = 10 },
-          { name = "path", priority = 50 },
-          { name = "emoji", insert = true, priority = 0 },
-          { name = "nvim_lsp_signature_help", priority = 110 },
-          { name = "crates" },
-        },
+        sources = cmp.config.sources(
+          { { name = "lazydev" } },
+          {
+            { name = "nvim_lsp" },
+            { name = "nvim_lsp_signature_help" },
+          },
+          -- { { name = "copilot" } },
+          { { name = "luasnip" } },
+          {
+            { name = "buffer" },
+            { name = "path" },
+            { name = "emoji" },
+          },
+          { { name = "crates" } }
+        ),
         completion = {
-          keyword_length = 1,
-          completeopt = "menu,noselect",
+          completeopt = "menu,menuone,noselect,noinsert",
         },
       })
+
       -- Set configuration for specific filetype.
       cmp.setup.filetype("gitcommit", {
         sources = cmp.config.sources({

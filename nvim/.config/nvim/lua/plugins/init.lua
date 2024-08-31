@@ -12,7 +12,7 @@ return {
     "danymat/neogen",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     cmd = "Neogen",
-    config = {
+    opts = {
       snippet_engine = "luasnip",
     },
   },

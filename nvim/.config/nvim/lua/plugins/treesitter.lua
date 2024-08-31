@@ -4,13 +4,12 @@ return {
     build = ":TSUpdate",
     dependencies = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
-      { "nvim-treesitter/nvim-treesitter-refactor" },
       { "RRethy/nvim-treesitter-textsubjects" },
       { "JoosepAlviste/nvim-ts-context-commentstring" },
       { "nvim-treesitter/nvim-treesitter-context" },
       { "HiPhish/rainbow-delimiters.nvim" },
       { "windwp/nvim-ts-autotag" },
-      { "kylechui/nvim-surround", config = true },
+      { "kylechui/nvim-surround", version = "*", config = true },
       { "abecodes/tabout.nvim", config = true },
       { "andymass/vim-matchup" },
     },
@@ -54,7 +53,7 @@ return {
             enable = true,
             set_jumps = true,
             goto_next_start = {
-              ["]m"] = {
+              ["]f"] = {
                 query = "@function.outer",
                 desc = "Next function start",
               },
@@ -68,15 +67,19 @@ return {
               },
               ["]p"] = {
                 query = "@parameter.outer",
-                desc = "Next paramter start",
+                desc = "Next parameter start",
               },
               ["]a"] = {
                 query = "@attribute.outer",
                 desc = "Next attribute start",
               },
+              ["]b"] = {
+                query = "@block.outer",
+                desc = "Next block start",
+              },
             },
             goto_next_end = {
-              ["]M"] = {
+              ["]F"] = {
                 query = "@function.outer",
                 desc = "Next function end",
               },
@@ -90,15 +93,19 @@ return {
               },
               ["]P"] = {
                 query = "@parameter.outer",
-                desc = "Next paramter end",
+                desc = "Next parameter end",
               },
               ["]A"] = {
                 query = "@attribute.outer",
                 desc = "Next attribute end",
               },
+              ["]B"] = {
+                query = "@block.outer",
+                desc = "Next block end",
+              },
             },
             goto_previous_start = {
-              ["[m"] = {
+              ["[f"] = {
                 query = "@function.outer",
                 desc = "Previous function start",
               },
@@ -112,15 +119,19 @@ return {
               },
               ["[p"] = {
                 query = "@parameter.outer",
-                desc = "Previous paramter start",
+                desc = "Previous parameter start",
               },
               ["[a"] = {
                 query = "@attribute.outer",
                 desc = "Previous attribute start",
               },
+              ["[b"] = {
+                query = "@block.outer",
+                desc = "Previous block start",
+              },
             },
             goto_previous_end = {
-              ["[M"] = {
+              ["[F"] = {
                 query = "@function.outer",
                 desc = "Previous function end",
               },
@@ -134,11 +145,15 @@ return {
               },
               ["[P"] = {
                 query = "@parameter.outer",
-                desc = "Previous paramter end",
+                desc = "Previous parameter end",
               },
               ["[A"] = {
                 query = "@attribute.outer",
                 desc = "Previous attribute end",
+              },
+              ["[B"] = {
+                query = "@block.outer",
+                desc = "Previous block end",
               },
             },
           },
@@ -149,35 +164,57 @@ return {
             keymaps = {
               ["af"] = {
                 query = "@function.outer",
-                desc = "outer part of a function region",
+                desc = "function",
               },
               ["if"] = {
                 query = "@function.inner",
-                desc = "inner part of a function region",
+                desc = "function",
               },
               ["ac"] = {
                 query = "@class.outer",
-                desc = "outer part of a class region",
+                desc = "class",
               },
               ["ic"] = {
                 query = "@class.inner",
-                desc = "inner part of a class region",
+                desc = "class",
+              },
+              ["ap"] = {
+                query = "@parameter.outer",
+                desc = "parameter",
+              },
+              ["ip"] = {
+                query = "@parameter.inner",
+                desc = "parameter",
+              },
+              ["al"] = {
+                query = "@loop.outer",
+                desc = "loop",
+              },
+              ["il"] = {
+                query = "@loop.inner",
+                desc = "loop",
+              },
+              ["aa"] = {
+                query = "@attribute.outer",
+                desc = "attribute",
+              },
+              ["ia"] = {
+                query = "@attribute.inner",
+                desc = "attribute",
               },
             },
-            -- If you set this to `true` (default is `false`) then any textobject is
-            -- extended to include preceding xor succeeding whitespace. Succeeding
-            -- whitespace has priority in order to act similarly to eg the built-in
-            -- `ap`.
-            include_surrounding_whitespace = true,
+            include_surrounding_whitespace = false,
           },
 
           swap = {
             enable = true,
             swap_next = {
-              ["<leader>a"] = "@parameter.inner",
+              ["<leader>sp"] = "@parameter.inner",
+              ["<leader>sa"] = "@attribute.inner",
             },
             swap_previous = {
-              ["<leader>A"] = "@parameter.inner",
+              ["<leader>sP"] = "@parameter.inner",
+              ["<leader>sA"] = "@attribute.inner",
             },
           },
         },
@@ -198,13 +235,6 @@ return {
         },
       })
 
-      -- refactor
-      require("nvim-treesitter.configs").setup({
-        refactor = {
-          highlight_current_scope = { enable = false },
-        },
-      })
-
       -- context
       require("treesitter-context").setup({})
 
@@ -216,7 +246,11 @@ return {
       })
 
       -- ts-auto-tag
-      require("nvim-ts-autotag").setup()
+      require("nvim-ts-autotag").setup({
+        opts = {
+          enable_close_on_slash = true,
+        },
+      })
     end,
   },
 }
