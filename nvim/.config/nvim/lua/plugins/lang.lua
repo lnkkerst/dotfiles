@@ -8,6 +8,7 @@ return {
 
   {
     "mrcjkb/rustaceanvim",
+    enabled = false,
     version = "^4", -- Recommended
     lazy = false, -- This plugin is already lazy
     config = function()
@@ -22,6 +23,12 @@ return {
         },
       }
     end,
+  },
+
+  {
+    "vxpm/ferris.nvim",
+    enabled = true,
+    opts = { create_commands = true },
   },
 
   {

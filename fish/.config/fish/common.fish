@@ -26,7 +26,7 @@ alias dstat='dstat -cdlmnpsy'
 alias py='python'
 alias :q='exit'
 alias :wq='exit'
-alias nv='neovide --nofork'
+alias nv='neovide --no-fork'
 alias cp='cp -i'
 alias cpr='cp --reflink'
 alias fspb='curl -F "c=@-" "http://fars.ee/"'
@@ -90,7 +90,7 @@ function swpesc -d "Swap caps and esc or not"
     argparse --min-args=1 -- $argv
     or return
 
-    set kb_options ""
+    set kb_options " "
     if test $argv[1] = on
         set kb_options "caps:swapescape"
     end

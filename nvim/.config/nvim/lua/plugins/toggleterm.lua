@@ -15,7 +15,7 @@ return {
         },
       })
 
-      function _G.set_terminal_keymaps()
+      local set_terminal_keymaps = function()
         if vim.g.vscode then
           return
         end
@@ -28,9 +28,13 @@ return {
         vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
         vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
       end
-
       -- if you only want these mappings for toggle term use term://*toggleterm#* instead
-      vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+      vim.api.nvim_create_autocmd("TermOpen", {
+        pattern = "term://*",
+        callback = set_terminal_keymaps,
+      })
+
+      vim.keymap.set({ "n" }, "gs", '<cmd>TermExec cmd="cd %:p:h"<cr>')
 
       local Terminal = require("toggleterm.terminal").Terminal
 
@@ -39,7 +43,6 @@ return {
         hidden = true,
         direction = "float",
       })
-
       vim.api.nvim_create_user_command("Lazygit", function()
         lazygit:toggle()
       end, {})
