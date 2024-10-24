@@ -17,9 +17,13 @@
     "arrowFunction.useParentheses": "preferNone",
     "enumDeclaration.memberSpacing": "newLine"
   },
+
   "json": {},
+
   "markdown": {},
+
   "toml": {},
+
   "prettier": {
     "singleQuote": false,
     "semi": true,
@@ -34,8 +38,11 @@
     "endOfLine": "lf",
     "htmlWhitespaceSensitivity": "ignore"
   },
+
   "dockerfile": {},
+
   "excludes": ["**/node_modules", "**/*-lock.json"],
+
   "plugins": [
     "https://plugins.dprint.dev/typescript-0.89.0.wasm",
     "https://plugins.dprint.dev/json-0.19.1.wasm",

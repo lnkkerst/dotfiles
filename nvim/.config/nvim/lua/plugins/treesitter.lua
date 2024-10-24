@@ -4,7 +4,6 @@ return {
     build = ":TSUpdate",
     dependencies = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
-      { "RRethy/nvim-treesitter-textsubjects" },
       { "JoosepAlviste/nvim-ts-context-commentstring" },
       { "nvim-treesitter/nvim-treesitter-context" },
       { "HiPhish/rainbow-delimiters.nvim" },
@@ -221,19 +220,6 @@ return {
       })
 
       require("ts_context_commentstring").setup({})
-
-      -- textsubjects
-      require("nvim-treesitter.configs").setup({
-        textsubjects = {
-          enable = true,
-          prev_selection = ",", -- (Optional) keymap to select the previous selection
-          keymaps = {
-            ["<cr>"] = "textsubjects-smart",
-            [";"] = "textsubjects-container-outer",
-            ["i;"] = "textsubjects-container-inner",
-          },
-        },
-      })
 
       -- context
       require("treesitter-context").setup({})

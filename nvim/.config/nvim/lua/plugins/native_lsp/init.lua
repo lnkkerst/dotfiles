@@ -10,6 +10,9 @@ return {
       "vim-illuminate",
     },
     config = function()
+      -- Override default K map
+      vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc")
+
       local signs = {
         Error = " ",
         Warn = " ",

@@ -2,6 +2,7 @@ return {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
+    opts = { modes = { search = { enabled = true } } },
     keys = {
       {
         "s",
@@ -43,6 +44,10 @@ return {
         end,
         desc = "Toggle Flash Search",
       },
+      { "f" },
+      { "F" },
+      { "t" },
+      { "T" },
     },
   },
 }

@@ -25,6 +25,8 @@ function M.init()
     "typst_lsp",
     "tailwindcss",
     "kotlin_language_server",
+    "emmet_language_server",
+    "mdx_analyzer",
   }
 
   for _, server in ipairs(servers) do

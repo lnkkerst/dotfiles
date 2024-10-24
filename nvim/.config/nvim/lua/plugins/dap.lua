@@ -15,13 +15,36 @@ return {
       "DapTerminate",
       "DapLoadLaunchJSON",
     },
-    keys = function()
-      local suffix = { "u", "b", "r", "o", "c" }
-      local keys = {}
-      for _, v in ipairs(suffix) do
-        table.insert(keys, "<leader>d" .. v)
-      end
-    end,
+    keys = {
+      {
+        "<leader>du",
+        function()
+          require("dapui").toggle()
+        end,
+        desc = "Toggle dap UI",
+      },
+      {
+        "<leader>db",
+        function()
+          require("dap").toggle_breakpoint()
+        end,
+        desc = "Toggle breakpoint",
+      },
+      {
+        "<leader>dr",
+        function()
+          require("dap").continue()
+        end,
+        desc = "Dap Continue",
+      },
+      {
+        "<leader>ds",
+        function()
+          require("dap").step_into()
+        end,
+        desc = "Dap step_into",
+      },
+    },
     dependencies = {
       {
         "rcarriga/nvim-dap-ui",
@@ -36,38 +59,6 @@ return {
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
-      local wk = require("which-key")
-
-      wk.add({
-        {
-          "<leader>du",
-          function()
-            dapui.toggle()
-          end,
-          desc = "Toggle dap UI",
-        },
-        {
-          "<leader>db",
-          function()
-            dap.toggle_breakpoint()
-          end,
-          desc = "Toggle breakpoint",
-        },
-        {
-          "<leader>dr",
-          function()
-            dap.continue()
-          end,
-          desc = "Dap Continue",
-        },
-        {
-          "<leader>ds",
-          function()
-            dap.step_into()
-          end,
-          desc = "Dap step_into",
-        },
-      })
 
       dap.listeners.after.event_initialized["dapui"] = function()
         dapui.open()
@@ -102,13 +93,24 @@ return {
         name = "lldb",
       }
 
+      dap.adapters.gdb = {
+        type = "executable",
+        command = "gdb",
+        args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
+      }
+
+      dap.adapters.cppdbg = {
+        id = "cppdbg",
+        type = "executable",
+        command = "OpenDebugAD7",
+      }
+
       dap.configurations.cpp = {
         {
-          name = "Launch",
+          name = "Launch with lldb",
           type = "lldb",
           request = "launch",
           program = function()
-            vim.notify(require("telescope.builtin").find_files({}))
             return vim.fn.input(
               "Path to executable: ",
               vim.fn.getcwd() .. "/",
@@ -129,7 +131,21 @@ return {
           --
           -- But you should be aware of the implications:
           -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-          runInTerminal = false,
+          -- runInTerminal = false,
+        },
+        {
+          name = "Launch with cppdbg",
+          type = "cppdbg",
+          request = "launch",
+          program = function()
+            return vim.fn.input(
+              "Path to executable: ",
+              vim.fn.getcwd() .. "/",
+              "file"
+            )
+          end,
+          cwd = "${workspaceFolder}",
+          stopAtEntry = true,
         },
       }
 
@@ -201,31 +217,7 @@ return {
       }
 
       -- dap ui
-      require("dapui").setup({
-        icons = { expanded = "▾", collapsed = "▸" },
-        mappings = {
-          -- use a table to apply multiple mappings
-          expand = { "<cr>", "<2-leftmouse>" },
-          open = "o",
-          remove = "d",
-          edit = "e",
-          repl = "r",
-          toggle = "t",
-        },
-        floating = {
-          max_height = nil, -- These can be integers or a float between 0 and 1.
-          max_width = nil, -- Floats will be treated as percentage of your screen.
-          border = "single", -- Border style. Can be "single", "double" or "rounded"
-          mappings = {
-            close = { "q", "<Esc>" },
-          },
-        },
-        windows = { indent = 1 },
-        render = {
-          max_type_length = nil, -- Can be integer or nil.
-          indent = 2,
-        },
-      })
+      require("dapui").setup()
 
       require("nvim-dap-virtual-text").setup({})
     end,
