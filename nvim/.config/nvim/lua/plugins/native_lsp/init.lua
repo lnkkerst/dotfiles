@@ -36,9 +36,10 @@ return {
         update_in_insert = false,
         underline = false,
         severity_sort = true,
-        virtual_text = {
-          source = false,
-        },
+        -- virtual_text =  {
+        --   source = false,
+        -- },
+        virtual_text = false,
       })
 
       require("plugins.native_lsp.servers").init_all()
@@ -83,4 +84,31 @@ return {
   { "b0o/schemastore.nvim", event = { "LspAttach" } },
 
   { "artemave/workspace-diagnostics.nvim", lazy = true },
+
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "LspAttach",
+    opts = {
+      signs = {
+        left = "",
+        right = "",
+        diag = "●",
+        arrow = "    ",
+        up_arrow = "    ",
+        vertical = " │",
+        vertical_end = " └",
+      },
+    },
+  },
+
+  {
+    "chrisgrieser/nvim-lsp-endhints",
+    event = "LspAttach",
+    opts = {
+      label = {
+        padding = 1,
+        marginLeft = 2,
+      },
+    },
+  },
 }

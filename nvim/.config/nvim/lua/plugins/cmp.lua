@@ -1,6 +1,7 @@
-return {
+local config = {
   {
     "hrsh7th/nvim-cmp",
+    enabled = false,
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       { "lukas-reineke/cmp-under-comparator" },
@@ -178,3 +179,4 @@ return {
     end,
   },
 }
+return {}

@@ -4,32 +4,27 @@ local plugin_lsp = require("utils.native_lsp")
 local M = {}
 
 function M.init()
+  local inlayHints = {
+    includeInlayParameterNameHints = "all",
+    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+    includeInlayFunctionParameterTypeHints = true,
+    includeInlayVariableTypeHints = true,
+    includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+    includeInlayPropertyDeclarationTypeHints = true,
+    includeInlayFunctionLikeReturnTypeHints = true,
+    includeInlayEnumMemberValueHints = true,
+  }
+
   -- lspconfig.tsserver.setup({
   --   enabled = true,
   --   on_attach = plugin_lsp.common_on_attach,
   --   capabilities = plugin_lsp.common_capabilities,
   --   settings = {
   --     javascript = {
-  --       inlayHints = {
-  --         includeInlayEnumMemberValueHints = true,
-  --         includeInlayFunctionLikeReturnTypeHints = true,
-  --         includeInlayFunctionParameterTypeHints = true,
-  --         includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-  --         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-  --         includeInlayPropertyDeclarationTypeHints = true,
-  --         includeInlayVariableTypeHints = true,
-  --       },
+  --       inlayHints = inlayHints,
   --     },
   --     typescript = {
-  --       inlayHints = {
-  --         includeInlayEnumMemberValueHints = true,
-  --         includeInlayFunctionLikeReturnTypeHints = true,
-  --         includeInlayFunctionParameterTypeHints = true,
-  --         includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-  --         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-  --         includeInlayPropertyDeclarationTypeHints = true,
-  --         includeInlayVariableTypeHints = true,
-  --       },
+  --       inlayHints = inlayHints,
   --     },
   --   },
   -- })
@@ -64,6 +59,7 @@ function M.init()
     settings = {
       tsserver_path = "/usr/lib/node_modules/typescript/lib/tsserver.js",
       tsserver_plugins = { "@vue/typescript-plugin" },
+      tsserver_file_preferences = inlayHints,
     },
     root_dir = lspconfig.util.root_pattern(
       "pnpm-workspace.yaml",

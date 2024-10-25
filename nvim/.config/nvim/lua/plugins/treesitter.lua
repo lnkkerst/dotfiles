@@ -10,7 +10,7 @@ return {
       { "windwp/nvim-ts-autotag" },
       { "kylechui/nvim-surround", version = "*", config = true },
       { "abecodes/tabout.nvim", config = true },
-      { "andymass/vim-matchup" },
+      -- { "andymass/vim-matchup" },
     },
     event = { "BufReadPost", "BufNewFile" },
     config = function()
@@ -224,12 +224,13 @@ return {
       -- context
       require("treesitter-context").setup({})
 
-      -- matchup
-      require("nvim-treesitter.configs").setup({
-        matchup = {
-          enable = true,
-        },
-      })
+      -- -- matchup
+      -- vim.g.matchup_matchparen_pumvisible = 0
+      -- require("nvim-treesitter.configs").setup({
+      --   matchup = {
+      --     enable = true,
+      --   },
+      -- })
 
       -- ts-auto-tag
       require("nvim-ts-autotag").setup({

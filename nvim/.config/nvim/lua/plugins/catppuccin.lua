@@ -6,11 +6,11 @@ return {
     config = function()
       require("catppuccin").setup({
         flavour = "mocha",
-        background = {
-          light = "latte",
-          dark = "mocha",
-        },
-        transparent_background = not vim.g.neovide,
+        -- background = {
+        --   light = "latte",
+        --   dark = "mocha",
+        -- },
+        -- transparent_background = not vim.g.neovide,
         show_end_of_buffer = false,
         term_colors = false,
         styles = {
@@ -27,17 +27,13 @@ return {
           types = {},
           operators = {},
         },
-        custom_highlights = function(colors)
+        custom_highlights = function()
           return {
-            LspFloatWinNormal = { link = "Normal" },
-            LspInlayHint = {
-              fg = colors.overlay2,
-              bg = colors.surface0,
-              style = { "italic" },
-            },
+            -- LspFloatWinNormal = { link = "Normal" },
           }
         end,
         integrations = {
+          alpha = false,
           cmp = true,
           gitsigns = true,
           nvimtree = true,
@@ -46,7 +42,6 @@ return {
           aerial = true,
           dashboard = true,
           harpoon = true,
-          hop = true,
           mason = true,
           neogit = true,
           neotest = true,
@@ -81,8 +76,15 @@ return {
               warnings = { "underline" },
               information = { "underline" },
             },
+            inlay_hints = {
+              background = true,
+            },
           },
           overseer = true,
+          colorful_winsep = {
+            enabled = true,
+            color = "blue",
+          },
         },
       })
       vim.api.nvim_command("colorscheme catppuccin")

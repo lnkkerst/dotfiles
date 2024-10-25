@@ -7,11 +7,16 @@ M.common_capabilities = (function()
     dynamicRegistration = false,
     lineFoldingOnly = true,
   }
-  vim.tbl_deep_extend(
-    "force",
-    global_capabilities,
-    require("cmp_nvim_lsp").default_capabilities()
-  )
+
+  local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+  if ok then
+    vim.tbl_deep_extend(
+      "force",
+      global_capabilities,
+      cmp_nvim_lsp.default_capabilities()
+    )
+  end
+
   global_capabilities.textDocument.completion.completionItem.snippetSupport =
     true
   global_capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
@@ -20,8 +25,6 @@ end)()
 
 function M.common_on_attach(client, bufnr)
   -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-  -- require("lsp-inlayhints").on_attach(client, bufnr)
 end
 
 function M.init() end

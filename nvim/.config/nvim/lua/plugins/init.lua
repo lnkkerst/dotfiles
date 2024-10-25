@@ -35,7 +35,17 @@ return {
 
   {
     "NvChad/nvim-colorizer.lua",
+    enabled = false,
     config = true,
+  },
+  {
+    "uga-rosa/ccc.nvim",
+    opts = {
+      highlighter = {
+        auto_enable = true,
+        lsp = true,
+      },
+    },
   },
 
   {
@@ -60,8 +70,11 @@ return {
 
   {
     "mrjones2014/legendary.nvim",
-    enabled = false,
-    config = true,
+    priority = 10000,
+    lazy = false,
+    opts = {
+      { extensions = { lazy_nvim = true } },
+    },
   },
 
   {
@@ -95,7 +108,12 @@ return {
     },
   },
 
-  { "gpanders/editorconfig.nvim", event = "VeryLazy" },
+  -- nvim has built-in support for editorconfig: https://neovim.io/doc/user/editorconfig.html
+  {
+    "gpanders/editorconfig.nvim",
+    enabled = false,
+    event = "VeryLazy",
+  },
 
   {
     "junegunn/fzf",
