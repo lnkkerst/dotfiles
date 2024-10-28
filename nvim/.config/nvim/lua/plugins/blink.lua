@@ -2,7 +2,7 @@ return {
   {
     "saghen/blink.cmp",
     lazy = false,
-    dependencies = "rafamadriz/friendly-snippets",
+    dependencies = { "rafamadriz/friendly-snippets" },
     version = "v0.*",
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -28,7 +28,6 @@ return {
         select_prev = { "<S-Tab>", "<Up>", "<C-j>" },
         select_next = { "<Tab>", "<Down>", "<C-k>" },
       },
-
       windows = {
         autocomplete = {
           -- border = "single",
@@ -81,5 +80,16 @@ return {
         },
       })
     end,
+  },
+
+  {
+    "chrisgrieser/nvim-scissors",
+    dependencies = { "nvim-telescope/telescope.nvim", "garymjr/nvim-snippets" },
+    cmd = {
+      "ScissorsEditSnippet",
+      "ScissorsAddNewSnippet",
+      "ScissorsCreateSnippetsForSnippetVars",
+    },
+    opts = {},
   },
 }

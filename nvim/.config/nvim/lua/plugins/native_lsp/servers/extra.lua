@@ -13,7 +13,6 @@ function M.init()
     "bashls",
     "dockerls",
     "zls",
-    "gopls",
     "prismals",
     "dartls",
     "taplo",
@@ -27,6 +26,7 @@ function M.init()
     "kotlin_language_server",
     "emmet_language_server",
     "mdx_analyzer",
+    "basedpyright",
   }
 
   for _, server in ipairs(servers) do

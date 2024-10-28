@@ -8,6 +8,7 @@ return {
       "lsp-format.nvim",
       "fidget.nvim",
       "vim-illuminate",
+      { "onsails/lspkind.nvim", opts = {} },
     },
     config = function()
       -- Override default K map
@@ -97,6 +98,13 @@ return {
         up_arrow = "    ",
         vertical = " │",
         vertical_end = " └",
+      },
+      options = {
+        show_source = true,
+        multiple_diag_under_cursor = true,
+        virt_texts = {
+          priority = 4096,
+        },
       },
     },
   },
