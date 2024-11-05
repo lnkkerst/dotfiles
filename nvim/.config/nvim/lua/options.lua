@@ -94,9 +94,27 @@ local options = {
   concealcursor = "niv",
 }
 
+local function paste()
+  return {
+    vim.fn.split(vim.fn.getreg(""), "\n"),
+    vim.fn.getregtype(""),
+  }
+end
+
 local globals = {
   mapleader = " ",
   speeddating_no_mappings = 1,
+  clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = paste,
+      ["*"] = paste,
+    },
+  },
 }
 
 for k, v in pairs(options) do
