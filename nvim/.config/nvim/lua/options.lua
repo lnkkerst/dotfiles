@@ -10,7 +10,7 @@ local options = {
   encoding = "utf-8",
   viewoptions = "folds,cursor,curdir,slash,unix",
   sessionoptions = "curdir,help,tabpages,winsize",
-  clipboard = require("utils.conditions").is_ssh_session()
+  clipboard = not require("utils.conditions").is_ssh_session()
       and "unnamed,unnamedplus"
     or nil,
   wildignorecase = true,
