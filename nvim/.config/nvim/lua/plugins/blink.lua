@@ -24,9 +24,10 @@ return {
       trigger = { signature_help = { enabled = false } },
 
       keymap = {
-        accept = "<Cr>",
-        select_prev = { "<S-Tab>", "<Up>", "<C-j>" },
-        select_next = { "<Tab>", "<Down>", "<C-k>" },
+        preset = "default",
+        ["<Cr>"] = { "accept", "fallback" },
+        ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+        ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
       },
       windows = {
         autocomplete = {
@@ -37,6 +38,7 @@ return {
         documentation = {
           -- border = "single",
           auto_show = true,
+          auto_show_delay_ms = 50,
         },
         signature_help = {
           -- border = "single",

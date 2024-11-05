@@ -1,8 +1,8 @@
 return {
   {
     "mrcjkb/rustaceanvim",
-    enabled = false,
-    version = "^4", -- Recommended
+    enabled = true,
+    version = "^5", -- Recommended
     lazy = false, -- This plugin is already lazy
     config = function()
       local lsp_utils = require("utils.native_lsp")
@@ -20,7 +20,7 @@ return {
 
   {
     "vxpm/ferris.nvim",
-    enabled = true,
+    enabled = false,
     opts = { create_commands = true },
   },
 

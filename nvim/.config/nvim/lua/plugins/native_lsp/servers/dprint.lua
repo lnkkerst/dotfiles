@@ -46,14 +46,12 @@ function M.init()
     capabilities = plugin_lsp.common_capabilities,
     filetypes = require("utils").merge_sets(filetypes, prettier_filetypes),
     single_file_support = false,
-    root_dir = function()
-      return util.root_pattern(
-        "dprint.json",
-        ".dprint.json",
-        "dprint.jsonc",
-        ".dprint.jsonc"
-      )()
-    end,
+    root_dir = util.root_pattern(
+      "dprint.json",
+      ".dprint.json",
+      "dprint.jsonc",
+      ".dprint.jsonc"
+    ),
   })
 end
 

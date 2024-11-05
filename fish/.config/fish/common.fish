@@ -50,8 +50,8 @@ alias dates="date '+%Y-%m-%d %H:%M:%S %Z'"
 # Keybindings #
 ###############
 
-bind \co ranger-cd --mode insert
-bind \co ranger-cd --mode default
+bind \co yazi-cd --mode insert
+bind \co yazi-cd --mode default
 bind \eq 'fish_commandline_prepend pc' --mode insert
 bind \eq 'fish_commandline_prepend pc' --mode default
 
@@ -81,6 +81,14 @@ end
 function ranger-cd -d "Ranger with auto cd"
     set dir (mktemp -t ranger_cd.XXX)
     ranger --choosedir=$dir
+    cd (cat $dir) $argv
+    rm $dir
+    commandline -f repaint
+end
+
+function yazi-cd -d "Yazi with auto cd"
+    set dir (mktemp -t yazi_cd.XXX)
+    yazi --cwd-file=$dir
     cd (cat $dir) $argv
     rm $dir
     commandline -f repaint

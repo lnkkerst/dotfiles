@@ -15,7 +15,6 @@ function M.init()
     "zls",
     "prismals",
     "dartls",
-    "taplo",
     "sqlls",
     "csharp_ls",
     "unocss",
@@ -24,7 +23,7 @@ function M.init()
     "typst_lsp",
     "tailwindcss",
     "kotlin_language_server",
-    "emmet_language_server",
+    -- "emmet_language_server",
     "mdx_analyzer",
     "basedpyright",
   }
@@ -36,7 +35,7 @@ function M.init()
     })
   end
 
-  local servers_with_format = { "biome", "hls", "asm_lsp", "ruff" }
+  local servers_with_format = { "biome", "hls", "asm_lsp", "ruff", "taplo" }
 
   for _, server in ipairs(servers_with_format) do
     lspconfig[server].setup({
