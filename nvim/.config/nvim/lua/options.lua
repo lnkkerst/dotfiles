@@ -10,7 +10,9 @@ local options = {
   encoding = "utf-8",
   viewoptions = "folds,cursor,curdir,slash,unix",
   sessionoptions = "curdir,help,tabpages,winsize",
-  clipboard = "unnamed,unnamedplus",
+  clipboard = require("utils.conditions").is_ssh_session()
+      and "unnamed,unnamedplus"
+    or nil,
   wildignorecase = true,
   wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**",
   backup = false,
@@ -94,27 +96,9 @@ local options = {
   concealcursor = "niv",
 }
 
-local function paste()
-  return {
-    vim.fn.split(vim.fn.getreg(""), "\n"),
-    vim.fn.getregtype(""),
-  }
-end
-
 local globals = {
   mapleader = " ",
   speeddating_no_mappings = 1,
-  clipboard = {
-    name = "OSC 52",
-    copy = {
-      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-    },
-    paste = {
-      ["+"] = paste,
-      ["*"] = paste,
-    },
-  },
 }
 
 for k, v in pairs(options) do

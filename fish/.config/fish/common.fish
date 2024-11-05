@@ -36,6 +36,7 @@ alias mv='mv -i'
 alias sudoe='sudo -E'
 alias xc='xclip -sel clipboard'
 alias t="tmux attach -t main 2> /dev/null || tmux new -s main"
+# alias t="zellij"
 alias rs='rsync -P'
 alias poweroff='loginctl poweroff'
 alias reboot='loginctl reboot'

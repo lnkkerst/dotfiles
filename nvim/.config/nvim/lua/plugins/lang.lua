@@ -75,4 +75,6 @@ return {
     ---@type gopher.Config
     opts = {},
   },
+
+  { "imsnif/kdl.vim", ft = { "kdl" } },
 }
