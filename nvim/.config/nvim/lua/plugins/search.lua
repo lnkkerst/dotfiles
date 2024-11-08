@@ -1,5 +1,11 @@
 return {
   {
+    "nvim-pack/nvim-spectre",
+    dependencies = { { "nvim-lua/plenary.nvim" } },
+    cmd = { "Spectre" },
+    config = function() end,
+  },
+  {
     "kevinhwang91/nvim-hlslens",
     event = { "CmdlineEnter" },
     config = function()
@@ -45,5 +51,24 @@ return {
 
       -- vim.api.nvim_set_keymap("n", "<Leader>l", ":noh<CR>", kopts)
     end,
+  },
+  {
+    "cshuaimin/ssr.nvim",
+    opts = {},
+    keys = {
+      {
+        "<leader>sr",
+        function()
+          require("ssr").open()
+        end,
+        mode = { "n", "x" },
+      },
+    },
+  },
+
+  {
+    "MagicDuck/grug-far.nvim",
+    cmd = { "GrugFar" },
+    opts = {},
   },
 }

@@ -2,7 +2,7 @@ return {
   {
     "akinsho/toggleterm.nvim",
     keys = { [[<C-\>]] },
-    cmd = { "Lazygit", "Ranger", "FloatTerm" },
+    cmd = { "Ranger", "FloatTerm" },
     config = function()
       require("toggleterm").setup({
         open_mapping = [[<C-\>]],
@@ -38,14 +38,14 @@ return {
 
       local Terminal = require("toggleterm.terminal").Terminal
 
-      local lazygit = Terminal:new({
-        cmd = "lazygit",
-        hidden = true,
-        direction = "float",
-      })
-      vim.api.nvim_create_user_command("Lazygit", function()
-        lazygit:toggle()
-      end, {})
+      -- local lazygit = Terminal:new({
+      --   cmd = "lazygit",
+      --   hidden = true,
+      --   direction = "float",
+      -- })
+      -- vim.api.nvim_create_user_command("Lazygit", function()
+      --   lazygit:toggle()
+      -- end, {})
 
       local floatterm = Terminal:new({
         hidden = true,
@@ -53,7 +53,7 @@ return {
       })
       vim.api.nvim_create_user_command("FloatTerm", function()
         floatterm:toggle()
-      end, {})
+      end, { desc = "Open a float terminal with toggleterm" })
       vim.keymap.set({ "n", "i" }, [[<C-A-\>]], function()
         floatterm:toggle()
       end, { desc = "Open float term" })
@@ -65,7 +65,7 @@ return {
       })
       vim.api.nvim_create_user_command("Ranger", function()
         ranger:toggle()
-      end, {})
+      end, { desc = "Open ranger with toggleterm" })
     end,
   },
 }

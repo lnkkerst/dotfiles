@@ -2,7 +2,16 @@ return {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    opts = { modes = { search = { enabled = false } } },
+    vscode = true,
+    opts = {
+      modes = { search = { enabled = false }, char = { jump_labels = true } },
+    },
+    config = function(_, opts)
+      require("flash").setup(opts)
+      vim.api.nvim_create_user_command("FlashSearch", function()
+        require("flash").toggle()
+      end, { desc = "Toggle flash search" })
+    end,
     keys = {
       {
         "s",
@@ -21,6 +30,18 @@ return {
         desc = "Flash Treesitter",
       },
       {
+        "<leader>j",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump({
+            search = { mode = "search", max_length = 0 },
+            label = { after = { 0, 0 } },
+            pattern = "^",
+          })
+        end,
+        { desc = "Flash line" },
+      },
+      {
         "r",
         mode = "o",
         function()
@@ -35,14 +56,6 @@ return {
           require("flash").treesitter_search()
         end,
         desc = "Treesitter Search",
-      },
-      {
-        "<c-s>",
-        mode = { "c" },
-        function()
-          require("flash").toggle()
-        end,
-        desc = "Toggle Flash Search",
       },
       { "f" },
       { "F" },

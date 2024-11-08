@@ -77,4 +77,10 @@ return {
   },
 
   { "imsnif/kdl.vim", ft = { "kdl" } },
+
+  {
+    "iamcco/markdown-preview.nvim",
+    ft = "markdown",
+    build = "cd app && pnpm install",
+  },
 }

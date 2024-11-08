@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 local function create_augroups(augroups)
   for k, v in pairs(augroups) do
     vim.api.nvim_command("augroup " .. k)
@@ -33,3 +35,8 @@ local augroups = {
 }
 
 create_augroups(augroups)
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = utils.mkdir,
+})

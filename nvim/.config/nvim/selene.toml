@@ -1,4 +1,4 @@
-std="lua51+neovim"
+std = "lua51+neovim"
 exclude = ["lua/mason-vendor/*"]
 
 [rules]

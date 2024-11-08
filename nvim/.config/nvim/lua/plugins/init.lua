@@ -3,9 +3,8 @@ return {
 
   {
     "nvim-zh/colorful-winsep.nvim",
-    enabled = true,
     event = "VimEnter",
-    config = true,
+    opts = {},
   },
 
   {
@@ -13,31 +12,17 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     cmd = "Neogen",
     opts = {
-      snippet_engine = "luasnip",
+      -- snippet_engine = "luasnip",
     },
   },
 
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
-    opts = {
-      default_mappings = false,
-      mappings = {
-        i = {
-          j = {
-            k = "<Esc>",
-            j = "<Esc>",
-          },
-        },
-      },
-    },
+    vscode = true,
+    opts = {},
   },
 
-  {
-    "NvChad/nvim-colorizer.lua",
-    enabled = false,
-    config = true,
-  },
   {
     "uga-rosa/ccc.nvim",
     opts = {
@@ -51,14 +36,9 @@ return {
   {
     "nacro90/numb.nvim",
     event = { "CmdlineEnter" },
+    vscode = true,
     config = true,
   },
-
-  {
-    "folke/twilight.nvim",
-    cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
-  },
-  { "folke/zen-mode.nvim", cmd = { "ZenMode" } },
 
   {
     "skywind3000/asyncrun.vim",
@@ -70,17 +50,12 @@ return {
 
   {
     "mrjones2014/legendary.nvim",
+    enabled = false,
     priority = 10000,
     lazy = false,
     opts = {
       { extensions = { lazy_nvim = true } },
     },
-  },
-
-  {
-    "iamcco/markdown-preview.nvim",
-    ft = "markdown",
-    build = "cd app && pnpm install",
   },
 
   {
@@ -108,24 +83,6 @@ return {
     },
   },
 
-  -- nvim has built-in support for editorconfig: https://neovim.io/doc/user/editorconfig.html
-  {
-    "gpanders/editorconfig.nvim",
-    enabled = false,
-    event = "VeryLazy",
-  },
-
-  {
-    "junegunn/fzf",
-    enabled = false,
-    lazy = true,
-    build = function()
-      vim.fn["fzf#install"]()
-    end,
-  },
-
-  { "famiu/bufdelete.nvim", enable = false },
-
   {
     "stevearc/aerial.nvim",
     cmd = {
@@ -149,7 +106,7 @@ return {
         desc = "Toggle Aerial",
       },
     },
-    config = true,
+    opts = {},
   },
 
   { "nvim-lua/popup.nvim", lazy = true },
@@ -157,17 +114,6 @@ return {
   {
     "eandrju/cellular-automaton.nvim",
     cmd = "CellularAutomaton",
-  },
-
-  {
-    "xiyaowong/transparent.nvim",
-    enabled = false,
-    config = function()
-      require("transparent").setup({
-        extra_groups = { "Pmenu", "Float", "NormalFloat" },
-      })
-      require("transparent").clear_prefix("BufferLine")
-    end,
   },
 
   {

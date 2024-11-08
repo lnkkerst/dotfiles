@@ -1,3 +1,5 @@
+"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
+
 [manager]
 cwd = { fg = "#94e2d5" }
 
@@ -85,7 +87,6 @@ hovered = { bg = "#585b70", bold = true }
 footer = { fg = "#45475a", bg = "#cdd6f4" }
 
 [filetype]
-
 rules = [
   # Media
   { mime = "image/*", fg = "#94e2d5" },
@@ -101,7 +102,6 @@ rules = [
 ]
 
 [icon]
-
 files = [
   { name = "gulpfile.js", text = "", fg_dark = "#f38ba8", fg_light = "#f38ba8" },
   { name = ".babelrc", text = "", fg_dark = "#f9e2af", fg_light = "#f9e2af" },

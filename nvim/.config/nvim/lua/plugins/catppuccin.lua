@@ -85,6 +85,7 @@ return {
             enabled = true,
             color = "blue",
           },
+          grug_far = true,
         },
       })
       vim.api.nvim_command("colorscheme catppuccin")

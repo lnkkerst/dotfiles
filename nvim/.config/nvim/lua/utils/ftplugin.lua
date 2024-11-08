@@ -24,6 +24,7 @@ function M.create_term_run_cpp_command()
 
     toggleterm.exec(cmd, nil, nil, nil, nil, nil, false)
   end, {
+    desc = "Compile and run current cpp file",
     nargs = "?",
     complete = function()
       return { "compile_only" }

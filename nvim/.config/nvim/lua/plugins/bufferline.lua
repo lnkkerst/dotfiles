@@ -99,7 +99,6 @@ return {
           "<cmd>BufferLineCyclePrev<cr>",
           desc = "BufferLineCyclePrev",
         },
-        { "<S-q>", "<cmd>Bdelete<cr>", desc = "Bufdelete" },
         { "<C-q>", "<cmd>:q<cr>", desc = "Close window" },
       })
 

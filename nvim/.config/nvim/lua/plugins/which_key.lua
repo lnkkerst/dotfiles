@@ -2,6 +2,7 @@ return {
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
+    vscode = true,
     opts = {
       icons = {
         mappings = false,

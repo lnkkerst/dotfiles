@@ -27,6 +27,7 @@ return {
       vim.api.nvim_create_user_command("Crates", function(args)
         commands[args.fargs[1]]()
       end, {
+        desc = "Manage crates",
         nargs = "+",
         complete = function()
           return vim.tbl_keys(commands)

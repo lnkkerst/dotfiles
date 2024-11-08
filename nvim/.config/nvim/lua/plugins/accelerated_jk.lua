@@ -2,6 +2,7 @@ return {
   {
     "rainbowhxch/accelerated-jk.nvim",
     event = "VeryLazy",
+    vscode = true,
     config = function()
       local wk = require("which-key")
       wk.add({
