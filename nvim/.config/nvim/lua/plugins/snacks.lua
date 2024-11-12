@@ -3,7 +3,7 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
-    opts = {},
+    opts = { notifier = { enabled = false } },
     config = function(_, opts)
       local snacks = require("snacks")
       snacks.setup(opts)

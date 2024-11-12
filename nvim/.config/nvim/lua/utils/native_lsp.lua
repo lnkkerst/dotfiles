@@ -23,9 +23,7 @@ M.common_capabilities = (function()
   return global_capabilities
 end)()
 
-function M.common_on_attach(client, bufnr)
-  -- vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-end
+function M.common_on_attach(client, bufnr) end
 
 function M.init() end
 

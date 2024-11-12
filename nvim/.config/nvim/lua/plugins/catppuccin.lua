@@ -45,21 +45,21 @@ return {
           mason = true,
           neogit = true,
           neotest = true,
-          noice = true,
+          -- noice = true,
           notify = true,
           treesitter_context = true,
           rainbow_delimiters = true,
           lsp_trouble = true,
           lsp_saga = true,
-          leap = true,
+          -- leap = true,
           which_key = true,
           fidget = true,
           illuminate = true,
-          indent_blankline = {
-            enabled = true,
-            scope_color = "lavender",
-            colored_indent_levels = true,
-          },
+          -- indent_blankline = {
+          --   enabled = true,
+          --   scope_color = "lavender",
+          --   colored_indent_levels = true,
+          -- },
           dap = true,
           dap_ui = true,
           native_lsp = {
@@ -86,6 +86,7 @@ return {
             color = "blue",
           },
           grug_far = true,
+          -- fzf = true,
         },
       })
       vim.api.nvim_command("colorscheme catppuccin")

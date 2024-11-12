@@ -56,7 +56,6 @@ local options = {
   ruler = false,
   cursorline = true,
   cursorcolumn = true,
-  list = true,
   showtabline = 0,
   winwidth = 30,
   winminwidth = 10,
@@ -70,7 +69,6 @@ local options = {
   laststatus = 0,
   display = "lastline",
   showbreak = "↳  ",
-  listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←",
   -- pumblend = 10,
   -- winblend = 10,
   autoread = true,
@@ -94,6 +92,15 @@ local options = {
   signcolumn = "yes",
   conceallevel = 0,
   concealcursor = "niv",
+
+  list = true,
+  listchars = {
+    tab = "»·",
+    nbsp = "+",
+    trail = "·",
+    extends = "→",
+    precedes = "←",
+  },
 }
 
 local globals = {

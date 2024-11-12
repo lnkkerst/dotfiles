@@ -36,3 +36,14 @@ wk.add({
   mode = "n",
   { "<leader>l", "<cmd>noh<cr>", desc = "noh" },
 })
+
+-- Quickfix
+vim.keymap.set("n", "<leader>qo", ":copen<cr>", { desc = "Open quickfix" })
+vim.keymap.set("n", "<leader>qc", ":cclose<cr>", { desc = "Close quickfix" })
+vim.keymap.set("n", "<leader>qn", ":cnext<cr>", { desc = "Next quickfix item" })
+vim.keymap.set(
+  "n",
+  "<leader>qp",
+  ":cprevious<cr>",
+  { desc = "Previous quickfix item" }
+)

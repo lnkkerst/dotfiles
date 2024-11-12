@@ -5,14 +5,12 @@ return {
     dependencies = {
       "mason.nvim",
       "mason-lspconfig.nvim",
-      "lsp-format.nvim",
-      "fidget.nvim",
       "vim-illuminate",
       { "onsails/lspkind.nvim", opts = {} },
     },
     config = function()
       -- Override default K map
-      vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc")
+      vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<cr>")
 
       local signs = {
         Error = " ",
@@ -50,14 +48,13 @@ return {
     "williamboman/mason.nvim",
     lazy = true,
     cmd = { "Mason" },
-    config = true,
+    opts = {},
   },
 
   {
     "williamboman/mason-lspconfig.nvim",
     lazy = true,
     dependencies = { "mason.nvim" },
-    config = true,
     opts = {
       automatic_installation = false,
     },
@@ -66,25 +63,17 @@ return {
   {
     "lukas-reineke/lsp-format.nvim",
     lazy = true,
-    config = true,
+    opts = {},
   },
 
   {
     "j-hui/fidget.nvim",
     enabled = true,
-    lazy = true,
-    tag = "legacy",
-    config = function()
-      require("fidget").setup({
-        sources = { ["null-ls"] = { ignore = true } },
-        window = { blend = 0 },
-      })
-    end,
+    event = { "LspAttach" },
+    opts = {},
   },
 
   { "b0o/schemastore.nvim", event = { "LspAttach" } },
-
-  { "artemave/workspace-diagnostics.nvim", lazy = true },
 
   {
     "rachartier/tiny-inline-diagnostic.nvim",
@@ -115,7 +104,7 @@ return {
     opts = {
       label = {
         padding = 1,
-        marginLeft = 2,
+        marginLeft = 1,
       },
     },
   },

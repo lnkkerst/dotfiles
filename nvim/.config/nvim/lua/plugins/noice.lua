@@ -4,49 +4,41 @@ return {
     enabled = false,
     dependencies = {
       "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
     },
-    config = function()
-      require("noice").setup({
-        cmdline = {
-          view = "cmdline",
-          icons = {
-            ["/"] = { icon = " ", hl_group = "DiagnosticWarn" },
-            ["?"] = { icon = " ", hl_group = "DiagnosticWarn" },
-            [":"] = {
-              icon = " ",
-              hl_group = "DiagnosticInfo",
-              firstc = false,
-            },
-          },
+    opts = {
+      presets = {},
+      lsp = {
+        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
         },
-        messages = {
+        progress = {
           enabled = true,
-          view_search = false,
+          view = "mini",
         },
-        popupmenu = {
-          enabled = false,
-          backend = "cmp",
+        hover = {
+          enabled = true,
+          silent = false, -- set to true to not show a message if hover is not available
+          view = nil, -- when nil, use defaults from documentation
+          ---@type NoiceViewOptions
+          opts = {}, -- merged with defaults from documentation
         },
-        lsp = {
-          hover = {
-            enabled = true,
-            opts = { border = "single" },
-          },
-          signature = {
-            enabled = true,
-            auto_open = {
-              enabled = false,
-            },
-            opts = { border = "single" },
-          },
-          override = {
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-            -- ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true,
-          },
-        },
-      })
-    end,
+      },
+      cmdline = {
+        enabled = false,
+        view = "cmdline",
+      },
+      messages = {
+        enabled = false,
+        view = "mini",
+        view_search = false,
+      },
+      notify = {
+        enabled = true,
+        view = "snacks",
+      },
+    },
   },
 }

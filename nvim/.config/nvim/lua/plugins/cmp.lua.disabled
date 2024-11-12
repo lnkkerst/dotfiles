@@ -1,4 +1,4 @@
-local config = {
+return {
   {
     "hrsh7th/nvim-cmp",
     enabled = false,
@@ -179,4 +179,3 @@ local config = {
     end,
   },
 }
-return {}

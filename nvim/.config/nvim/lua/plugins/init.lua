@@ -1,9 +1,10 @@
 return {
-  { "nvim-lua/plenary.nvim" },
+  { "nvim-lua/plenary.nvim", lazy = true },
+  { "nvim-lua/popup.nvim", lazy = true },
 
   {
     "nvim-zh/colorful-winsep.nvim",
-    event = "VimEnter",
+    event = { "WinLeave" },
     opts = {},
   },
 
@@ -37,25 +38,15 @@ return {
     "nacro90/numb.nvim",
     event = { "CmdlineEnter" },
     vscode = true,
-    config = true,
+    opts = {},
   },
 
   {
     "skywind3000/asyncrun.vim",
     cmd = { "AsyncRun", "AsyncStop", "AsyncReset" },
-    config = function()
+    init = function()
       vim.g.asyncrun_open = 6
     end,
-  },
-
-  {
-    "mrjones2014/legendary.nvim",
-    enabled = false,
-    priority = 10000,
-    lazy = false,
-    opts = {
-      { extensions = { lazy_nvim = true } },
-    },
   },
 
   {
@@ -109,13 +100,6 @@ return {
     opts = {},
   },
 
-  { "nvim-lua/popup.nvim", lazy = true },
-
-  {
-    "eandrju/cellular-automaton.nvim",
-    cmd = "CellularAutomaton",
-  },
-
   {
     "tzachar/highlight-undo.nvim",
     opts = {},
@@ -123,6 +107,7 @@ return {
 
   {
     "stevearc/oil.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       columns = {
         "icon",

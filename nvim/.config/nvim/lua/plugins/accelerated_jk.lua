@@ -3,14 +3,19 @@ return {
     "rainbowhxch/accelerated-jk.nvim",
     event = "VeryLazy",
     vscode = true,
-    config = function()
-      local wk = require("which-key")
-      wk.add({
+    keys = {
+      {
+        "j",
+        "<Plug>(accelerated_jk_gj)",
+        desc = "accelerate j",
         mode = { "n" },
-        noremap = true,
-        { "j", "<Plug>(accelerated_jk_gj)", desc = "accelerate j" },
-        { "k", "<Plug>(accelerated_jk_gk)", desc = "accelerate k" },
-      })
-    end,
+      },
+      {
+        "k",
+        "<Plug>(accelerated_jk_gk)",
+        desc = "accelerate k",
+        mode = { "n" },
+      },
+    },
   },
 }

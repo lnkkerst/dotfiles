@@ -2,17 +2,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    dependencies = {
-      { "nvim-treesitter/nvim-treesitter-textobjects" },
-      { "JoosepAlviste/nvim-ts-context-commentstring" },
-      { "nvim-treesitter/nvim-treesitter-context" },
-      { "HiPhish/rainbow-delimiters.nvim" },
-      { "windwp/nvim-ts-autotag" },
-      { "kylechui/nvim-surround", version = "*", config = true },
-      { "abecodes/tabout.nvim", config = true },
-      { "andymass/vim-matchup" },
-    },
-    event = { "BufReadPost", "BufNewFile" },
+    lazy = true,
     config = function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = {},
@@ -44,8 +34,76 @@ return {
           enable = true,
         },
       })
+    end,
+  },
 
-      -- Textobjects
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    event = { "BufReadPost" },
+    dependencies = { { "nvim-treesitter/nvim-treesitter" } },
+  },
+
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    dependencies = { { "nvim-treesitter/nvim-treesitter" } },
+    event = { "BufReadPost" },
+    opts = {},
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    dependencies = { { "nvim-treesitter/nvim-treesitter" } },
+    event = { "BufReadPost" },
+    opts = {},
+  },
+
+  {
+    "windwp/nvim-ts-autotag",
+    dependencies = { { "nvim-treesitter/nvim-treesitter" } },
+    event = { "BufReadPost" },
+    opts = {
+      opts = {
+        enable_close_on_slash = true,
+      },
+    },
+  },
+
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = { "BufReadPost" },
+    dependencies = { { "nvim-treesitter/nvim-treesitter" } },
+    opts = {},
+  },
+
+  {
+    "abecodes/tabout.nvim",
+    event = { "BufReadPost" },
+    dependencies = { { "nvim-treesitter/nvim-treesitter" } },
+    opts = {},
+  },
+
+  {
+    "andymass/vim-matchup",
+    event = { "BufReadPost" },
+    dependencies = { { "nvim-treesitter/nvim-treesitter" } },
+    init = function()
+      vim.g.matchup_matchparen_pumvisible = 0
+    end,
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        matchup = {
+          enable = true,
+        },
+      })
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    enabled = false,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    event = { "BufReadPost" },
+    config = function()
       require("nvim-treesitter.configs").setup({
         textobjects = {
           move = {
@@ -216,26 +274,6 @@ return {
               ["<leader>sA"] = "@attribute.inner",
             },
           },
-        },
-      })
-
-      require("ts_context_commentstring").setup({})
-
-      -- context
-      require("treesitter-context").setup({})
-
-      -- matchup
-      vim.g.matchup_matchparen_pumvisible = 0
-      require("nvim-treesitter.configs").setup({
-        matchup = {
-          enable = true,
-        },
-      })
-
-      -- ts-auto-tag
-      require("nvim-ts-autotag").setup({
-        opts = {
-          enable_close_on_slash = true,
         },
       })
     end,
