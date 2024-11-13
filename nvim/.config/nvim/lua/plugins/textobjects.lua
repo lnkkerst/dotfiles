@@ -1,8 +1,10 @@
 return {
   {
     "chrisgrieser/nvim-various-textobjs",
-    enabled = false,
     event = "UIEnter",
-    opts = { useDefaultKeymaps = true },
+    opts = {
+      useDefaultKeymaps = true,
+      disabledKeymaps = { "ai", "ii", "aI", "iI", "R" },
+    },
   },
 }
