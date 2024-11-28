@@ -22,6 +22,8 @@ local disabled_filetypes = {
   "OverseerForm",
   "lazy",
   "trouble",
+  "mason",
+  "toggleterm",
 }
 
 return {
@@ -47,6 +49,7 @@ return {
         indent_at_cursor = false,
         try_as_border = true,
       },
+      symbol = "│",
     },
   },
 }

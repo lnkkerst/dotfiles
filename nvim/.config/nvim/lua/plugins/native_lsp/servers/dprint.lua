@@ -41,7 +41,7 @@ function M.init()
   lspconfig.dprint.setup({
     on_attach = function(client, bufnr)
       plugin_lsp.common_on_attach(client, bufnr)
-      lsp_format.on_attach(client)
+      -- lsp_format.on_attach(client)
     end,
     capabilities = plugin_lsp.common_capabilities,
     filetypes = require("utils").merge_sets(filetypes, prettier_filetypes),

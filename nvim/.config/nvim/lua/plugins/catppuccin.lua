@@ -39,6 +39,7 @@ return {
           nvimtree = true,
           telescope = true,
           treesitter = true,
+          treesitter_context = true,
           aerial = true,
           dashboard = true,
           harpoon = true,
@@ -47,14 +48,16 @@ return {
           neotest = true,
           -- noice = true,
           notify = true,
-          treesitter_context = true,
           rainbow_delimiters = true,
           lsp_trouble = true,
           lsp_saga = true,
           -- leap = true,
           which_key = true,
           fidget = true,
-          illuminate = true,
+          illuminate = {
+            enabled = true,
+            lsp = false,
+          },
           -- indent_blankline = {
           --   enabled = true,
           --   scope_color = "lavender",
@@ -74,6 +77,7 @@ return {
               errors = { "underline" },
               hints = { "underline" },
               warnings = { "underline" },
+              diff = true,
               information = { "underline" },
             },
             inlay_hints = {
@@ -87,6 +91,10 @@ return {
           },
           grug_far = true,
           -- fzf = true,
+          blink_cmp = true,
+          diffview = true,
+          nvim_surround = true,
+          ufo = true,
         },
       })
       vim.api.nvim_command("colorscheme catppuccin")

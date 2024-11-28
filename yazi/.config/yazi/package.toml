@@ -1,0 +1,8 @@
+[plugin]
+deps = [
+  { use = "yazi-rs/plugins:jump-to-char", rev = "fb3ae90" },
+  { use = "dedukun/relative-motions", rev = "1d6d686" },
+]
+
+[flavor]
+deps = []

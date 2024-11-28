@@ -5,7 +5,6 @@ return {
     dependencies = {
       "mason.nvim",
       "mason-lspconfig.nvim",
-      "vim-illuminate",
       { "onsails/lspkind.nvim", opts = {} },
     },
     config = function()

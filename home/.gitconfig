@@ -26,3 +26,5 @@
   colorMoved = default
 [gpg]
 	format = ssh
+[commit]
+	gpgsign = true

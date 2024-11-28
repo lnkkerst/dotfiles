@@ -218,6 +218,11 @@ return {
             enable = true,
             lookahead = true,
             keymaps = {
+              ["as"] = {
+                query = "@local.scope",
+                query_group = "locals",
+                desc = "Select language scope",
+              },
               ["af"] = {
                 query = "@function.outer",
                 desc = "function",

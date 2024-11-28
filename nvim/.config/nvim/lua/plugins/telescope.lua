@@ -52,11 +52,12 @@ return {
     },
     config = function()
       local telescope = require("telescope")
+      local actions = require("telescope.actions")
 
       telescope.setup({
         defaults = {
-          prompt_prefix = " ",
-          selection_caret = " ",
+          prompt_prefix = "   ",
+          selection_caret = "   ",
           layout_config = {
             horizontal = { prompt_position = "bottom", results_width = 0.6 },
             vertical = { mirror = false },
@@ -76,6 +77,12 @@ return {
           color_devicons = true,
           use_less = true,
           set_env = { ["COLORTERM"] = "truecolor" },
+          mappings = {
+            i = {
+              ["<C-j>"] = actions.move_selection_next,
+              ["<C-k>"] = actions.move_selection_previous,
+            },
+          },
         },
       })
 
