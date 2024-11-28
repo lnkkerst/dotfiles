@@ -21,6 +21,12 @@ return {
           require("snacks").bufdelete()
         end,
       },
+      {
+        "<leader>bd",
+        function()
+          require("snacks").bufdelete()
+        end,
+      },
     },
     init = function()
       -- selene: allow(global_usage)
