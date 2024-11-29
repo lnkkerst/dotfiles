@@ -82,86 +82,96 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      options = {
-        icons_enabled = true,
-        theme = "catppuccin",
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
-        disabled_filetypes = {},
-        always_divide_middle = true,
-        globalstatus = true,
-      },
-
-      sections = {
-        lualine_a = { "mode" },
-        lualine_b = {
-          { "branch" },
-          {
-            "diff",
-            cond = conditions.hide_in_width,
+    event = "VeryLazy",
+    opts = function()
+      return {
+        options = {
+          icons_enabled = true,
+          theme = "catppuccin",
+          component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
+          disabled_filetypes = {
+            statusline = {
+              "dashboard",
+              "alpha",
+              "ministarter",
+              "snacks_dashboard",
+            },
           },
+          always_divide_middle = true,
+          globalstatus = true,
         },
-        lualine_c = {
-          dap_or_lsp,
-        },
-        lualine_x = {
-          {
-            "%w",
-            cond = function()
-              return vim.wo.previewwindow
-            end,
-          },
-          {
-            "%r",
-            cond = function()
-              return vim.bo.readonly
-            end,
-          },
-          {
-            "%q",
-            cond = function()
-              return vim.bo.buftype == "quickfix"
-            end,
-          },
-          { search_result, "filetype" },
-          { "diagnostics" },
-        },
-        lualine_y = {
-          { modified },
-          { "filetype" },
-          { "encoding" },
-          { "fileformat" },
-        },
-        lualine_z = { "progress", "location" },
-      },
 
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { "filename" },
-        lualine_x = { "location" },
-        lualine_y = {},
-        lualine_z = {},
-      },
+        sections = {
+          lualine_a = { "mode" },
+          lualine_b = {
+            { "branch" },
+            {
+              "diff",
+              cond = conditions.hide_in_width,
+            },
+          },
+          lualine_c = {
+            dap_or_lsp,
+          },
+          lualine_x = {
+            {
+              "%w",
+              cond = function()
+                return vim.wo.previewwindow
+              end,
+            },
+            {
+              "%r",
+              cond = function()
+                return vim.bo.readonly
+              end,
+            },
+            {
+              "%q",
+              cond = function()
+                return vim.bo.buftype == "quickfix"
+              end,
+            },
+            { search_result, "filetype" },
+            { "diagnostics" },
+          },
+          lualine_y = {
+            { modified },
+            { "filetype" },
+            { "encoding" },
+            { "fileformat" },
+          },
+          lualine_z = { "progress", "location" },
+        },
 
-      tabline = {},
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = { "filename" },
+          lualine_x = { "location" },
+          lualine_y = {},
+          lualine_z = {},
+        },
 
-      extensions = {
-        "nvim-tree",
-        "toggleterm",
-        "nvim-dap-ui",
-        "quickfix",
-        "symbols-outline",
-        "aerial",
-        "fzf",
-        "lazy",
-        "man",
-        "mason",
-        "overseer",
-        "toggleterm",
-        "trouble",
-      },
-    },
+        tabline = {},
+
+        extensions = {
+          "nvim-tree",
+          "toggleterm",
+          "nvim-dap-ui",
+          "quickfix",
+          "symbols-outline",
+          "aerial",
+          "fzf",
+          "lazy",
+          "man",
+          "mason",
+          "overseer",
+          "toggleterm",
+          "trouble",
+        },
+      }
+    end,
   },
 }

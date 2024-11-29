@@ -2,105 +2,40 @@ return {
   {
     "akinsho/bufferline.nvim",
     dependencies = { "kyazdani42/nvim-web-devicons", "catppuccin/nvim" },
-    lazy = false,
+    event = "VeryLazy",
     keys = {
-      {
-        "<A-1>",
-        "<cmd>BufferLineGoToBuffer 1<cr>",
-        desc = "BufferLineGoToBuffer 1",
-      },
-      {
-        "<A-2>",
-        "<cmd>BufferLineGoToBuffer 2<cr>",
-        desc = "BufferLineGoToBuffer 2",
-      },
-      {
-        "<A-3>",
-        "<cmd>BufferLineGoToBuffer 3<cr>",
-        desc = "BufferLineGoToBuffer 3",
-      },
-      {
-        "<A-4>",
-        "<cmd>BufferLineGoToBuffer 4<cr>",
-        desc = "BufferLineGoToBuffer 4",
-      },
-      {
-        "<A-5>",
-        "<cmd>BufferLineGoToBuffer 5<cr>",
-        desc = "BufferLineGoToBuffer 5",
-      },
-      {
-        "<A-6>",
-        "<cmd>BufferLineGoToBuffer 6<cr>",
-        desc = "BufferLineGoToBuffer 6",
-      },
-      {
-        "<A-7>",
-        "<cmd>BufferLineGoToBuffer 7<cr>",
-        desc = "BufferLineGoToBuffer 7",
-      },
-      {
-        "<A-8>",
-        "<cmd>BufferLineGoToBuffer 8<cr>",
-        desc = "BufferLineGoToBuffer 8",
-      },
-      {
-        "<A-9>",
-        "<cmd>BufferLineGoToBuffer 9<cr>",
-        desc = "BufferLineGoToBuffer 9",
-      },
       {
         "<A-S-j>",
         "<cmd>BufferLineMoveNext<cr>",
-        desc = "BufferLineMoveNext",
+        desc = "Move buffer next",
       },
       {
         "<A-S-k>",
         "<cmd>BufferLineMovePrev<cr>",
-        desc = "BufferLineMovePrev",
+        desc = "Move buffer prev",
       },
       {
         "<A-n>",
         "<cmd>BufferLineCycleNext<cr>",
-        desc = "BufferLineCycleNext",
+        desc = "Next buffer",
       },
       {
         "<A-p>",
         "<cmd>BufferLineCyclePrev<cr>",
-        desc = "BufferLineCyclePrev",
+        desc = "Prev buffer",
       },
-      {
-        "<A-Tab>",
-        "<cmd>BufferLineCycleNext<cr>",
-        desc = "BufferLineCycleNext",
-      },
-      {
-        "<A-S-Tab>",
-        "<cmd>BufferLineCyclePrev<cr>",
-        desc = "BufferLineCyclePrev",
-      },
-      { "<C-q>", "<cmd>:q<cr>", desc = "Close window" },
 
-      {
-        "<leader>b",
-        desc = "bufferline action",
-        group = "Bufferline actions",
-      },
-      {
-        "<leader>be",
-        "<cmd>BufferLineSortByExtension<cr>",
-        desc = "BufferLineSortByExtension",
-      },
-      {
-        "<leader>bd",
-        "<cmd>BufferLineSortByDirectory<cr>",
-        desc = "BufferLineSortByDirectory",
-      },
       { "<leader>bp", "<cmd>BufferLinePick<cr>", desc = "BufferLinePick" },
     },
     opts = function()
       return {
         options = {
+          close_command = function(n)
+            require("snacks").bufdelete(n)
+          end,
+          right_mouse_command = function(n)
+            require("snacks").bufdelete(n)
+          end,
           mod = "buffers",
           numbers = "ordinal",
           diagnostics = "nvim_lsp",

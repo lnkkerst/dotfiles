@@ -4,7 +4,7 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
-      bigfile = { enabled = false },
+      bigfile = { enabled = true },
       notifier = {
         enabled = true,
         history = {
@@ -14,7 +14,18 @@ return {
       quickfile = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = true },
-      dashboard = { example = "compact_files" },
+      dashboard = {
+        example = "compact_files",
+        preset = {
+          header = [[
+███████╗ ███╗   ███╗  █████╗   ██████╗ ███████╗
+██╔════╝ ████╗ ████║ ██╔══██╗ ██╔════╝ ██╔════╝
+█████╗   ██╔████╔██║ ███████║ ██║      ███████╗
+██╔══╝   ██║╚██╔╝██║ ██╔══██║ ██║      ╚════██║
+███████╗ ██║ ╚═╝ ██║ ██║  ██║ ╚██████╗ ███████║
+╚══════╝ ╚═╝     ╚═╝ ╚═╝  ╚═╝  ╚═════╝ ╚══════╝]],
+        },
+      },
       styles = {
         ["notification.history"] = {
           border = "single",
