@@ -1,6 +1,7 @@
 return {
   {
     "rcarriga/nvim-notify",
+    enabled = false,
     opts = {
       -- level = "info",
       stages = "static",

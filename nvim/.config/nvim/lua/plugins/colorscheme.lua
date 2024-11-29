@@ -95,6 +95,7 @@ return {
           diffview = true,
           nvim_surround = true,
           ufo = true,
+          snacks = true,
         },
       })
       vim.api.nvim_command("colorscheme catppuccin")

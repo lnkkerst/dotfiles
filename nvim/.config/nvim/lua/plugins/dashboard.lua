@@ -1,6 +1,7 @@
 return {
   {
     "glepnir/dashboard-nvim",
+    enabled = false,
     config = function()
       local dashboard = require("dashboard")
 

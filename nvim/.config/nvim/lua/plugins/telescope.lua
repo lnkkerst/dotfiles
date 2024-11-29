@@ -13,11 +13,11 @@ return {
         "<cmd>Telescope<cr>",
         desc = "Telescope builtins",
       },
-      {
-        "<leader>fn",
-        "<cmd>Telescope notify<cr>",
-        desc = "Telescope notify",
-      },
+      -- {
+      --   "<leader>fn",
+      --   "<cmd>Telescope notify<cr>",
+      --   desc = "Telescope notify",
+      -- },
       {
         "<leader>fb",
         "<cmd>Telescope buffers<cr>",
@@ -87,10 +87,10 @@ return {
       })
 
       telescope.load_extension("fzf")
-      telescope.load_extension("notify")
       telescope.load_extension("yank_history")
       telescope.load_extension("projects")
       telescope.load_extension("refactoring")
+      -- telescope.load_extension("notify")
 
       local wk = require("which-key")
       wk.add({ "<leader>f", group = "Telescope" })

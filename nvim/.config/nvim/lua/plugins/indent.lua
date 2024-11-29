@@ -24,11 +24,17 @@ local disabled_filetypes = {
   "trouble",
   "mason",
   "toggleterm",
+  "snacks_dashboard",
+  "snacks_notif",
+  "snacks_terminal",
+  "snacks_win",
+  "neo-tree",
 }
 
 return {
   {
     "echasnovski/mini.indentscope",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     version = "*",
     init = function()
       vim.api.nvim_create_autocmd("FileType", {
