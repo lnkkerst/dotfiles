@@ -4,7 +4,7 @@ return {
     event = "UIEnter",
     opts = {
       useDefaultKeymaps = true,
-      disabledKeymaps = { "ai", "ii", "aI", "iI", "R" },
+      disabledKeymaps = { "ai", "ii", "aI", "iI", "R", "L" },
     },
   },
 }

@@ -40,7 +40,7 @@ vim.keymap.set(
 vim.keymap.set({ "v" }, "p", '"_dP', { desc = "Visual paste without yank" })
 
 -- Clear highlight
-vim.keymap.set({ "n" }, "<leader>l", "<cmd>nol<cr><esc>", { desc = "noh" })
+vim.keymap.set({ "n" }, "<leader>l", "<cmd>noh<cr><esc>", { desc = "noh" })
 
 -- Clear search with <esc>
 vim.keymap.set(
