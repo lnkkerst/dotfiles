@@ -10,4 +10,16 @@ return {
     cmd = { "Neogit", "NeogitResetState" },
     config = true,
   },
+  {
+    "sindrets/diffview.nvim",
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewClose",
+      "DiffviewLog",
+      "DiffviewRefresh",
+      "DiffviewFocusFiles",
+      "DiffviewFileHistory",
+      "DiffviewToggleFiles",
+    },
+  },
 }

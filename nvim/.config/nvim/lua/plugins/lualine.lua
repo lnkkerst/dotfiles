@@ -1,3 +1,5 @@
+---@diagnostic disable: unused-local, unused-function
+
 local function lsp()
   local clients = vim.lsp.get_clients()
   local buf = vim.api.nvim_get_current_buf()
@@ -47,6 +49,7 @@ local function modified()
   return ""
 end
 
+-- selene: allow(unused_variable)
 local function search_result()
   if vim.v.hlsearch == 0 then
     return ""
@@ -115,25 +118,6 @@ return {
             dap_or_lsp,
           },
           lualine_x = {
-            {
-              "%w",
-              cond = function()
-                return vim.wo.previewwindow
-              end,
-            },
-            {
-              "%r",
-              cond = function()
-                return vim.bo.readonly
-              end,
-            },
-            {
-              "%q",
-              cond = function()
-                return vim.bo.buftype == "quickfix"
-              end,
-            },
-            { search_result, "filetype" },
             { "diagnostics" },
           },
           lualine_y = {
@@ -145,28 +129,18 @@ return {
           lualine_z = { "progress", "location" },
         },
 
-        inactive_sections = {
-          lualine_a = {},
-          lualine_b = {},
-          lualine_c = { "filename" },
-          lualine_x = { "location" },
-          lualine_y = {},
-          lualine_z = {},
-        },
-
-        tabline = {},
-
         extensions = {
           "nvim-tree",
+          "neo-tree",
           "toggleterm",
           "nvim-dap-ui",
           "quickfix",
-          "symbols-outline",
           "aerial",
           "fzf",
           "lazy",
           "man",
           "mason",
+          "oil",
           "overseer",
           "toggleterm",
           "trouble",

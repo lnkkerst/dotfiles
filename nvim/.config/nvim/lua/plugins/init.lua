@@ -9,15 +9,6 @@ return {
   },
 
   {
-    "danymat/neogen",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    cmd = "Neogen",
-    opts = {
-      -- snippet_engine = "luasnip",
-    },
-  },
-
-  {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
     vscode = true,
@@ -26,6 +17,7 @@ return {
 
   {
     "uga-rosa/ccc.nvim",
+    event = "VeryLazy",
     opts = {
       highlighter = {
         auto_enable = true,
@@ -47,31 +39,6 @@ return {
     init = function()
       vim.g.asyncrun_open = 6
     end,
-  },
-
-  {
-    "sindrets/diffview.nvim",
-    cmd = {
-      "DiffviewOpen",
-      "DiffviewClose",
-      "DiffviewLog",
-      "DiffviewRefresh",
-      "DiffviewFocusFiles",
-      "DiffviewFileHistory",
-      "DiffviewToggleFiles",
-    },
-  },
-
-  {
-    "sbdchd/neoformat",
-    cmd = "Neoformat",
-    keys = {
-      {
-        "<M-S-f>",
-        "<cmd>Neoformat<cr>",
-        desc = "Neoformat",
-      },
-    },
   },
 
   {
@@ -103,19 +70,6 @@ return {
   {
     "tzachar/highlight-undo.nvim",
     opts = {},
-  },
-
-  {
-    "stevearc/oil.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      columns = {
-        "icon",
-        "permissions",
-        "size",
-        "mtime",
-      },
-    },
   },
 
   {

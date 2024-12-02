@@ -60,12 +60,6 @@ return {
   },
 
   {
-    "lukas-reineke/lsp-format.nvim",
-    lazy = true,
-    opts = {},
-  },
-
-  {
     "j-hui/fidget.nvim",
     enabled = true,
     event = { "LspAttach" },

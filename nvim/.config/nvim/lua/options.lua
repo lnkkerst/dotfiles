@@ -208,7 +208,9 @@ local options = {
   breakindentopt = "shift:2,min:20",
 }
 
-local globals = {}
+local globals = {
+  file_explorer = "nvim-tree",
+}
 
 for k, v in pairs(options) do
   vim.opt[k] = v

@@ -37,6 +37,7 @@ return {
           cmp = true,
           gitsigns = true,
           nvimtree = true,
+          neotree = true,
           telescope = true,
           treesitter = true,
           treesitter_context = true,

@@ -39,9 +39,11 @@ return {
           mod = "buffers",
           numbers = "ordinal",
           diagnostics = "nvim_lsp",
+          always_show_bufferline = false,
           offsets = {
             {
-              filetype = "NvimTree",
+              filetype = vim.g.file_explorer == "nvim-tree" and "NvimTree"
+                or "neo-tree",
               text = "File Explorer",
               text_align = "center",
               padding = 1,
