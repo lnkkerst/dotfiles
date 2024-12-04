@@ -145,6 +145,7 @@ return {
 
   {
     "aserowy/tmux.nvim",
+    event = "VeryLazy",
     opts = {
       copy_sync = {
         enable = false,
@@ -161,17 +162,15 @@ return {
 
   {
     "ahmedkhalf/project.nvim",
-    config = function()
-      require("project_nvim").setup({
-        manual_mode = true,
-        ignore_lsp = { "null-ls" },
-      })
-    end,
+    event = "VeryLazy",
+    name = "project_nvim",
+    opts = { manual_mode = true, ignore_lsp = { "null-ls" } },
   },
 
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
+    event = "LazyFile",
     opts = {},
   },
 

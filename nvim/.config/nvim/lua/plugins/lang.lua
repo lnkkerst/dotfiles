@@ -4,8 +4,8 @@ return {
     "mrcjkb/rustaceanvim",
     enabled = true,
     version = "^5", -- Recommended
-    lazy = false, -- This plugin is already lazy
-    config = function()
+    ft = { "rust" },
+    init = function()
       local lsp_utils = require("utils.native_lsp")
       vim.g.rustaceanvim = {
         server = {

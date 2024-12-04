@@ -2,20 +2,13 @@ return {
   {
     "numToStr/Comment.nvim",
     keys = { "gcc", "gbc", { "gc", "gb", mode = { "x" } } },
-    config = function()
-      require("Comment").setup({
-        ---Add a space b/w comment and the line
-        ---@type boolean
+    opts = function()
+      return {
         padding = true,
 
-        ---Lines to be ignored while comment/uncomment.
-        ---Could be a regex string or a function that returns a regex string.
-        ---Example: Use '^$' to ignore empty lines
-        ---@type string|function
-        ignore = nil,
+        -- Ignore empty lines
+        ignore = "^$",
 
-        ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
-        ---@type table
         mappings = {
           ---operator-pending mapping
           ---Includes `gcc`, `gcb`, `gc[count]{motion}` and `gb[count]{motion}`
@@ -28,8 +21,6 @@ return {
           extended = false,
         },
 
-        ---LHS of toggle mapping in NORMAL + VISUAL mode
-        ---@type table
         toggler = {
           ---line-comment keymap
           line = "gcc",
@@ -37,8 +28,6 @@ return {
           block = "gbc",
         },
 
-        ---LHS of operator-pending mapping in NORMAL + VISUAL mode
-        ---@type table
         opleader = {
           ---line-comment keymap
           line = "gc",
@@ -49,7 +38,14 @@ return {
         pre_hook = require(
           "ts_context_commentstring.integrations.comment_nvim"
         ).create_pre_hook(),
-      })
+      }
     end,
+  },
+
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    lazy = true,
+    opts = {},
   },
 }

@@ -51,13 +51,6 @@ return {
   },
 
   {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    dependencies = { { "nvim-treesitter/nvim-treesitter" } },
-    event = { "BufReadPost" },
-    opts = {},
-  },
-
-  {
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = { { "nvim-treesitter/nvim-treesitter" } },
     event = { "BufReadPost" },

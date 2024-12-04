@@ -2,6 +2,20 @@
 
 return {
   {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "nvim-neotest/nvim-nio", "mfussenegger/nvim-dap" },
+    keys = {
+      {
+        "<leader>du",
+        function()
+          require("dapui").toggle()
+        end,
+        desc = "Toggle dap ui",
+      },
+    },
+    opts = {},
+  },
+  {
     "mfussenegger/nvim-dap",
     cmd = {
       "DapSetLogLevel",
@@ -16,13 +30,6 @@ return {
       "DapLoadLaunchJSON",
     },
     keys = {
-      {
-        "<leader>du",
-        function()
-          require("dapui").toggle()
-        end,
-        desc = "Toggle dap UI",
-      },
       {
         "<leader>db",
         function()
@@ -47,27 +54,21 @@ return {
     },
     dependencies = {
       {
-        "rcarriga/nvim-dap-ui",
-        lazy = true,
-        dependencies = { "nvim-neotest/nvim-nio" },
-      },
-      {
         "theHamsta/nvim-dap-virtual-text",
-        lazy = true,
+        opts = {},
       },
     },
     config = function()
       local dap = require("dap")
-      local dapui = require("dapui")
 
       dap.listeners.after.event_initialized["dapui"] = function()
-        dapui.open()
+        require("dapui").open()
       end
       dap.listeners.after.event_terminated["dapui"] = function()
-        dapui.close()
+        require("dapui").close()
       end
       dap.listeners.after.event_exited["dapui"] = function()
-        dapui.close()
+        require("dapui").close()
       end
 
       local sign = vim.fn.sign_define
@@ -215,11 +216,6 @@ return {
           end,
         },
       }
-
-      -- dap ui
-      require("dapui").setup()
-
-      require("nvim-dap-virtual-text").setup({})
     end,
   },
 }
