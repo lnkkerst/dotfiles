@@ -1,5 +1,12 @@
 return {
   {
+    "michaelb/sniprun",
+    cmd = { "SnipRun" },
+    build = "bash install.sh",
+    opts = {},
+  },
+
+  {
     "stevearc/overseer.nvim",
     cmd = {
       "OverseerRun",
@@ -37,6 +44,14 @@ return {
           filetype = { "cpp" },
         },
       })
+    end,
+  },
+
+  {
+    "skywind3000/asyncrun.vim",
+    cmd = { "AsyncRun", "AsyncStop", "AsyncReset" },
+    init = function()
+      vim.g.asyncrun_open = 6
     end,
   },
 }

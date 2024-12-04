@@ -68,4 +68,121 @@ return {
       end, { desc = "Open ranger with toggleterm" })
     end,
   },
+
+  {
+    "krivahtoo/silicon.nvim",
+    enabled = true,
+    build = "./install.sh build",
+    cmd = "Silicon",
+    config = function()
+      require("silicon").setup({
+        font = "JetbrainsMono NF",
+        theme = "Catppuccin-mocha",
+        line_number = true,
+        output = {
+          clipboard = true,
+        },
+      })
+    end,
+  },
+
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    vscode = true,
+    opts = {
+      icons = {
+        mappings = false,
+      },
+    },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
+  },
+
+  {
+    "folke/zen-mode.nvim",
+    cmd = { "ZenMode" },
+    keys = {
+      {
+        "<M-f>",
+        function()
+          require("zen-mode").toggle()
+        end,
+        "Toggle zen mode",
+      },
+    },
+    opts = {
+      window = {
+        width = 0.9,
+        height = 1,
+      },
+      plugins = {
+        twilight = { enabled = false },
+      },
+    },
+  },
+
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = "Trouble",
+    opts = {},
+    keys = {
+      {
+        "<A-t>",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Toggle Trouble diagnostics",
+      },
+    },
+  },
+
+  {
+    "aserowy/tmux.nvim",
+    opts = {
+      copy_sync = {
+        enable = false,
+      },
+      navigation = {
+        enable_default_keybindings = true,
+        cycle_navigation = true,
+      },
+      resize = {
+        enable_default_keybindings = true,
+      },
+    },
+  },
+
+  {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim").setup({
+        manual_mode = true,
+        ignore_lsp = { "null-ls" },
+      })
+    end,
+  },
+
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+
+  {
+    "uga-rosa/ccc.nvim",
+    event = "VeryLazy",
+    opts = {
+      highlighter = {
+        auto_enable = true,
+        lsp = true,
+      },
+    },
+  },
 }

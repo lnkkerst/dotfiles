@@ -1,4 +1,5 @@
 return {
+  -- rust
   {
     "mrcjkb/rustaceanvim",
     enabled = true,
@@ -25,27 +26,73 @@ return {
   },
 
   {
+    "Saecki/crates.nvim",
+    event = "BufRead Cargo.toml",
+    config = function()
+      local crates = require("crates")
+
+      crates.setup({
+        null_ls = {
+          enabled = true,
+          name = "crates.nvim",
+        },
+        popup = {
+          autofocus = true,
+          border = "single",
+        },
+      })
+
+      local commands = {
+        ["toggle"] = crates.toggle,
+        ["reload"] = crates.reload,
+        ["show_features"] = crates.show_features_popup,
+        ["show_versions"] = crates.show_versions_popup,
+        ["show_dependencies"] = crates.show_dependencies_popup,
+      }
+
+      vim.api.nvim_create_user_command("Crates", function(args)
+        commands[args.fargs[1]]()
+      end, {
+        desc = "Manage crates",
+        nargs = "+",
+        complete = function()
+          return vim.tbl_keys(commands)
+        end,
+      })
+    end,
+  },
+
+  -- java
+  {
     "mfussenegger/nvim-jdtls",
     lazy = true,
     ft = "java",
   },
+
+  -- web
   {
     "pmizio/typescript-tools.nvim",
     lazy = true,
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
   },
+
+  -- lua
   {
     "folke/lazydev.nvim",
     opts = {},
     lazy = true,
     ft = "lua",
   },
+
+  -- c/cpp
   {
     "p00f/clangd_extensions.nvim",
     lazy = true,
     ft = "cpp",
   },
+
+  -- python
   {
     "linux-cultist/venv-selector.nvim",
     opts = {
@@ -58,6 +105,8 @@ return {
     },
     cmd = { "VenvSelect" },
   },
+
+  -- go
   {
     "olexsmir/gopher.nvim",
     ft = "go",
@@ -76,8 +125,7 @@ return {
     opts = {},
   },
 
-  { "imsnif/kdl.vim", ft = { "kdl" } },
-
+  -- markdown
   {
     "iamcco/markdown-preview.nvim",
     ft = "markdown",

@@ -5,6 +5,7 @@ return {
     cmd = { "Spectre" },
     config = function() end,
   },
+
   {
     "kevinhwang91/nvim-hlslens",
     event = { "CmdlineEnter" },
@@ -52,6 +53,7 @@ return {
       -- vim.api.nvim_set_keymap("n", "<Leader>l", ":noh<CR>", kopts)
     end,
   },
+
   {
     "cshuaimin/ssr.nvim",
     opts = {},

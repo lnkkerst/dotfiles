@@ -63,4 +63,29 @@ return {
       { "T" },
     },
   },
+  {
+    "stevearc/aerial.nvim",
+    cmd = {
+      "AerialToggle",
+      "AerialGo",
+      "AerialInfo",
+      "AerialNavToggle",
+      "AerialNext",
+      "AerialPrev",
+      "AerialOpen",
+      "AerialClose",
+      "AerialNavOpen",
+      "AerialNavClose",
+      "AerialOpenAll",
+      "AerialCloseAll",
+    },
+    keys = {
+      {
+        "<A-a>",
+        "<cmd>AerialToggle<cr>",
+        desc = "Toggle Aerial",
+      },
+    },
+    opts = {},
+  },
 }

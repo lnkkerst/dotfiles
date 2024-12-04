@@ -1,8 +1,10 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    version = false,
     build = ":TSUpdate",
-    lazy = true,
+    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+    event = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy" },
     config = function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = {},
@@ -34,6 +36,11 @@ return {
           enable = true,
         },
       })
+
+      -- folding provider
+      vim.wo.foldmethod = "expr"
+      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      vim.wo.foldlevel = 99
     end,
   },
 
