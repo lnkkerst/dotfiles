@@ -20,7 +20,6 @@ function M.init()
     "unocss",
     "jdtls",
     "marksman",
-    "typst_lsp",
     "tailwindcss",
     "kotlin_language_server",
     -- "emmet_language_server",

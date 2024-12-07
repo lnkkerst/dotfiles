@@ -3,12 +3,15 @@ return {
     "saghen/blink.cmp",
     lazy = false,
     -- build = "cargo build --release",
+    -- version = false,
     version = "v0.*",
     dependencies = { "rafamadriz/friendly-snippets" },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-      nerd_font_variant = "mono",
+      appearance = {
+        use_nvim_cmp_as_default = true,
+      },
 
       sources = {
         completion = {
@@ -34,41 +37,27 @@ return {
         },
       },
 
-      -- accept = { auto_brackets = { enabled = true } }
-      trigger = { signature_help = { enabled = true } },
-
       keymap = {
         preset = "default",
         ["<Cr>"] = { "accept", "fallback" },
         ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
         ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
       },
-      windows = {
-        autocomplete = {
-          -- border = "single",
+
+      completion = {
+        list = {
           selection = "auto_insert",
-          draw = {
-            columns = {
-              { "kind_icon" },
-              { "label", "label_description", gap = 1 },
-              { "provider" },
-            },
-            components = {
-              provider = {
-                text = function(ctx)
-                  return "[" .. ctx.item.source_name:sub(1, 3):upper() .. "]"
-                end,
-              },
-            },
-          },
         },
+
+        menu = {
+          border = "single",
+        },
+
         documentation = {
-          -- border = "single",
           auto_show = true,
-          auto_show_delay_ms = 50,
-        },
-        signature_help = {
-          -- border = "single",
+          window = {
+            border = "single",
+          },
         },
       },
     },

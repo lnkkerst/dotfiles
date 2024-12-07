@@ -67,7 +67,7 @@ return {
 
   {
     "akinsho/bufferline.nvim",
-    dependencies = { "kyazdani42/nvim-web-devicons", "catppuccin/nvim" },
+    dependencies = { "kyazdani42/nvim-web-devicons" },
     event = "VeryLazy",
     keys = {
       {
@@ -212,7 +212,7 @@ return {
       return {
         options = {
           icons_enabled = true,
-          theme = "catppuccin",
+          theme = "auto",
           component_separators = { left = "", right = "" },
           section_separators = { left = "", right = "" },
           disabled_filetypes = {

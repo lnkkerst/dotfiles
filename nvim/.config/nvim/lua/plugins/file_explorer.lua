@@ -29,12 +29,37 @@ return {
   {
     "stevearc/oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    lazy = false,
+    keys = {
+      { "<leader>o", "<cmd>Oil<cr>", desc = "Open oil" },
+    },
     opts = {
       columns = {
         "icon",
         "permissions",
         "size",
         "mtime",
+      },
+      keymaps = {
+        ["<C-s>"] = false,
+        ["<C-v>"] = { "actions.select", opts = { vertical = true } },
+        ["<C-p>"] = false,
+        ["gp"] = "actions.preview",
+      },
+      float = {
+        border = "single",
+      },
+      confirmation = {
+        border = "single",
+      },
+      progress = {
+        border = "single",
+      },
+      ssh = {
+        border = "single",
+      },
+      keymaps_help = {
+        border = "single",
       },
     },
   },

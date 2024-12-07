@@ -35,9 +35,11 @@ return {
     config = function(_, opts)
       local snacks = require("snacks")
       snacks.setup(opts)
+
       vim.api.nvim_create_user_command("Gitbrowse", function()
         snacks.gitbrowse()
       end, { desc = "Browse the repo of current file" })
+
       vim.api.nvim_create_user_command("Lazygit", function()
         snacks.lazygit()
       end, { desc = "Open lazygit" })

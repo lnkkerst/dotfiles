@@ -71,22 +71,22 @@ return {
   {
     "kylechui/nvim-surround",
     version = "*",
-    event = { "BufReadPost" },
-    dependencies = { { "nvim-treesitter/nvim-treesitter" } },
+    event = "LazyFile",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {},
   },
 
   {
     "abecodes/tabout.nvim",
     event = { "BufReadPost" },
-    dependencies = { { "nvim-treesitter/nvim-treesitter" } },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {},
   },
 
   {
     "andymass/vim-matchup",
     event = { "BufReadPost" },
-    dependencies = { { "nvim-treesitter/nvim-treesitter" } },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     init = function()
       vim.g.matchup_matchparen_pumvisible = 0
     end,

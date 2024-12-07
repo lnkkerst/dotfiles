@@ -23,7 +23,11 @@ M.common_capabilities = (function()
   return global_capabilities
 end)()
 
-function M.common_on_attach(client, bufnr) end
+function M.common_on_attach(client, bufnr)
+  if client.server_capabilities.signatureHelpProvider then
+    require("lsp-overloads").setup(client, {})
+  end
+end
 
 function M.init() end
 

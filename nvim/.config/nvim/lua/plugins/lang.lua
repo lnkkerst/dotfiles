@@ -3,7 +3,6 @@ return {
   {
     "mrcjkb/rustaceanvim",
     enabled = true,
-    version = "^5", -- Recommended
     ft = { "rust" },
     init = function()
       local lsp_utils = require("utils.native_lsp")
