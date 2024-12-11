@@ -27,9 +27,13 @@ return {
           types = {},
           operators = {},
         },
-        custom_highlights = function()
+        custom_highlights = function(colors)
           return {
-            -- LspFloatWinNormal = { link = "Normal" },
+            NormalFloat = { link = "Normal" },
+            BlinkCmpMenu = { link = "NormalFloat" },
+            BlinkCmpMenuBorder = { link = "FloatBorder" },
+            BlinkCmpDoc = { link = "NormalFloat" },
+            BlinkCmpDocBorder = { link = "FloatBorder" },
           }
         end,
         integrations = {

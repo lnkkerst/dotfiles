@@ -25,7 +25,11 @@ end)()
 
 function M.common_on_attach(client, bufnr)
   if client.server_capabilities.signatureHelpProvider then
-    require("lsp-overloads").setup(client, {})
+    require("lsp-overloads").setup(client, {
+      ui = {
+        close_events = { "CursorMoved", "BufHidden", "InsertLeave", "WinNew" },
+      },
+    })
   end
 end
 

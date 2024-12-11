@@ -7,8 +7,9 @@ vim.keymap.set(
   "<cmd>w<cr><esc>",
   { desc = "Save File" }
 )
+vim.keymap.set("n", "<leader>w", "<cmd>w<cr>")
 
--- Line move
+-- Move in line
 vim.keymap.set(
   { "n", "v" },
   "H",
@@ -60,3 +61,39 @@ vim.keymap.set(
   ":cprevious<cr>",
   { desc = "Previous quickfix item" }
 )
+
+vim.keymap.set({ "", "!" }, "<C-c>", "<Esc>")
+
+-- Copy and comment
+vim.keymap.set(
+  "n",
+  "<leader>C",
+  "yygccp",
+  { desc = "Copy to a comment above", remap = true }
+)
+vim.keymap.set(
+  "v",
+  "<leader>C",
+  "ygvgc`>p",
+  { remap = true, desc = "Copy to a comment above" }
+)
+
+vim.keymap.set("i", "<S-cr>", "<esc>o")
+
+-- Move in insert mode
+vim.keymap.set("i", "<C-h>", "<left>")
+vim.keymap.set("i", "<C-j>", "<down>")
+vim.keymap.set("i", "<C-k>", "<up>")
+vim.keymap.set("i", "<C-l>", "<right>")
+
+-- Move line
+vim.keymap.set("n", "<M-j>", "<cmd>move+1<cr>==")
+vim.keymap.set("n", "<M-k>", "<cmd>move-2<cr>==")
+vim.keymap.set("i", "<M-j>", "<esc><cmd>move+1<cr>==gi")
+vim.keymap.set("i", "<M-k>", "<esc><cmd>move-2<cr>==gi")
+vim.keymap.set("v", "<M-j>", "<esc><cmd>'<,'>move'>+1<cr>gv=gv")
+vim.keymap.set("v", "<M-k>", "<esc><cmd>'<,'>move'<-2<cr>gv=gv")
+
+-- Cmdline shortcuts
+vim.keymap.set("c", "<C-a>", "<Home>")
+vim.keymap.set("c", "<C-e>", "<End>")

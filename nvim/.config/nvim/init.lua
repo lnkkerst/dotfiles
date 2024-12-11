@@ -27,6 +27,7 @@ vim.g.maplocalleader = "\\"
 
 require("options")
 require("neovide")
+require("keymap")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -84,5 +85,4 @@ require("lazy").setup({
 })
 
 require("autocmd")
-require("keymap")
 require("commands")

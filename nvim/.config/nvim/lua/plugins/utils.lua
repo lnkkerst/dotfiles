@@ -146,6 +146,32 @@ return {
   {
     "aserowy/tmux.nvim",
     event = "VeryLazy",
+    keys = {
+      {
+        "<M-up>",
+        function()
+          require("tmux").resize_top()
+        end,
+      },
+      {
+        "<M-down>",
+        function()
+          require("tmux").resize_bottom()
+        end,
+      },
+      {
+        "<M-left>",
+        function()
+          require("tmux").resize_left()
+        end,
+      },
+      {
+        "<M-right>",
+        function()
+          require("tmux").resize_right()
+        end,
+      },
+    },
     opts = {
       copy_sync = {
         enable = false,
@@ -155,7 +181,7 @@ return {
         cycle_navigation = true,
       },
       resize = {
-        enable_default_keybindings = true,
+        enable_default_keybindings = false,
       },
     },
   },

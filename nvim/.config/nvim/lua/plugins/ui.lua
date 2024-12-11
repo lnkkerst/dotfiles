@@ -70,28 +70,12 @@ return {
     dependencies = { "kyazdani42/nvim-web-devicons" },
     event = "VeryLazy",
     keys = {
-      {
-        "<A-S-j>",
-        "<cmd>BufferLineMoveNext<cr>",
-        desc = "Move buffer next",
-      },
-      {
-        "<A-S-k>",
-        "<cmd>BufferLineMovePrev<cr>",
-        desc = "Move buffer prev",
-      },
-      {
-        "<A-n>",
-        "<cmd>BufferLineCycleNext<cr>",
-        desc = "Next buffer",
-      },
-      {
-        "<A-p>",
-        "<cmd>BufferLineCyclePrev<cr>",
-        desc = "Prev buffer",
-      },
+      { "<A-n>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+      { "<A-p>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
 
-      { "<leader>bp", "<cmd>BufferLinePick<cr>", desc = "BufferLinePick" },
+      { "<leader>bb", "<cmd>BufferLinePick<cr>", desc = "Pick buffer" },
+      { "<leader>bn", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+      { "<leader>bp", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
     },
     opts = function()
       return {
