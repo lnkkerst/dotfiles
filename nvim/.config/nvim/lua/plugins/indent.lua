@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+
 local disabled_filetypes = {
   "startify",
   "dashboard",

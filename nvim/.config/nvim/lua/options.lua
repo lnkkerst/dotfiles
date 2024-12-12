@@ -40,7 +40,7 @@ local options = {
   jumpoptions = "stack",
 
   -- For global statusline
-  laststatus = 0,
+  laststatus = 3,
 
   -- Wrap lines
   linebreak = true,
@@ -209,7 +209,8 @@ local options = {
 }
 
 local globals = {
-  file_explorer = "nvim-tree",
+  default_file_explorer = "nvim-tree",
+  default_terminal = "toggleterm",
 }
 
 for k, v in pairs(options) do

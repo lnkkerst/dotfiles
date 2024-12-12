@@ -1,7 +1,7 @@
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
-    enabled = vim.g.file_explorer == "neo-tree",
+    enabled = vim.g.default_file_explorer == "neo-tree",
     branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -66,7 +66,7 @@ return {
 
   {
     "kyazdani42/nvim-tree.lua",
-    enabled = vim.g.file_explorer == "nvim-tree",
+    enabled = vim.g.default_file_explorer == "nvim-tree",
     cmd = "NvimTreeToggle",
     dependencies = {
       "kyazdani42/nvim-web-devicons",

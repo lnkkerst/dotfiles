@@ -1,6 +1,7 @@
 return {
   {
     "akinsho/toggleterm.nvim",
+    enabled = vim.g.default_terminal == "toggleterm",
     keys = { [[<C-\>]] },
     cmd = { "Ranger", "FloatTerm" },
     config = function()
@@ -107,29 +108,6 @@ return {
   },
 
   {
-    "folke/zen-mode.nvim",
-    cmd = { "ZenMode" },
-    keys = {
-      {
-        "<M-f>",
-        function()
-          require("zen-mode").toggle()
-        end,
-        "Toggle zen mode",
-      },
-    },
-    opts = {
-      window = {
-        width = 0.9,
-        height = 1,
-      },
-      plugins = {
-        twilight = { enabled = false },
-      },
-    },
-  },
-
-  {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     cmd = "Trouble",
@@ -152,24 +130,56 @@ return {
         function()
           require("tmux").resize_top()
         end,
+        mode = { "n", "t" },
       },
       {
         "<M-down>",
         function()
           require("tmux").resize_bottom()
         end,
+        mode = { "n", "t" },
       },
       {
         "<M-left>",
         function()
           require("tmux").resize_left()
         end,
+        mode = { "n", "t" },
       },
       {
         "<M-right>",
         function()
           require("tmux").resize_right()
         end,
+        mode = { "n", "t" },
+      },
+      {
+        "<C-h>",
+        function()
+          require("tmux").move_left()
+        end,
+        mode = { "t" },
+      },
+      {
+        "<C-j>",
+        function()
+          require("tmux").move_bottom()
+        end,
+        mode = { "t" },
+      },
+      {
+        "<C-k>",
+        function()
+          require("tmux").move_top()
+        end,
+        mode = { "t" },
+      },
+      {
+        "<C-l>",
+        function()
+          require("tmux").move_right()
+        end,
+        mode = { "t" },
       },
     },
     opts = {

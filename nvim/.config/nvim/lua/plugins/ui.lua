@@ -92,7 +92,8 @@ return {
           always_show_bufferline = false,
           offsets = {
             {
-              filetype = vim.g.file_explorer == "nvim-tree" and "NvimTree"
+              filetype = vim.g.default_file_explorer == "nvim-tree"
+                  and "NvimTree"
                 or "neo-tree",
               text = "File Explorer",
               text_align = "center",

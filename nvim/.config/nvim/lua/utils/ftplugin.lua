@@ -1,8 +1,20 @@
 local M = {}
 
 function M.create_term_run_cpp_command()
-  local ok, toggleterm = pcall(require, "toggleterm")
-  if not ok then
+  local runner
+  local has_toggleterm, toggleterm = pcall(require, "toggleterm")
+  local has_snacks, snacks = pcall(require, "snacks")
+  if has_toggleterm then
+    runner = function(cmd)
+      toggleterm.exec(cmd, nil, nil, nil, nil, nil, false)
+    end
+  elseif has_snacks then
+    runner = function(cmd)
+      snacks.terminal(string.format("%s; read", cmd))
+    end
+  end
+
+  if runner == nil then
     return
   end
 
@@ -22,7 +34,7 @@ function M.create_term_run_cpp_command()
       cmd = string.format("%s && ./%s", cmd, out_file)
     end
 
-    toggleterm.exec(cmd, nil, nil, nil, nil, nil, false)
+    runner(cmd)
   end, {
     desc = "Compile and run current cpp file",
     nargs = "?",
