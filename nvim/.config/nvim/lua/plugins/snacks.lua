@@ -29,7 +29,11 @@ return {
         },
       },
       scroll = { enabled = false },
-      indent = { enabled = true },
+      indent = {
+        enabled = true,
+        animate = { enabled = false },
+        indent = {},
+      },
       scope = { enabled = true },
       terminal = { win = {
         height = 0.2,
@@ -108,8 +112,6 @@ return {
       vim.api.nvim_create_user_command("Lazygit", function()
         snacks.lazygit()
       end, { desc = "Open lazygit" })
-
-      snacks.indent.animate()
 
       -- Rename for nvim-tree
       local prev = { new_name = "", old_name = "" } -- Prevents duplicate events

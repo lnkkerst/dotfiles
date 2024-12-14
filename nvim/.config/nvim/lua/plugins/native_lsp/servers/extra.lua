@@ -25,6 +25,7 @@ function M.init()
     -- "emmet_language_server",
     "mdx_analyzer",
     "basedpyright",
+    "astro",
   }
 
   for _, server in ipairs(servers) do

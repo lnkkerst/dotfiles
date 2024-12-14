@@ -34,6 +34,7 @@ return {
             BlinkCmpMenuBorder = { link = "FloatBorder" },
             BlinkCmpDoc = { link = "NormalFloat" },
             BlinkCmpDocBorder = { link = "FloatBorder" },
+            SnacksIndentScope = { fg = colors.mauve },
           }
         end,
         integrations = {

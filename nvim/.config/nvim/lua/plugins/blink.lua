@@ -2,37 +2,24 @@ return {
   {
     "saghen/blink.cmp",
     lazy = false,
-    -- build = "cargo build --release",
-    -- version = false,
-    version = "v0.*",
+    build = "cargo build --release",
+    version = false,
+    -- version = "v0.*",
     dependencies = { "rafamadriz/friendly-snippets" },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-      appearance = {
-        use_nvim_cmp_as_default = true,
-      },
+      enabled = function()
+        return vim.bo.buftype ~= "prompt"
+      end,
 
       sources = {
-        completion = {
-          enabled_providers = {
-            "lsp",
-            "path",
-            "snippets",
-            "buffer",
-            "lazydev",
-          },
-        },
+        default = { "lsp", "path", "snippets", "buffer" },
         providers = {
-          lsp = {
-            name = "LSP",
-            fallback_for = {
-              "lazydev",
-            },
-          },
           lazydev = {
             name = "Development",
             module = "lazydev.integrations.blink",
+            fallbacks = { "lsp" },
           },
         },
       },
@@ -65,6 +52,7 @@ return {
 
   {
     "hrsh7th/nvim-cmp",
+    enabled = false,
     event = { "CmdlineEnter" },
     dependencies = {
       { "hrsh7th/cmp-buffer" },

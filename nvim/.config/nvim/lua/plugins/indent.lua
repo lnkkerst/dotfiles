@@ -1,7 +1,3 @@
-if true then
-  return {}
-end
-
 local disabled_filetypes = {
   "startify",
   "dashboard",
@@ -38,6 +34,7 @@ local disabled_filetypes = {
 return {
   {
     "echasnovski/mini.indentscope",
+    enabled = false,
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     version = "*",
     init = function()
