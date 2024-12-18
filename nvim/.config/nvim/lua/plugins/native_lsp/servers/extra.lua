@@ -35,7 +35,8 @@ function M.init()
     })
   end
 
-  local servers_with_format = { "biome", "hls", "asm_lsp", "ruff", "taplo" }
+  local servers_with_format =
+    { "biome", "hls", "asm_lsp", "ruff", "taplo", "buf_ls" }
 
   for _, server in ipairs(servers_with_format) do
     lspconfig[server].setup({
