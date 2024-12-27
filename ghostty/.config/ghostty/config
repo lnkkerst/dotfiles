@@ -1,0 +1,12 @@
+theme = catppuccin-mocha
+
+font-feature = -calt
+
+font-size = 10.5
+
+gtk-titlebar = false
+confirm-close-surface = false
+window-padding-x = 0
+window-padding-y = 0
+
+background-opacity = 0.9

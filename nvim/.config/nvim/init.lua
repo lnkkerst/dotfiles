@@ -82,6 +82,9 @@ require("lazy").setup({
       },
     },
   },
+  rocks = {
+    hererocks = true,
+  },
 })
 
 require("autocmd")

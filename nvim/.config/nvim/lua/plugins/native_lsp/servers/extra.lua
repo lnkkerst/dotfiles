@@ -19,7 +19,6 @@ function M.init()
     "csharp_ls",
     "unocss",
     "jdtls",
-    "marksman",
     "tailwindcss",
     "kotlin_language_server",
     -- "emmet_language_server",

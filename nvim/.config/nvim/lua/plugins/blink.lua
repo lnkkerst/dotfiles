@@ -29,11 +29,23 @@ return {
         ["<Cr>"] = { "accept", "fallback" },
         ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
         ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+        cmdline = {
+          preset = "default",
+          ["<Cr>"] = { "fallback" },
+          ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+          ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+        },
       },
 
       completion = {
         list = {
           selection = "auto_insert",
+        },
+
+        accept = {
+          auto_brackets = {
+            enabled = false,
+          },
         },
 
         menu = {

@@ -73,4 +73,12 @@ return {
     vscode = true,
     opts = {},
   },
+
+  {
+    "chrisgrieser/nvim-origami",
+    event = "VeryLazy",
+    opts = {
+      hOnlyOpensOnFirstColumn = true,
+    },
+  },
 }

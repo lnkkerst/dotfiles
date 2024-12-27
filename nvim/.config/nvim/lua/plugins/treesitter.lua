@@ -4,7 +4,7 @@ return {
     version = false,
     build = ":TSUpdate",
     lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
-    event = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy" },
+    event = { "LazyFile", "VeryLazy" },
     config = function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = {},
@@ -38,9 +38,9 @@ return {
       })
 
       -- folding provider
+      vim.wo.foldlevel = 99
       vim.wo.foldmethod = "expr"
       vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      vim.wo.foldlevel = 99
     end,
   },
 
@@ -281,5 +281,41 @@ return {
         },
       })
     end,
+  },
+
+  {
+    "aaronik/treewalker.nvim",
+    event = { "LazyFile" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    opts = {
+      highlight = true,
+      highlight_duration = 500,
+    },
+    keys = {
+      {
+        "<M-S-H>",
+        function()
+          require("treewalker").move_out()
+        end,
+      },
+      {
+        "<M-S-L>",
+        function()
+          require("treewalker").move_in()
+        end,
+      },
+      {
+        "<M-S-J>",
+        function()
+          require("treewalker").move_down()
+        end,
+      },
+      {
+        "<M-S-K>",
+        function()
+          require("treewalker").move_up()
+        end,
+      },
+    },
   },
 }

@@ -4,7 +4,7 @@ return {
     "mrcjkb/rustaceanvim",
     enabled = true,
     ft = { "rust" },
-    init = function()
+    config = function()
       local lsp_utils = require("utils.native_lsp")
       vim.g.rustaceanvim = {
         server = {

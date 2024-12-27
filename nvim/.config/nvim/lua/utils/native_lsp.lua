@@ -29,7 +29,9 @@ function M.common_on_attach(client, bufnr)
       ui = {
         close_events = { "CursorMoved", "BufHidden", "InsertLeave", "WinNew" },
       },
+      display_automatically = false,
     })
+    vim.keymap.set({ "n", "i" }, "<A-s>", "<cmd>LspOverloadsSignature<CR>")
   end
 end
 

@@ -63,29 +63,25 @@ return {
       { "T" },
     },
   },
+
   {
-    "stevearc/aerial.nvim",
-    cmd = {
-      "AerialToggle",
-      "AerialGo",
-      "AerialInfo",
-      "AerialNavToggle",
-      "AerialNext",
-      "AerialPrev",
-      "AerialOpen",
-      "AerialClose",
-      "AerialNavOpen",
-      "AerialNavClose",
-      "AerialOpenAll",
-      "AerialCloseAll",
-    },
+    "chrisgrieser/nvim-spider",
     keys = {
       {
-        "<A-a>",
-        "<cmd>AerialToggle<cr>",
-        desc = "Toggle Aerial",
+        "w",
+        "<cmd>lua require('spider').motion('w')<CR>",
+        mode = { "n", "o", "x" },
+      },
+      {
+        "e",
+        "<cmd>lua require('spider').motion('e')<CR>",
+        mode = { "n", "o", "x" },
+      },
+      {
+        "b",
+        "<cmd>lua require('spider').motion('b')<CR>",
+        mode = { "n", "o", "x" },
       },
     },
-    opts = {},
   },
 }
