@@ -10,3 +10,5 @@ window-padding-x = 0
 window-padding-y = 0
 
 background-opacity = 0.9
+
+mouse-scroll-multiplier = 0.3

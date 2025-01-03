@@ -18,7 +18,8 @@ set -gx fish_greeting
 
 alias gitu='git add . && git commit && git push'
 alias trm='/bin/rm'
-alias rm='trash-put'
+alias rm='echo "Never use rm, please ;("'
+alias d="trash-put"
 alias pc='proxychains'
 alias ...='cd ..; cd .. '
 alias www='darkhttpd .'
@@ -162,4 +163,9 @@ end
 # rye
 if type -qf rye
     rye self completion --shell fish | source
+end
+
+# uv
+if type -qf uv
+    uv generate-shell-completion fish | source
 end

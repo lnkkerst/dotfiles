@@ -1,6 +1,6 @@
 
 # Global
-max-history=12
+max-history=1000
 
 # Binding
 on-button-left=invoke-default-action
@@ -12,10 +12,11 @@ font=sans 11
 border-size=2
 border-radius=0
 icons=1
-max-icon-size=32
+max-icon-size=52
 icon-path=/usr/share/icons/Papirus-Dark
 icon-location=left
 padding=5,10
+height=512
 
 # Func
 default-timeout=30000
