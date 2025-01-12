@@ -66,7 +66,6 @@ require("lazy").setup({
       return true
     end,
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
   ui = { border = "single" },
   performance = {
     rtp = {

@@ -6,10 +6,6 @@ return {
     opts = function()
       return {
         flavour = "mocha",
-        -- background = {
-        --   light = "latte",
-        --   dark = "mocha",
-        -- },
         -- transparent_background = not vim.g.neovide,
         show_end_of_buffer = false,
         term_colors = false,
@@ -30,11 +26,16 @@ return {
         custom_highlights = function(colors)
           return {
             NormalFloat = { link = "Normal" },
+
             BlinkCmpMenu = { link = "NormalFloat" },
             BlinkCmpMenuBorder = { link = "FloatBorder" },
             BlinkCmpDoc = { link = "NormalFloat" },
             BlinkCmpDocBorder = { link = "FloatBorder" },
+
             SnacksIndentScope = { fg = colors.mauve },
+
+            SniprunVirtualTextOk = { link = "@text.note" },
+            SniprunVirtualTextError = { link = "@error" },
           }
         end,
         integrations = {

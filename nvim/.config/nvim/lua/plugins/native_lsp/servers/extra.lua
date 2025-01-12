@@ -13,7 +13,6 @@ function M.init()
     "bashls",
     "dockerls",
     "zls",
-    "prismals",
     "dartls",
     "sqlls",
     "csharp_ls",
@@ -35,7 +34,7 @@ function M.init()
   end
 
   local servers_with_format =
-    { "biome", "hls", "asm_lsp", "ruff", "taplo", "buf_ls" }
+    { "biome", "hls", "asm_lsp", "ruff", "taplo", "buf_ls", "prismals" }
 
   for _, server in ipairs(servers_with_format) do
     lspconfig[server].setup({

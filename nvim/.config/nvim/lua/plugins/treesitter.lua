@@ -60,7 +60,7 @@ return {
   {
     "windwp/nvim-ts-autotag",
     dependencies = { { "nvim-treesitter/nvim-treesitter" } },
-    event = { "BufReadPost" },
+    event = { "LazyFile" },
     opts = {
       opts = {
         enable_close_on_slash = true,
@@ -70,7 +70,6 @@ return {
 
   {
     "kylechui/nvim-surround",
-    version = "*",
     event = "LazyFile",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {},
@@ -293,25 +292,25 @@ return {
     },
     keys = {
       {
-        "<M-S-H>",
+        "<M-h>",
         function()
           require("treewalker").move_out()
         end,
       },
       {
-        "<M-S-L>",
+        "<M-l>",
         function()
           require("treewalker").move_in()
         end,
       },
       {
-        "<M-S-J>",
+        "<M-j>",
         function()
           require("treewalker").move_down()
         end,
       },
       {
-        "<M-S-K>",
+        "<M-k>",
         function()
           require("treewalker").move_up()
         end,

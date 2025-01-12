@@ -1,12 +1,5 @@
 return {
   {
-    "nvim-pack/nvim-spectre",
-    dependencies = { { "nvim-lua/plenary.nvim" } },
-    cmd = { "Spectre" },
-    config = function() end,
-  },
-
-  {
     "kevinhwang91/nvim-hlslens",
     event = { "CmdlineEnter" },
     config = function()

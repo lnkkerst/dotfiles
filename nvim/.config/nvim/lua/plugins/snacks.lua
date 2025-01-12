@@ -11,6 +11,7 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
       notifier = {
@@ -35,9 +36,14 @@ return {
         indent = {},
       },
       scope = { enabled = true },
-      terminal = { win = {
-        height = 0.2,
-      } },
+      terminal = {
+        win = {
+          height = 0.2,
+        },
+      },
+      lazygit = {
+        configure = true,
+      },
       styles = {
         ["notification.history"] = {
           border = "single",

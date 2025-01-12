@@ -112,6 +112,8 @@ local options = {
   -- Put new windows right of current
   splitright = true,
 
+  splitkeep = "screen",
+
   -- Tab width
   tabstop = 4,
   softtabstop = -1,

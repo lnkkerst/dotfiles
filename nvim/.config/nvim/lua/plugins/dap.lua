@@ -1,5 +1,3 @@
--- Dap
-
 return {
   {
     "rcarriga/nvim-dap-ui",

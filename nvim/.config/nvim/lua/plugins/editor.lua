@@ -7,13 +7,13 @@ return {
       {
         "j",
         "<Plug>(accelerated_jk_gj)",
-        desc = "accelerate j",
+        desc = "Accelerated j",
         mode = { "n" },
       },
       {
         "k",
         "<Plug>(accelerated_jk_gk)",
-        desc = "accelerate k",
+        desc = "Accelerated k",
         mode = { "n" },
       },
     },
@@ -29,15 +29,6 @@ return {
         javascript = { "template_string" },
       },
     },
-    config = function(_, opts)
-      require("nvim-autopairs").setup(opts)
-
-      local ok, cmp = pcall(require, "cmp")
-      if ok then
-        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-        cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-      end
-    end,
   },
 
   {
@@ -51,12 +42,22 @@ return {
       { "y", "<Plug>(YankyYank)", mode = { "n", "x" } },
       { "<M-S-n>", "<Plug>(YankyCycleForward)", mode = { "n" } },
       { "<M-S-p>", "<Plug>(YankyCycleBackward)", mode = { "n" } },
+      {
+        "[y",
+        "<Plug>(YankyCycleForward)",
+        desc = "Cycle Forward Through Yank History",
+      },
+      {
+        "]y",
+        "<Plug>(YankyCycleBackward)",
+        desc = "Cycle Backward Through Yank History",
+      },
     },
   },
 
   {
     "tzachar/highlight-undo.nvim",
-    event = "VeryLazy",
+    keys = { { "u" }, { "<C-r>" }, { "p" }, { "P" } },
     opts = {},
   },
 
@@ -71,14 +72,16 @@ return {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
     vscode = true,
-    opts = {},
-  },
-
-  {
-    "chrisgrieser/nvim-origami",
-    event = "VeryLazy",
     opts = {
-      hOnlyOpensOnFirstColumn = true,
+      default_mappings = false,
+      mappings = {
+        i = {
+          j = {
+            k = "<Esc>",
+            j = "<Esc>",
+          },
+        },
+      },
     },
   },
 }

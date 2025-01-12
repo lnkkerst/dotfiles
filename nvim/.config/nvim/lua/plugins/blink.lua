@@ -2,9 +2,9 @@ return {
   {
     "saghen/blink.cmp",
     lazy = false,
-    build = "cargo build --release",
-    version = false,
-    -- version = "v0.*",
+    -- build = "cargo build --release",
+    -- version = false,
+    version = "v0.*",
     dependencies = { "rafamadriz/friendly-snippets" },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -39,7 +39,10 @@ return {
 
       completion = {
         list = {
-          selection = "auto_insert",
+          selection = {
+            preselect = false,
+            auto_insert = true,
+          },
         },
 
         accept = {
@@ -60,44 +63,6 @@ return {
         },
       },
     },
-  },
-
-  {
-    "hrsh7th/nvim-cmp",
-    enabled = false,
-    event = { "CmdlineEnter" },
-    dependencies = {
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-path" },
-      { "hrsh7th/cmp-cmdline" },
-    },
-    config = function()
-      local cmp = require("cmp")
-
-      cmp.setup({
-        enabled = function()
-          if vim.bo.buftype == "prompt" then
-            return false
-          end
-          return true
-        end,
-      })
-
-      cmp.setup.cmdline("/", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = "buffer" },
-        }),
-      })
-
-      cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "cmdline" },
-          { name = "path" },
-        },
-      })
-    end,
   },
 
   {
