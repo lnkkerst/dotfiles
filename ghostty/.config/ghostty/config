@@ -2,7 +2,7 @@ theme = catppuccin-mocha
 
 font-feature = -calt
 
-font-size = 10.5
+font-size = 10
 
 gtk-titlebar = false
 confirm-close-surface = false
