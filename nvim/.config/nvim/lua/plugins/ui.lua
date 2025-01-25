@@ -132,13 +132,12 @@ return {
         options = {
           icons_enabled = true,
           theme = "auto",
-          component_separators = { left = "", right = "" },
-          section_separators = { left = "", right = "" },
+          -- component_separators = { left = "", right = "" },
+          -- section_separators = { left = "", right = "" },
+          section_separators = "",
+          component_separators = "|",
           disabled_filetypes = {
             statusline = {
-              "dashboard",
-              "alpha",
-              "ministarter",
               "snacks_dashboard",
             },
           },
@@ -147,19 +146,26 @@ return {
         },
 
         sections = {
-          lualine_a = { "mode" },
+          lualine_a = {
+            {
+              "mode",
+              fmt = function(str)
+                return str:sub(1, 1)
+              end,
+            },
+            { "selectioncount" },
+          },
           lualine_b = {
             { "branch" },
             {
               "diff",
               cond = conditions.hide_in_width,
             },
-          },
-          lualine_c = {
-            dap_or_lsp,
-          },
-          lualine_x = {
             { "diagnostics" },
+          },
+          lualine_c = { dap_or_lsp },
+          lualine_x = {
+            { "%S" },
           },
           lualine_y = {
             { modified },
@@ -167,7 +173,10 @@ return {
             { "encoding" },
             { "fileformat" },
           },
-          lualine_z = { "progress", "location" },
+          lualine_z = {
+            { "progress" },
+            { "location" },
+          },
         },
 
         extensions = {
@@ -183,7 +192,6 @@ return {
           "mason",
           "oil",
           "overseer",
-          "toggleterm",
           "trouble",
         },
       }
@@ -192,6 +200,7 @@ return {
 
   {
     "stevearc/dressing.nvim",
+    enabled = false,
     event = "VeryLazy",
     opts = {
       input = {
@@ -246,6 +255,8 @@ return {
   {
     "nvim-zh/colorful-winsep.nvim",
     event = { "WinLeave" },
-    opts = {},
+    opts = {
+      smooth = false,
+    },
   },
 }

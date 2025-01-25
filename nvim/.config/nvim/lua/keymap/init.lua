@@ -97,3 +97,7 @@ vim.keymap.set("i", "<C-l>", "<right>")
 -- Cmdline shortcuts
 vim.keymap.set("c", "<C-a>", "<Home>")
 vim.keymap.set("c", "<C-e>", "<End>")
+
+-- Buffer switch
+-- vim.keymap.set({ "n", "i" }, "<M-n>", "<cmd>bnext<cr>")
+-- vim.keymap.set({ "n", "i" }, "<M-p>", "<cmd>bprev<cr>")

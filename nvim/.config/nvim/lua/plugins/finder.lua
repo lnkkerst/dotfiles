@@ -1,6 +1,9 @@
+---@module 'lazy.nvim'
+---@type LazySpec
 return {
   {
     "nvim-telescope/telescope.nvim",
+    enabled = false,
     cmd = { "Telescope" },
     lazy = true,
     dependencies = {
@@ -94,6 +97,29 @@ return {
 
       local wk = require("which-key")
       wk.add({ "<leader>f", group = "Telescope" })
+    end,
+  },
+
+  {
+    "ibhagwan/fzf-lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = { "FzfLua" },
+    keys = {
+      { "<leader>ff", "<cmd>FzfLua<cr>" },
+      { "<leader>fb", "<cmd>FzfLua buffers<cr>" },
+      { "<leader>fg", "<cmd>FzfLua live_grep<cr>" },
+      { "<leader>fm", "<cmd>FzfLua marks<cr>" },
+      { "<leader>fj", "<cmd>FzfLua jumps<cr>" },
+      { "<C-p>", "<cmd>FzfLua files<cr>" },
+    },
+    opts = {
+      { "telescope" },
+      winopts = { border = "single", preview = { border = "single" } },
+    },
+    config = function(_, opts)
+      local fzf = require("fzf-lua")
+      fzf.setup(opts)
+      fzf.register_ui_select()
     end,
   },
 }

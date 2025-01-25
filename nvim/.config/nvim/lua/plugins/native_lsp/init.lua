@@ -75,6 +75,9 @@ return {
             edit = "o",
           },
         },
+        symbol_in_winbar = {
+          enable = true,
+        },
       })
 
       wk.add({
@@ -180,15 +183,7 @@ return {
     "rachartier/tiny-inline-diagnostic.nvim",
     event = "LspAttach",
     opts = {
-      signs = {
-        left = "",
-        right = "",
-        diag = "●",
-        arrow = "    ",
-        up_arrow = "    ",
-        vertical = " │",
-        vertical_end = " └",
-      },
+      preset = "modern",
       options = {
         show_source = true,
         multiple_diag_under_cursor = true,

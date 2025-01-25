@@ -27,6 +27,7 @@ vim.g.maplocalleader = "\\"
 
 require("options")
 require("neovide")
+require("filetypes")
 require("keymap")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

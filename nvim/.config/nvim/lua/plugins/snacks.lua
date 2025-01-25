@@ -44,6 +44,7 @@ return {
       lazygit = {
         configure = true,
       },
+      input = {},
       styles = {
         ["notification.history"] = {
           border = "single",
@@ -52,6 +53,9 @@ return {
           border = "single",
         },
         notification = {
+          border = "single",
+        },
+        input = {
           border = "single",
         },
       },

@@ -32,7 +32,10 @@ return {
     lazy = false,
     keys = {
       { "<leader>o", "<cmd>Oil<cr>", desc = "Open oil" },
+      { "-", "<CMD>Oil<CR>", desc = "Open parent directory" },
     },
+    ---@module 'oil'
+    ---@type oil.SetupOpts
     opts = {
       columns = {
         "icon",
@@ -46,6 +49,11 @@ return {
         ["<C-p>"] = false,
         ["gp"] = "actions.preview",
       },
+      delete_to_trash = true,
+      view_options = {
+        show_hidden = true,
+      },
+
       float = {
         border = "single",
       },

@@ -184,9 +184,6 @@ local options = {
   -- Blend for floating window
   --winblend = 10,
 
-  -- Disable tabline
-  showtabline = 0,
-
   shada = "!,'300,<50,@100,s10,h",
   redrawtime = 1500,
   infercase = true,
@@ -203,6 +200,7 @@ local options = {
   helpheight = 12,
   previewheight = 12,
   showcmd = true,
+  showcmdloc = "statusline",
   equalalways = false,
   showbreak = "↳  ",
   autoread = true,
@@ -211,7 +209,8 @@ local options = {
 }
 
 local globals = {
-  default_file_explorer = "nvim-tree",
+  -- default_file_explorer = "nvim-tree",
+  default_file_explorer = "neo-tree",
   default_terminal = "toggleterm",
 }
 

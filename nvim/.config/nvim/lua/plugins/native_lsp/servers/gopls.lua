@@ -1,11 +1,14 @@
-local lspconfig = require("lspconfig")
-local plugin_lsp = require("utils.native_lsp")
-
 local M = {}
 
 function M.init()
+  local lspconfig = require("lspconfig")
+  local plugin_lsp = require("utils.native_lsp")
+
   lspconfig.gopls.setup({
-    on_attach = plugin_lsp.common_on_attach,
+    on_attach = function(client, bufnr)
+      plugin_lsp.common_on_attach(client, bufnr)
+      require("lsp-format").on_attach(client, bufnr)
+    end,
     capabilities = plugin_lsp.common_capabilities,
     settings = {
       gopls = {
@@ -15,6 +18,10 @@ function M.init()
           shadow = true,
         },
         staticcheck = true,
+
+        gofumpt = true,
+        completeUnimported = true,
+        usePlaceholders = true,
 
         hints = {
           rangeVariableTypes = true,

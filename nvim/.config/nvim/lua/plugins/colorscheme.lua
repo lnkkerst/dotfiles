@@ -61,10 +61,6 @@ return {
           -- leap = true,
           which_key = true,
           fidget = true,
-          illuminate = {
-            enabled = true,
-            lsp = false,
-          },
           -- indent_blankline = {
           --   enabled = true,
           --   scope_color = "lavender",
@@ -97,7 +93,7 @@ return {
             color = "blue",
           },
           grug_far = true,
-          -- fzf = true,
+          fzf = true,
           blink_cmp = true,
           diffview = true,
           nvim_surround = true,
