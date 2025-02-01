@@ -1,4 +1,4 @@
----@type LazyPluginSpec
+---@type LazySpec
 return {
   {
     "zbirenbaum/copilot.lua",
@@ -8,5 +8,15 @@ return {
       suggestion = { enabled = false },
       panel = { enabled = false },
     },
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" },
+      { "nvim-lua/plenary.nvim", branch = "master" },
+    },
+    cmd = { "CopilotChat" },
+    build = "make tiktoken",
+    opts = {},
   },
 }

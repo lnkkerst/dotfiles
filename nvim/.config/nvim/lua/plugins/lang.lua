@@ -79,7 +79,14 @@ return {
   -- lua
   {
     "folke/lazydev.nvim",
-    opts = {},
+    opts = {
+      library = {
+        {
+          path = "lazy.nvim",
+          words = { "Lazy.*Spec" },
+        },
+      },
+    },
     lazy = true,
     ft = "lua",
   },
@@ -124,11 +131,11 @@ return {
   -- go
   {
     "olexsmir/gopher.nvim",
-    enabled = false,
+    enabled = true,
     -- branch = "develop", -- if you want develop branch
     -- keep in mind, it might break everything
     ft = "go",
-    cmt = { "GoInstallDeps" },
+    cmd = { "GoInstallDeps" },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
@@ -144,6 +151,7 @@ return {
   },
   {
     "ray-x/go.nvim",
+    enabled = false,
     dependencies = { -- optional packages
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",

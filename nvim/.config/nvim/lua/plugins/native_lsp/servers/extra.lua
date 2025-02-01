@@ -24,6 +24,7 @@ function M.init()
     "mdx_analyzer",
     "basedpyright",
     "astro",
+    "typos_lsp",
   }
 
   for _, server in ipairs(servers) do
@@ -39,8 +40,10 @@ function M.init()
     "asm_lsp",
     "ruff",
     "taplo",
-    "buf_ls",
+    -- "buf_ls",
+    "protols",
     "prismals",
+    "thriftls",
   }
 
   for _, server in ipairs(servers_with_format) do

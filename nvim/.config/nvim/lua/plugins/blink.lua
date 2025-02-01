@@ -1,4 +1,4 @@
----@type LazyPluginSpec
+---@type LazySpec
 return {
   {
     "saghen/blink.cmp",

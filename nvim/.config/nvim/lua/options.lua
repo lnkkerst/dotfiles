@@ -210,8 +210,10 @@ local options = {
 
 local globals = {
   -- default_file_explorer = "nvim-tree",
-  default_file_explorer = "neo-tree",
-  default_terminal = "toggleterm",
+  -- default_file_explorer = "neo-tree",
+  default_file_explorer = "snacks_explorer",
+  -- default_terminal = "toggleterm",
+  default_terminal = "snacks",
 }
 
 for k, v in pairs(options) do

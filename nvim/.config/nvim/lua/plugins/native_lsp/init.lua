@@ -156,6 +156,9 @@ return {
 
   {
     "williamboman/mason.nvim",
+    dependencies = {
+      "ibhagwan/fzf-lua",
+    },
     lazy = true,
     cmd = { "Mason" },
     opts = {},

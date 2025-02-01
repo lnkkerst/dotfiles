@@ -99,6 +99,7 @@ return {
           nvim_surround = true,
           ufo = true,
           snacks = true,
+          copilot_vim = true,
         },
       }
     end,

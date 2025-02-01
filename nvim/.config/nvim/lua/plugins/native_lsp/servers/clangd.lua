@@ -43,6 +43,7 @@ function M.init()
           })
         ),
     },
+    filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
   })
 end
 

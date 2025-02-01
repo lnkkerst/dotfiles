@@ -32,3 +32,6 @@ indent_style=tab
 
 [*.asm]
 indent_style=tab
+
+[*.thrift]
+indent_size = 4

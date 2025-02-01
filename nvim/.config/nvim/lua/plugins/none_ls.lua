@@ -48,6 +48,7 @@ return {
           none_ls.builtins.formatting.clang_format,
           -- null_ls.builtins.formatting.asmfmt,
           none_ls.builtins.formatting.rustywind,
+
           none_ls.builtins.diagnostics.fish,
           none_ls.builtins.diagnostics.checkmake,
           none_ls.builtins.diagnostics.commitlint,
