@@ -1,8 +1,8 @@
 return {
   {
     "akinsho/bufferline.nvim",
+    lazy = false,
     dependencies = { "kyazdani42/nvim-web-devicons" },
-    event = "VeryLazy",
     keys = {
       { "<A-n>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
       { "<A-p>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
@@ -23,17 +23,7 @@ return {
           mod = "buffers",
           numbers = "ordinal",
           diagnostics = "nvim_lsp",
-          always_show_bufferline = false,
-          offsets = {
-            {
-              filetype = vim.g.default_file_explorer == "nvim-tree"
-                  and "NvimTree"
-                or "neo-tree",
-              text = "File Explorer",
-              text_align = "center",
-              padding = 1,
-            },
-          },
+          always_show_bufferline = true,
         },
         highlights = require("catppuccin.groups.integrations.bufferline").get(),
       }

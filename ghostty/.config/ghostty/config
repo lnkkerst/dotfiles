@@ -14,3 +14,6 @@ background-opacity = 0.9
 mouse-scroll-multiplier = 0.3
 
 gtk-single-instance = true
+
+cursor-style = bar
+cursor-text = #1e1e2e

@@ -15,7 +15,7 @@ function M.init()
     includeInlayEnumMemberValueHints = true,
   }
 
-  -- lspconfig.tsserver.setup({
+  -- lspconfig.ts_ls.setup({
   --   enabled = true,
   --   on_attach = plugin_lsp.common_on_attach,
   --   capabilities = plugin_lsp.common_capabilities,
@@ -32,12 +32,6 @@ function M.init()
   require("typescript-tools").setup({
     on_attach = function(client, bufnr)
       plugin_lsp.common_on_attach(client, bufnr)
-      -- client.server_capabilities.semanticTokensProvider = false
-
-      -- require("workspace-diagnostics").populate_workspace_diagnostics(
-      --   client,
-      --   bufnr
-      -- )
     end,
     capabilities = plugin_lsp.common_capabilities,
     init_options = {

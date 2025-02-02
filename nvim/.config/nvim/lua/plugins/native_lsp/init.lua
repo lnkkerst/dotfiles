@@ -206,6 +206,19 @@ return {
         marginLeft = 1,
       },
     },
+    init = function()
+      vim.api.nvim_create_autocmd("InsertEnter", {
+        callback = function()
+          vim.lsp.inlay_hint.enable(false)
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("InsertLeave", {
+        callback = function()
+          vim.lsp.inlay_hint.enable(true)
+        end,
+      })
+    end,
   },
 
   {

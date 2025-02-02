@@ -93,7 +93,7 @@ return {
             box = "horizontal",
             backdrop = false,
             width = 0.8,
-            height = 0.9,
+            height = 0.85,
             border = "none",
             {
               box = "vertical",
