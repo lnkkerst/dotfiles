@@ -5,18 +5,18 @@ return {
     cmd = "Copilot",
     event = "InsertEnter",
     opts = {
-      suggestion = { enabled = false },
+      suggestion = { enabled = true, auto_trigger = true },
       panel = { enabled = false },
     },
   },
+
   {
-    "CopilotC-Nvim/CopilotChat.nvim",
+    "olimorris/codecompanion.nvim",
+    cmd = { "CodeComponion" },
     dependencies = {
-      { "zbirenbaum/copilot.lua" },
-      { "nvim-lua/plenary.nvim", branch = "master" },
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
     },
-    cmd = { "CopilotChat" },
-    build = "make tiktoken",
     opts = {},
   },
 }

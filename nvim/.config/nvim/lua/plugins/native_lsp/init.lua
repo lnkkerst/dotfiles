@@ -38,6 +38,7 @@ return {
         --   source = false,
         -- },
         virtual_text = false,
+        -- virtual_lines = true,
       })
 
       require("plugins.native_lsp.servers").init_all()
@@ -156,9 +157,6 @@ return {
 
   {
     "williamboman/mason.nvim",
-    dependencies = {
-      "ibhagwan/fzf-lua",
-    },
     lazy = true,
     cmd = { "Mason" },
     opts = {},

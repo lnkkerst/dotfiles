@@ -48,18 +48,7 @@ return {
       layout = {
         preset = "telescope",
       },
-      sources = {
-        explorer = {
-          win = {
-            list = {
-              keys = {
-                ["<c-n>"] = "close",
-                -- ["<c-p>"] = {},
-              },
-            },
-          },
-        },
-      },
+      sources = {},
       layouts = {
         sidebar = {
           preview = "main",
@@ -122,7 +111,6 @@ return {
         },
       },
     },
-    explorer = {},
     styles = {
       ["notification.history"] = {
         border = "single",
@@ -212,14 +200,6 @@ return {
         "<C-p>",
         function()
           require("snacks").picker.files()
-        end,
-      },
-
-      -- explorer
-      {
-        "<C-n>",
-        function()
-          require("snacks").explorer()
         end,
       },
 

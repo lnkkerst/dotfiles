@@ -189,60 +189,6 @@ return {
   },
 
   {
-    "stevearc/dressing.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    opts = {
-      input = {
-        border = "single",
-      },
-      select = {
-        enabled = true,
-        backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
-        telescope = {
-          border = {},
-          borderchars = {
-            "─",
-            "│",
-            "─",
-            "│",
-            "┌",
-            "┐",
-            "┘",
-            "└",
-          },
-        },
-      },
-    },
-  },
-
-  {
-    "rcarriga/nvim-notify",
-    enabled = false,
-    opts = {
-      -- level = "info",
-      stages = "static",
-      render = "minimal",
-      timeout = 1500,
-      background_colour = "Normal",
-      minimum_width = 36,
-      icons = {
-        ERROR = "",
-        WARN = "",
-        INFO = "",
-        DEBUG = "",
-        TRACE = "✎",
-      },
-    },
-    config = function(_, opts)
-      local notify = require("notify")
-      notify.setup(opts)
-
-      vim.notify = notify
-    end,
-  },
-
-  {
     "nvim-zh/colorful-winsep.nvim",
     event = { "WinLeave" },
     opts = {

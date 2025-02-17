@@ -1,7 +1,7 @@
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
-    enabled = false,
+    enabled = true,
     branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -47,7 +47,8 @@ return {
         ["<C-s>"] = false,
         ["<C-v>"] = { "actions.select", opts = { vertical = true } },
         ["<C-p>"] = false,
-        ["gp"] = "actions.preview",
+        ["gp"] = { "actions.preview", mode = "n" },
+        ["q"] = { "actions.close", mode = "n" },
       },
       delete_to_trash = true,
       view_options = {

@@ -200,7 +200,10 @@ return {
     "ahmedkhalf/project.nvim",
     event = "VeryLazy",
     name = "project_nvim",
-    opts = { manual_mode = true, ignore_lsp = { "null-ls" } },
+    opts = {
+      manual_mode = true,
+      ignore_lsp = { "null-ls", "copilot", "typos_lsp" },
+    },
   },
 
   {

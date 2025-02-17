@@ -3,6 +3,7 @@ return {
   {
     "saghen/blink.cmp",
     version = "*",
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       "rafamadriz/friendly-snippets",
       {
@@ -11,7 +12,8 @@ return {
         opts = {},
       },
       {
-        "giuxtaposition/blink-cmp-copilot",
+        "xzbdmw/colorful-menu.nvim",
+        opts = {},
       },
     },
     ---@module 'blink.cmp'
@@ -26,14 +28,8 @@ return {
       },
 
       sources = {
-        default = { "lsp", "path", "snippets", "buffer", "lazydev", "copilot" },
+        default = { "lsp", "path", "snippets", "buffer", "lazydev" },
         providers = {
-          copilot = {
-            name = "copilot",
-            module = "blink-cmp-copilot",
-            score_offset = 100,
-            async = true,
-          },
           lazydev = {
             name = "LazyDev",
             module = "lazydev.integrations.blink",
@@ -72,25 +68,45 @@ return {
         -- },
         -- ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
-        preset = "default",
-        ["<Cr>"] = { "accept", "fallback" },
-        ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-        ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+        preset = "super-tab",
+        -- ["<Cr>"] = { "accept", "fallback" },
+        ["<Tab>"] = {
+          function(cmp)
+            local copilot = require("copilot.suggestion")
+            if copilot.is_visible() then
+              if cmp.get_selected_item() == nil then
+                copilot.accept()
+                return true
+              end
+            end
+            if cmp.snippet_active() then
+              return cmp.accept()
+            else
+              return cmp.select_and_accept()
+            end
+          end,
+          function() end,
+          -- "select_next",
+          "snippet_forward",
+          "fallback",
+        },
+        ["<CR>"] = { "accept", "fallback" },
+        -- ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
         ["<C-j>"] = { "select_next", "fallback" },
         ["<C-k>"] = { "select_prev", "fallback" },
         ["<C-u>"] = { "scroll_documentation_up", "fallback" },
         ["<C-d>"] = { "scroll_documentation_down", "fallback" },
-        cmdline = {
-          preset = "default",
-          ["<Cr>"] = { "fallback" },
-          ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-          ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
-          ["<C-j>"] = { "select_next", "fallback" },
-          ["<C-k>"] = { "select_prev", "fallback" },
-        },
       },
 
       completion = {
+        keyword = {
+          range = "full",
+        },
+
+        trigger = {
+          show_in_snippet = false,
+        },
+
         list = {
           selection = {
             preselect = false,
@@ -107,18 +123,38 @@ return {
         menu = {
           auto_show = true,
           border = "single",
+          -- draw = {
+          --   treesitter = { "lsp" },
+          --   columns = {
+          --     { "label", "label_description", gap = 1 },
+          --     { "kind", "source_name", gap = 1 },
+          --   },
+          -- },
           draw = {
-            treesitter = { "lsp", "copilot" },
+            -- We don't need label_description now because label and label_description are already
+            -- combined together in label by colorful-menu.nvim.
             columns = {
-              { "label", "label_description", gap = 1 },
+              { "label", gap = 1 },
               { "kind", "source_name", gap = 1 },
+            },
+            components = {
+              label = {
+                text = function(ctx)
+                  return require("colorful-menu").blink_components_text(ctx)
+                end,
+                highlight = function(ctx)
+                  return require("colorful-menu").blink_components_highlight(
+                    ctx
+                  )
+                end,
+              },
             },
           },
         },
 
         documentation = {
           auto_show = true,
-          auto_show_delay_ms = 200,
+          auto_show_delay_ms = 500,
           window = {
             border = "single",
           },
@@ -126,6 +162,16 @@ return {
 
         ghost_text = {
           enabled = false,
+        },
+      },
+      cmdline = {
+        keymap = {
+          preset = "default",
+          ["<Cr>"] = { "fallback" },
+          ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+          ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+          ["<C-j>"] = { "select_next", "fallback" },
+          ["<C-k>"] = { "select_prev", "fallback" },
         },
       },
     },

@@ -100,6 +100,9 @@ return {
           ufo = true,
           snacks = true,
           copilot_vim = true,
+          mini = {
+            enabled = true,
+          },
         },
       }
     end,

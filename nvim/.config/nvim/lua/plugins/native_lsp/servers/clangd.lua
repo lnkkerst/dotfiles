@@ -23,23 +23,23 @@ function M.init()
     ),
     cmd = {
       "clangd",
-      "--offset-encoding=utf-16",
-      "--query-driver="
-        .. require("utils").join_strings(
-          ",",
-          unpack({
-            "/home/lnk/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/bin/arm-none-eabi-gcc",
-            "/home/lnk/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/bin/arm-none-eabi-g++",
-            "/home/lnk/.platformio/packages/toolchain-gccarmnoneeabi@1.100301.220327/bin/arm-none-eabi-gcc",
-            "/home/lnk/.platformio/packages/toolchain-gccarmnoneeabi@1.100301.220327/bin/arm-none-eabi-g++",
-            "/home/lnk/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc",
-            "/home/lnk/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
-            "/usr/bin/arm-none-eabi-gcc",
-            "/usr/bin/arm-none-eabi-g++",
-            "/usr/bin/gcc",
-            "/usr/bin/g++",
-          })
-        ),
+      -- "--offset-encoding=utf-16",
+      -- "--query-driver="
+      --   .. require("utils").join_strings(
+      --     ",",
+      --     unpack({
+      --       "/home/lnk/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/bin/arm-none-eabi-gcc",
+      --       "/home/lnk/.platformio/packages/toolchain-gccarmnoneeabi@1.70201.0/bin/arm-none-eabi-g++",
+      --       "/home/lnk/.platformio/packages/toolchain-gccarmnoneeabi@1.100301.220327/bin/arm-none-eabi-gcc",
+      --       "/home/lnk/.platformio/packages/toolchain-gccarmnoneeabi@1.100301.220327/bin/arm-none-eabi-g++",
+      --       "/home/lnk/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc",
+      --       "/home/lnk/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++",
+      --       "/usr/bin/arm-none-eabi-gcc",
+      --       "/usr/bin/arm-none-eabi-g++",
+      --       "/usr/bin/gcc",
+      --       "/usr/bin/g++",
+      --     })
+      --   ),
     },
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
   })

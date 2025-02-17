@@ -22,7 +22,6 @@ function M.init()
     "kotlin_language_server",
     -- "emmet_language_server",
     "mdx_analyzer",
-    "basedpyright",
     "astro",
     "typos_lsp",
   }
