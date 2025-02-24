@@ -16,14 +16,14 @@ function M.init()
     "dartls",
     "sqlls",
     "csharp_ls",
-    "unocss",
+    -- "unocss",
     "jdtls",
     "tailwindcss",
     "kotlin_language_server",
     -- "emmet_language_server",
     "mdx_analyzer",
     "astro",
-    "typos_lsp",
+    -- "typos_lsp",
   }
 
   for _, server in ipairs(servers) do

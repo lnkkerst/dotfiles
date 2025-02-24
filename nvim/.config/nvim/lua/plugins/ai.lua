@@ -12,7 +12,12 @@ return {
 
   {
     "olimorris/codecompanion.nvim",
-    cmd = { "CodeComponion" },
+    cmd = {
+      "CodeComponion",
+      "CodeComponionChat",
+      "CodeComponionActions",
+      "CodeComponionCmd",
+    },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
