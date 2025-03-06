@@ -13,6 +13,7 @@ return {
     },
     opts = {},
   },
+
   {
     "mfussenegger/nvim-dap",
     cmd = {
@@ -190,6 +191,7 @@ return {
         command = "python",
         args = { "-m", "debugpy.adapter" },
       }
+
       dap.configurations.python = {
         {
           -- The first three options are required by nvim-dap

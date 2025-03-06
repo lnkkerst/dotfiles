@@ -71,23 +71,6 @@ return {
   },
 
   {
-    "krivahtoo/silicon.nvim",
-    enabled = true,
-    build = "./install.sh build",
-    cmd = "Silicon",
-    config = function()
-      require("silicon").setup({
-        font = "JetbrainsMono NF",
-        theme = "Catppuccin-mocha",
-        line_number = true,
-        output = {
-          clipboard = true,
-        },
-      })
-    end,
-  },
-
-  {
     "folke/which-key.nvim",
     event = "VeryLazy",
     vscode = true,

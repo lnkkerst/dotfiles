@@ -8,6 +8,9 @@ function M.init()
     cmd = { "delance-langserver", "--stdio" },
     on_attach = plugin_lsp.common_on_attach,
     capabilities = plugin_lsp.common_capabilities,
+    on_init = function(client)
+      client.server_capabilities.semanticTokensProvider = nil
+    end,
     settings = {
       pyright = {
         -- disable import sorting and use Ruff for this

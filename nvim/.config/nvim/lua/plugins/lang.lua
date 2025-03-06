@@ -61,13 +61,6 @@ return {
     end,
   },
 
-  -- java
-  {
-    "mfussenegger/nvim-jdtls",
-    lazy = true,
-    ft = "java",
-  },
-
   -- web
   {
     "pmizio/typescript-tools.nvim",
@@ -195,5 +188,17 @@ return {
     "iamcco/markdown-preview.nvim",
     ft = "markdown",
     build = "cd app && pnpm install",
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    enabled = true,
+    ft = { "markdown" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
   },
 }

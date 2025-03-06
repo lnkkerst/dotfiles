@@ -4,7 +4,10 @@ return {
     event = "VeryLazy",
     vscode = true,
     opts = {
-      modes = { search = { enabled = false }, char = { jump_labels = true } },
+      modes = {
+        search = { enabled = false },
+        char = { jump_labels = true },
+      },
     },
     config = function(_, opts)
       require("flash").setup(opts)

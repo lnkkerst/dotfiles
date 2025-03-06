@@ -164,14 +164,23 @@ return {
           enabled = false,
         },
       },
+
       cmdline = {
+        enabled = true,
         keymap = {
-          preset = "default",
-          ["<Cr>"] = { "fallback" },
-          ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-          ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
-          ["<C-j>"] = { "select_next", "fallback" },
-          ["<C-k>"] = { "select_prev", "fallback" },
+          ["<C-j>"] = { "select_next" },
+          ["<C-k>"] = { "select_prev" },
+        },
+        completion = {
+          menu = {
+            auto_show = true,
+          },
+          list = {
+            selection = {
+              preselect = false,
+              auto_insert = true,
+            },
+          },
         },
       },
     },

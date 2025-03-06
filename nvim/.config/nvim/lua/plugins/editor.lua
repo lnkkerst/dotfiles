@@ -22,6 +22,7 @@ return {
 
   {
     "windwp/nvim-autopairs",
+    enabled = false,
     event = "InsertEnter",
     opts = {
       check_ts = true,
@@ -30,6 +31,19 @@ return {
         javascript = { "template_string" },
       },
     },
+  },
+  {
+    "altermo/ultimate-autopair.nvim",
+    enabled = true,
+    event = { "InsertEnter", "CmdlineEnter" },
+    branch = "v0.6", --recommended as each new version will have breaking changes
+    opts = {
+      --Config goes here
+    },
+  },
+  {
+    "RRethy/nvim-treesitter-endwise",
+    ft = { "lua", "ruby", "vimscript" },
   },
 
   {

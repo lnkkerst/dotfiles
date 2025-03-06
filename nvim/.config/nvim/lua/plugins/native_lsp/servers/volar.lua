@@ -25,6 +25,9 @@ function M.init()
     enabled = true,
     on_attach = plugin_lsp.common_on_attach,
     capabilities = plugin_lsp.common_capabilities,
+    on_init = function(client)
+      client.server_capabilities.semanticTokensProvider = nil
+    end,
     init_options = {
       typescript = {
         tsdk = "/usr/lib/node_modules/typescript/lib",

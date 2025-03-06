@@ -1,7 +1,7 @@
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
-    enabled = true,
+    enabled = false,
     branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -24,6 +24,12 @@ return {
         },
       },
     },
+  },
+
+  {
+    "echasnovski/mini.files",
+    enabled = false,
+    opts = {},
   },
 
   {
@@ -112,5 +118,13 @@ return {
         },
       },
     },
+  },
+
+  {
+    "mikavilpas/yazi.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    dependencies = { "folke/snacks.nvim", lazy = true },
+    opts = {},
   },
 }
