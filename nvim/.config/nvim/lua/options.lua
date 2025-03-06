@@ -6,9 +6,7 @@ local options = {
   autoindent = true,
 
   -- Enable system clipboard if not in ssh
-  clipboard = not require("utils.conditions").is_ssh_session()
-      and "unnamed,unnamedplus"
-    or nil,
+  clipboard = "unnamed,unnamedplus",
 
   completeopt = "menu,menuone,noselect",
 
@@ -222,4 +220,25 @@ end
 
 for k, v in pairs(globals) do
   vim.g[k] = v
+end
+
+-- OSC 52 write only if in ssh
+if require("utils.conditions").is_ssh_session() then
+  local function paste()
+    return {
+      vim.split(vim.fn.getreg(""), "\n"),
+      vim.fn.getregtype(""),
+    }
+  end
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = paste,
+      ["*"] = paste,
+    },
+  }
 end

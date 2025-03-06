@@ -17,3 +17,6 @@ gtk-single-instance = true
 
 cursor-style = bar
 cursor-text = #1e1e2e
+
+clipboard-read = allow
+clipboard-write = allow
