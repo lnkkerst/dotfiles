@@ -1,6 +1,7 @@
 return {
   {
     "akinsho/bufferline.nvim",
+    enabled = true,
     lazy = false,
     dependencies = { "kyazdani42/nvim-web-devicons" },
     keys = {

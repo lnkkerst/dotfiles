@@ -22,7 +22,7 @@ return {
 
   {
     "windwp/nvim-autopairs",
-    enabled = false,
+    enabled = true,
     event = "InsertEnter",
     opts = {
       check_ts = true,
@@ -34,7 +34,7 @@ return {
   },
   {
     "altermo/ultimate-autopair.nvim",
-    enabled = true,
+    enabled = false,
     event = { "InsertEnter", "CmdlineEnter" },
     branch = "v0.6", --recommended as each new version will have breaking changes
     opts = {
@@ -73,7 +73,16 @@ return {
   {
     "tzachar/highlight-undo.nvim",
     keys = { { "u" }, { "<C-r>" }, { "p" }, { "P" } },
-    opts = {},
+    opts = {
+      ignored_filetypes = {
+        "neo-tree",
+        "fugitive",
+        "TelescopePrompt",
+        "mason",
+        "lazy",
+        "leetcode.nvim",
+      },
+    },
   },
 
   {

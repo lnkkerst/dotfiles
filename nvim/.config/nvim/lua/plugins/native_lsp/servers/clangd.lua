@@ -23,7 +23,7 @@ function M.init()
     ),
     cmd = {
       "clangd",
-      -- "--offset-encoding=utf-16",
+      "--offset-encoding=utf-16",
       -- "--query-driver="
       --   .. require("utils").join_strings(
       --     ",",
