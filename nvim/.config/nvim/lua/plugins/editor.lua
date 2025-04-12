@@ -2,7 +2,7 @@
 return {
   {
     "rainbowhxch/accelerated-jk.nvim",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     vscode = true,
     keys = {
       {

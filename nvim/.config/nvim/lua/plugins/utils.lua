@@ -92,6 +92,7 @@ return {
 
   {
     "folke/trouble.nvim",
+    enabled = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     cmd = "Trouble",
     opts = {},
@@ -106,7 +107,7 @@ return {
 
   {
     "aserowy/tmux.nvim",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     keys = {
       {
         "<M-up>",
@@ -141,28 +142,28 @@ return {
         function()
           require("tmux").move_left()
         end,
-        mode = { "t" },
+        mode = { "t", "n" },
       },
       {
         "<C-j>",
         function()
           require("tmux").move_bottom()
         end,
-        mode = { "t" },
+        mode = { "t", "n" },
       },
       {
         "<C-k>",
         function()
           require("tmux").move_top()
         end,
-        mode = { "t" },
+        mode = { "t", "n" },
       },
       {
         "<C-l>",
         function()
           require("tmux").move_right()
         end,
-        mode = { "t" },
+        mode = { "t", "n" },
       },
     },
     opts = {
@@ -191,6 +192,7 @@ return {
 
   {
     "folke/todo-comments.nvim",
+    enabled = false,
     dependencies = { "nvim-lua/plenary.nvim" },
     event = "LazyFile",
     opts = {},
@@ -202,13 +204,19 @@ return {
     opts = {
       highlighter = {
         auto_enable = true,
-        lsp = true,
+        lsp = false,
+        update_insert = false,
+      },
+      lsp = false,
+      win_opts = {
+        border = "single",
       },
     },
   },
 
   {
     "stevearc/aerial.nvim",
+    enabled = false,
     cmd = {
       "AerialToggle",
       "AerialGo",

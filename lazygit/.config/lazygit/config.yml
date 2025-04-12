@@ -22,3 +22,4 @@ gui:
 
   authorColors:
     '*': '#b4befe'
+  border: single

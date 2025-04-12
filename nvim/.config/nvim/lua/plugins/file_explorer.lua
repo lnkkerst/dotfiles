@@ -81,7 +81,7 @@ return {
 
   {
     "kyazdani42/nvim-tree.lua",
-    enabled = vim.g.default_file_explorer == "nvim-tree",
+    enabled = false,
     cmd = "NvimTreeToggle",
     dependencies = {
       "kyazdani42/nvim-web-devicons",

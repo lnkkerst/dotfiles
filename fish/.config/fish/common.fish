@@ -57,7 +57,6 @@ bind \co yazi-cd --mode default
 bind \eq 'fish_commandline_prepend pc' --mode insert
 bind \eq 'fish_commandline_prepend pc' --mode default
 
-
 #############
 # Functions #
 #############
@@ -119,7 +118,6 @@ function first-ip -d "Get first local ip"
     set ip (ip addr show | grep 'inet ' | grep -v '127.0.0.1' | awk '{print $2}' | cut -d '/' -f1 | head -n 1)
     echo -n $ip
 end
-
 
 ################
 # Applications #

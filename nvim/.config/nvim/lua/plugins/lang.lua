@@ -201,4 +201,12 @@ return {
     ---@type render.md.UserConfig
     opts = {},
   },
+
+  -- java
+  {
+    "nvim-java/nvim-java",
+    enabled = true,
+    ft = { "java" },
+    opts = {},
+  },
 }

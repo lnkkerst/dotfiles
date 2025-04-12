@@ -1,7 +1,7 @@
 return {
   {
     "akinsho/bufferline.nvim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     dependencies = { "kyazdani42/nvim-web-devicons" },
     keys = {
@@ -34,6 +34,7 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    enabled = true,
     event = "VeryLazy",
     opts = function()
       ---@diagnostic disable: unused-local, unused-function
@@ -123,10 +124,10 @@ return {
         options = {
           icons_enabled = true,
           theme = "auto",
-          -- component_separators = { left = "", right = "" },
-          -- section_separators = { left = "", right = "" },
-          section_separators = "",
-          component_separators = "|",
+          component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
+          -- section_separators = "",
+          -- component_separators = "|",
           disabled_filetypes = {
             statusline = {
               "snacks_dashboard",

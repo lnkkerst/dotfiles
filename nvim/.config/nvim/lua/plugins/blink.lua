@@ -7,11 +7,6 @@ return {
     dependencies = {
       "rafamadriz/friendly-snippets",
       {
-        "saghen/blink.compat",
-        optional = true,
-        opts = {},
-      },
-      {
         "xzbdmw/colorful-menu.nvim",
         opts = {},
       },
@@ -73,11 +68,9 @@ return {
         ["<Tab>"] = {
           function(cmp)
             local copilot = require("copilot.suggestion")
-            if copilot.is_visible() then
-              if cmp.get_selected_item() == nil then
-                copilot.accept()
-                return true
-              end
+            if copilot.is_visible() and cmp.get_selected_item() == nil then
+              copilot.accept()
+              return true
             end
             if cmp.snippet_active() then
               return cmp.accept()
@@ -91,6 +84,7 @@ return {
           "fallback",
         },
         ["<CR>"] = { "accept", "fallback" },
+        ["<C-y>"] = { "accept", "fallback" },
         -- ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
         ["<C-j>"] = { "select_next", "fallback" },
         ["<C-k>"] = { "select_prev", "fallback" },

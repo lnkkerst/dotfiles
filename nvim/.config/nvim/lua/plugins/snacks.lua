@@ -44,91 +44,40 @@ return {
       configure = true,
     },
     input = {},
+    scratch = {},
     picker = {
       layout = {
-        preset = "telescope",
+        preset = "dropdown",
       },
       sources = {},
       layouts = {
-        sidebar = {
-          preview = "main",
+        select = {
+          layout = {
+            border = "single",
+          },
+        },
+        dropdown = {
           layout = {
             backdrop = false,
-            width = 40,
-            min_width = 40,
-            height = 0,
-            position = "left",
+            row = 1,
+            width = 0.6,
+            min_width = 80,
+            height = 0.8,
             border = "none",
             box = "vertical",
             {
-              win = "input",
-              height = 1,
-              border = "none",
-              title = "{title} {live} {flags}",
-              title_pos = "center",
-            },
-            { win = "list", border = "none" },
-            {
               win = "preview",
               title = "{preview}",
-              height = 0.4,
-              border = "top",
+              height = 0.6,
+              border = "single",
             },
-          },
-        },
-        telescope = {
-          reverse = true,
-          layout = {
-            box = "horizontal",
-            backdrop = false,
-            width = 0.8,
-            height = 0.85,
-            border = "none",
             {
               box = "vertical",
-              {
-                win = "list",
-                title = " Results ",
-                title_pos = "center",
-                border = "single",
-              },
-              {
-                win = "input",
-                height = 1,
-                border = "single",
-                title = "{title} {live} {flags}",
-                title_pos = "center",
-              },
-            },
-            {
-              win = "preview",
-              title = "{preview:Preview}",
-              width = 0.45,
               border = "single",
+              title = "{title} {live} {flags}",
               title_pos = "center",
-            },
-          },
-        },
-        select = {
-          preview = false,
-          reverse = true,
-          layout = {
-            backdrop = false,
-            width = 0.5,
-            min_width = 80,
-            height = 0.4,
-            min_height = 3,
-            box = "vertical",
-            border = "single",
-            title = "{title}",
-            title_pos = "center",
-            { win = "list", border = "none" },
-            { win = "input", height = 1, border = "top" },
-            {
-              win = "preview",
-              title = "{preview}",
-              height = 0.4,
-              border = "top",
+              { win = "input", height = 1, border = "bottom" },
+              { win = "list", border = "none" },
             },
           },
         },
@@ -150,6 +99,9 @@ return {
         row = -3,
         col = 0,
         width = 30,
+      },
+      scratch = {
+        border = "single",
       },
     },
   },
@@ -173,12 +125,14 @@ return {
         function()
           require("snacks").bufdelete()
         end,
+        desc = "Delete current buffer",
       },
       {
         "<leader>bd",
         function()
           require("snacks").bufdelete()
         end,
+        desc = "Delete current buffer",
       },
 
       -- picker
@@ -186,44 +140,67 @@ return {
         "<leader>fn",
         function()
           ---@diagnostic disable-next-line: undefined-field
-          require("snacks").picker.notifications()
+          require("snacks").picker.notifications({
+            confirm = "focus_preview",
+          })
         end,
+        desc = "Pick notifications",
       },
       {
         "<leader>ff",
         function()
           require("snacks").picker()
         end,
+        desc = "Pick pickers",
       },
       {
         "<leader>fg",
         function()
           require("snacks").picker.grep()
         end,
+        desc = "Pick grep results",
       },
       {
         "<leader>fb",
         function()
           require("snacks").picker.buffers()
         end,
+        desc = "Pick buffers",
       },
       {
         "<leader>fm",
         function()
           require("snacks").picker.marks()
         end,
+        desc = "Pick marks",
       },
       {
         "<leader>fj",
         function()
           require("snacks").picker.jumps()
         end,
+        desc = "Pick jump list",
+      },
+      {
+        "<leader>fq",
+        function()
+          require("snacks").picker.qflist()
+        end,
+        desc = "Pick quickfix list",
+      },
+      {
+        "<leader>fl",
+        function()
+          require("snacks").picker.loclist()
+        end,
+        desc = "Pick location list",
       },
       {
         "<C-p>",
         function()
           require("snacks").picker.files()
         end,
+        desc = "Pick files",
       },
 
       {
@@ -231,6 +208,7 @@ return {
         function()
           require("snacks").zen()
         end,
+        desc = "Toggle Zen Mode",
       },
     }
 
@@ -243,6 +221,7 @@ return {
         mode = { "i", "n", "t" },
       })
     end
+
     return keys
   end,
   config = function(_, opts)

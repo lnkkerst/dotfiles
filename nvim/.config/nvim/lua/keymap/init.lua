@@ -1,12 +1,12 @@
 require("keymap.config")
 
--- Save file
-vim.keymap.set(
-  { "i", "x", "n", "s" },
-  "<C-s>",
-  "<cmd>w<cr><esc>",
-  { desc = "Save File" }
-)
+-- -- Save file
+-- vim.keymap.set(
+--   { "i", "x", "n", "s" },
+--   "<C-s>",
+--   "<cmd>w<cr><esc>",
+--   { desc = "Save File" }
+-- )
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>")
 
 -- Move in line

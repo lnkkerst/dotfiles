@@ -70,6 +70,9 @@ local options = {
   -- Minimum line offset
   scrolloff = 4,
 
+  -- Maximum number of lines to keep in terminal buffer
+  scrollback = 1000,
+
   -- Persistence for `mksession`
   sessionoptions = {
     "buffers",
