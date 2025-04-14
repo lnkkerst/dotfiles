@@ -55,7 +55,7 @@ return {
           none_ls.builtins.diagnostics.selene,
         },
         on_attach = function(client, bufnr)
-          require("utils.native_lsp").common_on_attach(client, bufnr)
+          require("utils.lsp").common_on_attach(client, bufnr)
           require("lsp-format").on_attach(client)
         end,
       })

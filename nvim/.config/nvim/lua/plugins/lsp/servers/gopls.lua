@@ -2,7 +2,7 @@ local M = {}
 
 function M.init()
   local lspconfig = require("lspconfig")
-  local plugin_lsp = require("utils.native_lsp")
+  local plugin_lsp = require("utils.lsp")
 
   lspconfig.gopls.setup({
     on_attach = function(client, bufnr)

@@ -1,6 +1,6 @@
 local lspconfig = require("lspconfig")
 local lsp_format = require("lsp-format")
-local plugin_lsp = require("utils.native_lsp")
+local plugin_lsp = require("utils.lsp")
 local util = require("lspconfig.util")
 
 local M = {}
@@ -38,6 +38,9 @@ local prettier_filetypes = {
 }
 
 function M.init()
+  if true then
+    return
+  end
   lspconfig.dprint.setup({
     on_attach = function(client, bufnr)
       plugin_lsp.common_on_attach(client, bufnr)
@@ -46,12 +49,7 @@ function M.init()
     capabilities = plugin_lsp.common_capabilities,
     filetypes = require("utils").merge_sets(filetypes, prettier_filetypes),
     single_file_support = false,
-    root_dir = util.root_pattern(
-      "dprint.json",
-      ".dprint.json",
-      "dprint.jsonc",
-      ".dprint.jsonc"
-    ),
+    root_dir = util.root_pattern("dprint.json", ".dprint.json", "dprint.jsonc", ".dprint.jsonc"),
   })
 end
 

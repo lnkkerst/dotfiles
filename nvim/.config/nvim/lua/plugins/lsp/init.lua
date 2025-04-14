@@ -8,6 +8,7 @@ return {
       -- { "onsails/lspkind.nvim", opts = {} },
       {
         "folke/neoconf.nvim",
+        version = false,
         cmd = "Neoconf",
         opts = {},
       },
@@ -55,7 +56,7 @@ return {
         end,
       })
 
-      require("plugins.native_lsp.servers").init_all()
+      require("plugins.lsp.servers").init_all()
     end,
   },
 

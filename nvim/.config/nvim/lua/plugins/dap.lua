@@ -72,20 +72,14 @@ return {
 
       local sign = vim.fn.sign_define
 
-      sign(
-        "DapBreakpoint",
-        { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" }
-      )
+      sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
       sign("DapBreakpointCondition", {
         text = "●",
         texthl = "DapBreakpointCondition",
         linehl = "",
         numhl = "",
       })
-      sign(
-        "DapLogPoint",
-        { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" }
-      )
+      sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
 
       dap.adapters.lldb = {
         type = "executable",
@@ -111,11 +105,7 @@ return {
           type = "lldb",
           request = "launch",
           program = function()
-            return vim.fn.input(
-              "Path to executable: ",
-              vim.fn.getcwd() .. "/",
-              "file"
-            )
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
           end,
           cwd = "${workspaceFolder}",
           stopOnEntry = false,
@@ -138,11 +128,7 @@ return {
           type = "cppdbg",
           request = "launch",
           program = function()
-            return vim.fn.input(
-              "Path to executable: ",
-              vim.fn.getcwd() .. "/",
-              "file"
-            )
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
           end,
           cwd = "${workspaceFolder}",
           stopAtEntry = true,

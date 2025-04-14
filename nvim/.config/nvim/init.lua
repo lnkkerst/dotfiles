@@ -66,6 +66,7 @@ require("lazy").setup({
       end
       return true
     end,
+    version = "*",
   },
   ui = { border = "single" },
   performance = {
@@ -100,3 +101,4 @@ require("lazy").setup({
 
 require("autocmd")
 require("commands")
+require("lsp")

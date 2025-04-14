@@ -1,6 +1,6 @@
 local util = require("lspconfig.util")
 local lspconfig = require("lspconfig")
-local plugin_lsp = require("utils.native_lsp")
+local plugin_lsp = require("utils.lsp")
 
 local M = {}
 

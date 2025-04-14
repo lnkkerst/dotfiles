@@ -1,5 +1,3 @@
-local vim = vim
-
 if vim.g.neovide then
   vim.cmd([[set guifont=JetBrainsMono\ Nerd\ Font:h10]])
   vim.g.neovide_refresh_rate = 60

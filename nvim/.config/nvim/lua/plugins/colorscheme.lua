@@ -2,6 +2,7 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    version = false,
     priority = 1000,
     opts = function()
       return {

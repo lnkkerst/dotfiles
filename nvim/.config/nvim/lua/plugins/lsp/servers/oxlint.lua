@@ -1,7 +1,7 @@
 local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
 local lsp_format = require("lsp-format")
-local plugin_lsp = require("utils.native_lsp")
+local plugin_lsp = require("utils.lsp")
 
 local M = {}
 

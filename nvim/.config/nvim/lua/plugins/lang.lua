@@ -5,7 +5,7 @@ return {
     enabled = true,
     ft = { "rust" },
     config = function()
-      local lsp_utils = require("utils.native_lsp")
+      local lsp_utils = require("utils.lsp")
       vim.g.rustaceanvim = {
         server = {
           on_attach = function(client, bufnr)
@@ -133,17 +133,10 @@ return {
           end
           local venv_python = venv.path .. "/bin/python"
           if client.settings then
-            client.settings = vim.tbl_deep_extend(
-              "force",
-              client.settings,
-              { python = { pythonPath = venv_python } }
-            )
+            client.settings = vim.tbl_deep_extend("force", client.settings, { python = { pythonPath = venv_python } })
           else
-            client.config.settings = vim.tbl_deep_extend(
-              "force",
-              client.config.settings,
-              { python = { pythonPath = venv_python } }
-            )
+            client.config.settings =
+              vim.tbl_deep_extend("force", client.config.settings, { python = { pythonPath = venv_python } })
           end
           client.notify("workspace/didChangeConfiguration", { settings = nil })
         end,

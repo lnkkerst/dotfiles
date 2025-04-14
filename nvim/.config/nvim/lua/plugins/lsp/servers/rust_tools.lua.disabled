@@ -1,5 +1,5 @@
 local rt = require("rust-tools")
-local plugin_lsp = require("utils.native_lsp")
+local plugin_lsp = require("utils.lsp")
 local util = require("lspconfig.util")
 
 local M = {}
