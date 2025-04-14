@@ -1,6 +1,0 @@
-std = "lua51+neovim"
-exclude = ["lua/mason-vendor/*"]
-
-[rules]
-mixed_table = "allow"
-shadowing = "allow"
