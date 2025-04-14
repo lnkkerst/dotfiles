@@ -5,3 +5,4 @@
 !diff/
 !diff/**
 !fish_plugins
+!config.fish.example

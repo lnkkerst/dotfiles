@@ -1,0 +1,7 @@
+set config_path (dirname (status -f))
+
+source $config_path/common.fish
+
+if not status is-interactive
+    return
+end
