@@ -3,7 +3,7 @@ set -gx DISABLE_FZF_AUTO_COMPLETION true
 set -gx TERMINAL kitty
 set -gx EDITOR nvim
 set -gx PAGER less
-set -gx JAVA_HOME /usr/lib/jvm/default
+# set -gx JAVA_HOME /usr/lib/jvm/default
 # set -gx LOCALE_ARCHIVE $HOME/.nix-profile/lib/locale/locale-archive
 # set -gx GOPROXY https://mirrors.aliyun.com/goproxy/,direct
 

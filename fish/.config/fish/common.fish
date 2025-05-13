@@ -18,7 +18,8 @@ set -gx fish_greeting
 
 alias gitu='git add . && git commit && git push'
 alias trm='/bin/rm'
-alias rm='echo "Never use rm, please ;("'
+# alias rm='echo "Never use rm, please ;("'
+alias rm='trash-put'
 alias d="trash-put"
 alias pc='proxychains'
 alias ...='cd ..; cd .. '
@@ -123,11 +124,11 @@ end
 # Applications #
 ################
 
-# fnm
-if type -qf fnm
-    fnm env --use-on-cd --shell fish | source
-    fnm completions --shell fish | source
-end
+# # fnm
+# if type -qf fnm
+#     fnm env --use-on-cd --shell fish | source
+#     fnm completions --shell fish | source
+# end
 
 # zoxide
 if type -qf zoxide
@@ -166,4 +167,10 @@ end
 # uv
 if type -qf uv
     uv generate-shell-completion fish | source
+    alias pip="uv pip"
+end
+
+# eza
+if type -qf eza
+    alias ls='eza'
 end

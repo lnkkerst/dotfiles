@@ -7,9 +7,9 @@ export XDG_SESSION_DESKTOP=Hyprland
 # export QT_AUTO_SCREEN_SCALE_FACTOR=1
 # export QT_QPA_PLATFORM="wayland;xcb"
 # export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-export QT_QPA_PLATFORMTHEME=qt5ct
-export QT_SELECT=5
-export QT_STYLE_OVERRIDE=kvantum
+export QT_QPA_PLATFORMTHEME=qt6ct
+export QT_SELECT=6
+export QT_STYLE_OVERRIDE=qt6ct-style
 
 export GDK_BACKEND=wayland,x11
 export GTK_THEME=Catppuccin-Mocha
@@ -31,6 +31,7 @@ export INPUT_METHOD=fcitx
 #export GLFW_IM_MODULE=ibus
 export GLFW_IM_MODULE=fcitx
 export IMSETTINGS_MODULE=fcitx
+export QT_IM_MODULES="wayland;fcitx;ibus"
 
 if [ $1 -eq 1 ]; then
   export GDK_SCALE=2
